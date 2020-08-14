@@ -10,7 +10,7 @@
         <div>
             <nav>
                 <ul>
-                <!--Aqui va el logo de la compani-->
+                <!--Aqui va el logo de la compani -->
                     <li>inicio</li>
                     <li>acerca de</li>
                     <li>sobre nosotros</li>
