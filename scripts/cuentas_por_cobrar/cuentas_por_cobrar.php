@@ -11,6 +11,6 @@
         $conexion->query("insert into cxcobrar (cxc_nombre, cxc_detalle, cxc_cantidad, cxc_price, cxc_total)
             values ('$nombre', '$detalle', '$cantidad', '$price', '$total')");
     
-//cxcobrar y cxpagar  
+//cxcobrar y cxpagar
     header('location: ../../views/cuentas_por_cobrar.php')
 ?>
