@@ -1,6 +1,8 @@
 <!--  AQUI DEBE DE IR SOLAMENTE UN FORMULARIO DE REGISTRO DE ARTICULOS 
       SOLO HTML SIN CSS SIN JAVASCRIP SIN PHP-->
-<form action="" method="post">
+<?php include("../base.php"); ?>
+  
+<form  action="" method="post">
     <h1>REGISTRO DE ARTICULOS</h1>
     <input type="text" name="nombre" placeholder ="Nombre del artículo" >
     <input type="text" name="codigo" placeholder ="Código" >
@@ -21,3 +23,4 @@
     </label>
     <input type="button" name="Guardar">
 </form>    
+</div>

@@ -1,0 +1,64 @@
+#contenedor{
+    background-color:darkgray;
+}
+#menu_top
+{
+    background-color:#0e444c;
+    height: 60px;
+    border-bottom:solid;
+    border-bottom-color:grey;
+}
+#nombre_empresa{
+    padding-bottom: 17px;
+    padding-top: 10px;
+    padding-left: 50px;
+    background-color: grey;
+    
+
+}
+.option_top{
+    float: left;
+    Color:white;
+    margin-top: 10px;
+}
+#logo{
+    margin-left: 50px;
+}
+#notificaciones {
+    margin-left: 40%;
+}
+#usuario{
+    float: right;
+    margin-right: 50px;
+}
+aside{
+    font-family: 'Courier New', Courier, monospace;
+    background-color:#0e444c;
+    width: 25%;
+    color:white;
+}
+.menu_lv1{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-left: 50px;
+}
+.menu_lv2{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-left: 20px;
+}
+#menu_lateral
+{
+    height: 1150px;
+}
+.menu_lv3
+{
+    margin-left: 30px;
+    padding-top:7px;
+    padding-left: 70px;
+    margin-left:-50px;
+    padding-bottom:7px;
+    background-color: #125c67 ;
+}
+
+
