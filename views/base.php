@@ -6,8 +6,9 @@
     <title>SoftFlesh</title>
 </head>
 <body>
-    <div id="contenedor">
 
+    <div id="contenedor">
+        <header>
         <div id="menu_top" >
             <div id="logo">
             </div>
@@ -16,7 +17,8 @@
             <div id="usuario">
             </div>
         </div>
-
+        </header>
+        <nav>
         <div id="menu_lateral">
             <div id="nombre_empresa"></div>
             <div id="menu">
@@ -66,6 +68,7 @@
                     </div>
                 </div>
             <div>
+            </nav>
         </div>
 
 
