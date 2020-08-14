@@ -44,7 +44,7 @@
                 <div id="compras" class="menu_lv1"> 
                     <div id="menu_compras" class="menu_lv2"></div>
                         <div id="agregar_compra" class="menu_lv3">Agregar compra</div>
-                        <div id="lista_compras" class="menu_lv3"></div>
+                        <div id="lista_compras" class="menu_lv3">Compra</div>
                         <div id="devoluciones_compra" class="menu_lv3"></div>
                 </div>
                 <div id="cxp" class="menu_lv1">
