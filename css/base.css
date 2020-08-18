@@ -1,5 +1,7 @@
 #contenedor{
-    background-color:darkgray;
+    background-color:rgb(236, 233, 233);
+    height: 1210px;
+    
 }
 #menu_top
 {
@@ -16,6 +18,11 @@
     
 
 }
+.fa-bell
+{
+    margin-left: 15px;
+    
+}
 .option_top{
     float: left;
     Color:white;
@@ -25,7 +32,7 @@
     margin-left: 50px;
 }
 #notificaciones {
-    margin-left: 40%;
+    margin-left: 13%;
 }
 #usuario{
     float: right;
