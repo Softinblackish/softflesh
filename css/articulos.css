@@ -1,0 +1,35 @@
+.container-articulos{
+    width: 900px;
+    height:900px;
+    margin:-1000px;
+    position: relative;
+    background-color: rgb(137, 202, 245);
+    /*background-color: white;*/
+    margin-left: 357px;
+    margin-top: -1150px;
+}
+.container{
+    width: 600px;
+    margin: auto;
+    position: relative;
+    top: 100px;
+    padding-top: 10px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color: darkgray;
+    /*background-color: white;*/
+    
+    border-radius: 20px;
+    
+}
+.container-articulos .container .h1{
+    margin: auto;
+    text-align: center;
+    padding-bottom: 2px;
+    border-bottom: 5px;
+    border-bottom: black;
+    border-bottom: solid;
+    text-shadow: 2px 2px 7pc black;
+}
+.buton{
+    margin: 10px;
+}
