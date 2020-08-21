@@ -1,5 +1,12 @@
+<?php 
+        session_start();
+        if($_SESSION != null)
+        {
+                ?>
+                     
 <!DOCTYPE html>
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SoftFlesh</title>
@@ -24,7 +31,10 @@
                         <i class="fa fa-bell fa-lg"></i>
                 </div>
                 <div id="usuario" class="option_top">
-                        Freddy Pereyra <i class="fa fa-cog fa-lg"></i>
+                        <?php 
+                                echo $_SESSION["user"];
+                        ?>
+                        <i class="fa fa-cog fa-lg"></i>
                 </div>
             </div>
         </header>
@@ -83,4 +93,10 @@
                 
             </nav>
         </aside>
-        
+        <?php
+        }
+        else
+        {
+               header("location: ../login/login.php");
+        }
+?>

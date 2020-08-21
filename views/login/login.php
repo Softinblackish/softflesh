@@ -21,19 +21,19 @@
         
             <div id="credenciales">
             <br>
-                <Form>
+                <Form action="../../scripts/login/login.php" method="post">
                 <center>
                 <img src="../../img/logo.png" alt="" class="img-fluid" style="margin-left:25px;"><br><br>
-                    <div class="form-group-prepend" >
+                    <div class="form-group" >
                         <input  class="form-control" type="text" placeholder="&#xe210; Empresa">
                     </div>
                     <br><br>
                     <div class="form-group" >
-                        <input class="form-control" type="text" placeholder="&#xe008; Nombre de usuario">
+                        <input class="form-control" type="text" placeholder="&#xe008; Nombre de usuario" name="user">
                     </div>
                     <div class="form-group" >
                         
-                        <input class="form-control" type="text" placeholder="&#xe210; Contraseña" >
+                        <input class="form-control" type="text" placeholder="&#xe210; Contraseña" name="pass" >
                     </div>
                 </center>
                     <input type="submit" style="margin-left:105px;" value="Acceder" class="btn btn" id="enviar"/> <button style="margin-left:20px;" class="btn btn" id="enviar" >Cancelar</button>
