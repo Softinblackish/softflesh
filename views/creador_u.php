@@ -19,11 +19,12 @@
           <h1 style="padding-top:25px; "><i class="fa fa-user"></i> Usuario</h1>
         </center> <br><br>
       </div>
-      <form >
-        <input type="text" class="form-control" placeholder="Usuario" required>
-        <input type="text" class="form-control" placeholder="Contraseña" required>
-        <input type="tel"  class="form-control" placeholder="Repetir Contraseña"required>
-        <button type="submit" id="submit" class="btn btn">Continuar <i id="img-continuar" class="fa fa-share"></i></button>
+      <form action="../scripts/creador_u.php" method="POST" >
+        <input type="hidden" value="<?php echo $_GET['empresa'] ;?>" name="empresa">
+        <input type="text" class="form-control" placeholder="Usuario" name="nombre" required>
+        <input type="Password" class="form-control" placeholder="Contraseña"name="contraseña" required>
+        <input type="Password"  class="form-control" placeholder="Repetir Contraseña"required>
+        <button type="submit" id="submit" class="btn btn">Crear <i id="img-continuar" class="fa fa-share"></i></button>
       </form>
       <img src="../img/logo.png" id="logo" class="img-fluid" alt="">
     </div>
