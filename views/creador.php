@@ -20,13 +20,13 @@
         </center> <br><br>
       </div>
       <form action="../scripts/creador.php" method="POST">
-        <input type="text" class="form-control" placeholder="Nombre de la empresa" name="nombre" required>
-        <input type="text" class="form-control" placeholder="Dirección" required>
-        <input type="tel"  class="form-control" placeholder="Teléfono"required>
-        <input type="text"  class="form-control" placeholder="RNC" required>
-        <input type="text"  class="form-control" placeholder="Nombre del encargado" required>
-        <input type="email" class="form-control" placeholder="Correo" required>
-        <input type="tel" class="form-control" placeholder="Teléfono encargado" required>
+        <input type="text" class="form-control" placeholder="&#x26EB Nombre de la empresa" name="nombre" required>
+        <input type="text" class="form-control" placeholder="&#x26D5 Dirección" name="direccion" required>
+        <input type="tel"  class="form-control" placeholder="&#x2706; Teléfono" name="telefono" required>
+        <input type="text" class="form-control" placeholder="RNC" name="rnc" required>
+        <input type="email" class="form-control" placeholder="&#x40; Correo" name="correo" required>
+        <input type="text"  class="form-control" placeholder="&#128102;&#127999; Nombre del encargado" name="encargado" required>
+        <input type="tel" class="form-control" placeholder=" &#x2706; Teléfono encargado" name="tel_encargado" required>
         <button type="submit" id="submit" class="btn btn">Continuar <i id="img-continuar" class="fa fa-share"></i></button>
       </form>
       <img src="../img/logo.png" id="logo" class="img-fluid" alt="">

@@ -41,7 +41,7 @@
         <aside style="float:left;">
               <nav>
                 <div id="menu_lateral">
-                    <div id="nombre_empresa">Nombre de la empresa</div>
+                    <div id="nombre_empresa"><?php echo $_SESSION["empresa"]; ?></div>
                     <div id="menu">
                         <div id="clientes" class="menu_lv1"><i class="fa fa-users fa-lg" aria-hidden="true"></i> Clientes
                                 

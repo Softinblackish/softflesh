@@ -25,7 +25,7 @@
                 <center>
                 <img src="../../img/logo.png" alt="" class="img-fluid" style="margin-left:25px;"><br><br>
                     <div class="form-group" >
-                        <input  class="form-control" type="text" placeholder="&#xe210; Empresa">
+                        <input  class="form-control" type="text" placeholder="&#xe210; Empresa" name="empresa" require>
                     </div>
                     <br><br>
                     <div class="form-group" >

@@ -1,31 +1,22 @@
 <?php
 include("../conexion/cone.php");
-
+$empresa = $_POST["empresa"];
 $user= $_POST['user'];
 $password = $_POST['pass'];
+$empresa_sin_espacio= str_replace(" ", "_",$empresa);
 
-$validation_name = $conexion->query("select * from tbl_usuario where nombre_usuario = '$user'");
+$validation_name = $conexion->query("select * from $empresa_sin_espacio.tbl_usuario where nombre_usuario = '$user' and contraseña_usuario = '$password'");
 $verificacion_name = $validation_name->num_rows;
 if($verificacion_name >= 1)
 {
-    $validation_pass = $conexion->query("select * from tbl_usuario where contraseña_usuario = '$password'");
-    $verificacion_pass = $validation_pass->num_rows;
-    if($verificacion_pass >= 1)
-        {
-            session_start();
-            $_SESSION["user"] = $user;
-            echo $_SESSION["user"];
-            header("location:../../views/dashboard/dashboard.php");
-        }
-    else
-    {
-        echo(" Password incorrecto");
-    }
-    
+    session_start();
+    $_SESSION["user"] = $user;
+    $_SESSION["empresa"]= $empresa;
+    header("location:../../views/dashboard/dashboard.php"); 
 }
 else
 {
-    echo("Usuario no encontrado");
+    header("location:../../views/login/login.php?error=true");
 }
 
 ?>
