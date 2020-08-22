@@ -10,12 +10,12 @@
 
    
 
-    $empresas_existentes= $conexion->query("SELECT nombre_empresa from empresas_suscritas.informacion_empresa where nombre_empresa = '$db_empresa'");
+    /*$empresas_existentes= $conexion->query("SELECT nombre_empresa from empresas_suscritas.informacion_empresa where nombre_empresa = '$db_empresa'");
     $verificacion_empresas_existentes = $empresas_existentes->num_rows;
     echo $verificacion_empresas_existentes; 
     if($verificacion_empresas_existentes < 1)
     {
-
+*/
       $nombre_sin_espacio = str_replace(" ", "_", $db_empresa);
       $registrar_empresa = $conexion->query("INSERT INTO empresas_suscritas.informacion_empresa (nombre_empresa, direccion_empresa, telefono_empresa, rnc_empresa, correo_empresa, encargado, telefono_encargado) value ('$db_empresa','$direccion','$telefono', '$rnc', '$correo','$encargado', '$tel_encargado')");
       $crear_db = $conexion->query("CREATE DATABASE IF NOT EXISTS $nombre_sin_espacio");
@@ -108,10 +108,10 @@
       ");
       
   header("location:../views/creador_u.php?empresa=$nombre_sin_espacio");
-
+/*
       }
       else
       {
         echo ("Empresa ya existe");
-      }
+      }*/
 ?>

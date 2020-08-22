@@ -1,8 +1,8 @@
 <?php 
-        session_start();
-        if($_SESSION != null)
-        {
-                ?>
+session_start();
+if($_SESSION["user"] != null)
+{
+?>
                      
 <!DOCTYPE html>
 <head>
@@ -10,7 +10,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SoftFlesh</title>
-   <link rel="stylesheet" href="../css/base.css">
+   <link rel="stylesheet" href="../../css/base.css">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -34,7 +34,7 @@
                         <?php 
                                 echo $_SESSION["user"];
                         ?>
-                        <i class="fa fa-cog fa-lg"></i>
+                        <a href="../../scripts/cerrar_session.php"><i class="fa fa-cog fa-lg"></i></a>
                 </div>
             </div>
         </header>
@@ -84,7 +84,7 @@
                         </div>
                         <div id="inventario" class="menu_lv1"><i class="fa fa-bar-chart fa-lg" aria-hidden="true"></i> Inventario
                             
-                                <a href="articulos/frm_articulos.php"><div id="agregar_articulo" class="menu_lv3 menu_inventario">Agregar articulo</div></a>
+                                <a href="../articulos/frm_articulos.php"><div id="agregar_articulo" class="menu_lv3 menu_inventario">Agregar articulo</div></a>
                                 <div id="lista_articulos" class="menu_lv3 menu_inventario">Ver lista de articulos</div>
                                 <div id="cargar_articulo" class="menu_lv3 menu_inventario">Cargar articulos</div>
                                 <div id="pasar_inventario" class="menu_lv3 menu_inventario">Pasar inventario</div>
@@ -93,24 +93,17 @@
                 
             </nav>
         </aside>
-<<<<<<< HEAD
-        
 
 
-        <div id="contenido">
-        <?php include_once("articulos/frm_articulos.php"); ?>
-        </div>
     
 
 
 </body>
 </html>
-=======
         <?php
+        
         }
         else
-        {
-               header("location: ../login/login.php");
+        {header("location:../login/login.php?error=true");
         }
 ?>
->>>>>>> 653113c4dda636b1c74cfd9cfc6c538238c4a8e4

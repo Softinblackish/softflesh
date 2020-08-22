@@ -1,12 +1,12 @@
 <!--  AQUI DEBE DE IR SOLAMENTE UN FORMULARIO DE REGISTRO DE ARTICULOS 
       SOLO HTML SIN CSS SIN JAVASCRIP SIN PHP-->
-<link rel="stylesheet" href="../css/articulos.css">
-
+      <?php include("../base.php"); ?>
+<link rel="stylesheet" href="../../css/articulos.css">
 <div class="container-articulos">
     <div class="container form-row">
-        <form  action="" method="post">
+        <form id="form"  action="" method="post">
             <div class="cabeza">
-                <h1>REGISTRO DE ARTICULOS</h1>
+               <h2> Registro de artículos</h2>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
@@ -45,7 +45,7 @@
                     Haga click en guardar para registrar este nuevo artículo 
             </label>
             <br>
-            <button type="button" class="btn btn-success">Success</button>
+            <button type="button" id="btn" class="btn btn">Success</button>
             <br>
             <br>
         </form>

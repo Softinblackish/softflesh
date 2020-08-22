@@ -1,17 +1,19 @@
 .container-articulos{
-    width: 900px;
-    height:900px;
-    margin:-1000px;
-    position: relative;
+    width: 400px;
+    height:1000px;
+    margin:100px;
+
+  /*  position: relative;
     background-color:darkgray;
     /*background-color: white;
      rgb(137, 202, 245);
     */
-    margin-left: 357px;
-    margin-top: -1150px;
+    margin-left: 557px;
+    margin-top: 0px;
+
 }
 .container{
-    width: 700px;
+    width: 600px;
     margin: auto;
     position: relative;
     top: 100px;
@@ -20,18 +22,9 @@
     font-family: Georgia, 'Times New Roman', Times, serif;
     background-color:white;
     /*background-color: white;*/
+    box-shadow: 1px 1px 5px black;
+    border-radius: 10px;
     
-    border-radius: 20px;
-    
-}
-.container-articulos .container .h1{
-    margin: auto;
-    text-align: center;
-    padding-bottom: 2px;
-    border-bottom: 5px;
-    border-bottom: black;
-    border-bottom: solid;
-    text-shadow: 2px 2px 7pc black;
 }
 .buton{
     margin: 10px;
@@ -39,9 +32,15 @@
 .cabeza{
     border-bottom: 1px solid royalblue;
     padding-bottom: 5px;
-    text-shadow: 2px 2px 7pc black;
 }
 .form-row{
     padding-top: 5px;
     padding-bottom: 5px;
+}
+#form{
+    padding: 45px;
+}
+.btn{
+    background-color:#0e444c; 
+    color:white;
 }

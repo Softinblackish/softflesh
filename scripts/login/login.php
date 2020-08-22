@@ -10,9 +10,10 @@ $verificacion_name = $validation_name->num_rows;
 if($verificacion_name >= 1)
 {
     session_start();
-    $_SESSION["user"] = $user;
-    $_SESSION["empresa"]= $empresa;
+    $_SESSION["user"]= $user; 
+    $_SESSION["empresa"]=$empresa;
     header("location:../../views/dashboard/dashboard.php"); 
+
 }
 else
 {
