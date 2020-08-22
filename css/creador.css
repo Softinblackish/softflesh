@@ -1,0 +1,41 @@
+body{
+    background-color: #0e444c;
+}
+#div_form
+{
+    box-shadow: 1px 5px 30px black;
+    background-color: white;
+    position: absolute;
+    z-index:80;
+    
+    padding:0px 50px 50px; 
+    left:30%;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+.form-control{
+    width: 100%;
+    margin-bottom: 20px;
+}
+form{
+    float: left;
+    margin-top: 35px;
+}
+#titulo{
+    background-color: rgb(87, 220, 200); 
+    color: white;
+     border-bottom-left-radius: 30px;
+      border-bottom-right-radius: 30px;
+}
+#logo{
+    z-index: 100;
+     float: right;
+      margin-top: 23px;
+}
+#submit{
+    background-color:rgb(87, 220, 200);
+     color: white;
+}
+#img-continuar{
+    color: #0e444c;
+}
