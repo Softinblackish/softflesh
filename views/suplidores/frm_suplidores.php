@@ -20,14 +20,14 @@
             <div class="form-row">
                 <input type="text" name="descripcion" placeholder ="Descripción" class="form-control" >
                 <br><br>
-                <input type="number" name="referencia" placeholder ="telefono" class="form-control col-md-6" >
+                <input type="tel" name="referencia" placeholder ="telefono" class="form-control col-md-6" >
             </div>
 
             <label for="inputState">Datos del producto: </label><br>
             
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    <input type="number" name="codigo_barra" class="form-control" id="inputCity" placeholder="precio" >
+                    <input type="number" min = 1 name="codigo_barra" class="form-control" id="inputCity" placeholder="precio" >
                 </div>
                 <div class="form-group col-md-4">
                     <select id="inputState" class="form-control" name="unidad" placeholder="Unidad">

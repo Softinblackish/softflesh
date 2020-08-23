@@ -33,11 +33,21 @@
                     <select id="inputState" class="form-control" name="categoria">
                             <option selected="">Electricos</option>
                             <option selected="">comestibles</option>
+                            <option selected="">bebidas</option>
+                            <option selected="">herramientas</option>
+                            <option selected="null">categoria</option>
                     </select>
                 </div>
                 <select id="inputState" class="form-control col-md-4" name="almacen">
-                        <option selected="">01-Santiago</option>
-                        <option>02-La vega</option>
+                        <option selected="">libra</option>
+                        <option selected="">metro</option>
+                        <option selected="">centimetos</option>
+                        <option selected="">pulgadas</option>
+                        <option selected="">pies</option>
+                        <option selected="">galones</option>
+                        <option selected="">una media(1/2)</option>
+                        <option selected="">una cuarta(1/4)</option>
+                        <option selected="null">Unidad</option>
                 </select>
             </div>
 
