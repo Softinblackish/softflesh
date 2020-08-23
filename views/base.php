@@ -50,8 +50,9 @@ if($_SESSION["user"] != null)
                             
                         </div>
                         <div id="suplidores" class="menu_lv1"><i class="fa fa-handshake-o fa-lg" aria-hidden="true"></i> Suplidores
-                            
+                                <a href="../suplidores/frm_suplidores.php">
                                 <div id="agregar_suplidor" class="menu_lv3 menu_suplidores" >Agregar suplidor</div>
+                                </a>
                                 <div id="lista_suplidores"  class="menu_lv3 menu_suplidores">Ver lista de suplidores</div>
                         
                         </div>
@@ -63,8 +64,9 @@ if($_SESSION["user"] != null)
                             
                         </div>
                         <div id="compras" class="menu_lv1"> <i class="fa fa-shopping-bag fa-lg" aria-hidden="true"></i> Compras 
-                           
+                                <a href="../compras/frm_compras.php">
                                 <div id="agregar_compra" class="menu_lv3 menu_compras">Agregar compra</div>
+                                </a>
                                 <div id="lista_compras" class="menu_lv3 menu_compras">Ver lista de compras</div>
                                 <div id="devoluciones_compra" class="menu_lv3 menu_compras">Devoluciones</div>
                             
