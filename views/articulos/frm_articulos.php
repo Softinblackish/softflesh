@@ -13,21 +13,21 @@
                     <input type="text" name="nombre" placeholder ="Nombre del artículo" class="form-control">
                 </div>
                 <div class="form-group col-md-6">
-                    <input type="text" name="codigo" placeholder ="Código" class="form-control" >
+                    <input type="text" name="codigo_barra" placeholder ="Código Barra" class="form-control" >
                 </div>
             </div>
 
             <div class="form-row">
                 <input type="text" name="descripcion" placeholder ="Descripción" class="form-control" >
                 <br><br>
-                <input type="text" name="referencia" placeholder ="Referencia" class="form-control col-md-6" >
+                <input type="number" name="stop_min" placeholder ="Stop minimo" class="form-control col-md-6" >
             </div>
 
             <label for="inputState">Codigo de Impuestos: </label><br>
             
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    <input type="text" name="codigo_barra" class="form-control" id="inputCity" placeholder="Eje; 0000215EE150" >
+                    <input type="text" name="impuesto" class="form-control" id="inputCity" placeholder="Eje; 0000215EE150" >
                 </div>
                 <div class="form-group col-md-4">
                     <select id="inputState" class="form-control" name="categoria">
@@ -38,7 +38,7 @@
                             <option selected="null">categoria</option>
                     </select>
                 </div>
-                <select id="inputState" class="form-control col-md-4" name="almacen">
+                <select id="inputState" class="form-control col-md-4" name="unidad">
                         <option selected="">libra</option>
                         <option selected="">metro</option>
                         <option selected="">centimetos</option>
@@ -59,5 +59,6 @@
             <br>
             <br>
         </form>
+        <?php include_once("../../scripts/articulos/articulos.php"); ?>
     </div>    
 </div>
