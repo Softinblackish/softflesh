@@ -1,0 +1,21 @@
+#box_lista{
+    width:60%;
+    float:left;
+    margin-left:100px; 
+    margin-top:80px;
+    background-color:white;
+    padding:40px; 
+    border-radius:7px;
+    box-shadow:1px 1px 5px black
+}
+form{
+    float:right;
+}
+#buscar{
+    background-color:#0e444c;
+    color:white;
+}
+.thead{
+    background-color:#0e444c;
+    color:white;
+}

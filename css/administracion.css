@@ -1,0 +1,13 @@
+#superior{
+   background-color:  #17a2b8;
+}
+.list-group {
+   width:20%;
+    margin-top:40px; 
+    margin-left:40px;
+     float:left; 
+     box-shadow:1px 1px 5px black;
+}
+.list-group-item{
+   color:black;
+}

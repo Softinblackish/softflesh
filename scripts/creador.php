@@ -106,6 +106,14 @@
          PRIMARY KEY (`id_usuario`)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8
       ");
+      $tabla_usuario = $conexion->query("
+      ALTER TABLE $nombre_sin_espacio.tbl_usuario ADD `nombre` VARCHAR(100) NOT NULL AFTER `fecha_creacion`,
+       ADD `cedula_usuario` VARCHAR(50) NOT NULL AFTER `nombre`,
+        ADD `sucursal_usuario` VARCHAR(150) NOT NULL AFTER `cedula_usuario`,
+         ADD `ultimo_acceso` VARCHAR(50) NOT NULL AFTER `sucursal_usuario`,
+          ADD `horario` VARCHAR(100) NOT NULL AFTER `ultimo_acceso`
+      ");
+
       
   header("location:../views/creador_u.php?empresa=$nombre_sin_espacio");
 /*

@@ -24,5 +24,10 @@ $(document).ready(function() {
      $("#inventario").click(function() {
         $(".menu_inventario").toggle(); 
      });
+
+     $("#usuario").click(function() {
+      $("#menu-user").toggle(); 
+   });
+
 });
     

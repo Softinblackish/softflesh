@@ -1,8 +1,8 @@
 <?php 
-session_start();
-if($_SESSION["user"] != null)
-{
-?>
+        session_start();
+        if($_SESSION != null)
+        {
+                ?>
                      
 <!DOCTYPE html>
 <head>
@@ -20,7 +20,7 @@ if($_SESSION["user"] != null)
 <script src="../../scripts/js/base.js" type="text/javascript"> </script>
 </head>
 
-    <div id=contenedor>
+    <div id=contenedor >
         <header>
             <div id="menu_top" >
                 <div id="logo" class="option_top"><img src="../../img/logo-horizontal.png" alt=""></div>
@@ -30,15 +30,20 @@ if($_SESSION["user"] != null)
                         <button class="btn btn-info">Artículos por debajo del límite(3)</button>
                         <i class="fa fa-bell fa-lg"></i>
                 </div>
-                <div id="usuario" class="option_top">
+                <div  id="usuario" class="option_top">
                         <?php 
                                 echo $_SESSION["user"];
                         ?>
-                        <a href="../../scripts/cerrar_session.php"><i class="fa fa-cog fa-lg"></i></a>
+                        <i  class="fa fa-cog fa-lg"></i>
+                        <div id="menu-user" style="">
+                                <div style="padding-top:15px;padding-left:15px;"><a href="../administracion/admin_usuario.php"><i class="fa fa-user"></i> |   Usuario<hr></a></div>
+                                <div style="padding-top:5px; padding-left:15px;"> <a href="../administracion/administracion.php"><i class="fa fa-cogs"></i> |  Config</a> <hr></div>
+                                <div style="padding-top:5px; padding-left:15px;"><a href="../../scripts/cerrar_session.php"><i class="fa fa-reply-all"></i> |  Cerrar</a> <hr></div>
+                        </div>
                 </div>
             </div>
         </header>
-        <aside style="float:left;">
+        <aside style="float:left;" >
               <nav>
                 <div id="menu_lateral">
                     <div id="nombre_empresa"><?php echo $_SESSION["empresa"]; ?></div>
@@ -82,7 +87,7 @@ if($_SESSION["user"] != null)
                             
                             
                         </div>
-                        <div id="inventario" class="menu_lv1"><i class="fa fa-bar-chart fa-lg" aria-hidden="true"></i> Inventario
+                        <div id="inventario" class="menu_lv1"><i class="fa fa-inbox fa-lg"></i> Inventario
                             
                                 <a href="../articulos/frm_articulos.php"><div id="agregar_articulo" class="menu_lv3 menu_inventario">Agregar articulo</div></a>
                                 <div id="lista_articulos" class="menu_lv3 menu_inventario">Ver lista de articulos</div>
@@ -90,20 +95,16 @@ if($_SESSION["user"] != null)
                                 <div id="pasar_inventario" class="menu_lv3 menu_inventario">Pasar inventario</div>
                             
                         </div>
+                        <a href="../dashboard/dashboard.php"> <div id="inventario" class="menu_lv1" style="color:white;"><i class="fa fa-bar-chart fa-lg" aria-hidden="true"></i> Dashboard </div></a>
                 
             </nav>
         </aside>
-
-
-    
-
-
-</body>
-</html>
         <?php
-        
         }
         else
-        {header("location:../login/login.php?error=true");
+        {
+               header("location: ../login/login.php");
         }
+
+
 ?>
