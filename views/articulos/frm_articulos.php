@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="../../css/articulos.css">
 <div class="container-articulos">
     <div class="container form-row">
-        <form id="form"  action="" method="post">
+        <form id="form"  action="../../scripts/articulos/articulos.php" method="POST">
             <div class="cabeza">
                <h2> Registro de artículos</h2>
             </div>
@@ -59,6 +59,5 @@
             <br>
             <br>
         </form>
-        <?php include_once("../../scripts/articulos/articulos.php"); ?>
     </div>    
 </div>

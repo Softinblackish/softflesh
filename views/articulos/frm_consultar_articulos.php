@@ -29,9 +29,8 @@
   </tbody>
   <?php
   }
-    
+    ?>
 </table>
-?>
 
 
 </form>

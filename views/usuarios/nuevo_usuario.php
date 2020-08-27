@@ -35,7 +35,7 @@
                     Al hacer click en "Crear" se creará el usuario, parametrizar en ver usuarios. 
             </label>
             <br>
-            <input type="submit" id="btn" class="btn btn" value="Crear"> <a href="../administracion/administracion.php" id="btn" class="btn btn">Cancelar</a>
+            <input type="submit" id="btn" class="btn  btn" value="Crear"> <a href="../administracion/administracion.php" id="btn" class="btn btn">Cancelar</a>
             <br>
             <br>
         </form>

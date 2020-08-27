@@ -27,5 +27,5 @@
             </div>
         <?php
     }        
-    header('location: ../../views/articulos/articulos.php')
+    header('location:../../views/articulos/articulos.php')
 ?>

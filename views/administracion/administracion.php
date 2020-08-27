@@ -9,8 +9,8 @@
 
 <ul class="list-group">
   <li class="list-group-item" style="background-color:rgb(87, 220, 200); color:white;">Roles</li>
-  <a href="../usuarios/lista_usuarios.php"><li class="list-group-item"><i class="fa fa-plus-circle"></i> Agregar</li></a>
-  <a href="../usuarios/lista_usuarios.php"><li class="list-group-item"><i class="fa fa-eye"></i> Ver Roles</li></a>
+  <a href="crear_rol.php"><li class="list-group-item"><i class="fa fa-plus-circle"></i> Agregar</li></a>
+  <a href="ver_roles.php"><li class="list-group-item"><i class="fa fa-eye"></i> Ver Roles</li></a>
   
 </ul>
 

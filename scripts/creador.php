@@ -113,6 +113,91 @@
          ADD `ultimo_acceso` VARCHAR(50) NOT NULL AFTER `sucursal_usuario`,
           ADD `horario` VARCHAR(100) NOT NULL AFTER `ultimo_acceso`
       ");
+      $tabla_permisos = $conexion->query("
+      CREATE TABLE `tbl_permisos` (
+        `id_permisos` int(11) NOT NULL,
+  `rol` varchar(50) NOT NULL,
+  `usuarios` int(2) DEFAULT 1,
+  `modificar_user` int(2) DEFAULT 1,
+  `eliminar_user` int(2) DEFAULT NULL,
+  `agregar_user` int(2) DEFAULT NULL,
+  `ver_user` int(2) DEFAULT NULL,
+  `administracion` int(2) DEFAULT NULL,
+  `roles` int(2) DEFAULT NULL,
+  `agregar_roles` int(2) DEFAULT NULL,
+  `modificar_roles` int(2) DEFAULT NULL,
+  `ver_roles` int(2) DEFAULT NULL,
+  `eliminar_roles` int(2) DEFAULT NULL,
+  `empresa` int(2) DEFAULT NULL,
+  `ver_empresa` int(2) DEFAULT NULL,
+  `editar_empresa` int(2) DEFAULT NULL,
+  `cod_impuestos` int(2) DEFAULT NULL,
+  `agregar_cod_impuestos` int(2) DEFAULT NULL,
+  `editar_cod_impuestos` int(2) DEFAULT NULL,
+  `eliminar_cod_impuestos` int(2) DEFAULT NULL,
+  `ver_cod_impuestos` int(2) DEFAULT NULL,
+  `almacenes` int(2) DEFAULT NULL,
+  `agregar_almacenes` int(2) DEFAULT NULL,
+  `ver_almacenes` int(2) DEFAULT NULL,
+  `editar_almacenes` int(2) DEFAULT NULL,
+  `eliminar_almacenes` int(2) DEFAULT NULL,
+  `categorias` int(2) DEFAULT NULL,
+  `agregar_categorias` int(2) DEFAULT NULL,
+  `ver_categorias` int(2) DEFAULT NULL,
+  `modificar_categorias` int(2) DEFAULT NULL,
+  `eliminar_categorias` int(2) DEFAULT NULL,
+  `condiciones_p` int(2) DEFAULT NULL,
+  `agregar_condiciones_p` int(2) DEFAULT NULL,
+  `ver_condiciones_p` int(2) DEFAULT NULL,
+  `modificar_condiciones_p` int(2) DEFAULT NULL,
+  `eliminar_condiciones_p` int(2) DEFAULT NULL,
+  `clientes` int(2) DEFAULT NULL,
+  `agregar_clientes` int(2) DEFAULT NULL,
+  `ver_clientes` int(2) DEFAULT NULL,
+  `modificar_clientes` int(2) DEFAULT NULL,
+  `eliminar_clientes` int(2) DEFAULT NULL,
+  `suplidores` int(2) DEFAULT NULL,
+  `agregar_suplidores` int(2) DEFAULT NULL,
+  `ver_suplidores` int(2) DEFAULT NULL,
+  `modificar_suplidores` int(2) DEFAULT NULL,
+  `eliminar_suplidores` int(2) DEFAULT NULL,
+  `ventas` int(2) DEFAULT NULL,
+  `agregar_ventas` int(2) DEFAULT NULL,
+  `editar_ventas` int(2) DEFAULT NULL,
+  `ver_ventas` int(2) DEFAULT NULL,
+  `Eliminar_ventas` int(2) DEFAULT NULL,
+  `venta_a_credito` int(2) DEFAULT NULL,
+  `venta_en_espera` int(2) DEFAULT NULL,
+  `compras` int(2) DEFAULT NULL,
+  `agregar_compra` int(2) DEFAULT NULL,
+  `ver_compras` int(2) DEFAULT NULL,
+  `modificar_compra` int(2) DEFAULT NULL,
+  `compra_a_credito` int(2) DEFAULT NULL,
+  `eliminar_compra` int(2) DEFAULT NULL,
+  `cxc` int(2) DEFAULT NULL,
+  `agregar_cxc` int(2) DEFAULT NULL,
+  `ver_cxc` int(2) DEFAULT NULL,
+  `modificar_cxc` int(2) DEFAULT NULL,
+  `eliminar_cxc` int(2) DEFAULT NULL,
+  `cxp` int(2) DEFAULT NULL,
+  `agregar_cxp` int(2) DEFAULT NULL,
+  `editar_cxp` int(2) DEFAULT NULL,
+  `ver_cxp` int(2) DEFAULT NULL,
+  `eliminar_cxp` int(2) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+      ");
+
+      $tabla_roles = $conexion->query("
+      CREATE TABLE `roles` (
+        `id_rol` int(11) NOT NULL,
+        `nombre_rol` varchar(100) NOT NULL,
+        `descripcion_rol` varchar(100) DEFAULT NULL,
+        `creado_por` varchar(100) DEFAULT NULL,
+        `fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+      
+      
+      ");
 
       
   header("location:../views/creador_u.php?empresa=$nombre_sin_espacio");
