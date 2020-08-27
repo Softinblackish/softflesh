@@ -2,10 +2,19 @@
       SOLO HTML SIN CSS SIN JAVASCRIP SIN PHP-->
       <?php include("../base.php"); ?>
 <link rel="stylesheet" href="../../css/articulos.css">
+<script src="../../scripts/js/articulos.js"></script>
 <div class="container-articulos">
     <div class="container form-row">
-        <form id="form"  action="" method="post">
+        <form id="form" action="../../scripts/articulos/articulos.php" method="post">
             <div class="cabeza">
+            <?php if(isset($_GET["registro"])){ ?>
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                     <strong>listo! </strong> Nuevo artículo registrado
+                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <?php } ?>
                <h2> Registro de artículos</h2>
             </div>
             <div class="form-row">
@@ -55,10 +64,13 @@
                     Haga click en guardar para registrar este nuevo artículo 
             </label>
             <br>
-            <button type="button" id="btn" class="btn btn">Success</button>
             <br>
+            <input type="submit" id="btn" class="btn btn" value="Registrar articulo" >
             <br>
         </form>
-        <?php include_once("../../scripts/articulos/articulos.php"); ?>
+
     </div>    
 </div>
+
+<!-- Aqui ira el mensaje de cuando se guarda el art-->
+

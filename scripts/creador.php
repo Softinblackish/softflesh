@@ -25,7 +25,7 @@
         `nombre` varchar(100) NOT NULL,
         `descripcion` varchar(200) NOT NULL,
         `codigo` varchar(100) NOT NULL,
-        `referencia` varchar(150) NOT NULL,
+        `stop_min` int(10) NOT NULL,
         `codigo_barra` varchar(200) NOT NULL,
         `categoria` varchar(50) NOT NULL,
         `almacen` varchar(50) NOT NULL,
@@ -33,8 +33,9 @@
         `creado_por` varchar(100) NOT NULL,
         `fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
         `cantidad_actual` int(6) NOT NULL,
-        `cantidad_disponible` int(6) NOT NULL,
+        `cantidad_disponible` int(6) NOT NULL default 0,
         `fecha_modificacion` varchar(100) NOT NULL,
+        `unidad` varchar(100) NOT NULL default 0,
         PRIMARY KEY (`id_articulo`)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8
       ");
