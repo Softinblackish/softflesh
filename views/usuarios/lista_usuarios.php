@@ -38,7 +38,7 @@
                 <th scope="row"><?php echo $row["id_usuario"]; ?></th>
                 <td><?php echo $row["nombre_usuario"]; ?></td>
                 <td><?php echo $row["rol_usuario"]; ?></td>
-        <td><?php if($permisos['modificar_user']== 1){ ?><a id="cerrar"  class="btn btn-info" data-toggle="modal" data-target="#example<?php echo $row["id_usuario"]; ?>" > <i class="fa fa-eye fa-lg"></i></a><?php } ?> <?php if($permisos['eliminar_user']== 1){ ?> <a class="btn btn-danger"  data-toggle="modal" data-target="#eliminar<?php echo $row["id_usuario"]; ?>" ><i class="fa fa-trash-o fa-lg"></i></a><?php } ?> </td>
+        <td><?php if($permisos['modificar_user']== 1){ ?><a id="cerrar"  class="btn btn-info" data-toggle="modal" data-target="#example<?php echo $row["id_usuario"]; ?>" > <i class="fa fa-eye fa-lg"></i></a><?php } ?> <?php if($permisos['eliminar_usergit']== 1){ ?> <a class="btn btn-danger"  data-toggle="modal" data-target="#eliminar<?php echo $row["id_usuario"]; ?>" ><i class="fa fa-trash-o fa-lg"></i></a><?php } ?> </td>
             </tr>
         <!--Modal editar usuario   --->
                 <div class="modal fade" id="example<?php echo $row["id_usuario"];?>" tabindex="-1" aria-labelledby="example<?php echo $row["id_usuario"];?>Label" aria-hidden="true">
@@ -58,7 +58,7 @@
                                             <input type="text" name="nombre" placeholder="Nombre" value="<?php echo $row["nombre"]; ?>" disabled class="form-control">
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <input type="text" name="cedula" placeholder ="Cedula" value="<?php echo $row["cedula_usuario"]; ?>" disabled class="form-control" >
+                                            <input type="text" name="cedula" placeholder ="Cedula" value="<?php echo $row["cedula_usuario"]; ?>" disabled class="form-control " >
                                         </div>
                                         <div class="form-group col-md-6">   
                                             <input type="text" name="horario" placeholder ="Horario" value="<?php echo $row["horario"]; ?>" disabled class="form-control" >
