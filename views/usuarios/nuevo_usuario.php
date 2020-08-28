@@ -18,9 +18,15 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <select id="inputState" class="form-control" name="rol">
-                            <option selected="">Vendedor</option>
-                            <option >Facturador</option>
-                            <option >Administrador</option>
+                    <?php 
+                        $roles= $conexion->query("SELECT * FROM $empresa.roles");
+                        while($roles_registrados = $roles->fetch_assoc())
+                        {
+                     ?>
+                            <option selected=""><?php echo $roles_registrados["nombre_rol"]; ?></option>
+                    <?php
+                        }
+                    ?>
                     </select>
                 </div>
                 <div class="form-group col-md-6">

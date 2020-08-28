@@ -1,7 +1,12 @@
 <?php 
+        include("../../scripts/conexion/cone.php");
         session_start();
         if($_SESSION != null)
         {
+                $empresa= $_SESSION["empresa_db"];
+                $rol= $_SESSION["rol"];
+                $consulta_permisos=$conexion->query("select * from $empresa.tbl_permisos where rol ='$rol'");
+                $permisos = $consulta_permisos->fetch_assoc();
                 ?>
                      
 <!DOCTYPE html>
@@ -32,7 +37,7 @@
                 </div>
                 <div  id="usuario" class="option_top">
                         <?php 
-                                echo $_SESSION["user"];
+                                echo $_SESSION['user'];
                         ?>
                         <i  class="fa fa-cog fa-lg"></i>
                         <div id="menu-user" style="">

@@ -39,136 +39,172 @@
                 <th scope="row"><?php echo $row["id_rol"]; ?></th>
                 <td><?php echo $row["nombre_rol"]; ?></td>
                 <td><?php echo $row["descripcion_rol"]; ?></td>
-                <td><a id="cerrar"  class="btn btn-info" data-toggle="modal" data-target="#example<?php echo $row["id_rol"]; ?>" > <i class="fa fa-eye fa-lg"></i></a>  <a class="btn btn-danger"  data-toggle="modal" data-target="#eliminar<?php echo $row["id_usuario"]; ?>" ><i class="fa fa-trash-o fa-lg"></i></a> </td>
+        <td><?php if($permisos['modificar_roles']== 1){ ?><a id="cerrar"  class="btn btn-info" data-toggle="modal" data-target="#example<?php echo $row["id_rol"]; ?>" > <i class="fa fa-eye fa-lg"></i></a><?php } ?> <?php if($permisos['eliminar_roles']== 1){ ?><a class="btn btn-danger"  data-toggle="modal" data-target="#eliminar<?php echo $row["id_usuario"]; ?>" ><i class="fa fa-trash-o fa-lg"></i></a> <?php } ?> </td>
             </tr>
         <!--Modal editar usuario   --->
                 <div class="modal fade" id="example<?php echo $row["id_rol"];?>" tabindex="-1" aria-labelledby="example<?php echo $row["id_rol"];?>Label" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="example<?php echo $row["id_rol"];?>Label"><?php echo $row["nombre_rol"]; ?></h5>
+                            <div class="modal-header" style="background-color:rgb(87, 220, 200); color:white;">
+                                <h5 class="modal-title" id="example<?php echo $row["id_rol"];?>Label">Rol: <?php echo $row["nombre_rol"]; ?></h5>
                                 <button type="button" class="close cerrar" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
                                <div>
-                                <form action="updata_permisas">
+                            
+                               <?php 
+                               $empresa=$_SESSION["empresa_db"];
+                               $rol= $row["nombre_rol"];
+                               $obtener_permisos = $conexion->query("SELECT * FROM $empresa.tbl_permisos where rol ='$rol'"); 
+                               $row_permisos = $obtener_permisos->fetch_assoc();
+                               ?>
+                            
+                                <form action="../../scripts/administracion/actualizar_permisos.php" method="POST">
+                                    <input type="hidden" name="rol" value="<?php echo $row["nombre_rol"]; ?>"/>
                                     <div class="form-row">
                                         <div class="col-md-6">
-                                        <h4><strong><input type="checkbox"/> Administración</Strong></h4>
-                                            <h4><strong><input type="checkbox"/> Usuarios</Strong></h4>
-                                                <div>
-                                                    <input type="checkbox"/> Agregar<br>
-                                                    <input type="checkbox"/> Ver<br>
-                                                    <input type="checkbox"/> Editar<br>
-                                                    <input type="checkbox"/> Eliminar<br>
-                                            </div><br>
-                                            <h4><strong> <input type="checkbox"/> Roles</Strong></h4>
-                                                <div>
-                                                    <input type="checkbox"/> Agregar<br>
-                                                    <input type="checkbox"/> Ver<br>
-                                                    <input type="checkbox"/> Editar<br>
-                                                    <input type="checkbox"/> Eliminar<br>
+                                            <div>
+                                                <h4><strong><input type="checkbox" <?php if($row_permisos["administracion"]== 1){ ?>  checked <?php } ?>  name="admin"/> Administración</Strong></h4>
+                                            </div>
+                                            <div class="box-modulos">
+                                                <h5><strong><input type="checkbox" <?php if($row_permisos["usuarios"]== 1){?> checked <?php } ?> name="usuarios"/> Usuarios</Strong></h4>
+                                                <div class="col-md-8">
+                                                    <input type="checkbox" <?php if($row_permisos["agregar_user"]== 1){?> checked <?php } ?> name="agregar_user"/> Agregar<br>
+                                                    <input type="checkbox" <?php if($row_permisos["ver_user"]== 1){?> checked <?php } ?>  name="ver_user"/> Ver<br>
+                                                    <input type="checkbox" <?php if($row_permisos["modificar_user"]== 1){?> checked <?php } ?>  name="editar_user"/> Editar<br>
+                                                    <input type="checkbox" <?php if($row_permisos["eliminar_user"]== 1){?> checked <?php } ?>  name="eliminar_user"/> Eliminar<br>
                                                 </div><br>
-                                            <h4><strong><input type="checkbox"/> Empresa</Strong></h4>
-                                                <div>
-                                                    <input type="checkbox"/> Información<br>
-                                                    <input type="checkbox"/> Logo<br>
-                                                    <input type="checkbox"/> slogan<br>
+                                            </div>
+                                            <div class="box-modulos">
+                                                <h5><strong> <input type="checkbox"  <?php if($row_permisos["roles"]== 1){?> checked <?php } ?>  name="roles"/> Roles</Strong></h4>
+                                                <div class="col-md-8">
+                                                    <input type="checkbox" <?php if($row_permisos["agregar_roles"]== 1){?> checked <?php } ?> name="agregar_roles"/> Agregar<br>
+                                                    <input type="checkbox" <?php if($row_permisos["ver_roles"]== 1){?> checked <?php } ?> name="ver_roles"/> Ver<br>
+                                                    <input type="checkbox" <?php if($row_permisos["modificar_roles"]== 1){?> checked <?php } ?> name="modificar_roles"/> Editar<br>
+                                                    <input type="checkbox" <?php if($row_permisos["eliminar_roles"]== 1){?> checked <?php } ?>name="eliminar_roles"/> Eliminar<br>
                                                 </div><br>
-                                            <h5><strong><input type="checkbox"/> Condiciones de pago</Strong></h5>
-                                                <div>
-                                                    <input type="checkbox"/> Agregar<br>
-                                                    <input type="checkbox"/> Ver<br>
-                                                    <input type="checkbox"/> Editar<br>
-                                                    <input type="checkbox"/> Eliminar<br>
+                                            </div>
+                                            <div class="box-modulos">   
+                                                <h5><strong><input type="checkbox" <?php if($row_permisos["empresa"]== 1){?> checked <?php } ?> name="empresa"/> Empresa</Strong></h4>
+                                                <div class="col-md-10">
+                                                    <input type="checkbox" <?php if($row_permisos["ver_empresa"]== 1){?> checked <?php } ?> name="ver_empresa"/> Ver Información<br>
+                                                    <input type="checkbox" <?php if($row_permisos["editar_empresa"]== 1){?> checked <?php } ?> name="editar_empresa"/> Editar<br>
                                                 </div><br>
-                                            <h5><strong><input type="checkbox"/> Códigos de impuestos</Strong></h5>
-                                                <div>
-                                                    <input type="checkbox"/> Agregar<br>
-                                                    <input type="checkbox"/> Ver<br>
-                                                    <input type="checkbox"/> Editar<br>
-                                                    <input type="checkbox"/> Eliminar<br>
+                                            </div>
+                                            <div class="box-modulos">   
+                                                <h5><strong><input type="checkbox" <?php if($row_permisos["condiciones_p"]== 1){?> checked <?php } ?> name="condiciones_p"/> Condiciones de pago</Strong></h5>
+                                                <div class="col-md-8">
+                                                    <input type="checkbox" <?php if($row_permisos["agregar_condiciones_p"]== 1){?> checked <?php } ?> name="agregar_condiciones_p"/> Agregar<br>
+                                                    <input type="checkbox" <?php if($row_permisos["ver_condiciones_p"]== 1){?> checked <?php } ?> name="ver_condiciones_p"/> Ver<br>
+                                                    <input type="checkbox" <?php if($row_permisos["modificar_condiciones_p"]== 1){?> checked <?php } ?> name="modificar_condiciones_p"/> Editar<br>
+                                                    <input type="checkbox" <?php if($row_permisos["eliminar_condiciones_p"]== 1){?> checked <?php } ?> name="eliminar_condiciones_p"/> Eliminar<br>
                                                 </div><br>
-                                            <h4><strong><input type="checkbox"/> Almacenes</Strong></h4>
-                                                <div>
-                                                    <input type="checkbox"/> Agregar<br>
-                                                    <input type="checkbox"/> Ver<br>
-                                                    <input type="checkbox"/> Editar<br>
-                                                    <input type="checkbox"/> Eliminar<br>
+                                            </div>
+                                            <div class="box-modulos">
+                                                <h5><strong><input type="checkbox" <?php if($row_permisos["cod_impuestos"]== 1){?> checked <?php } ?> name="cod_impuestos"/> Impuestos</Strong></h5>
+                                                <div class="col-md-8">
+                                                    <input type="checkbox" <?php if($row_permisos["agregar_cod_impuestos"]== 1){?> checked <?php } ?> name="agregar_cod_impuestos"/> Agregar<br>
+                                                    <input type="checkbox" <?php if($row_permisos["ver_cod_impuestos"]== 1){?> checked <?php } ?> name="ver_cod_impuestos"/> Ver<br>
+                                                    <input type="checkbox" <?php if($row_permisos["editar_cod_impuestos"]== 1){?> checked <?php } ?> name="editar_cod_impuestos"/> Editar<br>
+                                                    <input type="checkbox" <?php if($row_permisos["eliminar_cod_impuestos"]== 1){?> checked <?php } ?> name="eliminar_cod_impuestos"/> Eliminar<br>
                                                 </div><br>
-                                            <h4><strong><input type="checkbox"/> Categorías</Strong></h4>
-                                                <div>
-                                                    <input type="checkbox"/> Agregar<br>
-                                                    <input type="checkbox"/> Ver<br>
-                                                    <input type="checkbox"/> Editar<br>
-                                                    <input type="checkbox"/> Eliminar<br>
+                                            </div>
+                                            <div class="box-modulos"> 
+                                                <h5><strong><input type="checkbox" <?php if($row_permisos["almacenes"]== 1){?> checked <?php } ?> name="almacenes"/> Almacenes</Strong></h4>
+                                                <div class="col-md-8">
+                                                    <input type="checkbox" <?php if($row_permisos["agregar_almacenes"]== 1){?> checked <?php } ?> name="agregar_almacenes"/> Agregar<br>
+                                                    <input type="checkbox" <?php if($row_permisos["ver_almacenes"]== 1){?> checked <?php } ?> name="ver_almacenes"/> Ver<br>
+                                                    <input type="checkbox" <?php if($row_permisos["editar_almacenes"]== 1){?> checked <?php } ?> name="editar_almacenes"/> Editar<br>
+                                                    <input type="checkbox" <?php if($row_permisos["eliminar_almacenes"]== 1){?> checked <?php } ?> name="eliminar_almacenes"/> Eliminar<br>
                                                 </div><br>
-
+                                            </div>
+                                            <div class="box-modulos">
+                                                <h5><strong><input type="checkbox" <?php if($row_permisos["categorias"]== 1){?> checked <?php } ?> name="categorias"/>  Categorías</Strong></h4>
+                                                <div class="col-md-8">
+                                                    <input type="checkbox" <?php if($row_permisos["agregar_categorias"]== 1){?> checked <?php } ?> name="agregar_categorias"/> Agregar<br>
+                                                    <input type="checkbox" <?php if($row_permisos["ver_categorias"]== 1){?> checked <?php } ?> name="ver_categorias"/> Ver<br>
+                                                    <input type="checkbox" <?php if($row_permisos["modificar_categorias"]== 1){?> checked <?php } ?> name="modificar_categorias"/> Editar<br>
+                                                    <input type="checkbox" <?php if($row_permisos["eliminar_categorias"]== 1){?> checked <?php } ?> name="eliminar_categorias"/> Eliminar<br>
+                                                </div><br>
+                                            </div>
+                                
                                         </div>
+                                        
                                         <div class="col-md-6">
-                                            <h4><Strong><input type="checkbox"/> Clientes</strong></h4>
-                                            <div class="col-md-8">
-                                            <input type="checkbox"/> Agregar<br>
-                                                <input type="checkbox"/> Ver<br>
-                                                <input type="checkbox"/> Editar<br>
-                                                <input type="checkbox"/> Eliminar<br>
-                                            </div> <br>
-                                            <h4><Strong><input type="checkbox"/> Suplidores</strong></h4>
-                                            <div class="col-md-8">
-                                            <input type="checkbox"/> Agregar<br>
-                                                <input type="checkbox"/> Ver<br>
-                                                <input type="checkbox"/> Editar<br>
-                                                <input type="checkbox"/> Eliminar<br>
-                                            </div> <br>
-                                            <h4><Strong><input type="checkbox"/> Ventas</strong></h4>
-                                            <div class="col-md-8">
-                                            <input type="checkbox"/> Agregar<br>
-                                                <input type="checkbox"/> Ver<br>
-                                                <input type="checkbox"/> Editar<br>
-                                                <input type="checkbox"/> Eliminar<br>
-                                            </div> <br>
-                                            <h4><Strong><input type="checkbox"/> Compras</strong></h4>
-                                            <div class="col-md-8">
-                                            <input type="checkbox"/> Agregar<br>
-                                                <input type="checkbox"/> Ver<br>
-                                                <input type="checkbox"/> Editar<br>
-                                                <input type="checkbox"/> Eliminar<br>
-                                            </div> <br>
-                                            <h4><Strong><input type="checkbox"/> C x pagar</strong></h4>
-                                            <div class="col-md-8">
-                                            <input type="checkbox"/> Agregar<br>
-                                                <input type="checkbox"/> Ver<br>
-                                                <input type="checkbox"/> Editar<br>
-                                                <input type="checkbox"/> Eliminar<br>
-                                            </div> <br>
-                                            <h4><Strong><input type="checkbox"/> C x cobrar</strong></h4>
-                                            <div class="col-md-8">
-                                                <input type="checkbox"/> Agregar<br>
-                                                <input type="checkbox"/> Ver<br>
-                                                <input type="checkbox"/> Editar<br>
-                                                <input type="checkbox"/> Eliminar<br>
-                                            </div> <br>
-                                            <h4><Strong><input type="checkbox"/> Inventario</strong></h4>
-                                            <div class="col-md-8">
-                                                <input type="checkbox"/> Agregar articulos<br>
-                                                <input type="checkbox"/> administracion<br>
-                                                <input type="checkbox"/> administracion<br>
-                                                <input type="checkbox"/> administracion<br>
-                                                <input type="checkbox"/> administracion<br>
-                                                <input type="checkbox"/> administracion<br>
-                                            </div> <br>
+                                        
+                                            <div class="box-modulos" style="margin-top:40px;">
+                                                <h5><Strong><input type="checkbox"/> Clientes</strong></h4>
+                                                <div class="col-md-8">
+                                                    <input type="checkbox"/> Agregar<br>
+                                                    <input type="checkbox"/> Ver<br>
+                                                    <input type="checkbox"/> Editar<br>
+                                                    <input type="checkbox"/> Eliminar<br>
+                                                </div> <br>
+                                            </div>
+                                            <div class="box-modulos">
+                                                <h5><Strong><input type="checkbox"/> Suplidores</strong></h4>
+                                                <div class="col-md-8">
+                                                    <input type="checkbox"/> Agregar<br>
+                                                    <input type="checkbox"/> Ver<br>
+                                                    <input type="checkbox"/> Editar<br>
+                                                    <input type="checkbox"/> Eliminar<br>
+                                                </div> <br>
+                                            </div>
+                                            <div class="box-modulos">
+                                                <h5><Strong><input type="checkbox"/> Ventas</strong></h4>
+                                                <div class="col-md-8">
+                                                    <input type="checkbox"/> Agregar<br>
+                                                    <input type="checkbox"/> Ver<br>
+                                                    <input type="checkbox"/> Editar<br>
+                                                    <input type="checkbox"/> Eliminar<br>
+                                                </div> <br>
+                                            </div>
+                                            <div class="box-modulos">
+                                                <h5><Strong><input type="checkbox"/> Compras</strong></h4>
+                                                <div class="col-md-8">
+                                                    <input type="checkbox"/> Agregar<br>
+                                                    <input type="checkbox"/> Ver<br>
+                                                    <input type="checkbox"/> Editar<br>
+                                                    <input type="checkbox"/> Eliminar<br>
+                                                </div> <br>
+                                            </div>
+                                            <div class="box-modulos">
+                                                <h5><Strong><input type="checkbox"/> C x pagar</strong></h4>
+                                                <div class="col-md-8">
+                                                    <input type="checkbox"/> Agregar<br>
+                                                    <input type="checkbox"/> Ver<br>
+                                                    <input type="checkbox"/> Editar<br>
+                                                    <input type="checkbox"/> Eliminar<br>
+                                                </div> <br>
+                                            </div>
+                                            <div class="box-modulos">
+                                                <h5><Strong><input type="checkbox"/> C x cobrar</strong></h4>
+                                                <div class="col-md-8">
+                                                    <input type="checkbox"/> Agregar<br>
+                                                    <input type="checkbox"/> Ver<br>
+                                                    <input type="checkbox"/> Editar<br>
+                                                    <input type="checkbox"/> Eliminar<br>
+                                                </div> <br>
+                                            </div>
+                                            <div class="box-modulos">
+                                                <h5><Strong><input type="checkbox"/> Inventario</strong></h4>
+                                                <div class="col-md-8">
+                                                    <input type="checkbox"/> Agregar articulos<br>
+                                                    <input type="checkbox"/> administracion<br>
+                                                
+                                                </div><br>
+                                            </div>
 
                                         </div>
                                     </div>
-                                </form>
+                            </div>
                                </div>
                             
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary cerrar" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                                <button type="button" class="btn btn-warning editar" ><i class="fa fa-pencil fa-lg"></i></button>
-                                <input type="submit" class="btn btn-primary guardar" value="Guardar" style="display:none;">
+                                <input type="submit" class="btn btn-primary" value="Guardar">
                             </div>
                             </form>
 
