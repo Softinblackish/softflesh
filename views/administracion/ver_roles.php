@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="../../scripts/js/usuarios.js"></script>
 <div id="box_lista">
-<h2>Usuarios</h2>
+<h2>Roles</h2>
 <form action="" method="post">
     <input  type="text" placeholder="Buscar" name="filtro">
     <input type="submit" class="btn btn" id="buscar" value=" Buscar">

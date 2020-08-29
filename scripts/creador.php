@@ -115,7 +115,7 @@
           ADD `horario` VARCHAR(100) NOT NULL AFTER `ultimo_acceso`
       ");
       $tabla_permisos = $conexion->query("
-      CREATE TABLE `tbl_permisos` (
+      CREATE TABLE $nombre_sin_espacio.tbl_permisos (
         `id_permisos` int(11) NOT NULL,
   `rol` varchar(50) NOT NULL,
   `usuarios` int(2) DEFAULT 1,
@@ -189,15 +189,26 @@
       ");
 
       $tabla_roles = $conexion->query("
-      CREATE TABLE `roles` (
+      CREATE TABLE $nombre_sin_espacio.roles (
         `id_rol` int(11) NOT NULL,
         `nombre_rol` varchar(100) NOT NULL,
         `descripcion_rol` varchar(100) DEFAULT NULL,
         `creado_por` varchar(100) DEFAULT NULL,
         `fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-      
-      
+      ");
+
+      $tabla_almacenes = $conexion->query("
+      CREATE TABLE $nombre_sin_espacio.tbl_almacenes ( 
+      `id_almacen` INT NOT NULL AUTO_INCREMENT ,
+       `nombre_almacen` VARCHAR(100) NULL DEFAULT NULL , 
+       `descripcion_almacen` VARCHAR(100) NULL DEFAULT NULL , 
+       `ubicacion_almacen` VARCHAR(200) NULL DEFAULT NULL ,
+       `encargado_almacen` VARCHAR(100) NULL DEFAULT NULL , 
+       `creado_por` VARCHAR(100) NULL DEFAULT NULL , 
+       `fecha_creacion` TIMESTAMP NOT NULL , 
+       PRIMARY KEY (`id_almacen`)) ENGINE = InnoDB;
+
       ");
 
       

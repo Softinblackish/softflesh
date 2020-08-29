@@ -69,7 +69,7 @@ aside{
 }
 #menu-user{
     background-color:white;
-    height:180px;
+    height:auto;
     position:absolute; 
     width:140px;
     border-bottom-right-radius: 5px;

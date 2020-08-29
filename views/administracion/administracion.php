@@ -27,16 +27,16 @@
 
 <?php if($permisos['cod_impuestos']== 1){ ?><ul class="list-group">
   <li class="list-group-item" style="background-color:#0e444c; color:white;">Códigos de impuestos</li>
-  <li class="list-group-item"><i class="fa fa-plus-circle"></i> Agregar</li></a>
-  <li class="list-group-item"><i class="fa fa-eye"></i> Ver códigos</li></a>
+  <a href="crear_impuesto.php"><li class="list-group-item"><i class="fa fa-plus-circle"></i> Agregar</li></a>
+  <a href="ver_impuestos.php"><li class="list-group-item"><i class="fa fa-eye"></i> Ver códigos</li></a>
   <li class="list-group-item"><i class="fa fa-list-alt"></i> Reportes</li></a>
 </ul>
 <?php } ?>
 
 <?php if($permisos['almacenes']== 1){ ?><ul class="list-group" >
   <li class="list-group-item " style="background-color:#882f88; color:white">Almacenes</li>
-  <a href="../usuarios/lista_usuarios.php"><li class="list-group-item"><i class="fa fa-plus-circle"></i> Agregar</li></a>
-  <a href="../usuarios/lista_usuarios.php"><li class="list-group-item"><i class="fa fa-eye"></i> Ver almacenes</li></a>
+  <a href="crear_almacenes.php"><li class="list-group-item"><i class="fa fa-plus-circle"></i> Agregar</li></a>
+  <a href="ver_almacenes.php"><li class="list-group-item"><i class="fa fa-eye"></i> Ver almacenes</li></a>
   <a href="../usuarios/lista_usuarios.php"><li class="list-group-item"><i class="fa fa-list-alt"></i> Reportes</li></a>
 </ul>
 <?php } ?>
