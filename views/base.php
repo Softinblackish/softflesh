@@ -58,7 +58,9 @@
                                 <a href="../suplidores/frm_suplidores.php">
                                 <div id="agregar_suplidor" class="menu_lv3 menu_suplidores" >Agregar suplidor</div>
                                 </a>
+                                <a href="../suplidores/frm_consultar_suplidores.php">
                                 <div id="lista_suplidores"  class="menu_lv3 menu_suplidores">Ver lista de suplidores</div>
+                                </a>
                         
                         </div>
                         <div id="ventas" class="menu_lv1"><i class="fa fa-cart-plus fa-lg" aria-hidden="true"></i> Ventas
@@ -72,7 +74,9 @@
                                 <a href="../compras/frm_compras.php">
                                 <div id="agregar_compra" class="menu_lv3 menu_compras">Agregar compra</div>
                                 </a>
+                                <a href="../compras/frm_consultar_compras.php">
                                 <div id="lista_compras" class="menu_lv3 menu_compras">Ver lista de compras</div>
+                                </a>
                                 <div id="devoluciones_compra" class="menu_lv3 menu_compras">Devoluciones</div>
                             
                         </div>
