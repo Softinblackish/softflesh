@@ -64,6 +64,17 @@
         `valor_impuestos` int(11) NOT NULL,
         `sin_impuestos` int(11) NOT NULL,
         `valor_total` int(11) NOT NULL,
+
+        `no.compra` int(11),
+        `hora` TIMESTAMP,
+        `articulo` varchar(45),
+        `tel_proveedor` VARCHAR(15),
+        `direccion_provedor` varchar(45),
+        `email_proveedor` varchar(45),
+        `precio_compra` DOUBLE,
+        `stock` int(11) NOT NULL,
+        `cantidad` int(11) NOT NULL,
+        
         PRIMARY KEY (`id_compra`)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8
       ");
