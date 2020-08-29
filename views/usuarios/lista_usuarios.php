@@ -1,5 +1,4 @@
 <?php include("../base.php");
-      include("../../scripts/conexion/cone.php");
 ?>
 <link rel="stylesheet" href="../../css/usuarios.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -39,13 +38,13 @@
                 <th scope="row"><?php echo $row["id_usuario"]; ?></th>
                 <td><?php echo $row["nombre_usuario"]; ?></td>
                 <td><?php echo $row["rol_usuario"]; ?></td>
-                <td><a id="cerrar"  class="btn btn-info" data-toggle="modal" data-target="#example<?php echo $row["id_usuario"]; ?>" > <i class="fa fa-eye fa-lg"></i></a>  <a class="btn btn-danger"  data-toggle="modal" data-target="#eliminar<?php echo $row["id_usuario"]; ?>" ><i class="fa fa-trash-o fa-lg"></i></a> </td>
+        <td><?php if($permisos['modificar_user']== 1){ ?><a id="cerrar"  class="btn btn-info" data-toggle="modal" data-target="#example<?php echo $row["id_usuario"]; ?>" > <i class="fa fa-eye fa-lg"></i></a><?php } ?> <?php if($permisos['eliminar_usergit']== 1){ ?> <a class="btn btn-danger"  data-toggle="modal" data-target="#eliminar<?php echo $row["id_usuario"]; ?>" ><i class="fa fa-trash-o fa-lg"></i></a><?php } ?> </td>
             </tr>
         <!--Modal editar usuario   --->
                 <div class="modal fade" id="example<?php echo $row["id_usuario"];?>" tabindex="-1" aria-labelledby="example<?php echo $row["id_usuario"];?>Label" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
-                            <div class="modal-header">
+                            <div class="modal-header" style="background-color:#17a2b8; color:white;">
                                 <h5 class="modal-title" id="example<?php echo $row["id_usuario"];?>Label"><?php echo $row["nombre_usuario"]; ?></h5>
                                 <button type="button" class="close cerrar" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
@@ -59,7 +58,7 @@
                                             <input type="text" name="nombre" placeholder="Nombre" value="<?php echo $row["nombre"]; ?>" disabled class="form-control">
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <input type="text" name="cedula" placeholder ="Cedula" value="<?php echo $row["cedula_usuario"]; ?>" disabled class="form-control" >
+                                            <input type="text" name="cedula" placeholder ="Cedula" value="<?php echo $row["cedula_usuario"]; ?>" disabled class="form-control " >
                                         </div>
                                         <div class="form-group col-md-6">   
                                             <input type="text" name="horario" placeholder ="Horario" value="<?php echo $row["horario"]; ?>" disabled class="form-control" >

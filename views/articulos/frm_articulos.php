@@ -5,7 +5,11 @@
 <script src="../../scripts/js/articulos.js"></script>
 <div class="container-articulos">
     <div class="container form-row">
+<<<<<<< HEAD
+        <form id="form"  action="../../scripts/articulos/articulos.php" method="POST">
+=======
         <form id="form" action="../../scripts/articulos/articulos.php" method="post">
+>>>>>>> b7e6d5a2930612c530576f4b72b4be2a7725b380
             <div class="cabeza">
             <?php if(isset($_GET["registro"])){ ?>
                 <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -68,7 +72,10 @@
             <input type="submit" id="btn" class="btn btn" value="Registrar articulo" >
             <br>
         </form>
+<<<<<<< HEAD
+=======
 
+>>>>>>> b7e6d5a2930612c530576f4b72b4be2a7725b380
     </div>    
 </div>
 

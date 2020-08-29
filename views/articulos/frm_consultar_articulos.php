@@ -141,6 +141,12 @@
         }
 ?>
   </tbody>
+<<<<<<< HEAD
+  <?php
+  }
+    ?>
+=======
+>>>>>>> b7e6d5a2930612c530576f4b72b4be2a7725b380
 </table>
 
 <a href="../administracion/administracion.php" id="buscar" class="btn btn" >
