@@ -12,5 +12,8 @@
         ('$nombre','$contraseña','super_admin','activo')
         
         ");
+    $auto_rol = $conexion->query("INSERT INTO $empresa.roles (nombre_rol, descripcion_rol, creado_por) VALUES ('super_admin','Rol del inscriptor', 'SYSTEM')");
+    $auto_permisos = $conexion->query("INSERT INTO $empresa.tbl_permisos (rol) VALUES ('super_admin')");
+
     header("location:../views/login/login.php");
 ?>
