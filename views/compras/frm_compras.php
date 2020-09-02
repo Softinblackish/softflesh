@@ -6,6 +6,14 @@
     <div class="container form-row">
         <form id="form"  action="../../scripts/compras/compras.php" method="POST">
             <div class="cabeza">
+                <?php if(isset($_GET["registro"])){ ?>
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <strong>listo! </strong> Nuevo artículo registrado
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <?php } ?>
                <h2> Registro de Compras</h2>
             </div>
             <div class="form-row">
@@ -22,7 +30,7 @@
 
             <label for="inputState">Datos del proveedor: </label><br>
             <div class="form-row">
-                <input type="text" name="suplidor" placeholder ="nombre y apellido del proveedor" class="form-control" >
+                <input type="text" name="nombre_proveedor" placeholder ="nombre y apellido del proveedor" class="form-control" >
                 <br><br>
                 <input type="number" name="direccion" placeholder ="Dirección" class="form-control col-md-4" >
                 <input type="tel" name="tel_proveedor" placeholder ="telefono" class="form-control col-md-4" >

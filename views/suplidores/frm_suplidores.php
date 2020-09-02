@@ -6,6 +6,14 @@
     <div class="container form-row">
         <form id="form"  action="../../scripts/suplidores/suplidores.php" method="POST">
             <div class="cabeza">
+                <?php if(isset($_GET["registro"])){ ?>
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <strong>listo! </strong> Nuevo artículo registrado
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <?php } ?>
                <h2> Registro de Suplidores</h2>
             </div>
             <div class="form-row">

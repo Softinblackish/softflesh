@@ -142,10 +142,6 @@
 ?>
   </tbody>
 
-  <?php
-  }
-    ?>
-
 </table>
 
 <a href="../administracion/administracion.php" id="buscar" class="btn btn" >
