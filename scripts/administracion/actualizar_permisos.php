@@ -208,41 +208,41 @@ if(isset($_POST["eliminar_categorias"])){
 else{
     $conexion->query("UPDATE $empresa.tbl_permisos SET eliminar_categorias = 0 WHERE rol = '$rol'" );
 }
-if(isset($_POST["admin"])){
-    $conexion->query("UPDATE $empresa.tbl_permisos SET administracion = 1 WHERE rol = '$rol'" );
+if(isset($_POST["clientes"])){
+    $conexion->query("UPDATE $empresa.tbl_permisos SET clientes = 1 WHERE rol = '$rol'" );
 }
 else{
-    $conexion->query("UPDATE $empresa.tbl_permisos SET administracion = 0 WHERE rol = '$rol'" );
+    $conexion->query("UPDATE $empresa.tbl_permisos SET clientes = 0 WHERE rol = '$rol'" );
 }
-if(isset($_POST["admin"])){
-    $conexion->query("UPDATE $empresa.tbl_permisos SET administracion = 1 WHERE rol = '$rol'" );
-}
-else{
-    $conexion->query("UPDATE $empresa.tbl_permisos SET administracion = 0 WHERE rol = '$rol'" );
-}
-if(isset($_POST["admin"])){
-    $conexion->query("UPDATE $empresa.tbl_permisos SET administracion = 1 WHERE rol = '$rol'" );
+if(isset($_POST["suplidores"])){
+    $conexion->query("UPDATE $empresa.tbl_permisos SET suplidores = 1 WHERE rol = '$rol'" );
 }
 else{
-    $conexion->query("UPDATE $empresa.tbl_permisos SET administracion = 0 WHERE rol = '$rol'" );
+    $conexion->query("UPDATE $empresa.tbl_permisos SET suplidores = 0 WHERE rol = '$rol'" );
 }
-if(isset($_POST["admin"])){
-    $conexion->query("UPDATE $empresa.tbl_permisos SET administracion = 1 WHERE rol = '$rol'" );
-}
-else{
-    $conexion->query("UPDATE $empresa.tbl_permisos SET administracion = 0 WHERE rol = '$rol'" );
-}
-if(isset($_POST["admin"])){
-    $conexion->query("UPDATE $empresa.tbl_permisos SET administracion = 1 WHERE rol = '$rol'" );
+if(isset($_POST["ventas"])){
+    $conexion->query("UPDATE $empresa.tbl_permisos SET ventas = 1 WHERE rol = '$rol'" );
 }
 else{
-    $conexion->query("UPDATE $empresa.tbl_permisos SET administracion = 0 WHERE rol = '$rol'" );
+    $conexion->query("UPDATE $empresa.tbl_permisos SET ventas = 0 WHERE rol = '$rol'" );
 }
-if(isset($_POST["admin"])){
-    $conexion->query("UPDATE $empresa.tbl_permisos SET administracion = 1 WHERE rol = '$rol'" );
+if(isset($_POST["compras"])){
+    $conexion->query("UPDATE $empresa.tbl_permisos SET compras = 1 WHERE rol = '$rol'" );
 }
 else{
-    $conexion->query("UPDATE $empresa.tbl_permisos SET administracion = 0 WHERE rol = '$rol'" );
+    $conexion->query("UPDATE $empresa.tbl_permisos SET compras = 0 WHERE rol = '$rol'" );
+}
+if(isset($_POST["cxc"])){
+    $conexion->query("UPDATE $empresa.tbl_permisos SET cxc = 1 WHERE rol = '$rol'" );
+}
+else{
+    $conexion->query("UPDATE $empresa.tbl_permisos SET cxc = 0 WHERE rol = '$rol'" );
+}
+if(isset($_POST["cxp"])){
+    $conexion->query("UPDATE $empresa.tbl_permisos SET cxp = 1 WHERE rol = '$rol'" );
+}
+else{
+    $conexion->query("UPDATE $empresa.tbl_permisos SET cxp = 0 WHERE rol = '$rol'" );
 }
 if(isset($_POST["admin"])){
     $conexion->query("UPDATE $empresa.tbl_permisos SET administracion = 1 WHERE rol = '$rol'" );

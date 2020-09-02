@@ -138,78 +138,91 @@
          ADD `ultimo_acceso` VARCHAR(50) NOT NULL AFTER `sucursal_usuario`,
           ADD `horario` VARCHAR(100) NOT NULL AFTER `ultimo_acceso`
       ");
+
+$perm = $conexion->query("
+      CREATE TABLE $nombre_sin_espacio.roles ( 
+        `id_rol` INT NOT NULL AUTO_INCREMENT ,
+        `nombre_rol` VARCHAR(100) NOT NULL DEFAULT 'vendedor' ,
+        `descripcion_rol` VARCHAR(200) NULL ,
+        `creado_por` VARCHAR(100) NOT NULL ,
+        `fecha_creacion` TIMESTAMP NOT NULL ,
+         PRIMARY KEY (`id_rol`)) ENGINE = InnoDB;
+");
+
+
+
       $tabla_permisos = $conexion->query("
-      CREATE TABLE $nombre_sin_espacio.tbl_permisos (
-        `id_permisos` int(11) NOT NULL,
-  `rol` varchar(50) NOT NULL,
-  `usuarios` int(2) DEFAULT 1,
-  `modificar_user` int(2) DEFAULT 1,
-  `eliminar_user` int(2) DEFAULT NULL,
-  `agregar_user` int(2) DEFAULT NULL,
-  `ver_user` int(2) DEFAULT NULL,
-  `administracion` int(2) DEFAULT NULL,
-  `roles` int(2) DEFAULT NULL,
-  `agregar_roles` int(2) DEFAULT NULL,
-  `modificar_roles` int(2) DEFAULT NULL,
-  `ver_roles` int(2) DEFAULT NULL,
-  `eliminar_roles` int(2) DEFAULT NULL,
-  `empresa` int(2) DEFAULT NULL,
-  `ver_empresa` int(2) DEFAULT NULL,
-  `editar_empresa` int(2) DEFAULT NULL,
-  `cod_impuestos` int(2) DEFAULT NULL,
-  `agregar_cod_impuestos` int(2) DEFAULT NULL,
-  `editar_cod_impuestos` int(2) DEFAULT NULL,
-  `eliminar_cod_impuestos` int(2) DEFAULT NULL,
-  `ver_cod_impuestos` int(2) DEFAULT NULL,
-  `almacenes` int(2) DEFAULT NULL,
-  `agregar_almacenes` int(2) DEFAULT NULL,
-  `ver_almacenes` int(2) DEFAULT NULL,
-  `editar_almacenes` int(2) DEFAULT NULL,
-  `eliminar_almacenes` int(2) DEFAULT NULL,
-  `categorias` int(2) DEFAULT NULL,
-  `agregar_categorias` int(2) DEFAULT NULL,
-  `ver_categorias` int(2) DEFAULT NULL,
-  `modificar_categorias` int(2) DEFAULT NULL,
-  `eliminar_categorias` int(2) DEFAULT NULL,
-  `condiciones_p` int(2) DEFAULT NULL,
-  `agregar_condiciones_p` int(2) DEFAULT NULL,
-  `ver_condiciones_p` int(2) DEFAULT NULL,
-  `modificar_condiciones_p` int(2) DEFAULT NULL,
-  `eliminar_condiciones_p` int(2) DEFAULT NULL,
-  `clientes` int(2) DEFAULT NULL,
-  `agregar_clientes` int(2) DEFAULT NULL,
-  `ver_clientes` int(2) DEFAULT NULL,
-  `modificar_clientes` int(2) DEFAULT NULL,
-  `eliminar_clientes` int(2) DEFAULT NULL,
-  `suplidores` int(2) DEFAULT NULL,
-  `agregar_suplidores` int(2) DEFAULT NULL,
-  `ver_suplidores` int(2) DEFAULT NULL,
-  `modificar_suplidores` int(2) DEFAULT NULL,
-  `eliminar_suplidores` int(2) DEFAULT NULL,
-  `ventas` int(2) DEFAULT NULL,
-  `agregar_ventas` int(2) DEFAULT NULL,
-  `editar_ventas` int(2) DEFAULT NULL,
-  `ver_ventas` int(2) DEFAULT NULL,
-  `Eliminar_ventas` int(2) DEFAULT NULL,
-  `venta_a_credito` int(2) DEFAULT NULL,
-  `venta_en_espera` int(2) DEFAULT NULL,
-  `compras` int(2) DEFAULT NULL,
-  `agregar_compra` int(2) DEFAULT NULL,
-  `ver_compras` int(2) DEFAULT NULL,
-  `modificar_compra` int(2) DEFAULT NULL,
-  `compra_a_credito` int(2) DEFAULT NULL,
-  `eliminar_compra` int(2) DEFAULT NULL,
-  `cxc` int(2) DEFAULT NULL,
-  `agregar_cxc` int(2) DEFAULT NULL,
-  `ver_cxc` int(2) DEFAULT NULL,
-  `modificar_cxc` int(2) DEFAULT NULL,
-  `eliminar_cxc` int(2) DEFAULT NULL,
-  `cxp` int(2) DEFAULT NULL,
-  `agregar_cxp` int(2) DEFAULT NULL,
-  `editar_cxp` int(2) DEFAULT NULL,
-  `ver_cxp` int(2) DEFAULT NULL,
-  `eliminar_cxp` int(2) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+      CREATE TABLE $nombre_sin_espacio.tbl_permisos
+       ( `id_permisos` INT NOT NULL AUTO_INCREMENT ,
+      `rol` VARCHAR(200) NOT NULL ,
+      `usuarios` INT(1) NOT NULL DEFAULT '1' ,
+      `modificar_user` INT(1) NOT NULL DEFAULT '1' ,
+      `eliminar_user` INT(1) NOT NULL DEFAULT '1' ,
+      `agregar_user` INT(1) NOT NULL DEFAULT '1' ,
+      `ver_user` INT(1) NOT NULL DEFAULT '1' ,
+      `administracion` INT(1) NOT NULL DEFAULT '1' ,
+      `roles` INT(1) NOT NULL DEFAULT '1' ,
+      `agregar_roles` INT(1) NOT NULL DEFAULT '1' ,
+      `modificar_roles` INT(1) NOT NULL DEFAULT '1' ,
+      `ver_roles` INT(1) NOT NULL DEFAULT '1' ,
+      `eliminar_roles` INT(1) NOT NULL DEFAULT '1' ,
+      `empresa` INT(1) NOT NULL DEFAULT '1' ,
+      `editar_empresa` INT(1) NOT NULL DEFAULT '1' ,
+      `cod_impuestos` INT(1) NOT NULL DEFAULT '1' ,
+      `agregar_cod_impuestos` INT(1) NOT NULL DEFAULT '1' ,
+      `editar_cod_impuestos` INT(1) NOT NULL DEFAULT '1' ,
+      `eliminar_cod_impuestos` INT(1) NOT NULL DEFAULT '1' ,
+      `ver_cod_impuestos` INT(1) NOT NULL DEFAULT '1' ,
+      `almacenes` INT(1) NOT NULL DEFAULT '1' ,
+      `agregar_almacenes` INT(1) NOT NULL DEFAULT '1' ,
+      `ver_almacenes` INT(1) NOT NULL DEFAULT '1' ,
+      `editar_almacenes` INT(1) NOT NULL DEFAULT '1' ,
+      `eliminar_almacenes` INT(1) NOT NULL DEFAULT '1' ,
+      `categorias` INT(1) NOT NULL DEFAULT '1' ,
+      `agregar_categorias` INT(1) NOT NULL DEFAULT '1' ,
+      `ver_categorias` INT(1) NOT NULL DEFAULT '1' ,
+      `modificar_categorias` INT(1) NOT NULL DEFAULT '1' ,
+      `eliminar_categorias` INT(1) NOT NULL DEFAULT '1' ,
+      `condiciones_p` INT(1) NOT NULL DEFAULT '1' ,
+      `agregar_condiciones_p` INT(1) NOT NULL DEFAULT '1' ,
+      `modificar_condiciones_p` INT(1) NOT NULL DEFAULT '1' ,
+      `eliminar_condiciones_p` INT(1) NOT NULL DEFAULT '1' ,
+      `ver_condiciones_p` INT(1) NOT NULL DEFAULT '1' ,
+      `clientes` INT(1) NOT NULL DEFAULT '1' ,
+      `agregar_clientes` INT(1) NOT NULL DEFAULT '1' ,
+      `modificar_clientes` INT(1) NOT NULL DEFAULT '1' ,
+      `eliminar_clientes` INT(1) NOT NULL DEFAULT '1' ,
+      `ver_clientes` INT(1) NOT NULL DEFAULT '1' ,
+      `suplidores` INT(1) NOT NULL DEFAULT '1' ,
+      `agregar_suplidores` INT(1) NOT NULL DEFAULT '1' ,
+      `modificar_suplidores` INT(1) NOT NULL DEFAULT '1' ,
+      `ver_suplidores` INT(1) NOT NULL DEFAULT '1' ,
+      `eliminar_suplidores` INT(1) NOT NULL DEFAULT '1' ,
+      `ventas` INT(1) NOT NULL DEFAULT '1' ,
+      `agregar_ventar` INT(1) NOT NULL DEFAULT '1' ,
+      `editar_ventas` INT(1) NOT NULL DEFAULT '1' ,
+      `eliminar_ventas` INT(1) NOT NULL DEFAULT '1' ,
+      `ver_ventas` INT(1) NOT NULL DEFAULT '1' ,
+      `venta_a_credito` INT(1) NOT NULL DEFAULT '1' ,
+      `venta_en_espera` INT(1) NOT NULL DEFAULT '1' ,
+      `compras` INT(1) NOT NULL DEFAULT '1' ,
+      `agregar_compras` INT(1) NOT NULL DEFAULT '1' ,
+      `modificar_compras` INT(1) NOT NULL DEFAULT '1' ,
+      `eliminar_compras` INT(1) NOT NULL DEFAULT '1' ,
+      `ver_compras` INT(1) NOT NULL DEFAULT '1' ,
+      `cxc` INT(1) NOT NULL DEFAULT '1' ,
+      `agregar_cxc` INT(1) NOT NULL DEFAULT '1' ,
+      `eliminar_cxc` INT(1) NOT NULL DEFAULT '1' ,
+      `modificar_cxc` INT(1) NOT NULL DEFAULT '1' ,
+      `ver_cxc` INT(1) NOT NULL DEFAULT '1' ,
+      `cxp` INT(1) NOT NULL DEFAULT '1' ,
+      `agregar_cxp` INT(1) NOT NULL DEFAULT '1' ,
+      `eliminar_cxp` INT(1) NOT NULL DEFAULT '1' ,
+      `modificar_cxp` INT(1) NOT NULL DEFAULT '1' ,
+      `ver_cxp` INT(1) NOT NULL DEFAULT '1' ,
+      `compra_a_credito` INT(1) NOT NULL DEFAULT '1' ,
+      PRIMARY KEY (`id_permisos`)) ENGINE = InnoDB;
+
       ");
 
       $tabla_id = $conexion->query("
@@ -223,7 +236,7 @@
 
       $tabla_roles = $conexion->query("
       CREATE TABLE $nombre_sin_espacio.roles (
-        `id_rol` int(11) NOT NULL,
+        `id_rol` int(11) NOT  AUTO_INCREMENT,
         `nombre_rol` varchar(100) NOT NULL,
         `descripcion_rol` varchar(100) DEFAULT NULL,
         `creado_por` varchar(100) DEFAULT NULL,
@@ -243,6 +256,49 @@
        PRIMARY KEY (`id_almacen`)) ENGINE = InnoDB;
 
       ");
+      $tabla_categoria = $conexion->query("
+      CREATE TABLE $nombre_sin_espacio.tbl_categorias (
+        `id_categoria` int(11) NOT NULL,
+        `nombre_categoria` varchar(200) NOT NULL,
+        `descripcion_categoria` varchar(100) NOT NULL,
+        `creada_por` varchar(200) NOT NULL,
+        `fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+      ");
+
+      $tabla_categoria = $conexion->query("
+      CREATE TABLE $nombre_sin_espacio.tbl_condiciones_pago (
+        `id_condicion_p` int(11) NOT NULL,
+        `nombre_condicion_p` varchar(200) NOT NULL,
+        `dias_condicion_p` varchar(100) NOT NULL,
+        `descripcion_condicion_p` varchar(200) NOT NULL,
+        `creado_por` varchar(100) NOT NULL,
+        `fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+      ");
+      
+      $tabla_categoria = $conexion->query("
+      CREATE TABLE $nombre_sin_espacio.tbl_clientes (
+         `id_cliente` INT NOT NULL AUTO_INCREMENT , 
+         `codigo_cliente` VARCHAR(200) NOT NULL , 
+         `nombre_cliente` VARCHAR(100) NOT NULL , 
+         `Pais` VARCHAR(200) NOT NULL , 
+         `provincia` VARCHAR(100) NOT NULL , 
+         `direccion` VARCHAR(100) NOT NULL , 
+         `telefono_cliente` VARCHAR(100) NOT NULL , 
+         `tipo_cliente` VARCHAR(100) NOT NULL , 
+         `tipo_comprobante` VARCHAR(100) NOT NULL , 
+         `rnc_cliente` VARCHAR(100) NOT NULL , 
+         `creado_por` VARCHAR(100) NOT NULL , 
+         `fecha_creacion` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , 
+         `fecha_modificacion` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , 
+         `modificado_por` VARCHAR(100) NOT NULL , 
+         `limite_credito` INT(10) NOT NULL , 
+         `condicion_pago` VARCHAR(100) NOT NULL , 
+         `status` VARCHAR(10) NOT NULL , PRIMARY KEY (`id_cliente`)) ENGINE = InnoDB;
+
+      ");
+
 
       
 header("location:../views/creador_u.php?empresa=$nombre_sin_espacio");

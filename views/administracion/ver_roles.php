@@ -39,7 +39,7 @@
                 <th scope="row"><?php echo $row["id_rol"]; ?></th>
                 <td><?php echo $row["nombre_rol"]; ?></td>
                 <td><?php echo $row["descripcion_rol"]; ?></td>
-        <td><?php if($permisos['modificar_roles']== 1){ ?><a id="cerrar"  class="btn btn-info" data-toggle="modal" data-target="#example<?php echo $row["id_rol"]; ?>" > <i class="fa fa-eye fa-lg"></i></a><?php } ?> <?php if($permisos['eliminar_roles']== 1){ ?><a class="btn btn-danger"  data-toggle="modal" data-target="#eliminar<?php echo $row["id_usuario"]; ?>" ><i class="fa fa-trash-o fa-lg"></i></a> <?php } ?> </td>
+        <td><?php if($permisos['modificar_roles']== 1){ ?><a id="cerrar"  class="btn btn-info" data-toggle="modal" data-target="#example<?php echo $row["id_rol"]; ?>" > <i class="fa fa-eye fa-lg"></i></a><?php } ?> <?php if($permisos['eliminar_roles']== 1){ ?><a class="btn btn-danger"  data-toggle="modal" data-target="#eliminar<?php echo $row["id_rol"]; ?>" ><i class="fa fa-trash-o fa-lg"></i></a> <?php } ?> </td>
             </tr>
         <!--Modal editar usuario   --->
                 <div class="modal fade" id="example<?php echo $row["id_rol"];?>" tabindex="-1" aria-labelledby="example<?php echo $row["id_rol"];?>Label" aria-hidden="true">
@@ -135,7 +135,7 @@
                                         <div class="col-md-6">
                                         
                                             <div class="box-modulos" style="margin-top:40px;">
-                                                <h5><Strong><input type="checkbox"/> Clientes</strong></h4>
+                                                <h5><Strong><input type="checkbox" <?php if($row_permisos["clientes"]== 1){?> checked <?php } ?> name="clientes"/> Clientes</strong></h4>
                                                 <div class="col-md-8">
                                                     <input type="checkbox"/> Agregar<br>
                                                     <input type="checkbox"/> Ver<br>
@@ -144,7 +144,7 @@
                                                 </div> <br>
                                             </div>
                                             <div class="box-modulos">
-                                                <h5><Strong><input type="checkbox"/> Suplidores</strong></h4>
+                                                <h5><Strong><input type="checkbox" <?php if($row_permisos["suplidores"]== 1){?> checked <?php } ?> name="suplidores"/>  Suplidores</strong></h4>
                                                 <div class="col-md-8">
                                                     <input type="checkbox"/> Agregar<br>
                                                     <input type="checkbox"/> Ver<br>
@@ -153,7 +153,7 @@
                                                 </div> <br>
                                             </div>
                                             <div class="box-modulos">
-                                                <h5><Strong><input type="checkbox"/> Ventas</strong></h4>
+                                                <h5><Strong><input type="checkbox" <?php if($row_permisos["ventas"]== 1){?> checked <?php } ?> name="ventas"/>  Ventas</strong></h4>
                                                 <div class="col-md-8">
                                                     <input type="checkbox"/> Agregar<br>
                                                     <input type="checkbox"/> Ver<br>
@@ -162,7 +162,7 @@
                                                 </div> <br>
                                             </div>
                                             <div class="box-modulos">
-                                                <h5><Strong><input type="checkbox"/> Compras</strong></h4>
+                                                <h5><Strong><input type="checkbox" <?php if($row_permisos["compras"]== 1){?> checked <?php } ?> name="compras"/>  Compras</strong></h4>
                                                 <div class="col-md-8">
                                                     <input type="checkbox"/> Agregar<br>
                                                     <input type="checkbox"/> Ver<br>
@@ -171,7 +171,7 @@
                                                 </div> <br>
                                             </div>
                                             <div class="box-modulos">
-                                                <h5><Strong><input type="checkbox"/> C x pagar</strong></h4>
+                                                <h5><Strong><input type="checkbox" <?php if($row_permisos["cxp"]== 1){?> checked <?php } ?> name="cxp"/>  C x pagar</strong></h4>
                                                 <div class="col-md-8">
                                                     <input type="checkbox"/> Agregar<br>
                                                     <input type="checkbox"/> Ver<br>
@@ -180,7 +180,7 @@
                                                 </div> <br>
                                             </div>
                                             <div class="box-modulos">
-                                                <h5><Strong><input type="checkbox"/> C x cobrar</strong></h4>
+                                                <h5><Strong><input type="checkbox" <?php if($row_permisos["cxc"]== 1){?> checked <?php } ?> name="cxc"/>  C x cobrar</strong></h4>
                                                 <div class="col-md-8">
                                                     <input type="checkbox"/> Agregar<br>
                                                     <input type="checkbox"/> Ver<br>
@@ -189,7 +189,7 @@
                                                 </div> <br>
                                             </div>
                                             <div class="box-modulos">
-                                                <h5><Strong><input type="checkbox"/> Inventario</strong></h4>
+                                                <h5><Strong><input type="checkbox" /> Inventario</strong></h4>
                                                 <div class="col-md-8">
                                                     <input type="checkbox"/> Agregar articulos<br>
                                                     <input type="checkbox"/> administracion<br>
@@ -213,24 +213,38 @@
                 </div>
 </div>
         <!--Modal Eliminar usuario   --->
-        <div class="modal fade" id="eliminar<?php echo $row["id_usuario"];?>" tabindex="-1" aria-labelledby="eliminar<?php echo $row["id_usuario"];?>Label" aria-hidden="true">
+        <div class="modal fade" id="eliminar<?php echo $row["id_rol"];?>" tabindex="-1" aria-labelledby="eliminar<?php echo $row["id_rol"];?>Label" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="eliminar<?php echo $row["id_usuario"];?>Label">Eliminar</h5>
+                                <h5 class="modal-title" id="eliminar<?php echo $row["id_rol"];?>Label">Eliminar</h5>
                                 <button type="button" class="close cerrar" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
-                                Seguro que desea eliminar el usuario de:<strong> <?php echo $row["nombre_usuario"];?> </strong>?
-                            </div>
-                            
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary cerrar" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                                <a href="../../scripts/usuarios/eliminar_usuarios.php?id=<?php echo $row["id_usuario"]?>" class="btn btn-danger" value="Guardar">Borrar</a>
-                            </div>
-                            </form>
+                            <?php
+                                $nombre_rol = $row["nombre_rol"];
+                                $consulta_usuarios = $conexion->query("SELECT nombre_usuario FROM $empresa.tbl_usuario WHERE rol_usuario = '$nombre_rol' "); 
+                                $cantidad_de_registros = $consulta_usuarios->num_rows;
+                                if($cantidad_de_registros < 1)
+                                {
+                            ?>
+                                    Seguro que desea eliminar el rol de:<strong> <?php echo $nombre_rol?> </strong>?
+                            <?php
+                                }
+                                else
+                                {
+                                    echo ("No deben haber usuarios con el rol asignado, primero quite el rol en los usuarios");
+                                }
+                                
+                            ?>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary cerrar" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
+                            <?php if($cantidad_de_registros < 1) { ?>  <a href="../../scripts/administracion/eliminar_rol.php?id=<?php echo $row["id_rol"]?>" class="btn btn-danger" value="Guardar">Borrar</a> <?php } ?>
+                                </div>
+                        
 
                         </div>
                     </div>

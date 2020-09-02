@@ -52,52 +52,51 @@
               <nav>
                 <div id="menu_lateral">
                     <div id="nombre_empresa"><?php echo $_SESSION["empresa"]; ?></div>
-                    <div id="menu">
-                        <div id="clientes" class="menu_lv1"><i class="fa fa-users fa-lg" aria-hidden="true"></i> Clientes
-                                
-                                <div id="agregar_clientes"class="menu_lv3 menu_clientes">Agregar cliente</div>
-                                <div id="lista_clientes" class="menu_lv3 menu_clientes">Ver lista de clientes</div>
-                            
-                        </div>
-                        <div id="suplidores" class="menu_lv1"><i class="fa fa-handshake-o fa-lg" aria-hidden="true"></i> Suplidores
-                                <a href="../suplidores/frm_suplidores.php">
-                                <div id="agregar_suplidor" class="menu_lv3 menu_suplidores" >Agregar suplidor</div>
-                                </a>
-                                <a href="../suplidores/frm_consultar_suplidores.php">
-                                <div id="lista_suplidores"  class="menu_lv3 menu_suplidores">Ver lista de suplidores</div>
-                                </a>
-                        
-                        </div>
-                        <div id="ventas" class="menu_lv1"><i class="fa fa-cart-plus fa-lg" aria-hidden="true"></i> Ventas
-                            
-                                <div id="punto_de_venta"class="menu_lv3 menu_ventas" >Punto de venta</div>
-                                <div id="lista_ventas" class="menu_lv3 menu_ventas">Ventas</div>
-                                <div id="devoluciones_venta" class="menu_lv3 menu_ventas">Devoluciones</div>
-                            
-                        </div>
-                        <div id="compras" class="menu_lv1"> <i class="fa fa-shopping-bag fa-lg" aria-hidden="true"></i> Compras 
-                                <a href="../compras/frm_compras.php">
-                                <div id="agregar_compra" class="menu_lv3 menu_compras">Agregar compra</div>
-                                </a>
-                                <a href="../compras/frm_consultar_compras.php">
-                                <div id="lista_compras" class="menu_lv3 menu_compras">Ver lista de compras</div>
-                                </a>
-                                <div id="devoluciones_compra" class="menu_lv3 menu_compras">Devoluciones</div>
-                            
-                        </div>
-                        <div id="cxp" class="menu_lv1"><i class="fa fa-credit-card fa-lg" aria-hidden="true"></i> Cuentas por pagar
-                            
-                                <div id="agregar_cxp" class="menu_lv3 menu_cxp">Agregar cuentas por pagar</div>
-                                <div id="lista_cxp" class="menu_lv3 menu_cxp">Ver cuentas por pagar</div>
-                            
-                        </div>
-                        <div id="cxc" class="menu_lv1"><i class="fa fa-money fa-lg" aria-hidden="true"></i> Cuentas por cobrar
-                           
-                                <div id="agregar_cxc" class="menu_lv3 menu_cxc">Agregar cuenta por cobrar</div>
-                                <div id="lista_cxc" class="menu_lv3 menu_cxc">Ver cuentas por cobrar</div>
-                            
-                            
-                        </div>
+                        <div id="menu">
+                                <?php if($permisos['clientes']== 1){ ?> <div id="clientes" class="menu_lv1"><i class="fa fa-users fa-lg" aria-hidden="true"></i> Clientes
+                                        <div id="agregar_clientes"class="menu_lv3 menu_clientes">
+                                                <a href="../clientes/crear_clientes.php"> Agregar cliente</a>
+                                        </div>
+                                        <div id="lista_clientes" class="menu_lv3 menu_clientes">
+                                                <a href="../clientes/ver_clientes.php">Ver lista de clientes</a>
+                                        </div>
+                                </div><?php }?>
+
+                                <?php if($permisos['suplidores']== 1){ ?> <div id="suplidores" class="menu_lv1"><i class="fa fa-handshake-o fa-lg" aria-hidden="true"></i> Suplidores
+                                        <a href="../suplidores/frm_suplidores.php">
+                                        <div id="agregar_suplidor" class="menu_lv3 menu_suplidores" >Agregar suplidor</div>
+                                        </a>
+                                        <a href="../suplidores/frm_consultar_suplidores.php">
+                                        <div id="lista_suplidores"  class="menu_lv3 menu_suplidores">Ver lista de suplidores</div>
+                                        </a>
+                                </div><?php } ?>
+
+                                <?php if($permisos['ventas']== 1){ ?> <div id="ventas" class="menu_lv1"><i class="fa fa-cart-plus fa-lg" aria-hidden="true"></i> Ventas
+                                        <div id="punto_de_venta"class="menu_lv3 menu_ventas" >Punto de venta</div>
+                                        <div id="lista_ventas" class="menu_lv3 menu_ventas">Ventas</div>
+                                        <div id="devoluciones_venta" class="menu_lv3 menu_ventas">Devoluciones</div>
+                                </div><?php } ?>
+
+                                <?php if($permisos['compras']== 1){ ?><div id="compras" class="menu_lv1"> <i class="fa fa-shopping-bag fa-lg" aria-hidden="true"></i> Compras 
+                                        <a href="../compras/frm_compras.php">
+                                        <div id="agregar_compra" class="menu_lv3 menu_compras">Agregar compra</div>
+                                        </a>
+                                        <a href="../compras/frm_consultar_compras.php">
+                                        <div id="lista_compras" class="menu_lv3 menu_compras">Ver lista de compras</div>
+                                        </a>
+                                        <div id="devoluciones_compra" class="menu_lv3 menu_compras">Devoluciones</div>
+                                </div><?php } ?>
+
+                                <?php if($permisos['cxp']== 1){ ?><div id="cxp" class="menu_lv1"><i class="fa fa-credit-card fa-lg" aria-hidden="true"></i> Cuentas por pagar
+                                        <div id="agregar_cxp" class="menu_lv3 menu_cxp">Agregar cuentas por pagar</div>
+                                        <div id="lista_cxp" class="menu_lv3 menu_cxp">Ver cuentas por pagar</div>
+                                </div><?php }?>
+
+                                <?php if($permisos['cxc']== 1){ ?><div id="cxc" class="menu_lv1"><i class="fa fa-money fa-lg" aria-hidden="true"></i> Cuentas por cobrar                           
+                                        <div id="agregar_cxc" class="menu_lv3 menu_cxc">Agregar cuenta por cobrar</div>
+                                        <div id="lista_cxc" class="menu_lv3 menu_cxc">Ver cuentas por cobrar</div>
+                                </div> <?php } ?>
+
                         <div id="inventario" class="menu_lv1"><i class="fa fa-inbox fa-lg"></i> Inventario
                             
                                 <a href="../articulos/frm_articulos.php"><div id="agregar_articulo" class="menu_lv3 menu_inventario">Agregar articulo</div></a>

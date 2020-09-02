@@ -27,24 +27,24 @@
 
 <?php if($permisos['cod_impuestos']== 1){ ?><ul class="list-group">
   <li class="list-group-item" style="background-color:#0e444c; color:white;">Códigos de impuestos</li>
-  <a href="crear_impuesto.php"><li class="list-group-item"><i class="fa fa-plus-circle"></i> Agregar</li></a>
-  <a href="ver_impuestos.php"><li class="list-group-item"><i class="fa fa-eye"></i> Ver códigos</li></a>
+  <?php if($permisos['agregar_cod_impuestos']== 1){ ?><a href="crear_impuesto.php"><li class="list-group-item"><i class="fa fa-plus-circle"></i> Agregar</li></a><?php } ?>
+    <?php if($permisos['ver_cod_impuestos']== 1){ ?><a href="ver_impuestos.php"><li class="list-group-item"><i class="fa fa-eye"></i> Ver códigos</li></a><?php } ?>
   <li class="list-group-item"><i class="fa fa-list-alt"></i> Reportes</li></a>
 </ul>
 <?php } ?>
 
 <?php if($permisos['almacenes']== 1){ ?><ul class="list-group" >
   <li class="list-group-item " style="background-color:#882f88; color:white">Almacenes</li>
-  <a href="crear_almacenes.php"><li class="list-group-item"><i class="fa fa-plus-circle"></i> Agregar</li></a>
-  <a href="ver_almacenes.php"><li class="list-group-item"><i class="fa fa-eye"></i> Ver almacenes</li></a>
+  <?php if($permisos['agregar_almacenes']== 1){ ?><a href="crear_almacenes.php"><li class="list-group-item"><i class="fa fa-plus-circle"></i> Agregar</li></a><?php } ?>
+    <?php if($permisos['ver_almacenes']== 1){ ?><a href="ver_almacenes.php"><li class="list-group-item"><i class="fa fa-eye"></i> Ver almacenes</li></a><?php } ?>
   <a href="../usuarios/lista_usuarios.php"><li class="list-group-item"><i class="fa fa-list-alt"></i> Reportes</li></a>
 </ul>
 <?php } ?>
 
 <?php if($permisos['categorias']== 1){ ?><ul class="list-group" >
   <li class="list-group-item " style="background-color:rgb(87, 220, 200); color:white;">Categorías</li>
-  <a href="../usuarios/lista_usuarios.php"><li class="list-group-item"><i class="fa fa-plus-circle"></i> Agregar</li></a>
-  <a href="../usuarios/lista_usuarios.php"><li class="list-group-item"><i class="fa fa-eye"></i> Ver categorias</li></a>
+  <?php if($permisos['agregar_categorias']== 1){ ?><a href="crear_categorias.php"><li class="list-group-item"><i class="fa fa-plus-circle"></i> Agregar</li></a><?php } ?>
+    <?php if($permisos['ver_categorias']== 1){ ?><a href="ver_categorias.php"><li class="list-group-item"><i class="fa fa-eye"></i> Ver categorias</li></a><?php } ?>
   <a href="../usuarios/lista_usuarios.php"><li class="list-group-item"><i class="fa fa-list-alt"></i> Reportes</li></a>
 </ul>
 <?php } ?>
@@ -57,8 +57,8 @@
 </ul>
 <?php if($permisos['condiciones_p']== 1){ ?><ul class="list-group" >
   <li class="list-group-item active" style="background-color:#17a2b8;">Condición de pago</li>
-  <a href="../usuarios/lista_usuarios.php"><li class="list-group-item"><i class="fa fa-plus-circle"></i> Agregar</li></a>
-  <a href="../usuarios/lista_usuarios.php"><li class="list-group-item"><i class="fa fa-eye"></i> Ver condiciones de pago</li></a>
+  <?php if($permisos['agregar_condiciones_p']== 1){ ?><a href="crear_condicion_pago.php"><li class="list-group-item"><i class="fa fa-plus-circle"></i> Agregar</li></a><?php } ?>
+    <?php if($permisos['ver_condiciones_p']== 1){ ?><a href="ver_condiciones_pago.php"><li class="list-group-item"><i class="fa fa-eye"></i> Ver condiciones de pago</li></a><?php } ?>
   <a href="../usuarios/lista_usuarios.php"><li class="list-group-item"><i class="fa fa-list-alt"></i> reportes</li></a>
 </ul>
 <?php } ?>
