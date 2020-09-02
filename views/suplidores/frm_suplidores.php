@@ -4,13 +4,13 @@
 <link rel="stylesheet" href="../../css/suplidores.css">
 <div class="container-cuentas-por-cobrar">
     <div class="container form-row">
-        <form id="form"  action="" method="post">
+        <form id="form"  action="../../scripts/suplidores/suplidores.php" method="POST">
             <div class="cabeza">
                <h2> Registro de Suplidores</h2>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <input type="text" name="nombre" placeholder ="Nombre del suplidor" class="form-control">
+                    <input type="text" name="nombre_sub" placeholder ="Nombre del suplidor" class="form-control">
                 </div>
                 <div class="form-group col-md-6">
                     <input type="text" name="codigo" placeholder ="producto" class="form-control" >
@@ -18,16 +18,16 @@
             </div>
 
             <div class="form-row">
-                <input type="text" name="descripcion" placeholder ="Descripción" class="form-control" >
+                <input type="text" name="descripcion_sub" placeholder ="Descripción" class="form-control" >
                 <br><br>
-                <input type="tel" name="referencia" placeholder ="telefono" class="form-control col-md-6" >
+                <input type="tel" name="telefono" placeholder ="telefono" class="form-control col-md-6" >
             </div>
 
             <label for="inputState">Datos del producto: </label><br>
             
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    <input type="number" min = 1 name="codigo_barra" class="form-control" id="inputCity" placeholder="precio" >
+                    <input type="number" min = 1 name="precio" class="form-control" id="inputCity" placeholder="precio" >
                 </div>
                 <div class="form-group col-md-4">
                     <select id="inputState" class="form-control" name="unidad" placeholder="Unidad">
@@ -38,7 +38,7 @@
                             <option selected="null">Categorias</option>
                     </select>
                 </div>
-                <select id="inputState" class="form-control col-md-4" name="direciones" placeholder="Direciones">
+                <select id="inputState" class="form-control col-md-4" name="direccion" placeholder="Direciones">
                         <option selected="">Santo Domingo</option>
                         <option selected="">La vega</option>
                         <option selected="">Santiago</option>

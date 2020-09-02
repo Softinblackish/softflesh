@@ -101,11 +101,11 @@
                                         </div>
                                     </div>
                             
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary cerrar" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                                <button type="button" class="btn btn-warning editar" ><i class="fa fa-pencil fa-lg"></i></button>
-                                <input type="submit" class="btn btn-primary guardar" value="Guardar" style="display:none;">
-                            </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary cerrar" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
+                                        <button type="button" class="btn btn-warning editar" ><i class="fa fa-pencil fa-lg"></i></button>
+                                        <input type="submit" class="btn btn-primary guardar" value="Guardar" style="display:none;">
+                                    </div>
                             </form>
 
                         </div>
@@ -141,12 +141,11 @@
         }
 ?>
   </tbody>
-<<<<<<< HEAD
+
   <?php
   }
     ?>
-=======
->>>>>>> b7e6d5a2930612c530576f4b72b4be2a7725b380
+
 </table>
 
 <a href="../administracion/administracion.php" id="buscar" class="btn btn" >

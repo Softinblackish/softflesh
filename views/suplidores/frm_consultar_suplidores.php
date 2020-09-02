@@ -32,7 +32,7 @@
         $lista_articulos = $conexion->query("SELECT * FROM $empresa.tbl_compras WHERE suplidor LIKE '%$filtro%'");
     }
     else{
-        $lista_articulos = $conexion->query("SELECT * FROM $empresa.tbl_articulos");
+        $lista_articulos = $conexion->query("SELECT * FROM $empresa.tbl_suplidores");
     }
 
     while($row = $lista_articulos->fetch_assoc())

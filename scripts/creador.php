@@ -31,10 +31,10 @@
         `almacen` varchar(50) NOT NULL,
         `status` varchar(20) NOT NULL,
         `creado_por` varchar(100) NOT NULL,
-        `fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+        `fecha_creacion` timestamp DEFAULT current_timestamp() ON UPDATE current_timestamp(),
         `cantidad_actual` int(6) NOT NULL,
         `cantidad_disponible` int(6) NOT NULL default 0,
-        `fecha_modificacion` varchar(100) NOT NULL,
+        `fecha_modificacion` timestamp DEFAULT current_timestamp() ON UPDATE current_timestamp(),
         `unidad` varchar(100) NOT NULL default 0,
         PRIMARY KEY (`id_articulo`)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8
@@ -59,13 +59,12 @@
         `moneda` varchar(50) NOT NULL,
         `entregar_a` varchar(200) NOT NULL,
         `nota` varchar(300) NOT NULL,
-        `fecha_orden` varchar(100) NOT NULL,
+        `fecha_orden` timestamp DEFAULT current_timestamp() ON UPDATE current_timestamp(),
         `condicion_pago` varchar(100) NOT NULL,
         `valor_impuestos` int(11) NOT NULL,
         `sin_impuestos` int(11) NOT NULL,
         `valor_total` int(11) NOT NULL,
-
-        `no.compra` int(11),
+        `no_compra` int(11),
         `hora` TIMESTAMP,
         `articulo` varchar(45),
         `tel_proveedor` VARCHAR(15),
@@ -106,12 +105,26 @@
         PRIMARY KEY (`id`)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8
       ");
+
+      $tabla_tmp_compra= $conexion->query("
+      CREATE TABLE $nombre_sin_espacio.tbl_suplidores (
+        `id_sup` int(10) NOT NULL AUTO_INCREMENT,
+        `nombre_sup` varchar(100),
+        `articulo` varchar(200) NOT NULL,
+        `descripcion_sup` varchar(100),
+        `precio` float,
+        `unidad` varchar(50),
+        `telefono` varchar(15),
+        `direccion` varchar(100),
+        PRIMARY KEY (`id_sup`)
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+      ");
       
       $tabla_usuario = $conexion->query("
       CREATE TABLE $nombre_sin_espacio.tbl_usuario (
         `id_usuario` int(11) NOT NULL AUTO_INCREMENT,
         `nombre_usuario` varchar(100) NOT NULL,
-        `contraseña_usuario` varchar(100) NOT NULL,
+        `contrasena_usuario` varchar(100) NOT NULL,
         `rol_usuario` varchar(100) NOT NULL,
         `status` varchar(100) NOT NULL,
         `fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
@@ -199,6 +212,15 @@
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
       ");
 
+      $tabla_id = $conexion->query("
+      ALTER TABLE `tbl_permisos`
+        ADD PRIMARY KEY (`id_permisos`);");
+
+        $tabla_auto = $conexion->query("ALTER TABLE `tbl_permisos`
+        MODIFY `id_permisos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+      COMMIT;");
+
+
       $tabla_roles = $conexion->query("
       CREATE TABLE $nombre_sin_espacio.roles (
         `id_rol` int(11) NOT NULL,
@@ -217,13 +239,13 @@
        `ubicacion_almacen` VARCHAR(200) NULL DEFAULT NULL ,
        `encargado_almacen` VARCHAR(100) NULL DEFAULT NULL , 
        `creado_por` VARCHAR(100) NULL DEFAULT NULL , 
-       `fecha_creacion` TIMESTAMP NOT NULL , 
+       `fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(), 
        PRIMARY KEY (`id_almacen`)) ENGINE = InnoDB;
 
       ");
 
       
-  header("location:../views/creador_u.php?empresa=$nombre_sin_espacio");
+header("location:../views/creador_u.php?empresa=$nombre_sin_espacio");
 /*
       }
       else

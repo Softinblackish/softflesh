@@ -22,7 +22,7 @@
       <form action="../scripts/creador_u.php" method="POST" >
         <input type="hidden" value="<?php echo $_GET['empresa'] ;?>" name="empresa">
         <input type="text" class="form-control" placeholder="Usuario" name="nombre" required>
-        <input type="Password" class="form-control" placeholder="Contraseña"name="contraseña" required>
+        <input type="Password" class="form-control" placeholder="Contraseña"name="contrasena" required>
         <input type="Password"  class="form-control" placeholder="Repetir Contraseña"required>
         <button type="submit" id="submit" class="btn btn">Crear <i id="img-continuar" class="fa fa-share"></i></button>
       </form>

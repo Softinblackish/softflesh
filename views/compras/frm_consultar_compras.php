@@ -18,7 +18,7 @@
       <th scope="col">Fecha</th>
       <th scope="col">Proveedor</th>
       <th scope="col">tel_proveedor</th>
-      <th scope="col">Articulos</th>
+      <th scope="col">compras</th>
       <th scope="col">precio_compra</th>
       <th scope="col">Cantidad</th>
       <th scope="col">Total</th>
@@ -30,41 +30,44 @@
     $empresa = $_SESSION["empresa_db"];
     if(isset($_POST["filtro"])){
         $filtro= $_POST["filtro"];
-        $lista_articulos = $conexion->query("SELECT * FROM $empresa.tbl_compras WHERE suplidor LIKE '%$filtro%'");
+        $lista_compras = $conexion->query("SELECT * FROM $empresa.tbl_compras WHERE suplidor LIKE '%$filtro%'");
     }
     else{
-        $lista_articulos = $conexion->query("SELECT * FROM $empresa.tbl_articulos");
+        $lista_compras = $conexion->query("SELECT * FROM $empresa.tbl_compras");
     }
 
-    while($row = $lista_articulos->fetch_assoc())
+    while($row = $lista_compras->fetch_assoc())
         { 
 ?>
-        <!-- Head Tabla usuario   --->
+        <!-- Head Tabla Compras   --->
             <tr>
-                <th scope="row"><?php echo $row["codigo"]; ?></th>
-                <td><?php echo $row["nombre"]; ?></td>
-                <td><?php echo $row["descripcion"]; ?></td>
-                <td><?php echo $row["categoria"]; ?></td>
-                <td><?php echo $row["unidad"]; ?></td>
+                <th scope="row"><?php echo $row["no_compra"]; ?></th>
+                <td><?php echo $row["fecha_orden"]; ?></td>
+                <td><?php echo $row["suplidor"]; ?></td>
+                <td><?php echo $row["tel_proveedor"]; ?></td>
+                <td><?php echo $row["precio_compra"]; ?></td>
+                <td><?php echo $row["cantidad"]; ?></td>
+                <td><?php echo $row["valor_total"]; ?></td>
+                
 
                 <!--Boton actualizar informacion-->
-                <td><a id="cerrar"  class="btn btn-info" data-toggle="modal" data-target="#example<?php echo $row["codigo"]; ?>" > <i class="fa fa-eye fa-lg"></i></a>  
+                <td><a id="cerrar"  class="btn btn-info" data-toggle="modal" data-target="#example<?php echo $row["no_compra"]; ?>" > <i class="fa fa-eye fa-lg"></i></a>  
                 <!--Boton eliminar-->
-                <a                 class="btn btn-danger"data-toggle="modal" data-target="#eliminar<?php echo $row["codigo"]; ?>" > <i class="fa fa-trash-o fa-lg"></i></a> </td>
+                <a                 class="btn btn-danger"data-toggle="modal" data-target="#eliminar<?php echo $row["no_compra"]; ?>" > <i class="fa fa-trash-o fa-lg"></i></a> </td>
             </tr>
-        <!--Modal editar Articulos   --->
-                <div class="modal fade" id="example<?php echo $row["codigo"];?>" tabindex="-1" aria-labelledby="example<?php echo $row["codigo"];?>Label" aria-hidden="true">
+        <!--Modal editar compras   --->
+                <div class="modal fade" id="example<?php echo $row["no_compra"];?>" tabindex="-1" aria-labelledby="example<?php echo $row["no_compra"];?>Label" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="example<?php echo $row["codigo"];?>Label"><?php echo $row["nombre"]; ?></h5>
+                                <h5 class="modal-title" id="example<?php echo $row["no_compra"];?>Label"><?php echo $row["nombre"]; ?></h5>
                                 <button type="button" class="close cerrar" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <!-- formulario articulos   --->
-                                <form action="../../scripts/articulos/modificar.php" method="post">
+                                <!-- formulario compras   --->
+                                <form action="../../scripts/compras/modificar.php" method="post">
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <input type="text" name="nombre" placeholder="Nombre" value="<?php echo $row["nombre"]; ?>" disabled class="form-control">
@@ -95,7 +98,7 @@
                                                 <option>Unidad</option>
                                             </select>
                                         </div>
-                                        <input type="hidden" name="id" value="<?php echo $row["codigo"]; ?>">
+                                        <input type="hidden" name="id" value="<?php echo $row["no_compra"]; ?>">
                                         <div class="form-group col-md-6">
                                             Ultimo acceso:  <?php echo $row["ultimo_acceso"]; ?>
                                         </div>
@@ -115,12 +118,12 @@
                     </div>
                 </div>
 </div>
-        <!--Modal Eliminar articulos   --->
-        <div class="modal fade" id="eliminar<?php echo $row["codigo"];?>" tabindex="-1" aria-labelledby="eliminar<?php echo $row["codigo"];?>Label" aria-hidden="true">
+        <!--Modal Eliminar compras   --->
+        <div class="modal fade" id="eliminar<?php echo $row["no_compra"];?>" tabindex="-1" aria-labelledby="eliminar<?php echo $row["no_compra"];?>Label" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="eliminar<?php echo $row["codigo"];?>Label">Eliminar</h5>
+                                <h5 class="modal-title" id="eliminar<?php echo $row["no_compra"];?>Label">Eliminar</h5>
                                 <button type="button" class="close cerrar" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                                 </button>
@@ -131,7 +134,7 @@
                             
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary cerrar" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                                <a href="../../scripts/articulos/eliminar.php?id=<?php echo $row["codigo"]?>" class="btn btn-danger" value="borrar">Borrar</a>
+                                <a href="../../scripts/compras/eliminar.php?id=<?php echo $row["no_compra"]?>" class="btn btn-danger" value="borrar">Borrar</a>
                             </div>
                             </form>
 
