@@ -29,7 +29,7 @@
     $empresa = $_SESSION["empresa_db"];
     if(isset($_POST["filtro"])){
         $filtro= $_POST["filtro"];
-        $lista_articulos = $conexion->query("SELECT * FROM $empresa.tbl_compras WHERE suplidor LIKE '%$filtro%'");
+        $lista_articulos = $conexion->query("SELECT * FROM $empresa.tbl_suplidores WHERE suplidor LIKE '%$filtro%'");
     }
     else{
         $lista_articulos = $conexion->query("SELECT * FROM $empresa.tbl_suplidores");
