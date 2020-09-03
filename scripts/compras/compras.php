@@ -4,7 +4,7 @@
     $empresa= $_SESSION["empresa_db"];
     //cabeza inicial de la compra.
     $no_compra= $_POST['no_compra']; 
-    $fecha=$_POST["fecha_orden"]; 
+    $fecha_orden=$_POST["fecha_orden"]; 
     $hora=$_POST['hora'];
     //Datos de los proveedores 
     $nombre_proveedor= $_POST['nombre_proveedor']; 
@@ -19,8 +19,8 @@
     $nota= $_POST['nota'];
     
    
-        $conexion->query("insert into $empresa.tbl_compras (no_compra, fecha, hora, nombre_proveedor, direccion_proveedor,         tel_proveedor,email_proveedor,articulo, precio_compra, cantidad, valor_total, nota)
-            values ($no_compra, '$fecha', '$hora', '$nombre_proveedor', '$direccion_proveedor','$tel_proveedor', '$email_proveedor', '$articulo',   $precio_compra, $cantidad, $valor_total, '$nota')
+        $conexion->query("insert into $empresa.tbl_compras (no_compra, fecha_orden, hora, nombre_proveedor, direccion_proveedor,  tel_proveedor,email_proveedor,articulo, precio_compra, cantidad, valor_total, nota)
+            values ($no_compra, '$fecha_orden', '$hora', '$nombre_proveedor', '$direccion_proveedor','$tel_proveedor', '$email_proveedor', '$articulo',   $precio_compra, $cantidad, $valor_total, '$nota')
             ");
     
 //cxcobrar y cxpagar

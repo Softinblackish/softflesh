@@ -49,22 +49,22 @@
             
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    <input type="text" name="articulo" class="form-control" id="inputCity" placeholder="articulo" >
+                    <input type="text" name="articulo" class="form-control"  placeholder="articulo" >
                 </div>
                 <div class="form-group col-md-4">
-                    <input type="text" name="nota" class="form-control" id="inputCity" placeholder="Descripcion" >
+                    <input type="text" name="nota" class="form-control"  placeholder="Descripcion" >
                 </div>
                 <div class="form-group col-md-4">
-                    <input type="number" name="precio_compra" class="form-control" id="inputCity" placeholder="precio compra" >
+                    <input type="number" name="precio_compra" class="form-control"  placeholder="precio compra" >
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    <input type="number" min = 1 name="cantidad" class="form-control" id="inputCity" placeholder="cantidad" >
+                    <input type="number" min = 1 name="cantidad" class="form-control"  placeholder="cantidad" >
                 </div>
                 <div class="form-group col-md-4">
-                    <input type="number" name="valor_total" class="form-control" id="inputCity" placeholder="total" >
+                    <input type="number" name="valor_total" class="form-control"  placeholder="total" >
                 </div>
             </div>
 
@@ -73,6 +73,7 @@
             </label>
             <br>
             <button type="submit" id="btn" class="btn btn">registrar compra</button>
+            <a href="../administracion/administracion.php" id="btn" class="btn btn" >Volver atras</a>
             <br>
             <br>
         </form>

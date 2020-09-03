@@ -39,7 +39,7 @@
             
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    <input type="number" min = 1 name="precio" class="form-control" id="inputCity" placeholder="precio" >
+                    <input type="number" min = 1 name="precio" class="form-control"  placeholder="precio" >
                 </div>
                 <div class="form-group col-md-4">
                     <select id="inputState" class="form-control" name="unidad" placeholder="unidad">
@@ -68,6 +68,7 @@
             </label>
             <br>
             <button type="submit" id="btn" class="btn btn">registrar</button>
+            <a href="../administracion/administracion.php" id="btn" class="btn btn" >Volver atras</a>
             <br>
             <br>
         </form>

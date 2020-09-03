@@ -38,7 +38,7 @@
             
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    <input type="text" name="cod_impuesto" class="form-control" id="inputCity" placeholder="Eje; 0000215EE150" >
+                    <input type="text" name="cod_impuesto" class="form-control"  placeholder="Eje; 0000215EE150" >
                 </div>
                 <div class="form-group col-md-4">
                     <select id="inputState" class="form-control" name="categoria">
