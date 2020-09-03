@@ -2,13 +2,14 @@
       SOLO HTML SIN CSS SIN JAVASCRIP SIN PHP-->
       <?php include("../base.php"); ?>
 <link rel="stylesheet" href="../../css/suplidores.css">
+<script src="../../scripts/js/time_alert.js"></script>
 <div class="container-cuentas-por-cobrar">
     <div class="container form-row">
-        <form id="form"  action="../../scripts/suplidores/suplidores.php" method="POST">
+        <form id="form" action="../../scripts/suplidores/suplidores.php" method="post">
             <div class="cabeza">
                 <?php if(isset($_GET["registro"])){ ?>
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                        <strong>listo! </strong> Nuevo artículo registrado
+                        <strong>listo! </strong> Nuevo Suplidor registrado
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -21,14 +22,17 @@
                     <input type="text" name="nombre_sub" placeholder ="Nombre del suplidor" class="form-control">
                 </div>
                 <div class="form-group col-md-6">
-                    <input type="text" name="codigo" placeholder ="producto" class="form-control" >
+                    <input type="text" name="articulo" placeholder ="producto" class="form-control" >
                 </div>
             </div>
 
             <div class="form-row">
+                <div class="form-group col-md-6">
                 <input type="text" name="descripcion_sub" placeholder ="Descripción" class="form-control" >
-                <br><br>
-                <input type="tel" name="telefono" placeholder ="telefono" class="form-control col-md-6" >
+                </div>
+                <div class="form-group col-md-6">
+                <input type="tel" name="telefono" placeholder ="telefono" class="form-control" >
+                </div>
             </div>
 
             <label for="inputState">Datos del producto: </label><br>
@@ -38,7 +42,7 @@
                     <input type="number" min = 1 name="precio" class="form-control" id="inputCity" placeholder="precio" >
                 </div>
                 <div class="form-group col-md-4">
-                    <select id="inputState" class="form-control" name="unidad" placeholder="Unidad">
+                    <select id="inputState" class="form-control" name="unidad" placeholder="unidad">
                             <option selected="">Electricos</option>
                             <option selected="">comestibles</option>
                             <option selected="">bebidas</option>
@@ -63,7 +67,7 @@
                     Haga click en guardar para registrar este nuevo artículo 
             </label>
             <br>
-            <button type="button" id="btn" class="btn btn">registrar</button>
+            <button type="submit" id="btn" class="btn btn">registrar</button>
             <br>
             <br>
         </form>

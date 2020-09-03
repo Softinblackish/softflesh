@@ -2,7 +2,7 @@
       SOLO HTML SIN CSS SIN JAVASCRIP SIN PHP-->
       <?php include("../base.php"); ?>
 <link rel="stylesheet" href="../../css/articulos.css">
-<script src="../../scripts/js/articulos.js"></script>
+<script src="../../scripts/js/time_alert.js"></script>
 <div class="container-articulos">
     <div class="container form-row">
 
@@ -38,7 +38,7 @@
             
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    <input type="text" name="impuesto" class="form-control" id="inputCity" placeholder="Eje; 0000215EE150" >
+                    <input type="text" name="cod_impuesto" class="form-control" id="inputCity" placeholder="Eje; 0000215EE150" >
                 </div>
                 <div class="form-group col-md-4">
                     <select id="inputState" class="form-control" name="categoria">
@@ -68,6 +68,7 @@
             <br>
             <br>
             <input type="submit" id="btn" class="btn btn" value="Registrar articulo" >
+            <a href="../administracion/administracion.php" id="btn" class="btn btn" >Volver atras</a>
             <br>
         </form>
     </div>    

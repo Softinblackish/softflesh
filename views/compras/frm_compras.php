@@ -2,13 +2,14 @@
       SOLO HTML SIN CSS SIN JAVASCRIP SIN PHP-->
       <?php include("../base.php"); ?>
 <link rel="stylesheet" href="../../css/compras.css">
+<script src="../../scripts/js/time_alert.js"></script>
 <div class="container-compras">
     <div class="container form-row">
-        <form id="form"  action="../../scripts/compras/compras.php" method="POST">
+        <form id="form" action="../../scripts/compras/compras.php" method="post">
             <div class="cabeza">
                 <?php if(isset($_GET["registro"])){ ?>
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                        <strong>listo! </strong> Nuevo artículo registrado
+                        <strong>listo! </strong> Nueva Compra registrada
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -18,23 +19,30 @@
             </div>
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    <input type="text" name="no_compra" placeholder ="No. de compra" class="form-control">
+                    <input type="number" name="no_compra" placeholder ="No. de compra" class="form-control">
                 </div>
                 <div class="form-group col-md-4">
-                    <input type="date" name="fecha_orden" placeholder = date(d/m/a) class="form-control" >
+                    <input type="date" name="fecha_orden" class="form-control" >
                 </div>
                 <div class="form-group col-md-4">
-                    <input type="time" name="hora" placeholder ="hora" class="form-control" >
+                    <input type="time" name="hora" class="form-control" >
                 </div>
             </div>
 
             <label for="inputState">Datos del proveedor: </label><br>
             <div class="form-row">
+                <div class="form-group col-md-12">
                 <input type="text" name="nombre_proveedor" placeholder ="nombre y apellido del proveedor" class="form-control" >
-                <br><br>
-                <input type="number" name="direccion" placeholder ="Dirección" class="form-control col-md-4" >
-                <input type="tel" name="tel_proveedor" placeholder ="telefono" class="form-control col-md-4" >
-                <input type="email" name="email_proveedor" placeholder ="@email" class="form-control col-md-4" >
+                </div>
+                <div class="form-group col-md-4">
+                <input type="text" name="direccion_proveedor" placeholder ="Dirección" class="form-control" >
+                </div>
+                <div class="form-group col-md-4">
+                <input type="tel" name="tel_proveedor" placeholder ="telefono" class="form-control" >
+                </div>
+                <div class="form-group col-md-4">
+                <input type="email" name="email_proveedor" placeholder ="@email" class="form-control" >
+                </div>
             </div>
 
             <label for="inputState">Datos de los productos: </label><br>
@@ -64,7 +72,7 @@
                     Haga click en guardar para registrar esta compra 
             </label>
             <br>
-            <button type="button" id="btn" class="btn btn">registrar compra</button>
+            <button type="submit" id="btn" class="btn btn">registrar compra</button>
             <br>
             <br>
         </form>

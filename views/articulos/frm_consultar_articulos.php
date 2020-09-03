@@ -14,7 +14,7 @@
 <table class="table">
   <thead class="thead">
     <tr>
-      <th scope="col">Codigo</th>
+      <th scope="col">Codigo Barra</th>
       <th scope="col">Nombre</th>
       <th scope="col">Descripcion</th>
       <th scope="col">Categoria</th>
@@ -38,23 +38,23 @@
 ?>
         <!-- Head Tabla usuario   --->
             <tr>
-                <th scope="row"><?php echo $row["codigo"]; ?></th>
+                <th scope="row"><?php echo $row["codigo_barra"]; ?></th>
                 <td><?php echo $row["nombre"]; ?></td>
                 <td><?php echo $row["descripcion"]; ?></td>
                 <td><?php echo $row["categoria"]; ?></td>
                 <td><?php echo $row["unidad"]; ?></td>
 
                 <!--Boton actualizar informacion-->
-                <td><a id="cerrar"  class="btn btn-info" data-toggle="modal" data-target="#example<?php echo $row["codigo"]; ?>" > <i class="fa fa-eye fa-lg"></i></a>  
+                <td><a id="cerrar"  class="btn btn-info" data-toggle="modal" data-target="#example<?php echo $row["codigo_barra"]; ?>" > <i class="fa fa-eye fa-lg"></i></a>  
                 <!--Boton eliminar-->
-                <a                 class="btn btn-danger"data-toggle="modal" data-target="#eliminar<?php echo $row["codigo"]; ?>" > <i class="fa fa-trash-o fa-lg"></i></a> </td>
+                <a                 class="btn btn-danger"data-toggle="modal" data-target="#eliminar<?php echo $row["codigo_barra"]; ?>" > <i class="fa fa-trash-o fa-lg"></i></a> </td>
             </tr>
         <!--Modal editar Articulos   --->
-                <div class="modal fade" id="example<?php echo $row["codigo"];?>" tabindex="-1" aria-labelledby="example<?php echo $row["codigo"];?>Label" aria-hidden="true">
+                <div class="modal fade" id="example<?php echo $row["codigo_barra"];?>" tabindex="-1" aria-labelledby="example<?php echo $row["codigo_barra"];?>Label" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="example<?php echo $row["codigo"];?>Label"><?php echo $row["nombre"]; ?></h5>
+                                <h5 class="modal-title" id="example<?php echo $row["codigo_barra"];?>Label"><?php echo $row["nombre"]; ?></h5>
                                 <button type="button" class="close cerrar" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                                 </button>
@@ -92,7 +92,7 @@
                                                 <option>Unidad</option>
                                             </select>
                                         </div>
-                                        <input type="hidden" name="id" value="<?php echo $row["codigo"]; ?>">
+                                        <input type="hidden" name="id" value="<?php echo $row["codigo_barra"]; ?>">
                                         <div class="form-group col-md-6">
                                             Ultimo acceso:  <?php echo $row["ultimo_acceso"]; ?>
                                         </div>
@@ -113,11 +113,11 @@
                 </div>
 </div>
         <!--Modal Eliminar articulos   --->
-        <div class="modal fade" id="eliminar<?php echo $row["codigo"];?>" tabindex="-1" aria-labelledby="eliminar<?php echo $row["codigo"];?>Label" aria-hidden="true">
+        <div class="modal fade" id="eliminar<?php echo $row["codigo_barra"];?>" tabindex="-1" aria-labelledby="eliminar<?php echo $row["codigo_barra"];?>Label" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="eliminar<?php echo $row["codigo"];?>Label">Eliminar</h5>
+                                <h5 class="modal-title" id="eliminar<?php echo $row["codigo_barra"];?>Label">Eliminar</h5>
                                 <button type="button" class="close cerrar" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                                 </button>
@@ -128,7 +128,7 @@
                             
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary cerrar" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                                <a href="../../scripts/articulos/eliminar.php?id=<?php echo $row["codigo"]?>" class="btn btn-danger" value="borrar">Borrar</a>
+                                <a href="../../scripts/articulos/eliminar.php?id=<?php echo $row["codigo_barra"]?>" class="btn btn-danger" value="borrar">Borrar</a>
                             </div>
                             </form>
 
