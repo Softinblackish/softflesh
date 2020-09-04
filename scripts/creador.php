@@ -248,7 +248,7 @@ $perm = $conexion->query("
       CREATE TABLE $nombre_sin_espacio.tbl_categorias (
         `id_categoria` int(11) NOT NULL,
         `nombre_categoria` varchar(200) NOT NULL,
-        `descripcion_categoria` varchar(100) NOT NULL,
+        `descripcion_categoria` varchar(100),
         `creada_por` varchar(200) NOT NULL,
         `fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -259,7 +259,7 @@ $perm = $conexion->query("
         `id_condicion_p` int(11) NOT NULL,
         `nombre_condicion_p` varchar(200) NOT NULL,
         `dias_condicion_p` varchar(100) NOT NULL,
-        `descripcion_condicion_p` varchar(200) NOT NULL,
+        `descripcion_condicion_p` varchar(200) ,
         `creado_por` varchar(100) NOT NULL,
         `fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -270,19 +270,19 @@ $perm = $conexion->query("
          `id_cliente` INT NOT NULL AUTO_INCREMENT , 
          `codigo_cliente` VARCHAR(200) NOT NULL , 
          `nombre_cliente` VARCHAR(100) NOT NULL , 
-         `Pais` VARCHAR(200) NOT NULL , 
-         `provincia` VARCHAR(100) NOT NULL , 
-         `direccion` VARCHAR(100) NOT NULL , 
-         `telefono_cliente` VARCHAR(100) NOT NULL , 
-         `tipo_cliente` VARCHAR(100) NOT NULL , 
-         `tipo_comprobante` VARCHAR(100) NOT NULL , 
-         `rnc_cliente` VARCHAR(100) NOT NULL , 
+         `Pais` VARCHAR(200) , 
+         `provincia` VARCHAR(100) , 
+         `direccion` VARCHAR(100) , 
+         `telefono_cliente` VARCHAR(100) , 
+         `tipo_cliente` VARCHAR(100) , 
+         `tipo_comprobante` VARCHAR(100) , 
+         `rnc_cliente` VARCHAR(100) , 
          `creado_por` VARCHAR(100) NOT NULL , 
          `fecha_creacion` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , 
-         `fecha_modificacion` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , 
-         `modificado_por` VARCHAR(100) NOT NULL , 
-         `limite_credito` INT(10) NOT NULL , 
-         `condicion_pago` VARCHAR(100) NOT NULL , 
+         `fecha_modificacion` TIMESTAMP DEFAULT CURRENT_TIMESTAMP , 
+         `modificado_por` VARCHAR(100) , 
+         `limite_credito` INT(10) , 
+         `condicion_pago` VARCHAR(100) , 
          `status` VARCHAR(10) NOT NULL , PRIMARY KEY (`id_cliente`)) ENGINE = InnoDB;
 
       ");
