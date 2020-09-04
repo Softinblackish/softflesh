@@ -16,11 +16,12 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">Suplidor</th>
-      <th scope="col">Producto</th>
-      <th scope="col">descripcion</th>
-      <th scope="col">Precio</th>
-      <th scope="col">Unidad</th>
-      <th scope="col">Telefono</th>
+      <th scope="col">contacto</th>
+      <th scope="col">sector</th>
+      <th scope="col">ciudad</th>
+      <th scope="col">tel #1</th>
+      <th scope="col">tel #2</th>
+      <th scope="col">tel #3</th>
       <th scope="col">Accion</th>
     </tr>
   </thead>
@@ -29,7 +30,7 @@
     $empresa = $_SESSION["empresa_db"];
     if(isset($_POST["filtro"])){
         $filtro= $_POST["filtro"];
-        $lista_articulos = $conexion->query("SELECT * FROM $empresa.tbl_suplidores WHERE suplidor LIKE '%$filtro%'");
+        $lista_articulos = $conexion->query("SELECT * FROM $empresa.tbl_suplidores WHERE nombre_sup LIKE '%$filtro%'");
     }
     else{
         $lista_articulos = $conexion->query("SELECT * FROM $empresa.tbl_suplidores");
@@ -42,11 +43,12 @@
             <tr>
                 <th scope="row"><?php echo $row["id_sup"]; ?></th>
                 <td><?php echo $row["nombre_sup"]; ?></td>
-                <td><?php echo $row["articulo"]; ?></td>
-                <td><?php echo $row["descripcion_sup"]; ?></td>
-                <td><?php echo $row["precio"]; ?></td>
-                <td><?php echo $row["unidad"]; ?></td>
-                <td><?php echo $row["telefono"]; ?></td>
+                <td><?php echo $row["contacto_sup"]; ?></td>
+                <td><?php echo $row["sector_sup"]; ?></td>
+                <td><?php echo $row["ciudad_sup"]; ?></td>
+                <td><?php echo $row["tel_no1_sup"]; ?></td>
+                <td><?php echo $row["tel_no2_sup"]; ?></td>
+                <td><?php echo $row["tel_no3_sup"]; ?></td>
 
                 <!--Boton actualizar informacion-->
                 <td><a id="cerrar"  class="btn btn-info" data-toggle="modal" data-target="#example<?php echo $row["id_sup"]; ?>" > <i class="fa fa-eye fa-lg"></i></a>  
@@ -71,30 +73,7 @@
                                             <input type="text" name="nombre_sup" placeholder="Nombre" value="<?php echo $row["nombre_sup"]; ?>" disabled class="form-control">
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <input type="text" name="descripcion" placeholder ="descripcion" value="<?php echo $row["descripcion_sup"]; ?>" disabled class="form-control" >
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <select id="inputState" class="form-control" name="categoria" disabled>
-                                                <option select><?php echo $row["categoria"]; ?></option>
-                                                <option>Electricos</option>
-                                                <option>comestibles</option>
-                                                <option>bebidas</option>
-                                                <option>herramientas</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <select id="inputState" class="form-control" name="unidad" disabled>
-                                                <option select ><?php echo $row["unidad"];  ?></option>
-                                                <option>libra</option>
-                                                <option>metro</option>
-                                                <option>centimetos</option>
-                                                <option>pulgadas</option>
-                                                <option>pies</option>
-                                                <option>galones</option>
-                                                <option>una media(1/2)</option>
-                                                <option>una cuarta(1/4)</option>
-                                                <option>Unidad</option>
-                                            </select>
+                                            <input type="text" name="contacto_sup" placeholder ="Contacto" value="<?php echo $row["contacto_sup"]; ?>" disabled class="form-control" >
                                         </div>
                                         <input type="hidden" name="id" value="<?php echo $row["id_sup"]; ?>">
                                         <div class="form-group col-md-6">
@@ -127,7 +106,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                Seguro que desea eliminar el articulo :<strong> <?php echo $row["nombre"];?> </strong>?
+                                Seguro que desea eliminar el articulo :<strong> <?php echo $row["nombre_sup"];?> </strong>?
                             </div>
                             
                             <div class="modal-footer">

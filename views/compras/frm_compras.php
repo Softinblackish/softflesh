@@ -18,10 +18,10 @@
                <h2> Registro de Compras</h2>
             </div>
             <div class="form-row">
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-3">
                     <input type="number" name="no_compra" placeholder ="No. de compra" class="form-control">
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-5">
                     <input type="date" name="fecha_orden" class="form-control" >
                 </div>
                 <div class="form-group col-md-4">

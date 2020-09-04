@@ -1,7 +1,7 @@
 <?php include("../base.php");
       include("../../scripts/conexion/cone.php");
 ?>
-<link rel="stylesheet" href="../../css/usuarios.css">
+<link rel="stylesheet" href="../../css/compras.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="../../scripts/js/usuarios.js"></script>
 <div id="box_lista">

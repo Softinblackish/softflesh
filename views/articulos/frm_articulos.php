@@ -29,9 +29,12 @@
             </div>
 
             <div class="form-row">
+                <div class="form-group col-md-12">
                 <input type="text" name="descripcion" placeholder ="Descripción" class="form-control" >
-                <br><br>
+                </div>
+                <div class="form-group col-md-12">
                 <input type="number" name="stop_min" placeholder ="Stop minimo" class="form-control col-md-6" >
+                </div>
             </div>
 
             <label for="inputState">Codigo de Impuestos: </label><br>

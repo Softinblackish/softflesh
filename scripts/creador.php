@@ -109,12 +109,15 @@
       CREATE TABLE $nombre_sin_espacio.tbl_suplidores (
         `id_sup` int(10) NOT NULL AUTO_INCREMENT,
         `nombre_sup` varchar(100),
-        `articulo` varchar(100),
-        `descripcion_sup` varchar(100),
-        `precio` float,
-        `unidad` varchar(50),
-        `telefono` varchar(15),
-        `direccion` varchar(100),
+        `codigo_sup` varchar(50),
+        `contacto_sup` varchar(100), 
+        `sector_sup` varchar(100), 
+        `ciudad_sup` varchar(100), 
+        `tel_no1_sup` varchar(15), 
+        `tel_no2_sup` varchar(15), 
+        `tel_no3_sup` varchar(15),
+        `rnc_sup` varchar(50), 
+        `nota_up` varchar(100),
         PRIMARY KEY (`id_sup`)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8
       ");

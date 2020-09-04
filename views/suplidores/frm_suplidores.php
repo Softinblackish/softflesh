@@ -18,50 +18,40 @@
                <h2> Registro de Suplidores</h2>
             </div>
             <div class="form-row">
-                <div class="form-group col-md-6">
-                    <input type="text" name="nombre_sub" placeholder ="Nombre del suplidor" class="form-control">
+                <div class="form-group col-md-4">
+                    <input type="text" name="codigo_sup" placeholder ="Codigo" class="form-control" >
                 </div>
-                <div class="form-group col-md-6">
-                    <input type="text" name="articulo" placeholder ="producto" class="form-control" >
+                <div class="form-group col-md-4">
+                    <input type="text" name="nombre_sub" placeholder ="nombre suplidor" class="form-control">
+                </div>
+                <div class="form-group col-md-4">
+                    <input type="text" name="contacto_sup" placeholder ="contacto" class="form-control" >
+                </div>
+            </div>
+
+            <label for="inputState">Telefonos de contacto: </label><br>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <input type="tel" name="tel_no1_sup" placeholder ="tel no 1" class="form-control" >
+                </div>
+                <div class="form-group col-md-4">
+                    <input type="tel" name="tel_no2_sub" placeholder ="tel no 2" class="form-control">
+                </div>
+                <div class="form-group col-md-4">
+                    <input type="tel" name="tel_no3_sup" placeholder ="tel no 3" class="form-control" >
                 </div>
             </div>
 
             <div class="form-row">
-                <div class="form-group col-md-6">
-                <input type="text" name="descripcion_sub" placeholder ="Descripción" class="form-control" >
+                <div class="form-group col-md-12">
+                    <input type="text" name="nota_sup" placeholder ="Comentario" class="form-control" >
                 </div>
                 <div class="form-group col-md-6">
-                <input type="tel" name="telefono" placeholder ="telefono" class="form-control" >
+                    <input type="text" name="rnc_sup" placeholder ="RNC" class="form-control">
                 </div>
             </div>
 
-            <label for="inputState">Datos del producto: </label><br>
-            
-            <div class="form-row">
-                <div class="form-group col-md-4">
-                    <input type="number" min = 1 name="precio" class="form-control"  placeholder="precio" >
-                </div>
-                <div class="form-group col-md-4">
-                    <select id="inputState" class="form-control" name="unidad" placeholder="unidad">
-                            <option selected="">Electricos</option>
-                            <option selected="">comestibles</option>
-                            <option selected="">bebidas</option>
-                            <option selected="">herramientas</option>
-                            <option selected="null">Categorias</option>
-                    </select>
-                </div>
-                <select id="inputState" class="form-control col-md-4" name="direccion" placeholder="Direciones">
-                        <option selected="">Santo Domingo</option>
-                        <option selected="">La vega</option>
-                        <option selected="">Santiago</option>
-                        <option selected="">La romana</option>
-                        <option selected="">San cristobal</option>
-                        <option selected="">La altagracia</option>
-                        <option selected="">higuey</option>
-                        <option selected="">jarabacoa</option>
-                        <option selected="null">Direciones</option>
-                </select>
-            </div>
+        
 
             <label class="form-check-label" for="gridCheck">
                     Haga click en guardar para registrar este nuevo artículo 
