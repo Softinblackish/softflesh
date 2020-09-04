@@ -18,8 +18,9 @@
     $valor_total= $_POST['valor_total'];
     $nota= $_POST['nota'];
     
+    //echo $empresa . " " .$no_compra." ".$fecha_orden." ".$hora." ".$nombre_proveedor." ".$direccion_proveedor." ".$tel_proveedor.  " ".$email_proveedor." ".$articulo." ".$precio_compra." ".$cantidad." ".$valor_total." ".$nota;
    
-        $conexion->query("insert into $empresa.tbl_compras (no_compra, fecha_orden, hora, nombre_proveedor, direccion_proveedor,  tel_proveedor,email_proveedor,articulo, precio_compra, cantidad, valor_total, nota)
+        $Reg_compras = $conexion->query("insert into $empresa.tbl_compras (no_compra, fecha_orden, hora, nombre_proveedor, direccion_proveedor,  tel_proveedor,email_proveedor,articulo, precio_compra, cantidad, valor_total, nota)
             values ($no_compra, '$fecha_orden', '$hora', '$nombre_proveedor', '$direccion_proveedor','$tel_proveedor', '$email_proveedor', '$articulo',   $precio_compra, $cantidad, $valor_total, '$nota')
             ");
     
