@@ -22,7 +22,7 @@
                     <input type="text" name="codigo_sup" placeholder ="Codigo" class="form-control" >
                 </div>
                 <div class="form-group col-md-4">
-                    <input type="text" name="nombre_sub" placeholder ="nombre suplidor" class="form-control">
+                    <input type="text" name="nombre_sup" placeholder ="nombre suplidor" class="form-control">
                 </div>
                 <div class="form-group col-md-4">
                     <input type="text" name="contacto_sup" placeholder ="contacto" class="form-control" >
@@ -32,13 +32,13 @@
             <label for="inputState">Telefonos de contacto: </label><br>
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    <input type="tel" name="tel_no1_sup" placeholder ="tel no 1" class="form-control" >
+                    <input type="tel" name="tel_no1_sup" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder ="tel no 1" class="form-control" >
                 </div>
                 <div class="form-group col-md-4">
-                    <input type="tel" name="tel_no2_sub" placeholder ="tel no 2" class="form-control">
+                    <input type="tel" name="tel_no2_sup" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder ="tel no 2" class="form-control">
                 </div>
                 <div class="form-group col-md-4">
-                    <input type="tel" name="tel_no3_sup" placeholder ="tel no 3" class="form-control" >
+                    <input type="tel" name="tel_no3_sup" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder ="tel no 3" class="form-control" >
                 </div>
             </div>
 
@@ -48,6 +48,15 @@
                 </div>
                 <div class="form-group col-md-6">
                     <input type="text" name="rnc_sup" placeholder ="RNC" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <input type="text" name="sector_sup" placeholder ="Sector" class="form-control" >
+                </div>
+                <div class="form-group col-md-6">
+                    <input type="text" name="ciudad_sup" placeholder ="Ciudad" class="form-control">
                 </div>
             </div>
 

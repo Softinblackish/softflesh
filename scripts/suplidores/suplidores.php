@@ -15,9 +15,10 @@
     $rnc_sup = $_POST['rnc_sup'];
     $nota_sup = $_POST['nota_sup'];
     
-   
-        $conexion->query("insert into $empresa.tbl_suplidores (codigo_sup, nombre_sub, contacto_sup, sector_sup, ciudad_sup, tel_no1_sup, tel_no2_sup, tel_no3_sup, rnc_sup, nota_up)
-            values ('$codigo_sup', '$nombre_sub', '$contacto_sup', '$sector_sup', '$ciudad_sup', '$tel_no1_sup', '$tel_no2_sup', '$tel_no3_sup', '$rnc_sup', '$nota_up' ) ");
+   //echo $empresa . " " .$codigo_sup. " " .$nombre_sup. " " .$contacto_sup. " " .$sector_sup. " " .$ciudad_sup. " " .$tel_no1_sup.  " ".$tel_no2_sup." ".$tel_no3_sup." ".$tel_no3_sup." ".$rnc_sup." ".$nota_sup;
+
+    $Reg_suplidores = $conexion->query("insert into $empresa.tbl_suplidores(codigo_sup, nombre_sup, contacto_sup, sector_sup, ciudad_sup, tel_no1_sup, tel_no2_sup, tel_no3_sup, rnc_sup, nota_sup)
+            values ('$codigo_sup', '$nombre_sup', '$contacto_sup', '$sector_sup', '$ciudad_sup', '$tel_no1_sup', '$tel_no2_sup', '$tel_no3_sup', '$rnc_sup', '$nota_sup' ) ");
     
 //cxcobrar y cxpagar
     header('location:../../views/suplidores/frm_suplidores.php?registro="si"')

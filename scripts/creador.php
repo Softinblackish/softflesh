@@ -117,7 +117,7 @@
         `tel_no2_sup` varchar(15), 
         `tel_no3_sup` varchar(15),
         `rnc_sup` varchar(50), 
-        `nota_up` varchar(100),
+        `nota_sup` varchar(100),
         PRIMARY KEY (`id_sup`)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8
       ");
