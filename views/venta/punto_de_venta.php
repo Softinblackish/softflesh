@@ -93,7 +93,7 @@ include("../base.php");
                         <input class="form-control" placeholder="Tipo de comprobante"/>
                     <br></div>
                     <div class="col-md-10">
-                        <input class="form-control" placeholder="Tipo de pago"/>
+                        <input class="form-control" placeholder="Tipo de venta"/>
                     <br></div>
 
                     <div class="col-md-10">
@@ -102,7 +102,12 @@ include("../base.php");
                 </div>
             </form    
         </div>
-        <div></div> 
+        <div>
+            <H5>TOTALES</H5>
+            Itbis:<br><br>
+            Valor venta:<br><br>
+            Total:<br><br>
+        </div> 
     
     </div> 
 </div>
