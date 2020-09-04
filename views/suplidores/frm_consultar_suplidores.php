@@ -14,13 +14,13 @@
 <table class="table">
   <thead class="thead">
     <tr>
+      <th scope="col">#</th>
       <th scope="col">Suplidor</th>
       <th scope="col">Producto</th>
       <th scope="col">descripcion</th>
       <th scope="col">Precio</th>
       <th scope="col">Unidad</th>
       <th scope="col">Telefono</th>
-      <th scope="col">Direccion</th>
       <th scope="col">Accion</th>
     </tr>
   </thead>
@@ -40,23 +40,25 @@
 ?>
         <!-- Head Tabla usuario   --->
             <tr>
-                <th scope="row"><?php echo $row["codigo"]; ?></th>
-                <td><?php echo $row["nombre"]; ?></td>
-                <td><?php echo $row["descripcion"]; ?></td>
-                <td><?php echo $row["categoria"]; ?></td>
+                <th scope="row"><?php echo $row["id_sup"]; ?></th>
+                <td><?php echo $row["nombre_sup"]; ?></td>
+                <td><?php echo $row["articulo"]; ?></td>
+                <td><?php echo $row["descripcion_sup"]; ?></td>
+                <td><?php echo $row["precio"]; ?></td>
                 <td><?php echo $row["unidad"]; ?></td>
+                <td><?php echo $row["telefono"]; ?></td>
 
                 <!--Boton actualizar informacion-->
-                <td><a id="cerrar"  class="btn btn-info" data-toggle="modal" data-target="#example<?php echo $row["codigo"]; ?>" > <i class="fa fa-eye fa-lg"></i></a>  
+                <td><a id="cerrar"  class="btn btn-info" data-toggle="modal" data-target="#example<?php echo $row["id_sup"]; ?>" > <i class="fa fa-eye fa-lg"></i></a>  
                 <!--Boton eliminar-->
-                <a                 class="btn btn-danger"data-toggle="modal" data-target="#eliminar<?php echo $row["codigo"]; ?>" > <i class="fa fa-trash-o fa-lg"></i></a> </td>
+                <a                 class="btn btn-danger"data-toggle="modal" data-target="#eliminar<?php echo $row["id_sup"]; ?>" > <i class="fa fa-trash-o fa-lg"></i></a> </td>
             </tr>
         <!--Modal editar Articulos   --->
-                <div class="modal fade" id="example<?php echo $row["codigo"];?>" tabindex="-1" aria-labelledby="example<?php echo $row["codigo"];?>Label" aria-hidden="true">
+                <div class="modal fade" id="example<?php echo $row["id_sup"];?>" tabindex="-1" aria-labelledby="example<?php echo $row["id_sup"];?>Label" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="example<?php echo $row["codigo"];?>Label"><?php echo $row["nombre"]; ?></h5>
+                                <h5 class="modal-title" id="example<?php echo $row["id_sup"];?>Label"><?php echo $row["nombre_sup"]; ?></h5>
                                 <button type="button" class="close cerrar" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                                 </button>
@@ -66,10 +68,10 @@
                                 <form action="../../scripts/articulos/modificar.php" method="post">
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <input type="text" name="nombre" placeholder="Nombre" value="<?php echo $row["nombre"]; ?>" disabled class="form-control">
+                                            <input type="text" name="nombre_sup" placeholder="Nombre" value="<?php echo $row["nombre_sup"]; ?>" disabled class="form-control">
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <input type="text" name="descripcion" placeholder ="descripcion" value="<?php echo $row["descripcion"]; ?>" disabled class="form-control" >
+                                            <input type="text" name="descripcion" placeholder ="descripcion" value="<?php echo $row["descripcion_sup"]; ?>" disabled class="form-control" >
                                         </div>
                                         <div class="form-group col-md-6">
                                             <select id="inputState" class="form-control" name="categoria" disabled>
@@ -94,7 +96,7 @@
                                                 <option>Unidad</option>
                                             </select>
                                         </div>
-                                        <input type="hidden" name="id" value="<?php echo $row["codigo"]; ?>">
+                                        <input type="hidden" name="id" value="<?php echo $row["id_sup"]; ?>">
                                         <div class="form-group col-md-6">
                                             Ultimo acceso:  <?php echo $row["ultimo_acceso"]; ?>
                                         </div>
@@ -115,11 +117,11 @@
                 </div>
 </div>
         <!--Modal Eliminar articulos   --->
-        <div class="modal fade" id="eliminar<?php echo $row["codigo"];?>" tabindex="-1" aria-labelledby="eliminar<?php echo $row["codigo"];?>Label" aria-hidden="true">
+        <div class="modal fade" id="eliminar<?php echo $row["id_sup"];?>" tabindex="-1" aria-labelledby="eliminar<?php echo $row["id_sup"];?>Label" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="eliminar<?php echo $row["codigo"];?>Label">Eliminar</h5>
+                                <h5 class="modal-title" id="eliminar<?php echo $row["id_sup"];?>Label">Eliminar</h5>
                                 <button type="button" class="close cerrar" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                                 </button>
@@ -130,7 +132,7 @@
                             
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary cerrar" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                                <a href="../../scripts/articulos/eliminar.php?id=<?php echo $row["codigo"]?>" class="btn btn-danger" value="borrar">Borrar</a>
+                                <a href="../../scripts/articulos/eliminar.php?id=<?php echo $row["id_sup"]?>" class="btn btn-danger" value="borrar">Borrar</a>
                             </div>
                             </form>
 

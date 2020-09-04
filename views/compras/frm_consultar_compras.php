@@ -14,12 +14,12 @@
 <table class="table">
   <thead class="thead">
     <tr>
-      <th scope="col">No.Compra</th>
+      <th scope="col">#</th>
       <th scope="col">Fecha</th>
       <th scope="col">Proveedor</th>
-      <th scope="col">tel_proveedor</th>
+      <th scope="col">telefono</th>
       <th scope="col">compras</th>
-      <th scope="col">precio_compra</th>
+      <th scope="col">precio</th>
       <th scope="col">Cantidad</th>
       <th scope="col">Total</th>
       <th scope="col">Accion</th>
