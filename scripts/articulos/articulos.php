@@ -3,10 +3,10 @@
     session_start();
     $empresa = $_SESSION["empresa_db"];
 
-    $nombre= $_POST['nombre']; 
+    $nombre=$_POST['nombre']; 
     $descripcion=$_POST["descripcion"]; 
     $cod_impuesto=$_POST['cod_impuesto']; 
-    $stop_min= $_POST['stop_min']; 
+    $stop_min=$_POST['stop_min']; 
     $codigo_barra= $_POST['codigo_barra']; 
     $categoria=$_POST['categoria']; 
     $unidad=$_POST['unidad'];

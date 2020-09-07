@@ -18,7 +18,7 @@
       <th scope="col">Fecha</th>
       <th scope="col">Proveedor</th>
       <th scope="col">telefono</th>
-      <th scope="col">compras</th>
+      <th scope="col">articulos</th>
       <th scope="col">precio</th>
       <th scope="col">Cantidad</th>
       <th scope="col">Total</th>
@@ -43,8 +43,9 @@
             <tr>
                 <th scope="row"><?php echo $row["no_compra"]; ?></th>
                 <td><?php echo $row["fecha_orden"]; ?></td>
-                <td><?php echo $row["suplidor"]; ?></td>
+                <td><?php echo $row["nombre_proveedor"]; ?></td>
                 <td><?php echo $row["tel_proveedor"]; ?></td>
+                <td><?php echo $row["articulo"]; ?></td>
                 <td><?php echo $row["precio_compra"]; ?></td>
                 <td><?php echo $row["cantidad"]; ?></td>
                 <td><?php echo $row["valor_total"]; ?></td>

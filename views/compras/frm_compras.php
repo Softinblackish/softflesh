@@ -18,10 +18,10 @@
                <h2> Registro de Compras</h2>
             </div>
             <div class="form-row">
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-3">
                     <input type="number" name="no_compra" placeholder ="No. de compra" class="form-control">
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-5">
                     <input type="date" name="fecha_orden" class="form-control" >
                 </div>
                 <div class="form-group col-md-4">
@@ -38,7 +38,7 @@
                 <input type="text" name="direccion_proveedor" placeholder ="Dirección" class="form-control" >
                 </div>
                 <div class="form-group col-md-4">
-                <input type="tel" name="tel_proveedor" placeholder ="telefono" class="form-control" >
+                <input type="tel" name="tel_proveedor" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder ="telefono" class="form-control" >
                 </div>
                 <div class="form-group col-md-4">
                 <input type="email" name="email_proveedor" placeholder ="@email" class="form-control" >
