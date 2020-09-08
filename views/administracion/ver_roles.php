@@ -89,9 +89,7 @@
                                             <div class="box-modulos">   
                                                 <h5><strong><input type="checkbox" <?php if($row_permisos["empresa"]== 1){?> checked <?php } ?> name="empresa"/> Empresa</Strong></h4>
                                                 <div class="col-md-10">
-                                                    <input type="checkbox" <?php if($row_permisos["ver_empresa"]== 1){?> checked <?php } ?> name="ver_empresa"/> Ver Información<br>
-                                                    <input type="checkbox" <?php if($row_permisos["editar_empresa"]== 1){?> checked <?php } ?> name="editar_empresa"/> Editar<br>
-                                                </div><br>
+                                                   </div><br>
                                             </div>
                                             <div class="box-modulos">   
                                                 <h5><strong><input type="checkbox" <?php if($row_permisos["condiciones_p"]== 1){?> checked <?php } ?> name="condiciones_p"/> Condiciones de pago</Strong></h5>

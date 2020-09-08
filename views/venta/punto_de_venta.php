@@ -126,19 +126,30 @@ include("../base.php");
 
                     <div class="col-md-10">
                         <select style="border-bottom-left-radius: 0px;  border-top-left-radius: 0px;" class="form-control" name="condicion">
-                            <option>Al contado</option>
+                           <?php $consulta_condiciones = $conexion->query("SELECT * FROM $empresa.tbl_condiciones_pago");
+                                while($resultado_condiciones = $consulta_condiciones->fetch_assoc()){
+
+                                ?>
+                                    <option><?php echo $resultado_condiciones["nombre_condicion_p"] ?></option>
+                            <?php
+                                }
+                            ?>
                         </select>
                     <Br></div>
 
                     <div class="col-md-10">
                         <select style="border-bottom-left-radius: 0px;  border-top-left-radius: 0px;" class="form-control"name="comprobante">
                             <option>Consumidor final</option>
+                            <option>Valor fiscal</option>
+                            <option>Gubernamental</option>
+                            <option>Régimen especial </option>
                         </select>                  
                     <br></div>
 
                     <div class="col-md-10">
                         <select style="border-bottom-left-radius: 0px;  border-top-left-radius: 0px;" class="form-control" name="forma">
                             <option>Efectívo</option>
+                            <option>Tarjeta</option>
                         </select>
                     <br><br></div>
 
@@ -159,11 +170,11 @@ include("../base.php");
 
                       $sum_precio = $conexion->query("SELECT SUM(precio) AS precio from $empresa.venta_temp  where id_venta = $id"); 
                       $precio_sumatoria = $sum_precio->fetch_assoc();
-                      $precio_total = $precio_sumatoria["precio"];
+                      $precio_total = round($precio_sumatoria["precio"],3);
 
                       $sum_total = $conexion->query("SELECT SUM(total) AS total from $empresa.venta_temp  where id_venta = $id"); 
                       $total_sumatoria = $sum_total->fetch_assoc();
-                      $total_total = $total_sumatoria["total"];
+                      $total_total = round($total_sumatoria["total"], 2);
 
                     }
                     else{
@@ -173,9 +184,9 @@ include("../base.php");
                     }  
                 ?>
                 <!--- Solo vista ----------->  
-                <span style="margin-left:10px">Total itbis:</span>  <input maxlength="8" style="float:right;  border-bottom-right-radius: 0px;  border-top-right-radius: 0px; " class="form-control col-md-4"  value="<?php echo $itbis_total;?>" disabled/> <br><br>
-                <span style="margin-left:10px">Total precio: </span> <input  maxlength="5" style="float:right; border-bottom-right-radius: 0px;  border-top-right-radius: 0px;  " class="form-control col-md-4"  value="<?php echo $precio_total; ?>" disabled/><br><br>
-                <span style="margin-left:10px">Total:</span>  <input  max="8" style="float:right; border-bottom-right-radius: 0px;  border-top-right-radius: 0px;  " class="form-control col-md-4" value="<?php echo $total_total; ?>" disabled/><br><br>
+                <span style="margin-left:10px">Total itbis:</span>  <input max="4" style="float:right;  border-bottom-right-radius: 0px;  border-top-right-radius: 0px; " class="form-control col-md-4"  value="<?php echo $itbis_total;?>" disabled/> <br><br>
+                <span style="margin-left:10px">Total precio: </span> <input  max="5" style="float:right; border-bottom-right-radius: 0px;  border-top-right-radius: 0px;  " class="form-control col-md-4"  value="<?php echo $precio_total; ?>" disabled/><br><br>
+                <span style="margin-left:10px">Total:</span>  <input  max="4" style="float:right; border-bottom-right-radius: 0px;  border-top-right-radius: 0px;  " class="form-control col-md-4" value="<?php echo $total_total; ?>" disabled/><br><br>
 
                 <!-------Esto es lo que realmente se envia ----->
                 <input type="hidden" name="itbis" value="<?php echo $itbis_total;?>" />
