@@ -1,7 +1,7 @@
 <!--  AQUI DEBE DE IR SOLAMENTE UN FORMULARIO DE REGISTRO DE COMPRAS
       SOLO HTML SIN CSS SIN JAVASCRIP SIN PHP-->
       <?php include("../base.php"); ?>
-<link rel="stylesheet" href="../../css/compras.css">
+      <link rel="stylesheet" href="../../css/compras.css">
 <script src="../../scripts/js/time_alert.js"></script>
 <div class="container-compras">
     <div class="container form-row">
