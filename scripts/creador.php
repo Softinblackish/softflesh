@@ -288,6 +288,11 @@ $perm = $conexion->query("
       ");
 
 
+      $tabla_categoria = $conexion->query("
+        CREATE TABLE `morel`.`ventas` ( `id_venta` INT NOT NULL AUTO_INCREMENT , `cliente` VARCHAR(200) NOT NULL , `condicion_pago` VARCHAR(50) NOT NULL , `comprobante` VARCHAR(50) NULL , `forma_pago` VARCHAR(50) NOT NULL , `itbis_total` INT(10) NOT NULL , `precio_total` INT(10) NOT NULL , `total` INT(10) NOT NULL , `fecha_creacion` TIMESTAMP NOT NULL , `creado_por` VARCHAR(100) NOT NULL , PRIMARY KEY (`id_venta`)) ENGINE = InnoDB;
+      ");
+
+
       
 header("location:../views/creador_u.php?empresa=$nombre_sin_espacio");
 /*
