@@ -66,7 +66,50 @@
                 <div class="form-group col-md-4">
                     <input type="number" name="valor_total" class="form-control"  placeholder="total" >
                 </div>
+                <div class="form-group col-md-4">
+                <button type="submit" class="btn btn">Pasar compra</button>
+                </div>
             </div>
+
+            
+
+            <!--Aqui va la tabla temp de compras-->
+            <table class="table">
+                <h5 style="padding:15px; background-color:#882f88;color:white;" >Artículos ingresados</h5>
+                <thead>      
+                    
+                    <tr>
+                        <th scope="col" style="width:60%;">Artículos</th>
+                        <th scope="col" style="width:8%;">Cantidad</th>
+                        <th scope="col" style="width:15%;"> Precio </th>
+                        <th scope="col" style="width:15%;"> Total </th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    <?php
+                        if(isset($_GET["id_temp"]))
+                        {
+                                $id=$_GET["id_temp"];
+                                $cons_art_temp = $conexion->query("select * from $empresa.compra_temp where id_venta= $id");
+                                while($reg_comp_temp = $cons_comp_temp->fetch_assoc())
+                                {
+                                    ?>
+                                        <tr>
+                                        <th><?php  echo $reg_art_temp["articulo"]; ?></th>
+                                        <td><?php  echo $reg_art_temp["cantidad"]; ?></td>
+                                        <td><?php  echo $reg_art_temp["precio"]; ?></td>
+                                        <td><?php  echo $reg_art_temp["total"]; ?></td>
+                                        <td><a href="../../scripts/ventas/eliminar_arti_temp.php?id_articulo=<?php echo $reg_art_temp['id_art_temp']; ?> && id_temp=<?php echo $id; ?>" class="btn btn-danger"><i class="fa fa-times fa-lg"></i></a></td> 
+                                        </tr>
+                                    <?php
+                                }
+                        }  
+                    ?>
+                </tbody>
+            </table> 
+
+
 
             <label class="form-check-label" for="gridCheck">
                     Haga click en guardar para registrar esta compra 
