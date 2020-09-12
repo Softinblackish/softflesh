@@ -16,7 +16,7 @@ include("../base.php");
                     </form>
                     <form action="punto_de_venta.php" method="GET">
                     <th scope="col" style="width:50%;"><input type="text" class="form-control" name="nom" placeholder="NOMBRE"></th>
-<?php if(isset($_GET["id_temp"])){ $id = $_GET["id_temp"]; ?> <input type="hidden" name="id_temp" value="<?php echo $id; ?>"> <?php } ?>
+                    <?php if(isset($_GET["id_temp"])){ $id = $_GET["id_temp"]; ?> <input type="hidden" name="id_temp" value="<?php echo $id; ?>"> <?php } ?>
                     <input type="submit"style="display:none">
                     </form>
                     <th scope="col" style="width:10%;"> ITBIS </th>

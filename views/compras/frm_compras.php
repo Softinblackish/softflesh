@@ -5,7 +5,7 @@
 <script src="../../scripts/js/time_alert.js"></script>
 <div class="container-compras">
     <div class="container form-row">
-        <form id="form" action="../../scripts/compras/compras.php" method="post">
+        <form id="form" action="../../scripts/compras/compras_temp.php" method="post">
             <div class="cabeza">
                 <?php if(isset($_GET["registro"])){ ?>
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -19,12 +19,15 @@
             </div>
             <div class="form-row">
                 <div class="form-group col-md-3">
-                    <input type="number" name="no_compra" placeholder ="No. de compra" class="form-control">
+                    <label for="inputState">No de commpra:</label>
+                    <input type="number" name="no_compra" placeholder ="no de compra" value = <?php $no_compra = rand(1,5000); echo $no_compra ?> class="form-control">
                 </div>
                 <div class="form-group col-md-5">
-                    <input type="date" name="fecha_orden" class="form-control" >
+                    <label for="inputState">Fecha de caducidad:</label>
+                    <input type="date" name="fecha_orden" value = <?php echo date('d-m-y') ?> class="form-control" >
                 </div>
                 <div class="form-group col-md-4">
+                    <label for="inputState">hora de recibido:</label>
                     <input type="time" name="hora" class="form-control" >
                 </div>
             </div>
@@ -58,24 +61,46 @@
                     <input type="number" name="precio_compra" class="form-control"  placeholder="precio compra" >
                 </div>
             </div>
-
+            
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <input type="number" min = 1 name="cantidad" class="form-control"  placeholder="cantidad" >
                 </div>
                 <div class="form-group col-md-4">
-                    <input type="number" name="valor_total" class="form-control"  placeholder="total" >
+                    <input type="number" name="total_impuestos" class="form-control"  placeholder="total con impuestos" >
                 </div>
                 <div class="form-group col-md-4">
-                <button type="submit" class="btn btn">Pasar compra</button>
+                    <input type="number" name="valor_sin_impuestos" class="form-control"  placeholder="total sin impuestos" >
+                </div>
+            </div>
+            
+            <!--impuestos-->
+            <label for="inputState">Datos de los Impuestos: </label><br>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <input type="number" min = 1 name="cod_impuestos" class="form-control"  placeholder="Cod impuestos" >
+                </div>
+                <div class="form-group col-md-4">
+                    <input type="number" name="valor_impuestos" class="form-control"  placeholder="valor impuestos" >
+                </div>
+                <div class="form-group col-md-4">
+                    <input type="number" name="comprobantes" class="form-control"  placeholder="Comprobantes" >
                 </div>
             </div>
 
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                 <input type="number" name="valor_total" class="form-control"  placeholder="total" >
+                </div>
+                <div class="form-group col-md-4">
+                    <button type="submit" class="btn btn">Pasar compra</button>
+                </div>
+            </div>
             
 
             <!--Aqui va la tabla temp de compras-->
             <table class="table">
-                <h5 style="padding:15px; background-color:#882f88;color:white;" >Artículos ingresados</h5>
+                <h5 class="cabeza_tabla" >Artículos ingresados</h5>
                 <thead>      
                     
                     <tr>
@@ -91,7 +116,7 @@
                         if(isset($_GET["id_temp"]))
                         {
                                 $id=$_GET["id_temp"];
-                                $cons_art_temp = $conexion->query("select * from $empresa.compra_temp where id_venta= $id");
+                                $cons_art_temp = $conexion->query("select * from $empresa.tbl_compras_temp where id_venta= $id");
                                 while($reg_comp_temp = $cons_comp_temp->fetch_assoc())
                                 {
                                     ?>
@@ -110,12 +135,13 @@
             </table> 
 
 
-
+            <br>
+            <br>
             <label class="form-check-label" for="gridCheck">
                     Haga click en guardar para registrar esta compra 
             </label>
             <br>
-            <button type="submit" id="btn" class="btn btn">registrar compra</button>
+            <button type="" id="btn" class="btn btn">registrar compra</button>
             <a href="../administracion/administracion.php" id="btn" class="btn btn" >Volver atras</a>
             <br>
             <br>
