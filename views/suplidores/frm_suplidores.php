@@ -60,10 +60,49 @@
                 </div>
             </div>
 
-        
+            <!--Aqui va la tabla de suplidores a Registrar-->
+            <table class="table">
+                <h5 class="cabeza_tabla" >Suplidores ingresados</h5>
+                <thead>      
+                    
+                    <tr>
+                        <th scope="col" style="width:60%;">codigo</th>
+                        <th scope="col" style="width:8%;">nombre</th>
+                        <th scope="col" style="width:15%;"> contacto </th>
+                        <th scope="col" style="width:15%;"> tel#1 </th>
+                        <th scope="col" style="width:15%;"> RNC </th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    <?php
+                        if(isset($_GET["id_temp"]))
+                        {
+                                $id=$_GET["id_temp"];
+                                $consulta_suplidores = $conexion->query("select * from $empresa.tbl_suplidores where codigo_sup= $id");
+                        }else
+                        {
+                            $consulta_suplidores = $conexion->query("select * from $empresa.tbl_suplidores limit 5");
+                        }  
+                        while($reg_suplidores = $consulta_suplidores->fetch_assoc())
+                                {
+                    ?>
+                                        <tr>
+                                        <th><?php  echo $reg_suplidores["codigo_sup"]; ?></th>
+                                        <td><?php  echo $reg_suplidores["nombre_sup"]; ?></td>
+                                        <td><?php  echo $reg_suplidores["contacto_sup"]; ?></td>
+                                        <td><?php  echo $reg_suplidores["tel_no1_sup"]; ?></td>
+                                        <td><?php  echo $reg_suplidores["rnc_sup"]; ?></td>
+                                        <td><a href="../../scripts/ventas/eliminar_arti_temp.php?id_articulo=<?php echo $reg_suplidores['id_art_temp']; ?> && id_temp=<?php echo $id; ?>" class="btn btn-danger"><i class="fa fa-times fa-lg"></i></a></td> 
+                                        </tr>
+                    <?php
+                                }
+                    ?>
+                </tbody>
+            </table>
 
             <label class="form-check-label" for="gridCheck">
-                    Haga click en guardar para registrar este nuevo artículo 
+                    Haga click en guardar para registrar este nuevo suplidor 
             </label>
             <br>
             <button type="submit" id="btn" class="btn btn">registrar</button>

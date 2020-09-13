@@ -24,7 +24,7 @@
                 </div>
                 <div class="form-group col-md-3">
                     <label for="inputState">caducidad:</label>
-                    <input type="date" name="fecha_orden" value = <?php echo date('d-m-y') ?> class="form-control" >
+                    <input type="date" name="caducidad" value = <?php echo date('d-m-y') ?> class="form-control" >
                 </div>
                 <div class="form-group col-md-3">
                     <label for="inputState">hora de recibido:</label>

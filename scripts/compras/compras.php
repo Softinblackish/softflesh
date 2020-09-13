@@ -4,7 +4,7 @@
     $empresa= $_SESSION["empresa_db"];
     //cabeza inicial de la compra.
     $no_compra= $_POST['no_compra']; 
-    $fecha_orden=$_POST["fecha_orden"]; 
+    $caducidad=$_POST["caducidad"]; 
     $hora=$_POST['hora'];
     //Datos de los proveedores 
     $nombre_proveedor= $_POST['nombre_proveedor']; 
@@ -18,10 +18,10 @@
     $valor_total= $_POST['valor_total'];
     $nota= $_POST['nota'];
     
-    //echo $empresa . " " .$no_compra." ".$fecha_orden." ".$hora." ".$nombre_proveedor." ".$direccion_proveedor." ".$tel_proveedor.  " ".$email_proveedor." ".$articulo." ".$precio_compra." ".$cantidad." ".$valor_total." ".$nota;
+    //echo $empresa . " " .$no_compra." ".$caducidad." ".$hora." ".$nombre_proveedor." ".$direccion_proveedor." ".$tel_proveedor.  " ".$email_proveedor." ".$articulo." ".$precio_compra." ".$cantidad." ".$valor_total." ".$nota;
    
-        $Reg_compras = $conexion->query("insert into $empresa.tbl_compras (no_compra, fecha_orden, hora, nombre_proveedor, direccion_proveedor,  tel_proveedor,email_proveedor,articulo, precio_compra, cantidad, valor_total, nota)
-            values ($no_compra, '$fecha_orden', '$hora', '$nombre_proveedor', '$direccion_proveedor','$tel_proveedor', '$email_proveedor', '$articulo',   $precio_compra, $cantidad, $valor_total, '$nota')
+        $Reg_compras = $conexion->query("insert into $empresa.tbl_compras (no_compra, caducidad, hora, nombre_proveedor, direccion_proveedor,  tel_proveedor,email_proveedor,articulo, precio_compra, cantidad, valor_total, nota)
+            values ($no_compra, '$caducidad', '$hora', '$nombre_proveedor', '$direccion_proveedor','$tel_proveedor', '$email_proveedor', '$articulo',   $precio_compra, $cantidad, $valor_total, '$nota')
             ");
     
 //cxcobrar y cxpagar
