@@ -1,11 +1,11 @@
 <!--  AQUI DEBE DE IR SOLAMENTE UN FORMULARIO DE REGISTRO DE COMPRAS
       SOLO HTML SIN CSS SIN JAVASCRIP SIN PHP-->
       <?php include("../base.php"); ?>
-<link rel="stylesheet" href="../../css/compras.css">
+      <link rel="stylesheet" href="../../css/compras.css">
 <script src="../../scripts/js/time_alert.js"></script>
 <div class="container-compras">
     <div class="container form-row">
-        <form id="form" action="../../scripts/compras/compras.php" method="post">
+        <form id="form" action="../../scripts/compras/compras_temp.php" method="post">
             <div class="cabeza">
                 <?php if(isset($_GET["registro"])){ ?>
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -19,13 +19,25 @@
             </div>
             <div class="form-row">
                 <div class="form-group col-md-3">
-                    <input type="number" name="no_compra" placeholder ="No. de compra" class="form-control">
+                    <label for="inputState">No de commpra:</label>
+                    <input type="number" name="no_compra" placeholder ="no de compra" value = <?php $no_compra = rand(1,5000); echo $no_compra ?> class="form-control">
                 </div>
-                <div class="form-group col-md-5">
-                    <input type="date" name="fecha_orden" class="form-control" >
+                <div class="form-group col-md-3">
+                    <label for="inputState">caducidad:</label>
+                    <input type="date" name="fecha_orden" value = <?php echo date('d-m-y') ?> class="form-control" >
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-3">
+                    <label for="inputState">hora de recibido:</label>
                     <input type="time" name="hora" class="form-control" >
+                </div>
+                <div class="form-group col-md-3">
+                 <label for="inputState">recibido por:</label>
+                 <select name="entregar_a" class="form-control" cajeros>
+                    <option value="cajero1">cajero1</option>
+                    <option value="cajero2">cajero2</option>
+                    <option value="cajero3">cajero3</option>
+                    <option value="cajero4">cajero4</option>
+                </select>
                 </div>
             </div>
 
@@ -45,6 +57,20 @@
                 </div>
             </div>
 
+            <!--impuestos-->
+            <label for="inputState">Datos de los Impuestos: </label><br>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <input type="number" min = 1 name="cod_impuesto" class="form-control"  placeholder="Cod impuestos" >
+                </div>
+                <div class="form-group col-md-4">
+                    <input type="number" name="" class="form-control"  placeholder="valor impuestos" >
+                </div>
+                <div class="form-group col-md-4">
+                    <input type="number" name="comprobante" class="form-control"  placeholder="Comprobantes" >
+                </div>
+            </div>
+
             <label for="inputState">Datos de los productos: </label><br>
             
             <div class="form-row">
@@ -52,27 +78,102 @@
                     <input type="text" name="articulo" class="form-control"  placeholder="articulo" >
                 </div>
                 <div class="form-group col-md-4">
-                    <input type="text" name="nota" class="form-control"  placeholder="Descripcion" >
+                    <input type="number" name="precio_compra" class="form-control"  placeholder="precio compra" >
                 </div>
                 <div class="form-group col-md-4">
-                    <input type="number" name="precio_compra" class="form-control"  placeholder="precio compra" >
+                    <input type="number" min = 1 name="cantidad" class="form-control"  placeholder="cantidad" >
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <input type="text" name="forma_pago" class="form-control"  placeholder="forma de pago" >
+                </div>
+                <div class="form-group col-md-4">
+                    <input type="text" name="moneda" class="form-control"  placeholder="moneda" >
+                </div>
+                <div class="form-group col-md-4">
+                 <input type="number" name="stock" class="form-control"  placeholder="Stock" >
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    <input type="number" min = 1 name="cantidad" class="form-control"  placeholder="cantidad" >
+                    <input type="number" name="valor_impuestos" class="form-control"  placeholder="total con impuestos" >
                 </div>
                 <div class="form-group col-md-4">
-                    <input type="number" name="valor_total" class="form-control"  placeholder="total" >
+                    <input type="number" name="sin_impuestos" class="form-control"  placeholder="total sin impuestos" >
+                </div>
+                <div class="form-group col-md-4">
+                 <input type="number" name="valor_total" class="form-control"  placeholder="total" >
                 </div>
             </div>
 
+            <div class="form-row">
+                
+                <div class="form-group col-md-12">
+                    <textarea name="nota" class="form-control" cols="50" rows="3">Descripcion</textarea>
+                </div>
+                
+            </div>
+
+
+
+            
+            
+
+            <div class="form-row">
+                
+                <div class="form-group col-md-4">
+                    <button type="submit" class="btn btn">Pasar compra</button>
+                </div>
+            </div>
+            
+
+            <!--Aqui va la tabla temp de compras-->
+            <table class="table">
+                <h5 class="cabeza_tabla" >Artículos ingresados</h5>
+                <thead>      
+                    
+                    <tr>
+                        <th scope="col" style="width:60%;">Artículos</th>
+                        <th scope="col" style="width:8%;">Cantidad</th>
+                        <th scope="col" style="width:15%;"> Precio </th>
+                        <th scope="col" style="width:15%;"> Total </th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    <?php
+                        if(isset($_GET["id_temp"]))
+                        {
+                                $id=$_GET["id_temp"];
+                                $cons_art_temp = $conexion->query("select * from $empresa.tbl_compras_temp where id_venta= $id");
+                                while($reg_comp_temp = $cons_comp_temp->fetch_assoc())
+                                {
+                                    ?>
+                                        <tr>
+                                        <th><?php  echo $reg_art_temp["articulo"]; ?></th>
+                                        <td><?php  echo $reg_art_temp["cantidad"]; ?></td>
+                                        <td><?php  echo $reg_art_temp["precio"]; ?></td>
+                                        <td><?php  echo $reg_art_temp["total"]; ?></td>
+                                        <td><a href="../../scripts/ventas/eliminar_arti_temp.php?id_articulo=<?php echo $reg_art_temp['id_art_temp']; ?> && id_temp=<?php echo $id; ?>" class="btn btn-danger"><i class="fa fa-times fa-lg"></i></a></td> 
+                                        </tr>
+                                    <?php
+                                }
+                        }  
+                    ?>
+                </tbody>
+            </table> 
+
+
+            <br>
+            <br>
             <label class="form-check-label" for="gridCheck">
                     Haga click en guardar para registrar esta compra 
             </label>
             <br>
-            <button type="submit" id="btn" class="btn btn">registrar compra</button>
+            <button type="" id="btn" class="btn btn">registrar compra</button>
             <a href="../administracion/administracion.php" id="btn" class="btn btn" >Volver atras</a>
             <br>
             <br>

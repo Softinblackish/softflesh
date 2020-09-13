@@ -76,6 +76,35 @@
         PRIMARY KEY (`id_compra`)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8
       ");
+
+      $tabla_compra = $conexion->query("
+      CREATE TABLE $nombre_sin_espacio.tbl_compras_temp (
+        `id_compra` int(11) NOT NULL AUTO_INCREMENT,
+        `nombre_proveedor` varchar(100),
+        `comprobante` varchar(50),
+        `cod_impuesto` varchar(50),
+        `forma_pago` varchar(50),
+        `moneda` varchar(50),
+        `entregar_a` varchar(200),
+        `nota` varchar(300),
+        `fecha_orden` date,
+        `condicion_pago` varchar(100),
+        `valor_impuestos` int(11),
+        `sin_impuestos` int(11),
+        `valor_total` DOUBLE,
+        `no_compra` int(11),
+        `id_temp_compra` int(11),
+        `hora` TIME,
+        `articulo` varchar(100),
+        `tel_proveedor` VARCHAR(15),
+        `direccion_proveedor` varchar(100),
+        `email_proveedor` varchar(45),
+        `precio_compra` DOUBLE,
+        `stock` int(11),
+        `cantidad` int(11),
+        PRIMARY KEY (`id_compra`)
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+      ");
       
       $tabla_det_compra = $conexion->query("
       CREATE TABLE $nombre_sin_espacio.tbl_det_compras (
