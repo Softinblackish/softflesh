@@ -22,13 +22,22 @@
                     <label for="inputState">No de commpra:</label>
                     <input type="number" name="no_compra" placeholder ="no de compra" value = <?php $no_compra = rand(1,5000); echo $no_compra ?> class="form-control">
                 </div>
-                <div class="form-group col-md-5">
-                    <label for="inputState">Fecha de caducidad:</label>
+                <div class="form-group col-md-3">
+                    <label for="inputState">caducidad:</label>
                     <input type="date" name="fecha_orden" value = <?php echo date('d-m-y') ?> class="form-control" >
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-3">
                     <label for="inputState">hora de recibido:</label>
                     <input type="time" name="hora" class="form-control" >
+                </div>
+                <div class="form-group col-md-3">
+                 <label for="inputState">recibido por:</label>
+                 <select name="entregar_a" class="form-control" cajeros>
+                    <option value="cajero1">cajero1</option>
+                    <option value="cajero2">cajero2</option>
+                    <option value="cajero3">cajero3</option>
+                    <option value="cajero4">cajero4</option>
+                </select>
                 </div>
             </div>
 
@@ -48,6 +57,20 @@
                 </div>
             </div>
 
+            <!--impuestos-->
+            <label for="inputState">Datos de los Impuestos: </label><br>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <input type="number" min = 1 name="cod_impuesto" class="form-control"  placeholder="Cod impuestos" >
+                </div>
+                <div class="form-group col-md-4">
+                    <input type="number" name="" class="form-control"  placeholder="valor impuestos" >
+                </div>
+                <div class="form-group col-md-4">
+                    <input type="number" name="comprobante" class="form-control"  placeholder="Comprobantes" >
+                </div>
+            </div>
+
             <label for="inputState">Datos de los productos: </label><br>
             
             <div class="form-row">
@@ -55,43 +78,52 @@
                     <input type="text" name="articulo" class="form-control"  placeholder="articulo" >
                 </div>
                 <div class="form-group col-md-4">
-                    <input type="text" name="nota" class="form-control"  placeholder="Descripcion" >
-                </div>
-                <div class="form-group col-md-4">
                     <input type="number" name="precio_compra" class="form-control"  placeholder="precio compra" >
                 </div>
-            </div>
-            
-            <div class="form-row">
                 <div class="form-group col-md-4">
                     <input type="number" min = 1 name="cantidad" class="form-control"  placeholder="cantidad" >
                 </div>
-                <div class="form-group col-md-4">
-                    <input type="number" name="total_impuestos" class="form-control"  placeholder="total con impuestos" >
-                </div>
-                <div class="form-group col-md-4">
-                    <input type="number" name="valor_sin_impuestos" class="form-control"  placeholder="total sin impuestos" >
-                </div>
             </div>
             
-            <!--impuestos-->
-            <label for="inputState">Datos de los Impuestos: </label><br>
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    <input type="number" min = 1 name="cod_impuestos" class="form-control"  placeholder="Cod impuestos" >
+                    <input type="text" name="forma_pago" class="form-control"  placeholder="forma de pago" >
                 </div>
                 <div class="form-group col-md-4">
-                    <input type="number" name="valor_impuestos" class="form-control"  placeholder="valor impuestos" >
+                    <input type="text" name="moneda" class="form-control"  placeholder="moneda" >
                 </div>
                 <div class="form-group col-md-4">
-                    <input type="number" name="comprobantes" class="form-control"  placeholder="Comprobantes" >
+                 <input type="number" name="stock" class="form-control"  placeholder="Stock" >
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group col-md-4">
+                    <input type="number" name="valor_impuestos" class="form-control"  placeholder="total con impuestos" >
+                </div>
+                <div class="form-group col-md-4">
+                    <input type="number" name="sin_impuestos" class="form-control"  placeholder="total sin impuestos" >
+                </div>
+                <div class="form-group col-md-4">
                  <input type="number" name="valor_total" class="form-control"  placeholder="total" >
                 </div>
+            </div>
+
+            <div class="form-row">
+                
+                <div class="form-group col-md-12">
+                    <textarea name="nota" class="form-control" cols="50" rows="3">Descripcion</textarea>
+                </div>
+                
+            </div>
+
+
+
+            
+            
+
+            <div class="form-row">
+                
                 <div class="form-group col-md-4">
                     <button type="submit" class="btn btn">Pasar compra</button>
                 </div>
