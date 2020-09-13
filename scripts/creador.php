@@ -287,6 +287,24 @@ $perm = $conexion->query("
 
       ");
 
+      $tabla_venta = $conexion->query("
+        CREATE TABLE $nombre_sin_espacio.tbl_ventas ( 
+        `id_venta` INT NOT NULL AUTO_INCREMENT , 
+        `id_venta_temp` INT NOT NULL , 
+        `id_cliente` INT NOT NULL , 
+        `comprobante` INT NULL , 
+        `condicion_pago` INT NOT NULL , 
+        `forma_pago` INT NOT NULL , 
+        `itbis` INT NOT NULL , 
+        `precio` INT NOT NULL , 
+        `total` INT NOT NULL , 
+        `creado_por` INT NOT NULL , 
+        `fecha_creacion` TIMESTAMP NOT NULL , 
+        `modificado_por` VARCHAR NULL , 
+        `fecha_modificacion` DATE NULL , 
+        PRIMARY KEY (`id_venta`)) ENGINE = InnoDB;
+      ");
+
 
       $tabla_categoria = $conexion->query("
         CREATE TABLE `morel`.`ventas` ( `id_venta` INT NOT NULL AUTO_INCREMENT , `cliente` VARCHAR(200) NOT NULL , `condicion_pago` VARCHAR(50) NOT NULL , `comprobante` VARCHAR(50) NULL , `forma_pago` VARCHAR(50) NOT NULL , `itbis_total` INT(10) NOT NULL , `precio_total` INT(10) NOT NULL , `total` INT(10) NOT NULL , `fecha_creacion` TIMESTAMP NOT NULL , `creado_por` VARCHAR(100) NOT NULL , PRIMARY KEY (`id_venta`)) ENGINE = InnoDB;

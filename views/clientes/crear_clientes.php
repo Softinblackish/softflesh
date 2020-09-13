@@ -1,4 +1,8 @@
-<?php include("../base.php"); ?>
+<?php include("../base.php");
+$consulta_cliente = $conexion->query("SELECT id_cliente FROM $empresa.tbl_clientes ORDER BY id_cliente desc limit 1");
+$registro_cliente = $consulta_cliente->fetch_assoc();
+$id_nuevo_cliente = $registro_cliente["id_cliente"] + 1;
+?>
 <link rel="stylesheet" href="../../css/articulos.css">
 <div class="container-articulos">
     <div class="container form-row">
@@ -8,7 +12,8 @@
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <input type="text" class="form-control" placeholder ="Código" name="codigo" required disabled>
+
+                    <input type="text" class="form-control" placeholder ="Código" value="<?php echo $id_nuevo_cliente; ?>" name="codigo" required readonly>
                 </div>
                 <div class="form-group col-md-6">
                     <input type="text" class="form-control" placeholder ="Nombre" name="nombre" required>

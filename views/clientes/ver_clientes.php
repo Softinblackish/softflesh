@@ -13,7 +13,7 @@
 <table class="table">
   <thead class="thead">
     <tr>
-      <th scope="col">Código</th>
+      <th scope="col" width="10%">Código</th>
       <th scope="col">Nombre</th>
       <th scope="col">Telefono</th>
       <th scope="col">Acción</th>
@@ -35,7 +35,7 @@
 ?>
         <!-- Head Tabla impuestos   --->
             <tr>
-                <th scope="row"><?php echo $row["codigo_cliente"]; ?></th>
+                <th scope="row"><?php echo $row["id_cliente"]; ?></th>
                 <td><?php echo $row["nombre_cliente"];?></td>
                 <td><?php echo $row["telefono_cliente"];?></td>
 

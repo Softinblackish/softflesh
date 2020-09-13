@@ -20,7 +20,7 @@
     }
     
     echo $id_temp;
-    $insert_venta_temp = $conexion->query("INSERT into $empresa.venta_temp (id_venta, articulo, itbis, precio, cantidad, total, creado_por) Values ($id_temp, '$nom', $itbis,$precio, $cantidad,$total, '$usuario')");
+    $insert_venta_temp = $conexion->query("INSERT into $empresa.tbl_venta_temp (id_venta, articulo, itbis, precio, cantidad, total, creado_por) Values ($id_temp, '$nom', $itbis, $precio, $cantidad, $total, '$usuario')");
 
-   header("location:../../views/venta/punto_de_venta.php?id_temp=$id_temp");
+    header("location:../../views/venta/punto_de_venta.php?id_temp=$id_temp");
 ?>
