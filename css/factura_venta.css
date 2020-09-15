@@ -15,7 +15,7 @@
 }
 #informacion_cliente{
     float:left; 
-    width:55%;
+    width:48%;
     margin-top:50px;
 }
 #informacion_factura{
@@ -26,7 +26,6 @@
 }
 #informacion_factura_data{
     float:left; 
-    margin-right:50px;
 }
 #factura_pie{
     width:100%; 
@@ -48,4 +47,10 @@
 
 li{
     list-style: none;
+}
+#slogan{
+    padding-left:45px;
+}
+#text-factura{
+    margin-left:40px;
 }

@@ -14,6 +14,18 @@
     $id_temp= $registro_factura["id_venta_temp"];
     $consulta_articulos = $conexion->query("SELECT * FROM $empresa.tbl_venta_temp where id_venta = $id_temp");
 
+    $sum_itbis = $conexion->query("SELECT SUM(itbis) AS itbis from $empresa.tbl_venta_temp  where id_venta = $id_temp"); 
+    $itbis_sumatoria = $sum_itbis->fetch_assoc();
+    $itbis_total= $itbis_sumatoria["itbis"]; 
+
+    $sum_precio = $conexion->query("SELECT SUM(precio) AS precio from $empresa.tbl_venta_temp  where id_venta = $id_temp"); 
+    $precio_sumatoria = $sum_precio->fetch_assoc();
+    $precio_total = round($precio_sumatoria["precio"],3);
+
+    $sum_total = $conexion->query("SELECT SUM(total) AS total from $empresa.tbl_venta_temp  where id_venta = $id_temp"); 
+    $total_sumatoria = $sum_total->fetch_assoc();
+    $total_total = round($total_sumatoria["total"], 2);
+
 ?>
 
     <!DOCTYPE html>
@@ -29,27 +41,28 @@
         <title>Factura</title>
     </head>
     <body>
-        <div id="contenedor" style="">
-            <div id="top" style="">
-            <img id="img-bg-top" src="../../img/barra-larga-azul-info.png" style="">
-                <center><br>
+        <div id="contenedor">
+            <div id="top">
+            <img id="img-bg-top" src="../../img/barra-larga-azul-info.png">
+                <br>
+                        <div id="slogan">
                         <h3><?php echo $empresa ?></h3>
                         Aqui va el slogan
-                    
-                </center>
+                        </div>
+            
             </div>
             <div id="informacion">
                 <div id="informacion_cliente">
                     <ul>
-                        <li>Cliente:<?php echo  $registro_cliente["nombre"];?></li>
-                        <li>RNC o cédula:<?php echo  $registro_cliente["rnc"];?></li>
-                        <li>Dirección:<?php echo  $registro_cliente["direccion"];?></li>
-                        <li>Referencia:<?php echo  $registro_cliente["referencia"];?></li>
-                        <li>Telefono:<?php echo  $registro_cliente["telefono"];?></li>
+                        <li><Strong>Cliente:</strong> <?php echo  $registro_cliente["nombre_cliente"];?></li>
+                        <li><Strong>RNC o cédula:</Strong> <?php echo  $registro_cliente["rnc_cliente"];?></li>
+                        <li><Strong>Dirección:</Strong> <?php echo  $registro_cliente["direccion"];?></li>
+                        <li><Strong>Referencia:</Strong> <?php echo  $registro_cliente["referencia"];?></li>
+                        <li><Strong>Telefono:</Strong> <?php echo  $registro_cliente["telefono_cliente"];?></li>
                     </ul>
                 </div>
                 <div id="informacion_factura">
-                    <h3>Factura Nº </h3>
+                    <h3 id="text-factura">Factura Nº <?php echo  $registro_factura["id_venta"];?> </h3>
                     <div id="informacion_factura_label">
                         <ul>
                             <li>Fecha: </li>
@@ -77,20 +90,26 @@
                     <thead>
                         <tr>
                         <th scope="col" width="57.5%">Producto</th>
-                        <th scope="col" width="7%">Cantidad</th>
+                        <th scope="col" width="7%">Cant.</th>
                         <th scope="col" width="7%">Itbis</th>
-                        <th scope="col" width="14%">Precio unid.</th>
-                        <th scope="col" width="15%">Precio</th>
+                        <th scope="col" width="12%">Precio unid.</th>
+                        <th scope="col" width="12%">Precio</th>
+                        <th scope="col" width="12%">Total</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        </tr>
+                        <?php while($registros_articulos = $consulta_articulos->fetch_assoc()) { ?>
+                            <tr>
+                                <td scope="row"><?php echo $registros_articulos["articulo"] ?></td>
+                                <td><?php echo $registros_articulos["cantidad"]; ?></td>
+                                <td>$<?php echo $registros_articulos["itbis"]; ?></td>
+                                <td>$<?php echo $registros_articulos["precio"] / $registros_articulos["cantidad"]; ?></td>
+                                <td>$<?php echo $registros_articulos["precio"]; ?></td>
+                                <td>$<?php echo $registros_articulos["total"]; ?></td>
+                            </tr>
+                        <?php
+                        }
+                        ?>
                     </tbody>
                 </table>
             </div>
@@ -98,7 +117,7 @@
             </div>
             <div id="factura_pie">
                 <div id="botones">
-                    <a class="btn btn-info">Regresar</a> <a class="btn btn-info">Imprimir</a>
+                    <a href="punto_de_venta.php" class="btn btn-info">Regresar</a> <a class="btn btn-info">Imprimir</a>
                 </div>
                 
                 <div id="totales">
@@ -112,12 +131,15 @@
                     </div>
                     <div id="totales_data">
                         <ul>
-                            <li>52</li>
-                            <li>544</li>
-                            <li>65655</li>
+                            <li>$<?php echo $itbis_total; ?></li>
+                            <li>$<?php echo $precio_total; ?></li>
+                            <li>$<?php echo $total_total; ?></li>
                         </ul>
                     </div>
                 </div>
             </div> 
     </body>
+
+        <img class="fixed-bottom" src="../../img/logo.png" width="110"alt="">
+
     </html>

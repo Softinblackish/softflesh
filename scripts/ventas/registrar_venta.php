@@ -4,7 +4,7 @@
     $empresa= $_SESSION["empresa_db"];
     $usuario = $_SESSION["user"];
 
-    $cliente = 1;
+    $cliente = $_POST["client"];
     $condicion = $_POST["condicion"];
     $comprobante = $_POST["tipo_comprobante"];
     $forma = $_POST["forma"];
@@ -20,5 +20,5 @@
     $registro_factura = $consulta_factura->fetch_assoc();
     $id= $registro_factura["id_venta"];
 
-    //header("location: ../../views/venta/factura_venta.php?id_venta=$id ");
+    header("location: ../../views/venta/factura_venta.php?id_venta=$id ");
 ?>
