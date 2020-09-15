@@ -1,6 +1,11 @@
 <!--  AQUI DEBE DE IR SOLAMENTE UN FORMULARIO DE REGISTRO DE SUPLIDORES 
       SOLO HTML SIN CSS SIN JAVASCRIP SIN PHP-->
-      <?php include("../base.php"); ?>
+<?php include("../base.php"); 
+$consulta_suplidores = $conexion->query("SELECT id_sup FROM $empresa.tbl_suplidores ORDER BY id_sup desc limit 1");
+$registro_suplidores = $consulta_suplidores->fetch_assoc();
+$id_nuevo_suplidor = $registro_suplidores["id_sup"] + 1;
+?>
+
 <link rel="stylesheet" href="../../css/suplidores.css">
 <script src="../../scripts/js/time_alert.js"></script>
 <div class="container-cuentas-por-cobrar">
@@ -19,7 +24,7 @@
             </div>
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    <input type="text" name="codigo_sup" placeholder ="Codigo" class="form-control" >
+                    <input type="text" name="codigo_sup" placeholder ="Codigo" class="form-control" value="<?php echo $id_nuevo_suplidor; ?>" >
                 </div>
                 <div class="form-group col-md-4">
                     <input type="text" name="nombre_sup" placeholder ="nombre suplidor" class="form-control">
