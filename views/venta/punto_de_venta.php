@@ -1,6 +1,58 @@
 <?php
 include("../base.php");
+
+#buscar articulos por id, por nombre o por ambos
+if(isset($_GET["cod"]) or isset($_GET["nom"]) )
+{
+    if(isset($_GET["cod"]) and isset($_GET["nom"]) )
+    {
+        $id= $_GET["cod"];
+        $nomb= $_GET["nom"];
+        $consulta_articulos = $conexion->query("SELECT * from $empresa.tbl_articulos where  id_articulo like '%$id%' and nombre like '%$nomb%' limit 10");
+    }
+    if(isset($_GET["cod"]))
+    {
+        $id= $_GET["cod"];
+        $consulta_articulos = $conexion->query("SELECT * from $empresa.tbl_articulos where  id_articulo like '%$id%' limit 10");
+    }
+    if(isset($_GET["nom"]))
+    {
+        $nomb= $_GET["nom"];
+        $consulta_articulos = $conexion->query("SELECT * from $empresa.tbl_articulos where  nombre like '%$nomb%' limit 10 ");
+    }
+}
+else
+{
+    $consulta_articulos = $conexion->query("SELECT * from $empresa.tbl_articulos limit 5");
+}
+
+
+
+
 ?>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function()
+    {
+        $("#cliente").keyup(function()
+        {    
+            var cliente = $("#cliente").val();
+            $.ajax
+            ({
+                type:"post",
+                url:"../../scripts/ventas/buscar_clientes.php",
+                dataType:"html",
+                data:"nombre="+cliente,
+                success: function(data)
+                {
+                    $("#caja-clientes").empty();
+                    $("#caja-clientes").append(data);
+                }
+            }); 
+        });
+    });
+
+</script>
 
 <div>
     <div style="float:left; width:48.5%; margin-left:25px; margin-top:25px;background-color:white; border-radius:8px; box-shadow:1px 1px 5px">
@@ -27,35 +79,19 @@ include("../base.php");
             </thead>
             <tbody>
                 <?php
-                    if(isset($_GET["cod"]) or isset($_GET["nom"]) )
-                    {
-                        if(isset($_GET["cod"]))
-                        {
-                            $id= $_GET["cod"];
-                            $consulta_articulos = $conexion->query("SELECT * from $empresa.articulos where  id_articullo = $id limit 10");
-                        }
-                        if(isset($_GET["nom"]))
-                        {
-                            $nombre= $_GET["nom"];
-                            $consulta_articulos = $conexion->query("SELECT * from $empresa.articulos where  Nombre like '%$nombre%' limit 10 ");
-                        }
-                    }
-                    else
-                    {
-                        $consulta_articulos = $conexion->query("SELECT * from $empresa.articulos limit 5");
-                    }
-                    
+                 
                     while($registros_articulos= $consulta_articulos->fetch_assoc())
                     {
                 ?>
                 <tr>
-                    <th scope="row"><?php echo $registros_articulos["id_articullo"]; ?></th>
-                    <td><?php echo $registros_articulos["Nombre"]; ?></td>
+                    <th scope="row"><?php echo $registros_articulos["id_articulo"]; ?></th>
+                    <td><?php echo $registros_articulos["nombre"]; ?></td>
                     <td><?php echo $registros_articulos["itbis"]; ?></td>
                     <td><?php echo $registros_articulos["precio"]; ?></td> 
+
                     <form action="../../scripts/ventas/add_venta_temp.php" method="GET">
-                        <input type="hidden" value="<?php echo $registros_articulos["id_articullo"]; ?>" name="cod">
-                        <input type="hidden" value="<?php echo $registros_articulos["Nombre"]; ?>" name="nom">
+                        <input type="hidden" value="<?php echo $registros_articulos["id_articulo"]; ?>" name="cod">
+                        <input type="hidden" value="<?php echo $registros_articulos["nombre"]; ?>" name="nom">
                         <input type="hidden" value="<?php echo $registros_articulos["itbis"]; ?>" name="itbis">
                         <input type="hidden" value="<?php echo $registros_articulos["precio"]; ?>" name="precio">
                         <td><input type="number" class="form-control" placeholder="Cant." name="cant" value="1"/></td>
@@ -93,8 +129,8 @@ include("../base.php");
             <?php
                if(isset($_GET["id_temp"]))
                {
-                   $id=$_GET["id_temp"];
-                $cons_art_temp = $conexion->query("select * from $empresa.venta_temp where id_venta= $id");
+                $id=$_GET["id_temp"];
+                $cons_art_temp = $conexion->query("SELECT * from $empresa.tbl_venta_temp  where id_venta= $id ORDER BY id_venta_temp desc");
                  while($reg_art_temp = $cons_art_temp->fetch_assoc())
                  {
                      ?>
@@ -115,16 +151,18 @@ include("../base.php");
     </div>
     
     <div>
-    <div style="float:left; position:absolute; width:20%; height:650px; margin-left:77%; margin-top:25px;background-color:white; border-radius:8px; box-shadow:1px 1px 5px">
+    <div style="float:left; position:absolute; width:20%; height:750px; margin-left:77%; margin-top:25px;background-color:white; border-radius:8px; box-shadow:1px 1px 5px">
         <div>
             <h5 style="padding:15px; background-color:#882f88 ;color:white;">Información</h5>
-            <form action="../../scripts/ventas/registrar_venta.php" method="POST"><br>
+            <form action="../../scripts/ventas/registrar_venta.php" method="get"><br>
                 <div class="form-row">
                     <div class="col-md-10">
-                        <input style="border-bottom-left-radius: 0px;  border-top-left-radius: 0px;"   class="form-control" placeholder="Cliente" name="cliente"/>
-                    <br></div>
-
+                        <input style="border-bottom-left-radius: 0px;  border-top-left-radius: 0px;" id="cliente"   class="form-control" placeholder="Buscar cliente" name="cliente"/>
+                        <div id="caja-clientes"></div>
+                    </div>
+                
                     <div class="col-md-10">
+                        <br>
                         <select style="border-bottom-left-radius: 0px;  border-top-left-radius: 0px;" class="form-control" name="condicion">
                            <?php $consulta_condiciones = $conexion->query("SELECT * FROM $empresa.tbl_condiciones_pago");
                                 while($resultado_condiciones = $consulta_condiciones->fetch_assoc()){
@@ -138,7 +176,7 @@ include("../base.php");
                     <Br></div>
 
                     <div class="col-md-10">
-                        <select style="border-bottom-left-radius: 0px;  border-top-left-radius: 0px;" class="form-control"name="comprobante">
+                        <select style="border-bottom-left-radius: 0px;  border-top-left-radius: 0px;" class="form-control"name="tipo_comprobante">
                             <option>Consumidor final</option>
                             <option>Valor fiscal</option>
                             <option>Gubernamental</option>
@@ -164,15 +202,15 @@ include("../base.php");
                 <?php 
                     if(isset($_GET["id_temp"]))
                     {   
-                      $sum_itbis = $conexion->query("SELECT SUM(itbis) AS itbis from $empresa.venta_temp  where id_venta = $id"); 
+                      $sum_itbis = $conexion->query("SELECT SUM(itbis) AS itbis from $empresa.tbl_venta_temp  where id_venta = $id"); 
                       $itbis_sumatoria = $sum_itbis->fetch_assoc();
                       $itbis_total= $itbis_sumatoria["itbis"]; 
 
-                      $sum_precio = $conexion->query("SELECT SUM(precio) AS precio from $empresa.venta_temp  where id_venta = $id"); 
+                      $sum_precio = $conexion->query("SELECT SUM(precio) AS precio from $empresa.tbl_venta_temp  where id_venta = $id"); 
                       $precio_sumatoria = $sum_precio->fetch_assoc();
                       $precio_total = round($precio_sumatoria["precio"],3);
 
-                      $sum_total = $conexion->query("SELECT SUM(total) AS total from $empresa.venta_temp  where id_venta = $id"); 
+                      $sum_total = $conexion->query("SELECT SUM(total) AS total from $empresa.tbl_venta_temp  where id_venta = $id"); 
                       $total_sumatoria = $sum_total->fetch_assoc();
                       $total_total = round($total_sumatoria["total"], 2);
 

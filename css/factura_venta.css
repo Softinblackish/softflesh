@@ -1,0 +1,51 @@
+#contenedor{
+    border: solid 1px; 
+    width:90%; 
+    margin-left:5%
+}
+#top{
+    border-bottom:solid 1px; 
+    height:95px;
+}
+#img-bg-top{
+    width:90%; 
+    height:95px; 
+    Position:absolute; 
+    z-index:-10;
+}
+#informacion_cliente{
+    float:left; 
+    width:55%;
+    margin-top:50px;
+}
+#informacion_factura{
+    float:left;
+}
+#informacion_factura_label{
+    float:left;
+}
+#informacion_factura_data{
+    float:left; 
+    margin-right:50px;
+}
+#factura_pie{
+    width:100%; 
+    margin-left:5%;
+}
+#botones{
+    float:left;
+}
+#totales{
+    float:right; 
+    margin-right:10%; 
+    width:250px; 
+    border:solid 1px;
+}
+#totales_label{
+    float:left;
+    margin-right:35px;
+}
+
+li{
+    list-style: none;
+}
