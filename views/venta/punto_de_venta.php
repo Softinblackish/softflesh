@@ -1,14 +1,6 @@
 <?php
 include("../base.php");
 
-if(isset($_GET["disponible"]))
-{?>
-    <script>
-    alert("No tiene cantidades");
-</script>
-<?php
-}
-
 #buscar articulos por id, por nombre o por ambos
 if(isset($_GET["cod"]) or isset($_GET["nom"]) )
 {
@@ -63,15 +55,29 @@ else
             }); 
         });
     });
-
 </script>
 
 <div>
     <div style="float:left; width:48.5%; margin-left:25px; margin-top:25px;background-color:white; border-radius:8px; box-shadow:1px 1px 5px; ">
-        <div style="overflow:scroll; height:400px; width:98%; margin-left:1.5%">      
+        
+    <?php
+    if(isset($_GET["disponible"]))
+        {
+        ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>No hay unidades!</strong> Comunícate con el administrador.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <?php
+        }
+        ?>
+
+        <div style="overflow:scroll;overflow-x:hidden; height:335px; width:98%; margin-left:1.5%">      
         <table class="table">
         <h5 style="padding:15px;Width:47.2%;margin-left:-12px;height:53px;background-color:#882f88;color:white; position:absolute;" >Buscar artículos</h5><br><br>
-            <thead style="position:absolute; width:42%;margin-top:-66.5px; margin-left:-12px; background-color:white;">
+            <thead style="position:absolute; width:47.2%;margin-top:-66.5px; margin-left:-12px; background-color:white;">
                 <tr>
                     <form action="punto_de_venta.php" method="GET">
                     <th scope="col" style="width:10%;"><input type="text" class="form-control" name="cod" placeholder="Cód."></th>
@@ -79,7 +85,7 @@ else
                     <input type="submit" style="display:none">
                     </form>
                     <form action="punto_de_venta.php" method="GET">
-                    <th scope="col" style="width:35%;"><input type="text" class="form-control" name="nom" placeholder="NOMBRE"></th>
+                    <th scope="col" style="width:25%;"><input type="text" class="form-control" name="nom" placeholder="NOMBRE"></th>
                     <?php if(isset($_GET["id_temp"])){ $id = $_GET["id_temp"]; ?> <input type="hidden" name="id_temp" value="<?php echo $id; ?>"> <?php } ?>
                     <input type="submit"style="display:none">
                     </form>
@@ -93,7 +99,6 @@ else
             <tbody >
                     
                 <?php
-                 
                     while($registros_articulos= $consulta_articulos->fetch_assoc())
                     {
                 ?>
@@ -108,7 +113,17 @@ else
                         <input type="hidden" value="<?php echo $registros_articulos["nombre"]; ?>" name="nom">
                         <input type="hidden" value="<?php echo $registros_articulos["itbis"]; ?>" name="itbis">
                         <input type="hidden" value="<?php echo $registros_articulos["precio"]; ?>" name="precio">
-                        <td><input type="number" style="width:55px;" class="form-control" placeholder="Cant." name="cant" value="1"/></td>
+                        
+                        <?php if($registros_articulos["cantidad_disponible"] > 0)
+                        {
+                            $cant= 1;
+                        }
+                        else
+                        { 
+                            $cant= 0;
+                        } 
+                        ?>
+                        <td><input type="number" style="width:55px;" class="form-control" pattern="^[0-9]+"  min="0" placeholder="Cant." name="cant" value="<?php echo $cant; ?>"></td>
                         <?php if(isset($_GET["id_temp"])) { $id= $_GET["id_temp"];
                             ?> 
                                 <input id="id_temp" type="hidden" value="<?php echo $id ?>" name="id">     
@@ -130,17 +145,17 @@ else
 
     <div>
     <div style="float:left; width:48.5%; margin-left:25px; margin-top:25px;background-color:white; border-radius:8px; box-shadow:1px 1px 5px">
-    <div style="overflow:scroll; height:400px; width:98%; margin-left:1.5%"> 
+    <div style="overflow:scroll;overflow-x:hidden; height:390px; width:98%; margin-left:1.5%"> 
         <table class="table">
         <h5 style="padding:15px;Width:47.2%;margin-left:-12px;height:53px;background-color:#882f88;color:white; position:absolute;" >Artículos ingresados</h5>
             <thead  style="position:absolute; width:47.2%;margin-top:-43px; margin-left:-12px; background-color:white;">      
                 
                 <tr>
-                    <th scope="col" style="width:35%;">Artículos</th>
-                    <th scope="col" style="width:5%;">Cant.</th>
-                    <th scope="col" style="width:8%;"> Itbis </th>
-                    <th scope="col" style="width:10%;"> Precio </th>
-                    <th scope="col" style="width:20%;"> Total </th>
+                    <th scope="col" width="45%">Artículos</th>
+                    <th scope="col" width="10"> Cant.</th>
+                    <th scope="col" width="10%"> Itbis </th>
+                    <th scope="col" width="15%"> Precio </th>
+                    <th scope="col" width="20.5%" > Total </th>
                 </tr> <br><br><br>
 
             </thead>

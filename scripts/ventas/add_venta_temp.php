@@ -34,6 +34,6 @@
     header("location:../../views/venta/punto_de_venta.php?id_temp=$id_temp");
     }
     else{
-        header("location:../../views/venta/punto_de_venta.php?id_temp=$id_temp&disponible=$precio");
+    header("location:../../views/venta/punto_de_venta.php?id_temp=$id_temp&disponible=$precio");
     }
 ?>
