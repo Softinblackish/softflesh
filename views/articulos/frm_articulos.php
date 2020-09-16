@@ -32,8 +32,11 @@
                 <div class="form-group col-md-12">
                 <input type="text" name="descripcion" placeholder ="Descripción" class="form-control" >
                 </div>
-                <div class="form-group col-md-12">
-                <input type="number" name="stop_min" placeholder ="Stop minimo" class="form-control col-md-6" >
+                <div class="form-group col-md-6">
+                <input type="number" name="precio" placeholder ="precio" class="form-control" >
+                </div>
+                <div class="form-group col-md-6">
+                <input type="number" name="stop_min" placeholder ="Stop minimo" class="form-control" >
                 </div>
             </div>
 

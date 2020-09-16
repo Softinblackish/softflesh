@@ -4,6 +4,7 @@
     $empresa = $_SESSION["empresa_db"];
 
     $nombre=$_POST['nombre']; 
+    $precio=$_POST['precio'];
     $descripcion=$_POST["descripcion"]; 
     $cod_impuesto=$_POST['cod_impuesto']; 
     $stop_min=$_POST['stop_min']; 
@@ -14,8 +15,8 @@
 
     //echo $empresa . "" .$nombre. "" .$descripcion. "" .$stop_min. "" .$codigo_barra .$categoria .$unidad .$impuesto;
     
-    $Reg_articulos = $conexion->query( "INSERT into $empresa.tbl_articulos (nombre, descripcion, codigo_barra, cod_impuesto, stop_min,  categoria, unidad, status)
-            values ('$nombre', '$descripcion', '$codigo_barra', '$cod_impuesto', $stop_min,'$categoria','$unidad','ACTIVO')");
+    $Reg_articulos = $conexion->query( "INSERT into $empresa.tbl_articulos (nombre, precio ,descripcion, codigo_barra, cod_impuesto, stop_min,  categoria, unidad, status)
+            values ('$nombre', $precio ,'$descripcion', '$codigo_barra', '$cod_impuesto', $stop_min,'$categoria','$unidad','ACTIVO')");
 
    header('location:../../views/articulos/frm_articulos.php?registro="si" ');
 

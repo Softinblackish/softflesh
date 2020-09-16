@@ -69,7 +69,7 @@ $id_nuevo_cliente = $registro_cliente["id_cliente"] + 1;
                         <option><?php echo $row["nombre_condicion_p"];  ?></option>
                         <?php } ?>
 
-                    </select>
+                    </select> 
                 </div>
                 <div class="form-group col-md-6">
                     <input type="number" class="form-control" placeholder ="Límite de crédito" name="credito" required>

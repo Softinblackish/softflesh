@@ -1,7 +1,26 @@
 <!--  AQUI DEBE DE IR SOLAMENTE UN FORMULARIO DE REGISTRO DE COMPRAS
       SOLO HTML SIN CSS SIN JAVASCRIP SIN PHP-->
-      <?php include("../base.php"); ?>
-      <link rel="stylesheet" href="../../css/compras.css">
+<?php include("../base.php"); 
+$consulta_compras = $conexion->query("SELECT id_compra FROM $empresa.tbl_compras ORDER BY id_compra desc limit 1");
+$registro_compras = $consulta_compras->fetch_assoc();
+$id_nueva_compra = $registro_compras["id_compra"] + 1;
+$no_compra = " " . $id_nueva_compra . rand(1,5000);
+?>
+
+<?php
+function consulta_art($var_nombre){
+    $consulta_articulos = $conexion->query("SELECT precio,stop_min FROM $empresa.tbl_articulos where nombre = $var_nombre ");
+    $registro_articulos = $consulta_articulos->fetch_assoc();
+    //$precio_art = $registro_articulos["precio"];
+    //$stop_min_art = $registro_articulos["stop_min"];
+    $precio_art = 1;
+    $stop_min_art = 1;
+}
+//$nombre = $_POST['articulo'];
+
+?>
+
+<link rel="stylesheet" href="../../css/compras.css">
 <script src="../../scripts/js/time_alert.js"></script>
 <div class="container-compras">
     <div class="container form-row">
@@ -20,16 +39,13 @@
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label for="inputState">No de commpra:</label>
-                    <input type="number" name="no_compra" placeholder ="no de compra" value = <?php $no_compra = rand(1,5000); echo $no_compra ?> class="form-control">
+                    <input type="number" name="no_compra" placeholder ="no de compra" value = <?php echo $no_compra ?> class="form-control">
                 </div>
                 <div class="form-group col-md-3">
                     <label for="inputState">caducidad:</label>
-                    <input type="date" name="fecha_orden" value = <?php echo date('d-m-y') ?> class="form-control" >
+                    <input type="date" name="caducidad" value = <?php echo date('d-m-y') ?> class="form-control" >
                 </div>
-                <div class="form-group col-md-3">
-                    <label for="inputState">hora de recibido:</label>
-                    <input type="time" name="hora" class="form-control" >
-                </div>
+                
                 <div class="form-group col-md-3">
                  <label for="inputState">recibido por:</label>
                  <select name="entregar_a" class="form-control" cajeros>
@@ -46,65 +62,62 @@
                 <div class="form-group col-md-12">
                 <input type="text" name="nombre_proveedor" placeholder ="nombre y apellido del proveedor" class="form-control" >
                 </div>
-                <div class="form-group col-md-4">
-                <input type="text" name="direccion_proveedor" placeholder ="Dirección" class="form-control" >
-                </div>
-                <div class="form-group col-md-4">
-                <input type="tel" name="tel_proveedor" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder ="telefono" class="form-control" >
-                </div>
-                <div class="form-group col-md-4">
-                <input type="email" name="email_proveedor" placeholder ="@email" class="form-control" >
+                <div class="form-group col-md-6">
+                <input type="number" name="cod_proveedor" placeholder ="cod proveedor" class="form-control" >
                 </div>
             </div>
 
             <!--impuestos-->
             <label for="inputState">Datos de los Impuestos: </label><br>
             <div class="form-row">
-                <div class="form-group col-md-4">
-                    <input type="number" min = 1 name="cod_impuesto" class="form-control"  placeholder="Cod impuestos" >
+                <div class="form-group col-md-3">
+                    <input type="number" min = 1 name="cod_impuesto" class="form-control"  placeholder="Cod impuesto" >
                 </div>
-                <div class="form-group col-md-4">
-                    <input type="number" name="" class="form-control"  placeholder="valor impuestos" >
+                <div class="form-group col-md-3">
+                    <input type="text" name="" class="form-control"  placeholder="nombre impuesto" >
                 </div>
-                <div class="form-group col-md-4">
-                    <input type="number" name="comprobante" class="form-control"  placeholder="Comprobantes" >
+                <div class="form-group col-md-3">
+                    <input type="number" name="" class="form-control"  placeholder="valor impuesto" >
+                </div>
+                <div class="form-group col-md-3">
+                    <input type="number" name="comprobante" class="form-control"  placeholder="Comprobante" >
                 </div>
             </div>
 
             <label for="inputState">Datos de los productos: </label><br>
             
             <div class="form-row">
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-12">
                     <input type="text" name="articulo" class="form-control"  placeholder="articulo" >
                 </div>
-                <div class="form-group col-md-4">
-                    <input type="number" name="precio_compra" class="form-control"  placeholder="precio compra" >
+                <div class="form-group col-md-3">
+                    <input type="number" name="precio_compra" class="form-control"  placeholder="precio compra" 
+                    value = "<?php echo $precio_art ?>" >
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-3">
                     <input type="number" min = 1 name="cantidad" class="form-control"  placeholder="cantidad" >
+                </div>
+                <div class="form-group col-md-3">
+                    <input type="text" name="forma_pago" class="form-control"  placeholder="forma de pago" >
+                </div>
+                <div class="form-group col-md-3">
+                    <input type="text" name="moneda" class="form-control"  placeholder="moneda" >
                 </div>
             </div>
             
             <div class="form-row">
-                <div class="form-group col-md-4">
-                    <input type="text" name="forma_pago" class="form-control"  placeholder="forma de pago" >
+                
+                <div class="form-group col-md-3">
+                 <input type="number" name="stock" class="form-control"  placeholder="Stock" 
+                 value = "<?php echo $stop_min_art ?>" >
                 </div>
-                <div class="form-group col-md-4">
-                    <input type="text" name="moneda" class="form-control"  placeholder="moneda" >
-                </div>
-                <div class="form-group col-md-4">
-                 <input type="number" name="stock" class="form-control"  placeholder="Stock" >
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-3">
                     <input type="number" name="valor_impuestos" class="form-control"  placeholder="total con impuestos" >
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-3">
                     <input type="number" name="sin_impuestos" class="form-control"  placeholder="total sin impuestos" >
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-3">
                  <input type="number" name="valor_total" class="form-control"  placeholder="total" >
                 </div>
             </div>
@@ -148,10 +161,14 @@
                         if(isset($_GET["id_temp"]))
                         {
                                 $id=$_GET["id_temp"];
-                                $cons_art_temp = $conexion->query("select * from $empresa.tbl_compras_temp where id_venta= $id");
-                                while($reg_comp_temp = $cons_comp_temp->fetch_assoc())
+                                $consulta_art_temp = $conexion->query("select * from $empresa.tbl_compras_temp where id_venta= $id");
+                        }else
+                        {
+                            $consulta_art_temp = $conexion->query("select * from $empresa.tbl_compras_temp limit 5");
+                        }    
+                        while($reg_art_temp = $consulta_art_temp->fetch_assoc())
                                 {
-                                    ?>
+                    ?>
                                         <tr>
                                         <th><?php  echo $reg_art_temp["articulo"]; ?></th>
                                         <td><?php  echo $reg_art_temp["cantidad"]; ?></td>
@@ -159,9 +176,8 @@
                                         <td><?php  echo $reg_art_temp["total"]; ?></td>
                                         <td><a href="../../scripts/ventas/eliminar_arti_temp.php?id_articulo=<?php echo $reg_art_temp['id_art_temp']; ?> && id_temp=<?php echo $id; ?>" class="btn btn-danger"><i class="fa fa-times fa-lg"></i></a></td> 
                                         </tr>
-                                    <?php
+                    <?php
                                 }
-                        }  
                     ?>
                 </tbody>
             </table> 
