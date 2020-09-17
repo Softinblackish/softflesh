@@ -7,7 +7,7 @@
 <div id="box_lista">
 <h2>Suplidores</h2>
 <form action="" method="post">
-    <input  type="text" placeholder="Buscar" name="filtro">
+    <input id="filtro"  type="text" placeholder="Buscar" name="filtro">
     <input type="submit" class="btn btn" id="buscar" value=" Buscar">
 </form>
      <br><br>
@@ -27,6 +27,11 @@
   </thead>
   <tbody>
   <?php 
+
+
+
+
+
     $empresa = $_SESSION["empresa_db"];
     if(isset($_POST["filtro"])){
         $filtro= $_POST["filtro"];

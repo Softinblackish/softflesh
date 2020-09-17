@@ -34,8 +34,12 @@ else
 <script>
     $(document).ready(function()
     {
+        $("p").click(function()
+        {
+            alert(this);
+        });
         $("#cliente").keyup(function()
-        {    
+        {
             var cliente = $("#cliente").val();
             $.ajax
             ({
@@ -51,53 +55,78 @@ else
             }); 
         });
     });
-
 </script>
 
 <div>
-    <div style="float:left; width:48.5%; margin-left:25px; margin-top:25px;background-color:white; border-radius:8px; box-shadow:1px 1px 5px">
+    <div style="float:left; width:48.5%; margin-left:25px; margin-top:25px;background-color:white; border-radius:8px; box-shadow:1px 1px 5px; ">
+        
+    <?php
+    if(isset($_GET["disponible"]))
+        {
+        ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>No hay unidades!</strong> Comunícate con el administrador.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <?php
+        }
+        ?>
+
+        <div style="overflow:scroll;overflow-x:hidden; height:335px; width:98%; margin-left:1.5%">      
         <table class="table">
-        <h5 style="padding:15px; background-color:#882f88;color:white;" >Buscar artículos</h5>
-            <thead>
-            
+        <h5 style="padding:15px;Width:47.2%;margin-left:-12px;height:53px;background-color:#882f88;color:white; position:absolute;" >Buscar artículos</h5><br><br>
+            <thead style="position:absolute; width:47.2%;margin-top:-66.5px; margin-left:-12px; background-color:white;">
                 <tr>
                     <form action="punto_de_venta.php" method="GET">
-                    <th scope="col" style="width:16%;"><input type="text" class="form-control" name="cod" placeholder="Código"></th>
+                    <th scope="col" style="width:10%;"><input type="text" class="form-control" name="cod" placeholder="Cód."></th>
                     <?php if(isset($_GET["id_temp"])){ $id = $_GET["id_temp"]; ?>  <input type="hidden" name="id_temp" value="<?php echo $id ;?>"> <?php }?>
                     <input type="submit" style="display:none">
                     </form>
                     <form action="punto_de_venta.php" method="GET">
-                    <th scope="col" style="width:50%;"><input type="text" class="form-control" name="nom" placeholder="NOMBRE"></th>
+                    <th scope="col" style="width:25%;"><input type="text" class="form-control" name="nom" placeholder="NOMBRE"></th>
                     <?php if(isset($_GET["id_temp"])){ $id = $_GET["id_temp"]; ?> <input type="hidden" name="id_temp" value="<?php echo $id; ?>"> <?php } ?>
                     <input type="submit"style="display:none">
                     </form>
-                    <th scope="col" style="width:10%;"> ITBIS </th>
-                    <th scope="col" style="width:10%;"> Precio</th>
-                    <th scope="col" style="width:13%;">Cant.</th>
+                    <th scope="col" style="width:8%;"> ITBIS </th>
+                    <th scope="col" style="width:13%;"> Precio</th>
+                    <th scope="col" style="width:16%;"> Cant.</th>
 
-                </tr>
+                </tr><br><br>
             </thead>
-            <tbody>
+            <div>.</div>
+            <tbody >
+                    
                 <?php
-                 
                     while($registros_articulos= $consulta_articulos->fetch_assoc())
                     {
                 ?>
-                <tr>
+                <tr >
                     <th scope="row"><?php echo $registros_articulos["id_articulo"]; ?></th>
                     <td><?php echo $registros_articulos["nombre"]; ?></td>
-                    <td><?php echo $registros_articulos["itbis"]; ?></td>
-                    <td><?php echo $registros_articulos["precio"]; ?></td> 
+                    <td>$<?php echo $registros_articulos["itbis"]; ?></td>
+                    <td>$<?php echo $registros_articulos["precio"]; ?></td> 
 
                     <form action="../../scripts/ventas/add_venta_temp.php" method="GET">
                         <input type="hidden" value="<?php echo $registros_articulos["id_articulo"]; ?>" name="cod">
                         <input type="hidden" value="<?php echo $registros_articulos["nombre"]; ?>" name="nom">
                         <input type="hidden" value="<?php echo $registros_articulos["itbis"]; ?>" name="itbis">
                         <input type="hidden" value="<?php echo $registros_articulos["precio"]; ?>" name="precio">
-                        <td><input type="number" class="form-control" placeholder="Cant." name="cant" value="1"/></td>
+                        
+                        <?php if($registros_articulos["cantidad_disponible"] > 0)
+                        {
+                            $cant= 1;
+                        }
+                        else
+                        { 
+                            $cant= 0;
+                        } 
+                        ?>
+                        <td><input type="number" style="width:55px;" class="form-control" pattern="^[0-9]+"  min="0" placeholder="Cant." name="cant" value="<?php echo $cant; ?>"></td>
                         <?php if(isset($_GET["id_temp"])) { $id= $_GET["id_temp"];
                             ?> 
-                                <input type="hidden" value="<?php echo $id ?>" name="id">     
+                                <input id="id_temp" type="hidden" value="<?php echo $id ?>" name="id">     
                             <?php }?>
                         <td><button type="submit" class="btn btn-info" value="d"><i class="fa fa-arrow-circle-o-down fa-lg"></1></button></td> 
                     </form>
@@ -106,25 +135,31 @@ else
                 <?php
                   }
                   ?>
+                
             </tbody>
+                
+            
 </table>
+</div>
     </div>
 
     <div>
     <div style="float:left; width:48.5%; margin-left:25px; margin-top:25px;background-color:white; border-radius:8px; box-shadow:1px 1px 5px">
+    <div style="overflow:scroll;overflow-x:hidden; height:390px; width:98%; margin-left:1.5%"> 
         <table class="table">
-        <h5 style="padding:15px; background-color:#882f88;color:white;" >Artículos ingresados</h5>
-            <thead>      
+        <h5 style="padding:15px;Width:47.2%;margin-left:-12px;height:53px;background-color:#882f88;color:white; position:absolute;" >Artículos ingresados</h5>
+            <thead  style="position:absolute; width:47.2%;margin-top:-43px; margin-left:-12px; background-color:white;">      
                 
                 <tr>
-                    <th scope="col" style="width:60%;">Artículos</th>
-                    <th scope="col" style="width:8%;">Cant.</th>
-                    <th scope="col" style="width:10%;"> Itbis </th>
-                    <th scope="col" style="width:15%;"> Precio </th>
-                    <th scope="col" style="width:15%;"> Total </th>
-                </tr>
+                    <th scope="col" width="45%">Artículos</th>
+                    <th scope="col" width="10"> Cant.</th>
+                    <th scope="col" width="10%"> Itbis </th>
+                    <th scope="col" width="15%"> Precio </th>
+                    <th scope="col" width="20.5%" > Total </th>
+                </tr> <br><br><br>
 
             </thead>
+            <div>.</div>
             <tbody>
             <?php
                if(isset($_GET["id_temp"]))
@@ -135,11 +170,11 @@ else
                  {
                      ?>
                 <tr>
-                    <th scope="row"><?php  echo $reg_art_temp["articulo"]; ?></th>
+                    <td scope="row"><?php  echo $reg_art_temp["articulo"]; ?></td>
                     <td><?php  echo $reg_art_temp["cantidad"]; ?></td>
-                    <td><?php  echo $reg_art_temp["itbis"]; ?></td>
-                    <td><?php  echo $reg_art_temp["precio"]; ?></td>
-                    <td><?php  echo $reg_art_temp["total"]; ?></td>
+                    <td>$<?php  echo $reg_art_temp["itbis"]; ?></td>
+                    <td>$<?php  echo $reg_art_temp["precio"]; ?></td>
+                    <td>$<?php  echo $reg_art_temp["total"]; ?></td>
                     <td><a href="../../scripts/ventas/eliminar_arti_temp.php?id_articulo=<?php echo $reg_art_temp['id_art_temp']; ?> && id_temp=<?php echo $id; ?>" class="btn btn-danger"><i class="fa fa-times fa-lg"></i></a></td> 
                 </tr>
                 <?php
@@ -147,6 +182,7 @@ else
                 ?>
             </tbody>
 </table>
+</div>
     </div>
     </div>
     
@@ -154,10 +190,10 @@ else
     <div style="float:left; position:absolute; width:20%; height:750px; margin-left:77%; margin-top:25px;background-color:white; border-radius:8px; box-shadow:1px 1px 5px">
         <div>
             <h5 style="padding:15px; background-color:#882f88 ;color:white;">Información</h5>
-            <form action="../../scripts/ventas/registrar_venta.php" method="get"><br>
+            <form action="../../scripts/ventas/registrar_venta.php" method="POST"><br>
                 <div class="form-row">
                     <div class="col-md-10">
-                        <input style="border-bottom-left-radius: 0px;  border-top-left-radius: 0px;" id="cliente"   class="form-control" placeholder="Buscar cliente" name="cliente"/>
+                        <input style="border-bottom-left-radius: 0px;  border-top-left-radius: 0px;" id="cliente"   class="form-control" placeholder="Buscar cliente" name="cliente" required/>
                         <div id="caja-clientes"></div>
                     </div>
                 
@@ -222,9 +258,9 @@ else
                     }  
                 ?>
                 <!--- Solo vista ----------->  
-                <span style="margin-left:10px">Total itbis:</span>  <input max="4" style="float:right;  border-bottom-right-radius: 0px;  border-top-right-radius: 0px; " class="form-control col-md-4"  value="<?php echo $itbis_total;?>" disabled/> <br><br>
-                <span style="margin-left:10px">Total precio: </span> <input  max="5" style="float:right; border-bottom-right-radius: 0px;  border-top-right-radius: 0px;  " class="form-control col-md-4"  value="<?php echo $precio_total; ?>" disabled/><br><br>
-                <span style="margin-left:10px">Total:</span>  <input  max="4" style="float:right; border-bottom-right-radius: 0px;  border-top-right-radius: 0px;  " class="form-control col-md-4" value="<?php echo $total_total; ?>" disabled/><br><br>
+                <span style="margin-left:10px">Total itbis:</span>  <input max="4" style="float:right;  border-bottom-right-radius: 0px;  border-top-right-radius: 0px; " class="form-control col-md-4"  value="$<?php echo $itbis_total;?>" disabled/> <br><br>
+                <span style="margin-left:10px">Total precio: </span> <input  max="5" style="float:right; border-bottom-right-radius: 0px;  border-top-right-radius: 0px;  " class="form-control col-md-4"  value="$<?php echo $precio_total; ?>" disabled/><br><br>
+                <span style="margin-left:10px">Total:</span>  <input  max="4" style="float:right; border-bottom-right-radius: 0px;  border-top-right-radius: 0px;  " class="form-control col-md-4" value="$<?php echo $total_total; ?>" disabled/><br><br>
 
                 <!-------Esto es lo que realmente se envia ----->
                 <input type="hidden" name="itbis" value="<?php echo $itbis_total;?>" />
