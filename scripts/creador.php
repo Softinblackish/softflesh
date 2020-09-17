@@ -358,9 +358,8 @@ $perm = $conexion->query("
         PRIMARY KEY (`id_venta`)) ENGINE = InnoDB;
       ");
 
-
-      $tabla_categoria = $conexion->query("
-        CREATE TABLE `morel`.`ventas` ( `id_venta` INT NOT NULL AUTO_INCREMENT , `cliente` VARCHAR(200) NOT NULL , `condicion_pago` VARCHAR(50) NOT NULL , `comprobante` VARCHAR(50) NULL , `forma_pago` VARCHAR(50) NOT NULL , `itbis_total` INT(10) NOT NULL , `precio_total` INT(10) NOT NULL , `total` INT(10) NOT NULL , `fecha_creacion` TIMESTAMP NOT NULL , `creado_por` VARCHAR(100) NOT NULL , PRIMARY KEY (`id_venta`)) ENGINE = InnoDB;
+      $tabla_comprobante_reg =$conexion->query("
+      CREATE TABLE $nombre_sin_espacio.tbl_comprobantes_fiscal ( `id_comprobante` INT NOT NULL AUTO_INCREMENT , `numero` VARCHAR(50) NOT NULL , `status` VARCHAR(50) NOT NULL DEFAULT 'activo' , `creado_por` VARCHAR(100) NOT NULL , `fecha_creacion` TIMESTAMP NOT NULL , PRIMARY KEY (`id_comprobante`)) ENGINE = InnoDB;
       ");
 
 

@@ -40,6 +40,7 @@ else
         });
         $("#cliente").keyup(function()
         {
+            $("#cliente_general").hide();
             var cliente = $("#cliente").val();
             $.ajax
             ({
@@ -74,7 +75,7 @@ else
         }
         ?>
 
-        <div style="overflow:scroll;overflow-x:hidden; height:335px; width:98%; margin-left:1.5%">      
+        <div style="overflow:scroll;overflow-x:hidden; height:370px; width:98%; margin-left:1.5%">      
         <table class="table">
         <h5 style="padding:15px;Width:47.2%;margin-left:-12px;height:53px;background-color:#882f88;color:white; position:absolute;" >Buscar artículos</h5><br><br>
             <thead style="position:absolute; width:47.2%;margin-top:-66.5px; margin-left:-12px; background-color:white;">
@@ -147,8 +148,8 @@ else
     <div style="float:left; width:48.5%; margin-left:25px; margin-top:25px;background-color:white; border-radius:8px; box-shadow:1px 1px 5px">
     <div style="overflow:scroll;overflow-x:hidden; height:390px; width:98%; margin-left:1.5%"> 
         <table class="table">
-        <h5 style="padding:15px;Width:47.2%;margin-left:-12px;height:53px;background-color:#882f88;color:white; position:absolute;" >Artículos ingresados</h5>
-            <thead  style="position:absolute; width:47.2%;margin-top:-43px; margin-left:-12px; background-color:white;">      
+        <h5 style="padding:15px;Width:47.2%;margin-left:-12px;height:80px;background-color:#882f88;color:white; position:absolute;" >Artículos ingresados</h5>
+            <thead  style="position:absolute; width:47.2%;margin-top:-60px; margin-left:-12px; background-color:white;">      
                 
                 <tr>
                     <th scope="col" width="45%">Artículos</th>
@@ -156,7 +157,7 @@ else
                     <th scope="col" width="10%"> Itbis </th>
                     <th scope="col" width="15%"> Precio </th>
                     <th scope="col" width="20.5%" > Total </th>
-                </tr> <br><br><br>
+                </tr> <br><br><br><br>
 
             </thead>
             <div>.</div>
@@ -175,7 +176,7 @@ else
                     <td>$<?php  echo $reg_art_temp["itbis"]; ?></td>
                     <td>$<?php  echo $reg_art_temp["precio"]; ?></td>
                     <td>$<?php  echo $reg_art_temp["total"]; ?></td>
-                    <td><a href="../../scripts/ventas/eliminar_arti_temp.php?id_articulo=<?php echo $reg_art_temp['id_art_temp']; ?> && id_temp=<?php echo $id; ?>" class="btn btn-danger"><i class="fa fa-times fa-lg"></i></a></td> 
+                    <td><a href="../../scripts/ventas/eliminar_arti_temp.php?id_articulo=<?php echo $reg_art_temp['id_venta_temp']; ?> && id_temp=<?php echo $id; ?>" class="btn btn-danger"><i class="fa fa-times fa-lg"></i></a></td> 
                 </tr>
                 <?php
                     }}  
@@ -193,7 +194,10 @@ else
             <form action="../../scripts/ventas/registrar_venta.php" method="POST"><br>
                 <div class="form-row">
                     <div class="col-md-10">
-                        <input style="border-bottom-left-radius: 0px;  border-top-left-radius: 0px;" id="cliente"   class="form-control" placeholder="Buscar cliente" name="cliente" required/>
+                        <input style="border-bottom-left-radius: 0px;  border-top-left-radius: 0px;" id="cliente"   class="form-control" value="c" placeholder="Buscar cliente" name="cliente" required/>
+                        <select id="cliente_general" class="form-control" name="client">
+                            <option value="1"> 1| Cliente general</opction>
+                        </select>
                         <div id="caja-clientes"></div>
                     </div>
                 
@@ -216,7 +220,6 @@ else
                             <option>Consumidor final</option>
                             <option>Valor fiscal</option>
                             <option>Gubernamental</option>
-                            <option>Régimen especial </option>
                         </select>                  
                     <br></div>
 
@@ -271,7 +274,7 @@ else
 
                 </strong>
         </div> <br>
-       <?php echo "&nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp"?> <button class="btn btn" style="background-color:#882f88; color:white">Cancelar</button> <input type="submit" class="btn btn" style="background-color:#882f88; color:white;" value="Registrar">
+                <?php echo "&nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp"?> <button class="btn btn" <?php if(!isset($_GET["id_temp"])){?> disabled <?php } ?> style="background-color:#882f88; color:white">Cancelar</button> <input type="submit"<?php if(!isset($_GET["id_temp"])){?> disabled <?php } ?> class="btn btn" style="background-color:#882f88; color:white;" value="Registrar">
                 </form>
    </div> 
 </div>

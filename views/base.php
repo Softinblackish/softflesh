@@ -17,7 +17,26 @@
     <title>SoftFlesh</title>
    <link rel="stylesheet" href="../../css/base.css">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  
+   <script src="http://code.jquery.com/jquery-1.9.1.js" type="text/javascript"></script>
+    <script src="../../scripts/js/query/dist/jquery.mask.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function($){
+            $("#numero1").mask("9,99", {
+ 
+                // Generamos un evento en el momento que se rellena
+                completed:function(){
+                    $("#numero1").addClass("ok")
+                }
+            });
+ 
+            // Definimos las mascaras para cada input
+            $("#date").mask("99/99/9999");
+            $("#movil").mask("(999)-999-9999");
+            $("#letras").mask("aaa");
+            $("#comodines").mask("?");
+        });
+    </script>
+    
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>

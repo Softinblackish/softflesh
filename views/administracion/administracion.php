@@ -51,9 +51,11 @@
 
 <ul class="list-group" >
   <li class="list-group-item " style="background-color:#882f88; color:white;">Comprobantes fiscales</li>
-  <a href="../usuarios/lista_usuarios.php"><li class="list-group-item">Proveedor informal</li></a>
-  <a href="../usuarios/lista_usuarios.php"><li class="list-group-item">Gubernamental</li></a>
-  <a href="../usuarios/lista_usuarios.php"><li class="list-group-item">Consumidor final</li></a>
+  <a href="comprobantes.php?tipo=Consumidor Final"><li class="list-group-item">Consumidor final</li></a>
+  <a href="comprobantes.php?tipo=Valor fiscal"><li class="list-group-item">Valor fiscal</li></a>
+  <a href="comprobantes.php?tipo=Gastos menores"><li class="list-group-item">Gastos menores</li></a>
+  <a href="comprobantes.php?tipo=Proveedor informal"><li class="list-group-item">Proveedor informal</li></a>
+  <a href="comprobantes.php?tipo=Gubernamental"><li class="list-group-item">Gubernamental</li></a>
 </ul>
 <?php if($permisos['condiciones_p']== 1){ ?><ul class="list-group" >
   <li class="list-group-item active" style="background-color:#17a2b8;">Condición de pago</li>
