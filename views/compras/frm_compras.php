@@ -7,19 +7,7 @@ $id_nueva_compra = $registro_compras["id_compra"] + 1;
 $no_compra = " " . $id_nueva_compra . rand(1,5000);
 ?>
 
-<?php
-function consulta_art($var_nombre){
-    $consulta_articulos = $conexion->query("SELECT precio,stop_min FROM $empresa.tbl_articulos where nombre = $var_nombre ");
-    $registro_articulos = $consulta_articulos->fetch_assoc();
-    //$precio_art = $registro_articulos["precio"];
-    //$stop_min_art = $registro_articulos["stop_min"];
-    $precio_art = 1;
-    $stop_min_art = 1;
-}
-//$nombre = $_POST['articulo'];
-
-?>
-
+                            
 <link rel="stylesheet" href="../../css/compras.css">
 <script src="../../scripts/js/time_alert.js"></script>
 <div class="container-compras">
@@ -90,6 +78,24 @@ function consulta_art($var_nombre){
                 <div class="form-group col-md-12">
                     <input type="text" name="articulo" class="form-control"  placeholder="articulo" >
                 </div>
+
+                <?php
+                    if(isset($_POST["articulo"]))
+                    {
+                        $art=$_GET["articulo"];
+                        $consulta_articulos = $conexion->query("SELECT precio,stop_min FROM $empresa.tbl_articulos where nombre = $art limit 1 ");
+                        
+                    }else
+                    {
+                        $consulta_articulos = $conexion->query("SELECT precio,stop_min FROM $empresa.tbl_articulos 
+                        limit 1 ");
+                    }
+                    while($reg_art_temp = $consulta_articulos->fetch_assoc())
+                                                {
+                    $precio_art   = $reg_art_temp["precio"];
+                    $stop_min_art = $reg_art_temp["stop_min"];
+                ?>
+
                 <div class="form-group col-md-3">
                     <input type="number" name="precio_compra" class="form-control"  placeholder="precio compra" 
                     value = "<?php echo $precio_art ?>" >
@@ -111,6 +117,7 @@ function consulta_art($var_nombre){
                  <input type="number" name="stock" class="form-control"  placeholder="Stock" 
                  value = "<?php echo $stop_min_art ?>" >
                 </div>
+                                                <?php }?>
                 <div class="form-group col-md-3">
                     <input type="number" name="valor_impuestos" class="form-control"  placeholder="total con impuestos" >
                 </div>
@@ -196,3 +203,27 @@ function consulta_art($var_nombre){
         </form>
     </div>    
 </div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    //cargar_datos();
+    $('#articulo').change(function(){
+      cargar_datos();
+    });
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+    
+    function cargar_datos(){
+        $.ajax({
+            type:"post",
+            url:"datos.php",
+            data:"Datos",
+            success:function(r){
+                $('#valor1').html(r);
+            }
+        });
+    }
+});
+</script>
