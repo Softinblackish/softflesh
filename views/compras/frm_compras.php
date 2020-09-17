@@ -7,6 +7,7 @@ $id_nueva_compra = $registro_compras["id_compra"] + 1;
 $no_compra = " " . $id_nueva_compra . rand(1,5000);
 ?>
 
+<script src="../../scripts/compras/articulos_compras.js"></script>
                             
 <link rel="stylesheet" href="../../css/compras.css">
 <script src="../../scripts/js/time_alert.js"></script>
@@ -76,29 +77,20 @@ $no_compra = " " . $id_nueva_compra . rand(1,5000);
             
             <div class="form-row">
                 <div class="form-group col-md-12">
-                    <input type="text" name="articulo" class="form-control"  placeholder="articulo" >
+                    <select id="articulo" name="articulo" class="form-control" placeholder="articulo">
+                        <?php $articulos = $conexion->query("SELECT nombre FROM $empresa.tbl_articulos"); 
+                        while($row = $articulos->fetch_assoc()) {
+                        ?>
+                        <option><?php echo $row["nombre"];  ?></option>
+                        <?php } ?>
+
+                    </select> 
                 </div>
 
-                <?php
-                    if(isset($_POST["articulo"]))
-                    {
-                        $art=$_GET["articulo"];
-                        $consulta_articulos = $conexion->query("SELECT precio,stop_min FROM $empresa.tbl_articulos where nombre = $art limit 1 ");
-                        
-                    }else
-                    {
-                        $consulta_articulos = $conexion->query("SELECT precio,stop_min FROM $empresa.tbl_articulos 
-                        limit 1 ");
-                    }
-                    while($reg_art_temp = $consulta_articulos->fetch_assoc())
-                                                {
-                    $precio_art   = $reg_art_temp["precio"];
-                    $stop_min_art = $reg_art_temp["stop_min"];
-                ?>
+                
 
                 <div class="form-group col-md-3">
-                    <input type="number" name="precio_compra" class="form-control"  placeholder="precio compra" 
-                    value = "<?php echo $precio_art ?>" >
+                    <input type="number" name="precio_compra" class="form-control" id = "precio_compra" placeholder="precio compra" >
                 </div>
                 <div class="form-group col-md-3">
                     <input type="number" min = 1 name="cantidad" class="form-control"  placeholder="cantidad" >
@@ -114,10 +106,9 @@ $no_compra = " " . $id_nueva_compra . rand(1,5000);
             <div class="form-row">
                 
                 <div class="form-group col-md-3">
-                 <input type="number" name="stock" class="form-control"  placeholder="Stock" 
-                 value = "<?php echo $stop_min_art ?>" >
+                 <input type="number" name="stock" class="form-control"  placeholder="Stock" id = "stock" >
                 </div>
-                                                <?php }?>
+                                                
                 <div class="form-group col-md-3">
                     <input type="number" name="valor_impuestos" class="form-control"  placeholder="total con impuestos" >
                 </div>
@@ -136,11 +127,6 @@ $no_compra = " " . $id_nueva_compra . rand(1,5000);
                 </div>
                 
             </div>
-
-
-
-            
-            
 
             <div class="form-row">
                 
@@ -204,26 +190,3 @@ $no_compra = " " . $id_nueva_compra . rand(1,5000);
     </div>    
 </div>
 
-<script type="text/javascript">
-$(document).ready(function(){
-    //cargar_datos();
-    $('#articulo').change(function(){
-      cargar_datos();
-    });
-});
-</script>
-<script type="text/javascript">
-$(document).ready(function(){
-    
-    function cargar_datos(){
-        $.ajax({
-            type:"post",
-            url:"datos.php",
-            data:"Datos",
-            success:function(r){
-                $('#valor1').html(r);
-            }
-        });
-    }
-});
-</script>
