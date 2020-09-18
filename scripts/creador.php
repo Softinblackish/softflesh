@@ -19,10 +19,12 @@
       $nombre_sin_espacio = str_replace(" ", "_", $db_empresa);
       $registrar_empresa = $conexion->query("INSERT INTO empresas_suscritas.informacion_empresa (nombre_empresa, direccion_empresa, telefono_empresa, rnc_empresa, correo_empresa, encargado, telefono_encargado) value ('$db_empresa','$direccion','$telefono', '$rnc', '$correo','$encargado', '$tel_encargado')");
       $crear_db = $conexion->query("CREATE DATABASE IF NOT EXISTS $nombre_sin_espacio");
+      
       $tabla_articulo = $conexion->query("
         CREATE TABLE $nombre_sin_espacio.tbl_articulos (
         `id_articulo` int(11) NOT NULL AUTO_INCREMENT ,
         `nombre` varchar(100),
+        `precio` float,
         `descripcion` varchar(200),
         `cod_impuesto` varchar(100),
         `stop_min` int(10),

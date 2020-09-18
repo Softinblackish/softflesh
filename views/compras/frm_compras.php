@@ -3,11 +3,17 @@
 <?php include("../base.php"); 
 $consulta_compras = $conexion->query("SELECT id_compra FROM $empresa.tbl_compras ORDER BY id_compra desc limit 1");
 $registro_compras = $consulta_compras->fetch_assoc();
-$id_nueva_compra = $registro_compras["id_compra"] + 1;
-$no_compra = " " . $id_nueva_compra . rand(1,5000);
+if($consulta_compras->num_rows >= 1 ){
+    $id_nueva_compra = $registro_compras["id_compra"] + 1;
+    $no_compra = " " . $id_nueva_compra . rand(1,5000);
+}else{
+    $id_nueva_compra =  1;
+    $no_compra = " " . $id_nueva_compra . rand(1,5000);
+}
+
 ?>
 
-<script src="../../scripts/compras/articulos_compras.js"></script>
+<script src="../../scripts/compras/articulosCompras.js"></script>
                             
 <link rel="stylesheet" href="../../css/compras.css">
 <script src="../../scripts/js/time_alert.js"></script>

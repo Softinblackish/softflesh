@@ -2,6 +2,7 @@
       SOLO HTML SIN CSS SIN JAVASCRIP SIN PHP-->
       <?php include("../base.php"); ?>
 <link rel="stylesheet" href="../../css/articulos.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
 <script src="../../scripts/js/time_alert.js"></script>
 <div class="container-articulos">
     <div class="container form-row">

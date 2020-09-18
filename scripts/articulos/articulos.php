@@ -13,7 +13,7 @@
     $unidad=$_POST['unidad'];
    
 
-    //echo $empresa . "" .$nombre. "" .$descripcion. "" .$stop_min. "" .$codigo_barra .$categoria .$unidad .$impuesto;
+    //echo $empresa . " " .$nombre. " ".$precio." ".$descripcion. " " .$stop_min. " " .$codigo_barra." ".$categoria." ".$unidad. " ".$cod_impuesto;
     
     $Reg_articulos = $conexion->query( "INSERT into $empresa.tbl_articulos (nombre, precio ,descripcion, codigo_barra, cod_impuesto, stop_min,  categoria, unidad, status)
             values ('$nombre', $precio ,'$descripcion', '$codigo_barra', '$cod_impuesto', $stop_min,'$categoria','$unidad','ACTIVO')");
