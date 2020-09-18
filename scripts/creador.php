@@ -48,7 +48,7 @@
         PRIMARY KEY (`id_cod_impuesto`)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8
       ");
-
+//tabla tbl compras
       $tabla_compra = $conexion->query("
       CREATE TABLE $nombre_sin_espacio.tbl_compras (
         `id_compra` int(11) NOT NULL AUTO_INCREMENT,
@@ -59,9 +59,7 @@
         `forma_pago` varchar(50),
         `moneda` varchar(50),
         `entregar_a` varchar(200),
-        `nota` varchar(300),
         `fecha_orden` timestamp DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-        `caducidad` date,
         `condicion_pago` varchar(100),
         `valor_impuestos` int(11),
         `sin_impuestos` int(11),
@@ -70,18 +68,7 @@
         PRIMARY KEY (`id_compra`)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8
       ");
-
-      /*
-      `hora` TIME,
-        `articulo` varchar(100),
-        `tel_proveedor` VARCHAR(15),
-        `direccion_proveedor` varchar(100),
-        `email_proveedor` varchar(45),
-        `precio_compra` DOUBLE,
-        `stock` int(11),
-        `cantidad` int(11),
-      */
-
+//tabla tbl compras temp
       $tabla_compra = $conexion->query("
       CREATE TABLE $nombre_sin_espacio.tbl_compras_temp (
         `id_compra` int(11) NOT NULL AUTO_INCREMENT,
@@ -92,9 +79,7 @@
         `forma_pago` varchar(50),
         `moneda` varchar(50),
         `entregar_a` varchar(200),
-        `nota` varchar(300),
         `fecha_orden` timestamp DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-        `caducidad` date,
         `condicion_pago` varchar(100),
         `valor_impuestos` int(11),
         `sin_impuestos` int(11),
@@ -103,7 +88,7 @@
         PRIMARY KEY (`id_compra`)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8
       ");
-
+//tabla tbl compras articulos temp
       $tabla_compra = $conexion->query("
       CREATE TABLE $nombre_sin_espacio.tbl_art_compras_temp (
         `id_compra` int(11) NOT NULL AUTO_INCREMENT,
@@ -112,11 +97,13 @@
         `precio_compra` DOUBLE,
         `cantidad` int(11),
         `stock` int(11),
+        `caducidad` date,
+        `nota` varchar(300),
         `fecha_orden` timestamp DEFAULT current_timestamp() ON UPDATE current_timestamp(),
         PRIMARY KEY (`id_compra`)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8
       ");
-
+//tabla tbl compras articulos
       $tabla_compra = $conexion->query("
       CREATE TABLE $nombre_sin_espacio.tbl_art_compras (
         `id_compra` int(11) NOT NULL AUTO_INCREMENT,
@@ -125,11 +112,13 @@
         `precio_compra` DOUBLE,
         `cantidad` int(11),
         `stock` int(11),
+        `caducidad` date,
+        `nota` varchar(300),
         `fecha_orden` timestamp DEFAULT current_timestamp() ON UPDATE current_timestamp(),
         PRIMARY KEY (`id_compra`)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8
       ");
-      
+ //Esta tabla no la uso    
       $tabla_det_compra = $conexion->query("
       CREATE TABLE $nombre_sin_espacio.tbl_det_compras (
         `id_det_compra` int(11) NOT NULL AUTO_INCREMENT,
