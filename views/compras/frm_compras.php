@@ -1,22 +1,25 @@
 <!--  AQUI DEBE DE IR SOLAMENTE UN FORMULARIO DE REGISTRO DE COMPRAS
       SOLO HTML SIN CSS SIN JAVASCRIP SIN PHP-->
+      <!-- php -->
 <?php include("../base.php"); 
-$consulta_compras = $conexion->query("SELECT id_compra FROM $empresa.tbl_compras ORDER BY id_compra desc limit 1");
-$registro_compras = $consulta_compras->fetch_assoc();
-if($consulta_compras->num_rows >= 1 ){
-    $id_nueva_compra = $registro_compras["id_compra"] + 1;
-    $no_compra = " " . $id_nueva_compra . rand(1,5000);
-}else{
-    $id_nueva_compra =  1;
-    $no_compra = " " . $id_nueva_compra . rand(1,5000);
-}
+    $consulta_compras = $conexion->query("SELECT id_compra FROM $empresa.tbl_compras ORDER BY id_compra desc limit 1");
+    $registro_compras = $consulta_compras->fetch_assoc();
+    if($consulta_compras->num_rows >= 1 ){
+        $id_nueva_compra = $registro_compras["id_compra"] + 1;
+        $no_compra = " " . $id_nueva_compra . rand(1,5000);
+    }else{
+        $id_nueva_compra =  1;
+        $no_compra = " " . $id_nueva_compra . rand(1,5000);
+    }
 
 ?>
-
-<script src="../../scripts/compras/articulosCompras.js"></script>
-                            
+      <!-- js -->
+<script src="../../scripts/compras/articulosCompras.js"></script>                            
 <link rel="stylesheet" href="../../css/compras.css">
 <script src="../../scripts/js/time_alert.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
 <div class="container-compras">
     <div class="container form-row">
         <form id="form" action="../../scripts/compras/compras_temp.php" method="post">
@@ -87,13 +90,11 @@ if($consulta_compras->num_rows >= 1 ){
                         <?php $articulos = $conexion->query("SELECT nombre FROM $empresa.tbl_articulos"); 
                         while($row = $articulos->fetch_assoc()) {
                         ?>
-                        <option><?php echo $row["nombre"];  ?></option>
+                        <option value = <?php echo $row["nombre"];  ?> ><?php echo $row["nombre"];  ?></option>
                         <?php } ?>
 
                     </select> 
                 </div>
-
-                
 
                 <div class="form-group col-md-3">
                     <input type="number" name="precio_compra" class="form-control" id = "precio_compra" placeholder="precio compra" >
