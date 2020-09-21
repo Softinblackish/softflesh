@@ -1,8 +1,13 @@
 <!--  AQUI DEBE DE IR SOLAMENTE UN FORMULARIO DE REGISTRO DE ARTICULOS 
       SOLO HTML SIN CSS SIN JAVASCRIP SIN PHP-->
+
+      <!-- php -->
       <?php include("../base.php"); ?>
-<link rel="stylesheet" href="../../css/articulos.css">
-<script src="../../scripts/js/time_alert.js"></script>
+      <!-- js -->
+      <link rel="stylesheet" href="../../css/articulos.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+      <script src="../../scripts/js/time_alert.js"></script>
+
 <div class="container-articulos">
     <div class="container form-row">
 
