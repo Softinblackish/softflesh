@@ -16,7 +16,7 @@
         $consulta_comprobante = $conexion->query("SELECT * FROM $empresa.tbl_comprobantes where tipo = '$comprobante'");
         $registro_comprobante = $consulta_comprobante->fetch_assoc();
         
-        $proximo = $registro_comprobante["proximo"];
+        $proximo = $registro_comprobante["proximo"]+1;
         $numero_ncf=$registro_comprobante["proximo"];
         $ultimo = $registro_comprobante["maximo"];
         $alerta = $registro_comprobante["cantidad_alerta"];
