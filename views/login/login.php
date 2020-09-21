@@ -33,7 +33,7 @@
                     </div>
                     <div class="form-group" >
                         
-                        <input class="form-control" type="text" placeholder="&#xe210; Contraseña" name="pass" >
+                        <input class="form-control" type="password" placeholder="&#xe210; Contraseña" name="pass" >
                     </div>
                 </center>
                     <input type="submit" style="margin-left:105px;" value="Acceder" class="btn btn" id="enviar"/> <button style="margin-left:20px;" class="btn btn" id="enviar" >Cancelar</button>

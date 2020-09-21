@@ -31,35 +31,14 @@ else
 
 ?>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-<script>
-    $(document).ready(function()
-    {
-        $("p").click(function()
-        {
-            alert(this);
-        });
-        $("#cliente").keyup(function()
-        {
-            $("#cliente_general").hide();
-            var cliente = $("#cliente").val();
-            $.ajax
-            ({
-                type:"post",
-                url:"../../scripts/ventas/buscar_clientes.php",
-                dataType:"html",
-                data:"nombre="+cliente,
-                success: function(data)
-                {
-                    $("#caja-clientes").empty();
-                    $("#caja-clientes").append(data);
-                }
-            }); 
-        });
-    });
+<script src="../../scripts/js/llamada_clientes.js"></script>
+<script type="text/javascript">
+    window.history.forward();
+    function sinVueltaAtras(){ window.history.forward(); }
 </script>
 
 <div>
-    <div style="float:left; width:48.5%; margin-left:25px; margin-top:25px;background-color:white; border-radius:8px; box-shadow:1px 1px 5px; ">
+    <div onload="sinVueltaAtras();" onpageshow="if (event.persisted) sinVueltaAtras();" onunload="" style="float:left; width:48.5%; margin-left:25px; margin-top:25px;background-color:white; border-radius:8px; box-shadow:1px 1px 5px; ">
         
     <?php
     if(isset($_GET["disponible"]))
@@ -94,25 +73,33 @@ else
                     <th scope="col" style="width:13%;"> Precio</th>
                     <th scope="col" style="width:16%;"> Cant.</th>
 
-                </tr><br><br>
+                </tr><br><br><br>
             </thead>
-            <div>.</div>
+            
             <tbody >
                     
                 <?php
+
                     while($registros_articulos= $consulta_articulos->fetch_assoc())
                     {
+                        $cod_impuesto = $registros_articulos["cod_impuesto"]; 
+                        $consulta_cod_impuestos = $conexion->query("SELECT * FROM $empresa.tbl_cod_impuestos where id_cod_impuesto = $cod_impuesto");
+                        $registro_cod_impuestos = $consulta_cod_impuestos->fetch_assoc();
+                        $convirtiendo_porciento = $registro_cod_impuestos["porciento"] / 100 ;
+                        $itbis = $registros_articulos["precio"] * $convirtiendo_porciento;
+                        
                 ?>
                 <tr >
+                        
                     <th scope="row"><?php echo $registros_articulos["id_articulo"]; ?></th>
-                    <td><?php echo $registros_articulos["nombre"]; ?></td>
-                    <td>$<?php echo $registros_articulos["itbis"]; ?></td>
+                    <td width="40%"><?php echo $registros_articulos["nombre"]; ?></td>
+                    <td>$<?php echo $itbis ?></td>
                     <td>$<?php echo $registros_articulos["precio"]; ?></td> 
 
                     <form action="../../scripts/ventas/add_venta_temp.php" method="GET">
                         <input type="hidden" value="<?php echo $registros_articulos["id_articulo"]; ?>" name="cod">
                         <input type="hidden" value="<?php echo $registros_articulos["nombre"]; ?>" name="nom">
-                        <input type="hidden" value="<?php echo $registros_articulos["itbis"]; ?>" name="itbis">
+                        <input type="hidden" value="<?php echo $itbis ?>" name="itbis">
                         <input type="hidden" value="<?php echo $registros_articulos["precio"]; ?>" name="precio">
                         
                         <?php if($registros_articulos["cantidad_disponible"] > 0)
@@ -124,7 +111,7 @@ else
                             $cant= 0;
                         } 
                         ?>
-                        <td><input type="number" style="width:55px;" class="form-control" pattern="^[0-9]+"  min="0" placeholder="Cant." name="cant" value="<?php echo $cant; ?>"></td>
+                        <td width="10%"><input type="number" style="width:55px;" class="form-control" pattern="^[0-9]+"  min="0" max="<?php echo $registros_articulos["cantidad_disponible"]; ?>" placeholder="Cant." name="cant" value="<?php echo $cant; ?>"></td>
                         <?php if(isset($_GET["id_temp"])) { $id= $_GET["id_temp"];
                             ?> 
                                 <input id="id_temp" type="hidden" value="<?php echo $id ?>" name="id">     
@@ -196,7 +183,7 @@ else
                     <div class="col-md-10">
                         <input style="border-bottom-left-radius: 0px;  border-top-left-radius: 0px;" id="cliente"   class="form-control" value="c" placeholder="Buscar cliente" name="cliente" required/>
                         <select id="cliente_general" class="form-control" name="client">
-                            <option value="1"> 1| Cliente general</opction>
+                            <option value="1"> 1| Genérico</opction>
                         </select>
                         <div id="caja-clientes"></div>
                     </div>
@@ -272,9 +259,10 @@ else
                 <input type="hidden" name="id_temp" value="<?php echo $id; ?>"
 
 
-                </strong>
+            </strong>
         </div> <br>
                 <?php echo "&nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp"?> <button class="btn btn" <?php if(!isset($_GET["id_temp"])){?> disabled <?php } ?> style="background-color:#882f88; color:white">Cancelar</button> <input type="submit"<?php if(!isset($_GET["id_temp"])){?> disabled <?php } ?> class="btn btn" style="background-color:#882f88; color:white;" value="Registrar">
                 </form>
    </div> 
+   
 </div>

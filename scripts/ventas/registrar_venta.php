@@ -16,18 +16,13 @@
         $consulta_comprobante = $conexion->query("SELECT * FROM $empresa.tbl_comprobantes where tipo = '$comprobante'");
         $registro_comprobante = $consulta_comprobante->fetch_assoc();
         
-        $proximo = $registro_comprobante["proximo"] + 1;
+        $proximo = $registro_comprobante["proximo"];
         $numero_ncf=$registro_comprobante["proximo"];
         $ultimo = $registro_comprobante["maximo"];
         $alerta = $registro_comprobante["cantidad_alerta"];
         $cantidad_alerta = $alerta + $proximo;
         echo $cantidad_alerta;
-        if($cantidad_alerta > $registro_comprobante["maximo"])
-        { 
-            header("location: ../../views/venta/punto_de_venta.php?id_temp=$id_temp & alerta_ncf=true");
-        }
-        else
-        {
+    
 
             $insertar_venta = $conexion->query("INSERT INTO $empresa.tbl_ventas (id_venta_temp, id_cliente, condicion_pago, tipo_comprobante, comprobante, forma_pago, itbis, precio, total, creado_por) 
             values($id_temp, $cliente,'$condicion', '$comprobante','$numero_ncf', '$forma', $itebis, $precio, $total, '$usuario')");
@@ -51,6 +46,6 @@
         
             header("location: ../../views/venta/factura_venta.php?id_venta=$id ");
        
-    }
+    
     
 ?>

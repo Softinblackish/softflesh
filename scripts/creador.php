@@ -25,6 +25,7 @@
         `nombre` varchar(100),
         `descripcion` varchar(200),
         `cod_impuesto` varchar(100),
+        `precio` int(10),
         `stop_min` int(10),
         `codigo_barra` varchar(200),
         `categoria` varchar(50),
@@ -44,7 +45,9 @@
       CREATE TABLE $nombre_sin_espacio.tbl_cod_impuestos (
         `id_cod_impuesto` int(11) NOT NULL AUTO_INCREMENT ,
         `nom_codigo` varchar(100) NOT NULL,
+        `descripcion` varchar(200) NOT NULL,
         `porciento` int(3) NOT NULL,
+        `creado_por` varchar(150) NOT NULL,
         PRIMARY KEY (`id_cod_impuesto`)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8
       ");
@@ -88,7 +91,8 @@
         PRIMARY KEY (`id_compra`)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8
       ");
-//tabla tbl compras articulos temp
+
+
       $tabla_compra = $conexion->query("
       CREATE TABLE $nombre_sin_espacio.tbl_art_compras_temp (
         `id_compra` int(11) NOT NULL AUTO_INCREMENT,
@@ -297,14 +301,8 @@ $perm = $conexion->query("
       ");
 
       $tabla_categoria = $conexion->query("
-      CREATE TABLE $nombre_sin_espacio.tbl_condiciones_pago (
-        `id_condicion_p` int(11) NOT NULL,
-        `nombre_condicion_p` varchar(200) NOT NULL,
-        `dias_condicion_p` varchar(100) NOT NULL,
-        `descripcion_condicion_p` varchar(200) ,
-        `creado_por` varchar(100) NOT NULL,
-        `fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+      CREATE TABLE $nombre_sin_espacio.tbl_condiciones_pago ( `id_condicion_p` INT NOT NULL AUTO_INCREMENT , `nombre_condicion_p` VARCHAR(100) NOT NULL , `dias_condicion_p` VARCHAR(10) NOT NULL , `descripcion_condicion_p` VARCHAR(200) NULL , `creado_por` VARCHAR(150) NOT NULL , `fecha_creacion` TIMESTAMP NOT NULL , PRIMARY KEY (`id_condicion_p`)) ENGINE = InnoDB;
+
       ");
       
       $tabla_categoria = $conexion->query("
@@ -326,29 +324,30 @@ $perm = $conexion->query("
          `limite_credito` INT(10) , 
          `condicion_pago` VARCHAR(100) , 
          `status` VARCHAR(10) NOT NULL , PRIMARY KEY (`id_cliente`)) ENGINE = InnoDB;
+      ");
+
+      $tabla_venta_temp = $conexion->query("
+      CREATE TABLE $nombre_sin_espacio.tbl_venta_temp ( `id_venta_temp` INT NOT NULL AUTO_INCREMENT , `id_venta` INT(10) NOT NULL , `id_articulo` INT(10) NOT NULL , `articulo` VARCHAR(150) NOT NULL , `itbis` INT(10) NOT NULL , `precio` INT(10) NOT NULL , `total` INT(10) NOT NULL , `creado_por` VARCHAR(100) NOT NULL , `cantidad` INT(10) NOT NULL , `fecha_creacion` TIMESTAMP NOT NULL , PRIMARY KEY (`id_venta_temp`)) ENGINE = InnoDB;
 
       ");
 
       $tabla_venta = $conexion->query("
-        CREATE TABLE $nombre_sin_espacio.tbl_ventas ( 
-        `id_venta` INT NOT NULL AUTO_INCREMENT , 
-        `id_venta_temp` INT NOT NULL , 
-        `id_cliente` INT NOT NULL , 
-        `comprobante` INT NULL , 
-        `condicion_pago` INT NOT NULL , 
-        `forma_pago` INT NOT NULL , 
-        `itbis` INT NOT NULL , 
-        `precio` INT NOT NULL , 
-        `total` INT NOT NULL , 
-        `creado_por` INT NOT NULL , 
-        `fecha_creacion` TIMESTAMP NOT NULL , 
-        `modificado_por` VARCHAR NULL , 
-        `fecha_modificacion` DATE NULL , 
-        PRIMARY KEY (`id_venta`)) ENGINE = InnoDB;
+      CREATE TABLE $nombre_sin_espacio.tbl_ventas ( `id_venta` INT NOT NULL AUTO_INCREMENT , `id_venta_temp` INT(10) NOT NULL , `id_cliente` INT(10) NOT NULL , `tipo_comprobante` VARCHAR(150) NOT NULL , `condicion_pago` VARCHAR(150) NOT NULL , `forma_pago` VARCHAR(50) NOT NULL , `itbis` INT(10) NOT NULL , `precio` INT(10) NOT NULL , `total` INT(10) NOT NULL , `comprobante` VARCHAR(100) NOT NULL , `creado_por` VARCHAR(150) NOT NULL , `fecha_creacion` TIMESTAMP NOT NULL , `modificado_por` VARCHAR(150) NULL , `fecha_modificacion` DATE NULL , PRIMARY KEY (`id_venta`)) ENGINE = InnoDB;
+
       ");
 
-      $tabla_comprobante_reg =$conexion->query("
-      CREATE TABLE $nombre_sin_espacio.tbl_comprobantes_fiscal ( `id_comprobante` INT NOT NULL AUTO_INCREMENT , `numero` VARCHAR(50) NOT NULL , `status` VARCHAR(50) NOT NULL DEFAULT 'activo' , `creado_por` VARCHAR(100) NOT NULL , `fecha_creacion` TIMESTAMP NOT NULL , PRIMARY KEY (`id_comprobante`)) ENGINE = InnoDB;
+      
+      $tabla_comprobantes = $conexion->query("
+      CREATE TABLE $nombre_sin_espacio.tbl_comprobantes (
+        `id_comprobante` int(11) NOT NULL AUTO_INCREMENT,
+        `tipo` varchar(100) NOT NULL,
+        `proximo` int(11) NOT NULL,
+        `maximo` int(11) NOT NULL,
+        `cantidad_alerta` int(11) NOT NULL,
+        `modificado por` varchar(200) NOT NULL,
+        `fecha_modificado` timestamp NOT NULL DEFAULT current_timestamp(),
+        PRIMARY KEY (`id_comprobante`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+      
       ");
 
 
