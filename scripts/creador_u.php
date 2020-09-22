@@ -17,6 +17,13 @@
         ('$nombre','$contraseña','super_admin','activo')
         
         ");
+    $tipos_comprobantes = $conexion->query(" INSERT INTO $empresa.tbl_comprobantes (tipo, proximo, maximo, cantidad_alerta) values ('Valor fiscal',1,5,1)");
+    $tipos_comprobantes = $conexion->query(" INSERT INTO $empresa.tbl_comprobantes (tipo, proximo, maximo, cantidad_alerta) values ('Consumidor final',1,5,1)");
+    $tipos_comprobantes = $conexion->query(" INSERT INTO $empresa.tbl_comprobantes (tipo, proximo, maximo, cantidad_alerta) values ('Gubernamental',1,5,1)");
+    $tipos_comprobantes = $conexion->query(" INSERT INTO $empresa.tbl_comprobantes (tipo, proximo, maximo, cantidad_alerta) values ('Proveedor informal',1,5,1)");
+    $tipos_comprobantes = $conexion->query(" INSERT INTO $empresa.tbl_comprobantes (tipo, proximo, maximo, cantidad_alerta) values ('Gastos menores',1,5,1)");
+    $auto_condicion_p = $conexion->query(" INSERT INTO $empresa.tbl_condiciones_pago (nombre_condicion_p, dias_condicion_p, descripcion_condicion_p, creado_por) values ('Al contado','0','fsfs','SYSTEM')");
+    $auto_cod_impuesto = $conexion->query("INSERT INTO $empresa.tbl_cod_impuestos (nom_codigo, porciento) values ('N/A',0)");
     $auto_rol = $conexion->query("INSERT INTO $empresa.roles (nombre_rol, descripcion_rol, creado_por) VALUES ('super_admin','Rol del inscriptor', 'SYSTEM')");
     $auto_permisos = $conexion->query("INSERT INTO $empresa.tbl_permisos (rol) VALUES ('super_admin')");
     $auto_cliente = $conexion->query("INSERT INTO $empresa.tbl_clientes (nombre_cliente, tipo_comprobante, condicion_pago) values ('Genérico','Consumidor final','Al contado')");

@@ -31,34 +31,14 @@ else
 
 ?>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-<script>
-    $(document).ready(function()
-    {
-        $("p").click(function()
-        {
-            alert(this);
-        });
-        $("#cliente").keyup(function()
-        {
-            var cliente = $("#cliente").val();
-            $.ajax
-            ({
-                type:"post",
-                url:"../../scripts/ventas/buscar_clientes.php",
-                dataType:"html",
-                data:"nombre="+cliente,
-                success: function(data)
-                {
-                    $("#caja-clientes").empty();
-                    $("#caja-clientes").append(data);
-                }
-            }); 
-        });
-    });
+<script src="../../scripts/js/llamada_clientes.js"></script>
+<script type="text/javascript">
+    window.history.forward();
+    function sinVueltaAtras(){ window.history.forward(); }
 </script>
 
 <div>
-    <div style="float:left; width:48.5%; margin-left:25px; margin-top:25px;background-color:white; border-radius:8px; box-shadow:1px 1px 5px; ">
+    <div onload="sinVueltaAtras();" onpageshow="if (event.persisted) sinVueltaAtras();" onunload="" style="float:left; width:48.5%; margin-left:25px; margin-top:25px;background-color:white; border-radius:8px; box-shadow:1px 1px 5px; ">
         
     <?php
     if(isset($_GET["disponible"]))
@@ -74,7 +54,7 @@ else
         }
         ?>
 
-        <div style="overflow:scroll;overflow-x:hidden; height:335px; width:98%; margin-left:1.5%">      
+        <div style="overflow:scroll;overflow-x:hidden; height:370px; width:98%; margin-left:1.5%">      
         <table class="table">
         <h5 style="padding:15px;Width:47.2%;margin-left:-12px;height:53px;background-color:#882f88;color:white; position:absolute;" >Buscar artículos</h5><br><br>
             <thead style="position:absolute; width:47.2%;margin-top:-66.5px; margin-left:-12px; background-color:white;">
@@ -93,25 +73,33 @@ else
                     <th scope="col" style="width:13%;"> Precio</th>
                     <th scope="col" style="width:16%;"> Cant.</th>
 
-                </tr><br><br>
+                </tr><br><br><br>
             </thead>
-            <div>.</div>
+            
             <tbody >
                     
                 <?php
+
                     while($registros_articulos= $consulta_articulos->fetch_assoc())
                     {
+                        $cod_impuesto = $registros_articulos["cod_impuesto"]; 
+                        $consulta_cod_impuestos = $conexion->query("SELECT * FROM $empresa.tbl_cod_impuestos where id_cod_impuesto = $cod_impuesto");
+                        $registro_cod_impuestos = $consulta_cod_impuestos->fetch_assoc();
+                        $convirtiendo_porciento = $registro_cod_impuestos["porciento"] / 100 ;
+                        $itbis = $registros_articulos["precio"] * $convirtiendo_porciento;
+                        
                 ?>
                 <tr >
+                        
                     <th scope="row"><?php echo $registros_articulos["id_articulo"]; ?></th>
-                    <td><?php echo $registros_articulos["nombre"]; ?></td>
-                    <td>$<?php echo $registros_articulos["itbis"]; ?></td>
+                    <td width="40%"><?php echo $registros_articulos["nombre"]; ?></td>
+                    <td>$<?php echo $itbis ?></td>
                     <td>$<?php echo $registros_articulos["precio"]; ?></td> 
 
                     <form action="../../scripts/ventas/add_venta_temp.php" method="GET">
                         <input type="hidden" value="<?php echo $registros_articulos["id_articulo"]; ?>" name="cod">
                         <input type="hidden" value="<?php echo $registros_articulos["nombre"]; ?>" name="nom">
-                        <input type="hidden" value="<?php echo $registros_articulos["itbis"]; ?>" name="itbis">
+                        <input type="hidden" value="<?php echo $itbis ?>" name="itbis">
                         <input type="hidden" value="<?php echo $registros_articulos["precio"]; ?>" name="precio">
                         
                         <?php if($registros_articulos["cantidad_disponible"] > 0)
@@ -123,7 +111,7 @@ else
                             $cant= 0;
                         } 
                         ?>
-                        <td><input type="number" style="width:55px;" class="form-control" pattern="^[0-9]+"  min="0" placeholder="Cant." name="cant" value="<?php echo $cant; ?>"></td>
+                        <td width="10%"><input type="number" style="width:55px;" class="form-control" pattern="^[0-9]+"  min="0" max="<?php echo $registros_articulos["cantidad_disponible"]; ?>" placeholder="Cant." name="cant" value="<?php echo $cant; ?>"></td>
                         <?php if(isset($_GET["id_temp"])) { $id= $_GET["id_temp"];
                             ?> 
                                 <input id="id_temp" type="hidden" value="<?php echo $id ?>" name="id">     
@@ -147,8 +135,8 @@ else
     <div style="float:left; width:48.5%; margin-left:25px; margin-top:25px;background-color:white; border-radius:8px; box-shadow:1px 1px 5px">
     <div style="overflow:scroll;overflow-x:hidden; height:390px; width:98%; margin-left:1.5%"> 
         <table class="table">
-        <h5 style="padding:15px;Width:47.2%;margin-left:-12px;height:53px;background-color:#882f88;color:white; position:absolute;" >Artículos ingresados</h5>
-            <thead  style="position:absolute; width:47.2%;margin-top:-43px; margin-left:-12px; background-color:white;">      
+        <h5 style="padding:15px;Width:47.2%;margin-left:-12px;height:80px;background-color:#882f88;color:white; position:absolute;" >Artículos ingresados</h5>
+            <thead  style="position:absolute; width:47.2%;margin-top:-60px; margin-left:-12px; background-color:white;">      
                 
                 <tr>
                     <th scope="col" width="45%">Artículos</th>
@@ -156,7 +144,7 @@ else
                     <th scope="col" width="10%"> Itbis </th>
                     <th scope="col" width="15%"> Precio </th>
                     <th scope="col" width="20.5%" > Total </th>
-                </tr> <br><br><br>
+                </tr> <br><br><br><br>
 
             </thead>
             <div>.</div>
@@ -175,7 +163,7 @@ else
                     <td>$<?php  echo $reg_art_temp["itbis"]; ?></td>
                     <td>$<?php  echo $reg_art_temp["precio"]; ?></td>
                     <td>$<?php  echo $reg_art_temp["total"]; ?></td>
-                    <td><a href="../../scripts/ventas/eliminar_arti_temp.php?id_articulo=<?php echo $reg_art_temp['id_art_temp']; ?> && id_temp=<?php echo $id; ?>" class="btn btn-danger"><i class="fa fa-times fa-lg"></i></a></td> 
+                    <td><a href="../../scripts/ventas/eliminar_arti_temp.php?id_articulo=<?php echo $reg_art_temp['id_venta_temp']; ?> && id_temp=<?php echo $id; ?>" class="btn btn-danger"><i class="fa fa-times fa-lg"></i></a></td> 
                 </tr>
                 <?php
                     }}  
@@ -193,7 +181,10 @@ else
             <form action="../../scripts/ventas/registrar_venta.php" method="POST"><br>
                 <div class="form-row">
                     <div class="col-md-10">
-                        <input style="border-bottom-left-radius: 0px;  border-top-left-radius: 0px;" id="cliente"   class="form-control" placeholder="Buscar cliente" name="cliente" required/>
+                        <input style="border-bottom-left-radius: 0px;  border-top-left-radius: 0px;" id="cliente"   class="form-control" value="c" placeholder="Buscar cliente" name="cliente" required/>
+                        <select id="cliente_general" class="form-control" name="client">
+                            <option value="1"> 1| Genérico</opction>
+                        </select>
                         <div id="caja-clientes"></div>
                     </div>
                 
@@ -216,7 +207,6 @@ else
                             <option>Consumidor final</option>
                             <option>Valor fiscal</option>
                             <option>Gubernamental</option>
-                            <option>Régimen especial </option>
                         </select>                  
                     <br></div>
 
@@ -269,9 +259,10 @@ else
                 <input type="hidden" name="id_temp" value="<?php echo $id; ?>"
 
 
-                </strong>
+            </strong>
         </div> <br>
-       <?php echo "&nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp"?> <button class="btn btn" style="background-color:#882f88; color:white">Cancelar</button> <input type="submit" class="btn btn" style="background-color:#882f88; color:white;" value="Registrar">
+                <?php echo "&nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp"?> <button class="btn btn" <?php if(!isset($_GET["id_temp"])){?> disabled <?php } ?> style="background-color:#882f88; color:white">Cancelar</button> <input type="submit"<?php if(!isset($_GET["id_temp"])){?> disabled <?php } ?> class="btn btn" style="background-color:#882f88; color:white;" value="Registrar">
                 </form>
    </div> 
+   
 </div>

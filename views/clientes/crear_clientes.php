@@ -41,7 +41,7 @@ $id_nuevo_cliente = $registro_cliente["id_cliente"] + 1;
                     <textarea type="text" class="form-control" placeholder ="Dirección" name="direccion" required ></textarea>
                 </div>
                 <div class="form-group col-md-6">
-                    <input type="text" class="form-control" placeholder ="Telefono" name="telefono" required >
+                    <input type="text" id="movil" class="form-control" placeholder ="(000)-000-0000" name="telefono" required >
                 </div>
                 <div class="form-group col-md-6">
                     <select class="form-control" placeholder ="Tipo de comprobante" name="tipo_comprobante" required>
