@@ -22,10 +22,51 @@
         $alerta = $registro_comprobante["cantidad_alerta"];
         $cantidad_alerta = $alerta + $proximo;
         echo $cantidad_alerta;
-    
+        $prefijo = "B00";
+        if($comprobante =="Valor fiscal")
+        {
+            $prefijo="B01";
+        }
+        elseif($comprobante =="Consumidor final")
+        {
+            $prefijo="B02";
+        }
+
+        $ceros = "0";
+        $tamano_ncf = strlen($numero_ncf);
+        if($tamano_ncf == 1)
+        {
+            $ceros ="0000000";
+        }
+        if($tamano_ncf == 2)
+        {
+            $ceros ="000000";
+        }
+        if($tamano_ncf == 3)
+        {
+            $ceros ="00000";
+        }
+        if($tamano_ncf == 4)
+        {
+            $ceros ="0000";
+        }
+        if($tamano_ncf == 5)
+        {
+            $ceros ="000";
+        }
+        if($tamano_ncf == 6)
+        {
+            $ceros ="00";
+        }
+        if($tamano_ncf == 7)
+        {
+            $ceros ="0";
+        }
+        $ncf = $prefijo.$ceros.$numero_ncf;
+        echo $ncf;
 
             $insertar_venta = $conexion->query("INSERT INTO $empresa.tbl_ventas (id_venta_temp, id_cliente, condicion_pago, tipo_comprobante, comprobante, forma_pago, itbis, precio, total, creado_por) 
-            values($id_temp, $cliente,'$condicion', '$comprobante','$numero_ncf', '$forma', $itebis, $precio, $total, '$usuario')");
+            values($id_temp, $cliente,'$condicion', '$comprobante','$ncf', '$forma', $itebis, $precio, $total, '$usuario')");
         
             $actualizar_comprobante = $conexion->query("UPDATE $empresa.tbl_comprobantes SET proximo= $proximo WHERE tipo='$comprobante'");
             

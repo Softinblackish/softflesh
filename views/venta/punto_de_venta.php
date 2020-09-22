@@ -30,6 +30,12 @@ else
 
 
 ?>
+<style>
+.buscar::-webkit-scrollbar {
+    width: 8px;     /* Tamaño del scroll en vertical */
+    height: 118px;    /* Tamaño del scroll en horizontal */
+}
+</style>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <script src="../../scripts/js/llamada_clientes.js"></script>
 <script type="text/javascript">
@@ -54,10 +60,10 @@ else
         }
         ?>
 
-        <div style="overflow:scroll;overflow-x:hidden; height:370px; width:98%; margin-left:1.5%">      
+        <div class="buscar" style="overflow:scroll;overflow-x:hidden; height:370px; width:98%; margin-left:1.5%">      
         <table class="table">
-        <h5 style="padding:15px;Width:47.2%;margin-left:-12px;height:53px;background-color:#882f88;color:white; position:absolute;" >Buscar artículos</h5><br><br>
-            <thead style="position:absolute; width:47.2%;margin-top:-66.5px; margin-left:-12px; background-color:white;">
+        <h5 style="padding:15px;Width:48.6%;margin-left:-12px;height:53px;background-color:#882f88;color:white; position:absolute;" >Buscar artículos</h5><br><br>
+            <thead style="position:absolute; width:48.6%;margin-top:-66.5px; margin-left:-12px; background-color:white;">
                 <tr>
                     <form action="punto_de_venta.php" method="GET">
                     <th scope="col" style="width:10%;"><input type="text" class="form-control" name="cod" placeholder="Cód."></th>
@@ -132,11 +138,11 @@ else
     </div>
 
     <div>
-    <div style="float:left; width:48.5%; margin-left:25px; margin-top:25px;background-color:white; border-radius:8px; box-shadow:1px 1px 5px">
-    <div style="overflow:scroll;overflow-x:hidden; height:390px; width:98%; margin-left:1.5%"> 
+    <div style="float:left; width:48.6%; margin-left:25px; margin-top:25px;background-color:white; border-radius:8px; box-shadow:1px 1px 5px">
+    <div class="buscar"  style="overflow:scroll;overflow-x:hidden; height:390px; width:98%; margin-left:1.5%"> 
         <table class="table">
-        <h5 style="padding:15px;Width:47.2%;margin-left:-12px;height:80px;background-color:#882f88;color:white; position:absolute;" >Artículos ingresados</h5>
-            <thead  style="position:absolute; width:47.2%;margin-top:-60px; margin-left:-12px; background-color:white;">      
+        <h5 style="padding:15px;Width:48.67%;margin-left:-12px;height:80px;background-color:#882f88;color:white; position:absolute;" >Artículos ingresados</h5>
+            <thead  style="position:absolute; width:48.67%;margin-top:-60px; margin-left:-12px; background-color:white;">      
                 
                 <tr>
                     <th scope="col" width="45%">Artículos</th>

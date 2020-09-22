@@ -7,17 +7,21 @@
 <h2>Listado de ventas</h2>
 <form action="" method="post">
     <div class="form-row">
-        <div class="form-group col-md-2" style="margin-right:50px;">
-            <input  type="date" id="date" placeholder="00/00/000" name="filtro">
+        <div class="form-group col-md-3">
+        <label>Desde</label>
+            <input class="form-control"  type="date" name="desde">
         </div>
-        <div class="form-group col-md-2" style="margin-right:50px;">
-            <input  type="date" placeholder="Buscar" name="filtro">
-        </div>
-        <div class="form-group col-md-3" style="margin-right:20px;">
-            <input  type="text" placeholder="Buscar" name="filtro">
+        <div class="form-group col-md-3" >
+            <label>Hasta</label>
+            <input class="form-control"  type="date" placeholder="Buscar" name="hasta">
         </div>
         <div class="form-group col-md-2">
-            <input type="submit" class="btn btn" id="buscar" value=" Buscar">
+            <label>Num. factura</label>
+            <input class="form-control"  type="number" placeholder="Factura" name="filtro">
+        </div>
+        <div class="form-group col-md-2">
+        <label>.</label>
+            <input type="submit" class="btn btn form-control" id="buscar" value="Buscar">
         </div>
     </div>
 </form>
@@ -35,9 +39,13 @@
   <tbody>
   <?php 
     $empresa = $_SESSION["empresa_db"];
+    
     if(isset($_POST["filtro"])){
-        $filtro= $_POST["filtro"];
-        $lista_usuario = $conexion->query("SELECT * FROM $empresa.tbl_ventas WHERE id_venta= $filtro or comprobante LIKE '%$filtro%' or cliente");
+        $desde = $_POST["desde"];
+        $hasta = $_POST["hasta"];
+        $factura = $_POST['filtro'];
+        
+        $lista_usuario = $conexion->query("SELECT * FROM $empresa.tbl_ventas WHERE fecha_creacion >= '$desde' and fecha_creacion <= '$hasta'");
     }
     else{
         $lista_usuario = $conexion->query("SELECT * FROM $empresa.tbl_ventas order by id_venta desc limit 10 ");

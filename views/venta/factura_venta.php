@@ -81,7 +81,7 @@
                         <ul>
                             <li><?php echo  $registro_factura["fecha_creacion"];?></li>
                             <li><?php echo  $registro_factura["tipo_comprobante"];?></li>
-                            <li><?php echo  $registro_factura["comprobante"];?></li>
+                            <li><?php echo $registro_factura["comprobante"]; ?></li>
                             <li><?php echo  $registro_factura["fecha_creacion"];?></li>
                             <li><?php echo  $registro_factura["condicion_pago"];?></li>
                             <li><?php echo  $registro_factura["forma_pago"];?></li>
