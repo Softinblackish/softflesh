@@ -18,6 +18,12 @@
 <link rel="stylesheet" href="../../css/compras.css">
 <script src="../../scripts/js/time_alert.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<!--
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>-->
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.js" integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM="
+  crossorigin="anonymous"></script>
 
 
 <div class="container-compras">
@@ -37,7 +43,7 @@
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label for="inputState">No de commpra:</label>
-                    <input type="number" name="no_compra" placeholder ="no de compra" value = <?php echo $no_compra ?> class="form-control">
+                    <input type="number" name="no_compra" readonly placeholder ="no de compra" value = <?php echo $no_compra ?> class="form-control">
                 </div>
                 <div class="form-group col-md-3">
                     <label for="inputState">caducidad:</label>
@@ -58,7 +64,14 @@
             <label for="inputState">Datos del proveedor: </label><br>
             <div class="form-row">
                 <div class="form-group col-md-12">
-                <input type="text" name="nombre_proveedor" placeholder ="nombre y apellido del proveedor" class="form-control" >
+                    <select id="" name="nombre_proveedor" class="form-control" placeholder="nombre y apellido del proveedor">
+                        <?php $suplidores = $conexion->query("SELECT nombre_sup FROM $empresa.tbl_suplidores"); 
+                        while($row = $suplidores->fetch_assoc()) {
+                        ?>
+                        <option value = <?php echo $row["nombre_sup"];  ?> ><?php echo $row["nombre_sup"];  ?></option>
+                        <?php } ?>
+
+                    </select> 
                 </div>
                 <div class="form-group col-md-6">
                 <input type="number" name="cod_proveedor" placeholder ="cod proveedor" class="form-control" >
