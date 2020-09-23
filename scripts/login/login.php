@@ -16,9 +16,10 @@ if($ultimo_catacter== "_")
 }
 
 $validation_name = $conexion->query("select * from $empresa_sin_espacio.tbl_usuario where nombre_usuario = '$user' and contraseña_usuario = '$password'");
-$verificacion_name = $validation_name->num_rows;
+if($verificacion_name = $validation_name->num_rows){
 $informacion_user= $validation_name->fetch_assoc();
 $rol=$informacion_user["rol_usuario"];
+
 if($verificacion_name >= 1)
 {
     session_start();
@@ -33,5 +34,8 @@ else
 {
     header("location:../../views/login/login.php?error=true");
 }
+
+}
+
 
 ?>

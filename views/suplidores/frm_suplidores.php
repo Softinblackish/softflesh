@@ -8,6 +8,7 @@ if($consulta_suplidores->num_rows >= 1 ){
 }else{
     $id_nuevo_suplidor = 1;
 }
+
 ?>
 
 <link rel="stylesheet" href="../../css/suplidores.css">
@@ -70,6 +71,7 @@ if($consulta_suplidores->num_rows >= 1 ){
             </div>
 
             <!--Aqui va la tabla de suplidores a Registrar-->
+            <!--
             <table class="table">
                 <h5 class="cabeza_tabla" >Suplidores ingresados</h5>
                 <thead>      
@@ -109,7 +111,7 @@ if($consulta_suplidores->num_rows >= 1 ){
                     ?>
                 </tbody>
             </table>
-
+                            -->
             <label class="form-check-label" for="gridCheck">
                     Haga click en guardar para registrar este nuevo suplidor 
             </label>

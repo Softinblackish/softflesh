@@ -28,7 +28,7 @@
 
 <div class="container-compras">
     <div class="container form-row">
-        <form id="form" action="../../scripts/compras/compras_temp.php" method="post">
+        <form id="form" action="../../scripts/compras/compras.php" method="post">
             <div class="cabeza">
                 <?php if(isset($_GET["registro"])){ ?>
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -79,6 +79,7 @@
             </div>
 
             <!--impuestos-->
+            <!--
             <label for="inputState">Datos de los Impuestos: </label><br>
             <div class="form-row">
                 <div class="form-group col-md-3">
@@ -94,7 +95,7 @@
                     <input type="number" name="comprobante" class="form-control"  placeholder="Comprobante" >
                 </div>
             </div>
-
+            -->
             <label for="inputState">Datos de los productos: </label><br>
             
             <div class="form-row">
@@ -150,7 +151,7 @@
 
             <div class="form-row">
                 
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-6">
                     <button type="submit" class="btn btn">Pasar compra</button>
                 </div>
             </div>
