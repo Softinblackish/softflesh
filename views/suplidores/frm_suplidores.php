@@ -3,7 +3,12 @@
 <?php include("../base.php"); 
 $consulta_suplidores = $conexion->query("SELECT id_sup FROM $empresa.tbl_suplidores ORDER BY id_sup desc limit 1");
 $registro_suplidores = $consulta_suplidores->fetch_assoc();
-$id_nuevo_suplidor = $registro_suplidores["id_sup"] + 1;
+if($consulta_suplidores->num_rows >= 1 ){
+    $id_nuevo_suplidor = $registro_suplidores["id_sup"] + 1;
+}else{
+    $id_nuevo_suplidor = 1;
+}
+
 ?>
 
 <link rel="stylesheet" href="../../css/suplidores.css">
@@ -24,7 +29,7 @@ $id_nuevo_suplidor = $registro_suplidores["id_sup"] + 1;
             </div>
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    <input type="text" name="codigo_sup" placeholder ="Codigo" class="form-control" value="<?php echo $id_nuevo_suplidor; ?>" >
+                    <input type="text" name="codigo_sup" placeholder ="Codigo" readonly class="form-control" value="<?php echo $id_nuevo_suplidor; ?>" >
                 </div>
                 <div class="form-group col-md-4">
                     <input type="text" name="nombre_sup" placeholder ="nombre suplidor" class="form-control">
@@ -66,6 +71,7 @@ $id_nuevo_suplidor = $registro_suplidores["id_sup"] + 1;
             </div>
 
             <!--Aqui va la tabla de suplidores a Registrar-->
+            <!--
             <table class="table">
                 <h5 class="cabeza_tabla" >Suplidores ingresados</h5>
                 <thead>      
@@ -105,7 +111,7 @@ $id_nuevo_suplidor = $registro_suplidores["id_sup"] + 1;
                     ?>
                 </tbody>
             </table>
-
+                            -->
             <label class="form-check-label" for="gridCheck">
                     Haga click en guardar para registrar este nuevo suplidor 
             </label>
