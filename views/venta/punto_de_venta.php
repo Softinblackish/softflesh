@@ -139,10 +139,10 @@ else
 
     <div>
     <div style="float:left; width:48.6%; margin-left:25px; margin-top:25px;background-color:white; border-radius:8px; box-shadow:1px 1px 5px">
-    <div class="buscar"  style="overflow:scroll;overflow-x:hidden; height:390px; width:98%; margin-left:1.5%"> 
+    <div class="buscar"  style="overflow:scroll;overflow-x:hidden; height:355px; width:98%; margin-left:1.5%"> 
         <table class="table">
         <h5 style="padding:15px;Width:48.67%;margin-left:-12px;height:80px;background-color:#882f88;color:white; position:absolute;" >Artículos ingresados</h5>
-            <thead  style="position:absolute; width:48.67%;margin-top:-60px; margin-left:-12px; background-color:white;">      
+            <thead  style="position:absolute; width:48.67%;margin-top:-45px; margin-left:-12px; background-color:white;">      
                 
                 <tr>
                     <th scope="col" width="45%">Artículos</th>
@@ -150,10 +150,10 @@ else
                     <th scope="col" width="10%"> Itbis </th>
                     <th scope="col" width="15%"> Precio </th>
                     <th scope="col" width="20.5%" > Total </th>
-                </tr> <br><br><br><br>
+                </tr> <br><br><br>
 
             </thead>
-            <div>.</div>
+            <div style="margin-top:10px;">.</div>
             <tbody>
             <?php
                if(isset($_GET["id_temp"]))
@@ -164,7 +164,7 @@ else
                  {
                      ?>
                 <tr>
-                    <td scope="row"><?php  echo $reg_art_temp["articulo"]; ?></td>
+                    <td scope="row" width="42%"><?php  echo $reg_art_temp["articulo"]; ?></td>
                     <td><?php  echo $reg_art_temp["cantidad"]; ?></td>
                     <td>$<?php  echo $reg_art_temp["itbis"]; ?></td>
                     <td>$<?php  echo $reg_art_temp["precio"]; ?></td>
