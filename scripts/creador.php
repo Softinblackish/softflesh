@@ -20,7 +20,7 @@
       $registrar_empresa = $conexion->query("INSERT INTO empresas_suscritas.informacion_empresa (nombre_empresa, direccion_empresa, telefono_empresa, rnc_empresa, correo_empresa, encargado, telefono_encargado) value ('$db_empresa','$direccion','$telefono', '$rnc', '$correo','$encargado', '$tel_encargado')");
       $crear_db = $conexion->query("CREATE DATABASE IF NOT EXISTS $nombre_sin_espacio");
       
-      $tabla_articu = $conexion->query("
+      $tabla_articulo = $conexion->query("
         CREATE TABLE $nombre_sin_espacio.tbl_articulos (
         `id_articulo` int(11) NOT NULL AUTO_INCREMENT,
         `nombre` varchar(100),
@@ -52,6 +52,14 @@
         PRIMARY KEY (`id_cod_impuesto`)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8
       ");
+//tabla tbl compras_id_temp      
+      $tabla_compras_id_temp = $conexion->query("
+      CREATE TABLE $nombre_sin_espacio.tbl_compra_id_temp (
+        `id_compra` int(11) NOT NULL AUTO_INCREMENT,
+        `no_compra` DOUBLE,
+        PRIMARY KEY (`id_compra`)
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+      ");
 //tabla tbl compras
       $tabla_compra = $conexion->query("
       CREATE TABLE $nombre_sin_espacio.tbl_compras (
@@ -72,42 +80,7 @@
         PRIMARY KEY (`id_compra`)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8
       ");
-//tabla tbl compras temp
-      $tabla_compra = $conexion->query("
-      CREATE TABLE $nombre_sin_espacio.tbl_compras_temp (
-        `id_compra` int(11) NOT NULL AUTO_INCREMENT,
-        `nombre_proveedor` varchar(100),
-        `cod_proveedor` varchar(100),
-        `comprobante` varchar(50),
-        `cod_impuesto` varchar(50),
-        `forma_pago` varchar(50),
-        `moneda` varchar(50),
-        `entregar_a` varchar(200),
-        `fecha_orden` timestamp DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-        `condicion_pago` varchar(100),
-        `valor_impuestos` int(11),
-        `sin_impuestos` int(11),
-        `valor_total` DOUBLE,
-        `no_compra` int(11),
-        PRIMARY KEY (`id_compra`)
-      ) ENGINE=InnoDB DEFAULT CHARSET=utf8
-      ");
 
-
-      $tabla_compra = $conexion->query("
-      CREATE TABLE $nombre_sin_espacio.tbl_art_compras_temp (
-        `id_compra` int(11) NOT NULL AUTO_INCREMENT,
-        `no_compra` int(11),
-        `articulo` varchar(100),
-        `precio_compra` DOUBLE,
-        `cantidad` int(11),
-        `stock` int(11),
-        `caducidad` date,
-        `nota` varchar(300),
-        `fecha_orden` timestamp DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-        PRIMARY KEY (`id_compra`)
-      ) ENGINE=InnoDB DEFAULT CHARSET=utf8
-      ");
 //tabla tbl compras articulos
       $tabla_compra = $conexion->query("
       CREATE TABLE $nombre_sin_espacio.tbl_art_compras (
@@ -117,40 +90,13 @@
         `precio_compra` DOUBLE,
         `cantidad` int(11),
         `stock` int(11),
-        `caducidad` date,
-        `nota` varchar(300),
+        `caducidad` date DEFAULT '0000-00-00',
+        `nota` varchar(100),
         `fecha_orden` timestamp DEFAULT current_timestamp() ON UPDATE current_timestamp(),
         PRIMARY KEY (`id_compra`)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8
       ");
- //Esta tabla no la uso    
-      $tabla_det_compra = $conexion->query("
-      CREATE TABLE $nombre_sin_espacio.tbl_det_compras (
-        `id_det_compra` int(11) NOT NULL AUTO_INCREMENT,
-        `id_compra` int(11) NOT NULL,
-        `cod_articulo` varchar(50) NOT NULL,
-        `nom_articulo` varchar(100) NOT NULL,
-        `cantidad` float NOT NULL,
-        `itbis` float NOT NULL,
-        `valor` float NOT NULL,
-        `total` float NOT NULL,
-        PRIMARY KEY (`id_det_compra`)
-      ) ENGINE=InnoDB DEFAULT CHARSET=utf8
-      ");
 
-      $tabla_tmp_compra= $conexion->query("
-      CREATE TABLE $nombre_sin_espacio.tbl_tmp_compras (
-        `id` int(10) NOT NULL AUTO_INCREMENT,
-        `tmp_id_compra` int(100) NOT NULL,
-        `cod_articulo` varchar(50) NOT NULL,
-        `articulo` varchar(200) NOT NULL,
-        `cantidad` int(6) NOT NULL,
-        `itbis` float NOT NULL,
-        `valor` float NOT NULL,
-        `total` float NOT NULL,
-        PRIMARY KEY (`id`)
-      ) ENGINE=InnoDB DEFAULT CHARSET=utf8
-      ");
 
       $tabla_tmp_compra= $conexion->query("
       CREATE TABLE $nombre_sin_espacio.tbl_suplidores (
