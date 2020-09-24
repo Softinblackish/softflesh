@@ -7,17 +7,21 @@
 <h2>Listado de ventas</h2>
 <form action="" method="post">
     <div class="form-row">
-        <div class="form-group col-md-2" style="margin-right:50px;">
-            <input  type="date" id="date" placeholder="00/00/000" name="filtro">
+        <div class="form-group col-md-3">
+        <label>Desde</label>
+            <input class="form-control"  type="date" name="desde">
         </div>
-        <div class="form-group col-md-2" style="margin-right:50px;">
-            <input  type="date" placeholder="Buscar" name="filtro">
-        </div>
-        <div class="form-group col-md-3" style="margin-right:20px;">
-            <input  type="text" placeholder="Buscar" name="filtro">
+        <div class="form-group col-md-3" >
+            <label>Hasta</label>
+            <input class="form-control"  type="date" placeholder="Buscar" name="hasta">
         </div>
         <div class="form-group col-md-2">
-            <input type="submit" class="btn btn" id="buscar" value=" Buscar">
+            <label>Num. factura</label>
+            <input class="form-control"  type="number" placeholder="Factura" name="filtro">
+        </div>
+        <div class="form-group col-md-2">
+        <label>.</label>
+            <input type="submit" class="btn btn form-control" id="buscar" value="Buscar">
         </div>
     </div>
 </form>
@@ -26,8 +30,9 @@
   <thead class="thead">
     <tr>
       <th scope="col">Factura</th>
-      <th scope="col" width="10%">Cliente</th>
+      <th scope="col" width="20%">Cliente</th>
       <th scope="col">Comprobante</th>
+      <th scope="col">Forma de pago</th>
       <th scope="col">Condición de pago</th>
       <th scope="col">Accion</th>
     </tr>
@@ -35,9 +40,21 @@
   <tbody>
   <?php 
     $empresa = $_SESSION["empresa_db"];
-    if(isset($_POST["filtro"])){
-        $filtro= $_POST["filtro"];
-        $lista_usuario = $conexion->query("SELECT * FROM $empresa.tbl_ventas WHERE id_venta= $filtro or comprobante LIKE '%$filtro%' or cliente");
+    
+    if(isset($_POST["desde"], $_POST["desde"] , $_POST["filtro"]))
+    {
+        if( $_POST["desde"] != null and $_POST["hasta"] )
+        {
+            $desde = $_POST["desde"];
+            $hasta = $_POST["hasta"];   
+            $lista_usuario = $conexion->query("SELECT * FROM $empresa.tbl_ventas WHERE fecha_creacion >= '$desde' and fecha_creacion <= '$hasta' ");
+        }
+        if( $_POST["filtro"] != null)
+        {
+            $filtro = $_POST["filtro"];
+            $lista_usuario = $conexion->query("SELECT * FROM $empresa.tbl_ventas WHERE id_venta = $filtro ");
+        }
+
     }
     else{
         $lista_usuario = $conexion->query("SELECT * FROM $empresa.tbl_ventas order by id_venta desc limit 10 ");
@@ -52,10 +69,12 @@
         <!-- Head Tabla usuario   --->
             <tr>
                 <th scope="row"><?php echo $row["id_venta"]; ?></th>
-                <td><?php echo $row2["nombre_cliente"]; ?></td>
+                <td width="20%"><?php echo $row2["nombre_cliente"]; ?></td>
                 <td><?php echo $row["comprobante"]; ?></td>
+                <td><?php echo $row["forma_pago"]; ?></td>
+
                 <td><?php echo $row["condicion_pago"]; ?></td>
-        <td><?php if($permisos['modificar_user']== 1){ ?><a id="cerrar"  class="btn btn-info" data-toggle="modal" data-target="#example<?php echo $row["id_usuario"]; ?>" > <i class="fa fa-eye fa-lg"></i></a><?php } ?> <?php if($permisos['eliminar_user']== 1){ ?> <a class="btn btn-danger"  data-toggle="modal" data-target="#eliminar<?php echo $row["id_usuario"]; ?>" ><i class="fa fa-trash-o fa-lg"></i></a><?php } ?> </td>
+        <td><?php if($permisos['modificar_user']== 1){ ?><a id="cerrar"  class="btn btn-info" data-toggle="modal" data-target="#example<?php echo $row["id_usuario"]; ?>" > <i class="fa fa-eye fa-lg"></i></a><?php } ?></td>
             </tr>
         <!--Modal editar usuario   --->
                 <div class="modal fade" id="example<?php echo $row["id_usuario"];?>" tabindex="-1" aria-labelledby="example<?php echo $row["id_usuario"];?>Label" aria-hidden="true">
