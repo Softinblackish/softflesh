@@ -5,7 +5,7 @@
       <?php include("../base.php"); ?>
       <!-- js -->
       <link rel="stylesheet" href="../../css/articulos.css">
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
       <script src="../../scripts/js/time_alert.js"></script>
 
 <div class="container-articulos">
