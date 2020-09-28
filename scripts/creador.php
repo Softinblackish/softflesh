@@ -46,9 +46,9 @@
       CREATE TABLE $nombre_sin_espacio.tbl_cod_impuestos (
         `id_cod_impuesto` int(11) NOT NULL AUTO_INCREMENT ,
         `nom_codigo` varchar(100) NOT NULL,
-        `descripcion` varchar(200) NOT NULL,
+        `descripcion` varchar(200) ,
         `porciento` int(3) NOT NULL,
-        `creado_por` varchar(150) NOT NULL,
+        `creado_por` varchar(150) ,
         PRIMARY KEY (`id_cod_impuesto`)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8
       ");
