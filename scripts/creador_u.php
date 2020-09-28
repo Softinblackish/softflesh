@@ -31,7 +31,7 @@
     
     $auto_permisos = $conexion->query("INSERT INTO $empresa.tbl_permisos (rol) VALUES ('super_admin')");
     
-    $auto_cliente = $conexion->query("INSERT INTO $empresa.tbl_clientes (nombre_cliente, tipo_comprobante, condicion_pago) values ('Genérico','Consumidor final','Al contado')");
+    $auto_cliente = $conexion->query("INSERT INTO $empresa.tbl_clientes (nombre_cliente, referencia, condicion_pago) values ('Genérico',' Ninguna','Al contado')");
     
     header("location:../views/login/login.php");
 

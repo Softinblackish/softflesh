@@ -316,7 +316,7 @@ $perm = $conexion->query("
          `direccion` VARCHAR(100) , 
          `telefono_cliente` VARCHAR(100) , 
          `tipo_cliente` VARCHAR(100) , 
-         `tipo_comprobante` VARCHAR(100) , 
+         `referencia` VARCHAR(100) , 
          `rnc_cliente` VARCHAR(100) , 
          `creado_por` VARCHAR(100) NOT NULL , 
          `fecha_creacion` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , 

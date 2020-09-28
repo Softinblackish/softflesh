@@ -1,4 +1,4 @@
-<?php
+<?php 
 include("../base.php");
 
 #buscar articulos por id, por nombre o por ambos
@@ -42,7 +42,7 @@ else
     window.history.forward();
     function sinVueltaAtras(){ window.history.forward(); }
 </script>
-
+<H3></H3>
 <div>
     <div onload="sinVueltaAtras();" onpageshow="if (event.persisted) sinVueltaAtras();" onunload="" style="float:left; width:48.5%; margin-left:25px; margin-top:25px;background-color:white; border-radius:8px; box-shadow:1px 1px 5px; ">
         
@@ -62,17 +62,33 @@ else
 
         <div class="buscar" style="overflow:scroll;overflow-x:hidden; height:370px; width:98%; margin-left:1.5%">      
         <table class="table">
-        <h5 style="padding:15px;Width:48.6%;margin-left:-12px;height:53px;background-color:#882f88;color:white; position:absolute;" >Buscar artículos - Venta</h5><br><br>
+        <h5 style="padding:15px;Width:48.6%;margin-left:-11px;height:53px;background-color:rgb(87, 220, 200); color:white; position:absolute;" >Buscar artículos - Cotización</h5><br><br>
             <thead style="position:absolute; width:48.6%;margin-top:-66.5px; margin-left:-12px; background-color:white;">
                 <tr>
                     <form action="punto_de_venta.php" method="GET">
                     <th scope="col" style="width:10%;"><input type="text" class="form-control" name="cod" placeholder="Cód."></th>
-                    <?php if(isset($_GET["id_temp"])){ $id = $_GET["id_temp"]; ?>  <input type="hidden" name="id_temp" value="<?php echo $id ;?>"> <?php }?>
+                    <?php
+                        if(isset($_GET["id_temp"]))
+                        { 
+                            $id = $_GET["id_temp"]; 
+                        ?>  
+                            <input type="hidden" name="id_temp" value="<?php echo $id ;?>"> 
+                        <?php 
+                            }
+                        ?>
                     <input type="submit" style="display:none">
                     </form>
                     <form action="punto_de_venta.php" method="GET">
                     <th scope="col" style="width:25%;"><input type="text" class="form-control" name="nom" placeholder="NOMBRE"></th>
-                    <?php if(isset($_GET["id_temp"])){ $id = $_GET["id_temp"]; ?> <input type="hidden" name="id_temp" value="<?php echo $id; ?>"> <?php } ?>
+                    <?php
+                        if(isset($_GET["id_temp"]))
+                        { 
+                            $id = $_GET["id_temp"]; 
+                        ?> 
+                            <input type="hidden" name="id_temp" value="<?php echo $id; ?>"> 
+                        <?php 
+                        }
+                        ?>
                     <input type="submit"style="display:none">
                     </form>
                     <th scope="col" style="width:8%;"> ITBIS </th>
@@ -106,6 +122,7 @@ else
                         <input type="hidden" value="<?php echo $registros_articulos["id_articulo"]; ?>" name="cod">
                         <input type="hidden" value="<?php echo $registros_articulos["nombre"]; ?>" name="nom">
                         <input type="hidden" value="<?php echo $itbis ?>" name="itbis">
+                        <input type="hidden" value="cotizacion" name="cotizacion">
                         <input type="hidden" value="<?php echo $registros_articulos["precio"]; ?>" name="precio">
                         
                         <?php if($registros_articulos["cantidad_disponible"] > 0)
@@ -118,10 +135,15 @@ else
                         } 
                         ?>
                         <td width="10%"><input type="number" style="width:55px;" class="form-control" pattern="^[0-9]+"  min="0" max="<?php echo $registros_articulos["cantidad_disponible"]; ?>" placeholder="Cant." name="cant" value="<?php echo $cant; ?>"></td>
-                        <?php if(isset($_GET["id_temp"])) { $id= $_GET["id_temp"];
+                        <?php 
+                            if(isset($_GET["id_temp"]))
+                            { 
+                                $id= $_GET["id_temp"];
                             ?> 
                                 <input id="id_temp" type="hidden" value="<?php echo $id ?>" name="id">     
-                            <?php }?>
+                            <?php
+                            }
+                        ?>
                         <td><button type="submit" class="btn btn-info" value="d"><i class="fa fa-arrow-circle-o-down fa-lg"></1></button></td> 
                     </form>
 
@@ -141,8 +163,8 @@ else
     <div style="float:left; width:48.6%; margin-left:25px; margin-top:25px;background-color:white; border-radius:8px; box-shadow:1px 1px 5px">
     <div class="buscar"  style="overflow:scroll;overflow-x:hidden; height:355px; width:98%; margin-left:1.5%"> 
         <table class="table">
-        <h5 style="padding:15px;Width:48.67%;margin-left:-12px;height:80px;background-color:#882f88;color:white; position:absolute;" >Artículos ingresados</h5>
-            <thead  style="position:absolute; width:48.67%;margin-top:-45px; margin-left:-12px; background-color:white;">      
+        <h5 style="padding:15px;Width:48.67%;margin-left:-11px;height:80px;background-color:rgb(87, 220, 200);color:white; position:absolute;" >Artículos ingresados</h5>
+            <thead  style="position:absolute; width:48.67%;margin-top:-45px; margin-left:-11px; background-color:white;">      
                 
                 <tr>
                     <th scope="col" width="45%">Artículos</th>
@@ -183,7 +205,7 @@ else
     <div>
     <div style="float:left; position:absolute; width:20%; height:750px; margin-left:77%; margin-top:25px;background-color:white; border-radius:8px; box-shadow:1px 1px 5px">
         <div>
-            <h5 style="padding:15px; background-color:#882f88 ;color:white;">Información</h5>
+            <h5 style="padding:15px; background-color:rgb(87, 220, 200) ;color:white;">Información</h5>
             <form action="../../scripts/ventas/registrar_venta.php" method="POST"><br>
                 <div class="form-row">
                     <div class="col-md-10">
@@ -193,42 +215,11 @@ else
                         </select>
                         <div id="caja-clientes"></div>
                     </div>
-                
-                    <div class="col-md-10">
-                        <br>
-                        <select style="border-bottom-left-radius: 0px;  border-top-left-radius: 0px;" class="form-control" name="condicion">
-                           <?php $consulta_condiciones = $conexion->query("SELECT * FROM $empresa.tbl_condiciones_pago");
-                                while($resultado_condiciones = $consulta_condiciones->fetch_assoc()){
-
-                                ?>
-                                    <option><?php echo $resultado_condiciones["nombre_condicion_p"] ?></option>
-                            <?php
-                                }
-                            ?>
-                        </select>
-                    <Br></div>
-
-                    <div class="col-md-10">
-                        <select style="border-bottom-left-radius: 0px;  border-top-left-radius: 0px;" class="form-control"name="tipo_comprobante">
-                            <option>Consumidor final</option>
-                            <option>Valor fiscal</option>
-                            <option>Gubernamental</option>
-                        </select>                  
-                    <br></div>
-
-                    <div class="col-md-10">
-                        <select style="border-bottom-left-radius: 0px;  border-top-left-radius: 0px;" class="form-control" name="forma">
-                            <option>Efectívo</option>
-                            <option>Tarjeta</option>
-                        </select>
-                    <br><br></div>
-
                 </div>
-        
         </div>
         <div>
             <strong>
-                <div style="padding:15px; background-color:#882f88; color:white;">
+                <div style="padding:15px; margin-top:235px; background-color:rgb(87, 220, 200); color:white;">
                     <H5 >Totales</H5>
                 </div>
                 <?php 
@@ -267,7 +258,7 @@ else
 
             </strong>
         </div> <br>
-                <?php echo "&nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp"?> <button class="btn btn" <?php if(!isset($_GET["id_temp"])){?> disabled <?php } ?> style="background-color:#882f88; color:white">Cancelar</button> <input type="submit"<?php if(!isset($_GET["id_temp"])){?> disabled <?php } ?> class="btn btn" style="background-color:#882f88; color:white;" value="Registrar">
+                <?php echo "&nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp"?> <button class="btn btn" <?php if(!isset($_GET["id_temp"])){?> disabled <?php } ?> style="background-color:rgb(87, 220, 200); color:white">Cancelar</button> <input type="submit"<?php if(!isset($_GET["id_temp"])){?> disabled <?php } ?> class="btn btn" style="background-color:rgb(87, 220, 200); color:white;" value="Registrar">
                 </form>
    </div> 
    

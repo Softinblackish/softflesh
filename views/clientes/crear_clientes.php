@@ -44,11 +44,7 @@ $id_nuevo_cliente = $registro_cliente["id_cliente"] + 1;
                     <input type="text" id="movil" class="form-control" placeholder ="(000)-000-0000" name="telefono" required >
                 </div>
                 <div class="form-group col-md-6">
-                    <select class="form-control" placeholder ="Tipo de comprobante" name="tipo_comprobante" required>
-                        <option>Consumidor final</option>
-                        <option>Valor físcal</option>
-                        <option>Gubernamental</option>
-
+                    <input class="form-control" placeholder ="Referencia" name="referencia" required>
                     </select>
                 </div>
                 <div class="form-group col-md-6">
