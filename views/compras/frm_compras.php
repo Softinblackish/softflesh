@@ -12,9 +12,11 @@
 ?>
       <!-- css -->
 <link rel="stylesheet" href="../../css/compras.css">
+<link rel="stylesheet" href="../../css/scroll.css">
       <!-- js -->
-<script src="../../scripts/compras/articulosCompras.js"></script>                            
-
+<!--
+      <script src="../../scripts/compras/articulosCompras.js"></script>                            
+-->
 <script src="../../scripts/js/time_alert.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -44,23 +46,31 @@
                 </div>
                 <div class="form-group col-md-3">
                     <label for="inputState">caducidad:</label>
-                    <input type="date" name="caducidad" value = <?php echo date('d-m-y') ?> class="form-control" >
+                    <input type="date" name="caducidad" class="form-control" >
                 </div>
                 
                 <div class="form-group col-md-3">
-                 <label for="inputState">recibido por:</label>
-                 <select name="entregar_a" class="form-control" cajeros>
-                    <option value="cajero1">cajero1</option>
-                    <option value="cajero2">cajero2</option>
-                    <option value="cajero3">cajero3</option>
-                    <option value="cajero4">cajero4</option>
-                </select>
+                    <label for="inputState">recibido por:</label>
+                    <select name="entregar_a" class="form-control" cajeros>
+                        <option value="cajero1">cajero1</option>
+                        <option value="cajero2">cajero2</option>
+                        <option value="cajero3">cajero3</option>
+                        <option value="cajero4">cajero4</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="inputState">Moneda:</label>
+                    <select name="moneda" class="form-control" cajeros>
+                        <option value="cajero1">usd</option>
+                        <option value="cajero2">do</option>
+                        <option value="cajero3">c por pagar</option>
+                    </select>
                 </div>
             </div>
 
             <label for="inputState">Datos del proveedor: </label><br>
             <div class="form-row">
-                <div class="form-group col-md-12">
+                <div class="form-group col-md-6">
                     <select id="" name="nombre_proveedor" class="form-control" placeholder="nombre y apellido del proveedor">
                         <?php $suplidores = $conexion->query("SELECT nombre_sup FROM $empresa.tbl_suplidores"); 
                         while($row = $suplidores->fetch_assoc()) {
@@ -117,15 +127,12 @@
                     <input type="text" name="forma_pago" class="form-control"  placeholder="forma de pago" >
                 </div>
                 <div class="form-group col-md-3">
-                    <input type="text" name="moneda" class="form-control"  placeholder="moneda" >
+                    <input type="number" name="stock" class="form-control"  placeholder="Stock" id = "stock" >
                 </div>
             </div>
-            
             <div class="form-row">
                 
-                <div class="form-group col-md-3">
-                 <input type="number" name="stock" class="form-control"  placeholder="Stock" id = "stock" >
-                </div>
+                
                                                 
                 <div class="form-group col-md-3">
                     <input type="number" name="valor_impuestos" class="form-control"  placeholder="total con impuestos" >
@@ -155,50 +162,51 @@
             
 
             <!--Aqui va la tabla temp de compras-->
-            <table class="table">
-                <h5 class="cabeza_tabla" >Artículos ingresados</h5>
-                <thead>      
-                    
-                    <tr>
-                        <th scope="col" style="width:60%;"> Artículos </th>
-                        <th scope="col" style="width:8%;"> Cantidad </th>
-                        <th scope="col" style="width:15%;"> Precio </th>
-                        <th scope="col" style="width:15%;"> Total </th>
-                        <th scope="col" style="width:15%;"> Borrar </th>
-                    </tr>
+            <div class="tamano_tablas Overflow">
+                <table class="table">
+                    <h5 class="cabeza_tabla" >Artículos ingresados</h5>
+                    <thead>      
+                        
+                        <tr>
+                            <th scope="col" style="width:60%;"> Artículos </th>
+                            <th scope="col" style="width:8%;"> Cantidad </th>
+                            <th scope="col" style="width:15%;"> Precio </th>
+                            <th scope="col" style="width:15%;"> Total </th>
+                            <th scope="col" style="width:15%;"> Borrar </th>
+                        </tr>
 
-                </thead>
-                <tbody>
-                    <?php
-                        if(isset($_GET["id_temp"]))
-                        {
-                                //$id=$_GET["id_temp"];
-                                $consulta_art_temp = $conexion->query("select * from $empresa.tbl_compras where no_compra= $no_compra");
-                        }else
-                        {
-                            $consulta_art_temp = $conexion->query("select * from $empresa.tbl_art_compras limit 5");
-                        }    
-                        while($reg_art_temp = $consulta_art_temp->fetch_assoc())
-                                {
-                    ?>
-                                        <tr>
-                                        <th><?php  echo $reg_art_temp["articulo"]; ?></th>
-                                        <td><?php  echo $reg_art_temp["cantidad"]; ?></td>
-                                        <td><?php  echo $reg_art_temp["precio_compra"]; ?></td>
-                                        <?php 
-                                        $cantidad= $reg_art_temp["cantidad"];
-                                        $precio = $reg_art_temp["precio_compra"];
-                                        $total = $cantidad * $precio;
-                                        ?>
-                                        <td><?php  echo $total ?></td>
-                                        <td><a href="../../scripts/ventas/eliminar_arti_temp.php?id_articulo=<?php echo $reg_art_temp['id_art_temp']; ?> && id_temp=<?php echo $id; ?>" class="btn btn-danger"><i class="fa fa-times fa-lg"></i></a></td> 
-                                        </tr>
-                    <?php
-                                }
-                    ?>
-                </tbody>
-            </table> 
-
+                    </thead>
+                    <tbody>
+                        <?php
+                            if(isset($_GET["id_temp"]))
+                            {
+                                    //$id=$_GET["id_temp"];
+                                    $consulta_art_temp = $conexion->query("select * from $empresa.tbl_compras where no_compra= $no_compra");
+                            }else
+                            {
+                                $consulta_art_temp = $conexion->query("select * from $empresa.tbl_art_compras where no_compra = $no_compra limit 5");
+                            }    
+                            while($reg_art_temp = $consulta_art_temp->fetch_assoc())
+                                    {
+                        ?>
+                                            <tr>
+                                            <th><?php  echo $reg_art_temp["articulo"]; ?></th>
+                                            <td><?php  echo $reg_art_temp["cantidad"]; ?></td>
+                                            <td><?php  echo $reg_art_temp["precio_compra"]; ?></td>
+                                            <?php 
+                                            $cantidad= $reg_art_temp["cantidad"];
+                                            $precio = $reg_art_temp["precio_compra"];
+                                            $total = $cantidad * $precio;
+                                            ?>
+                                            <td><?php  echo $total ?></td>
+                                            <td><a href="../../scripts/compras/borrarArtCompras.php?id_compra=<?php echo $reg_art_temp['id_compra']; ?>&no_compra=<?php echo $reg_art_temp['no_compra']; ?>" class="btn btn-danger"><i class="fa fa-times fa-lg"></i></a></td> 
+                                            </tr>
+                        <?php
+                                    }
+                        ?>
+                    </tbody>
+                </table> 
+            </div>
 
             <br>
             <br>
@@ -206,11 +214,73 @@
                     Haga click en guardar para registrar esta compra 
             </label>
             <br>
-            <button type="" id="btn" class="btn btn">registrar compra</button>
+            <a href="../../scripts/compras/borrar_id_temporal.php" id="btn" class="btn btn" >registrar compra</a>
             <a href="../administracion/administracion.php" id="btn" class="btn btn" >Volver atras</a>
             <br>
             <br>
         </form>
     </div>    
+
+<script>
+    $("#articulo").change(function () {
+        var art = $("#articulo").val();
+        //alert(art);
+            $.ajax({
+                type: "post",
+                url: "../../scripts/compras/consulta_articulos.php",
+                dataType: "html",
+                data: "articulo="+art,
+                success: function(r){
+                    alert(r);
+                }
+            });
+    });
+</script>
+
 </div>
 
+
+
+        
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+        
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Eliminar articulo</h4>   
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>Seguro que quieres borrarlo ?.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="borrarArticulo" role="dialog">
+        <div class="modal-dialog">
+        
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Eliminar articulo</h4>   
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>Seguro que quieres borrarlo ?.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        
+        </div>
+    </div>
+  
