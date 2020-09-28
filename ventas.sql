@@ -47,7 +47,7 @@ CREATE TABLE `tbl_articulos` (
 --
 -- Estructura de tabla para la tabla `cuentas por cobrar`
 --
-CREATE TABLE `ventas`.`tbl_cxp_cobrar` (
+CREATE TABLE `tbl_cxp_cobrar` (
   `ID` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45),
   `detalle` VARCHAR(45),

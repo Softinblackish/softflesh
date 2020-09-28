@@ -30,17 +30,17 @@ $(document).ready(function () {
   /*
     
   */
- $("#articulo").change(function () {
-    var art = $("#articulo").val();
-        $.ajax({
-            type: "post",
-            url: "consulta_articulos.php",
-            dataType: "html",
-            data: "articulo="+art,
-            success: function (r) {
-            alert(r);
-            }
-        });
-  });
+    $("#articulo").change(function () {
+        var art = $("#articulo").val();
+            $.ajax({
+                type: "post",
+                url: "consulta_articulos.php",
+                dataType: "html",
+                data: "articulo="+art,
+                success: function (r) {
+                    alert(r);
+                }
+            });
+    });
 
 });

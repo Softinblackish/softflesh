@@ -113,8 +113,8 @@
                                         <div id="lista_cxp" class="menu_lv3 menu_cxp">Ver cuentas por pagar</div>
                                 </div><?php }?>
 
-                                <?php if($permisos['cxc']== 1){ ?><div id="cxc" class="menu_lv1"><i class="fa fa-money fa-lg" aria-hidden="true"></i> Cuentas por cobrar                           
-                                        <div id="agregar_cxc" class="menu_lv3 menu_cxc">Agregar cuenta por cobrar</div>
+                                <?php if($permisos['cxc']== 1){ ?><div id="cxc" class="menu_lv1"><i class="fa fa-money fa-lg" aria-hidden="true"></i> Cuentas por cobrar<!--agregue una referencia a mi formularios-->                         
+                                        <a href="../Cuentas_por_cobrar/frm_cuentas_por_cobrar.php"><div id="agregar_cxc" class="menu_lv3 menu_cxc">Agregar cuenta por cobrar</div></a>
                                         <div id="lista_cxc" class="menu_lv3 menu_cxc">Ver cuentas por cobrar</div>
                                 </div> <?php } ?>
 
