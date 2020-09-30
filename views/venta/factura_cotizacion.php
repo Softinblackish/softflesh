@@ -4,7 +4,7 @@
     $empresa= $_SESSION['empresa'];
 
     $factura = $_GET["id_venta"];
-    $consulta_factura = $conexion->query("SELECT * FROM $empresa.tbl_ventas where id_venta = $factura");
+    $consulta_factura = $conexion->query("SELECT * FROM $empresa.tbl_cotizaciones where id_cotizacion = $factura");
     $registro_factura = $consulta_factura->fetch_assoc();
 
     $cliente = $registro_factura["id_cliente"];
@@ -66,17 +66,7 @@
                     </ul>
                 </div>
                 <div id="informacion_factura">
-                    <h3 id="text-factura">Factura Nº <?php echo  $registro_factura["id_venta"];?> </h3>
-                    <div id="informacion_factura_label">
-                        <ul>
-                            <li>Fecha: </li>
-                        </ul>
-                    </div>
-                    <div id="informacion_factura_data">
-                        <ul>
-                            <li><?php echo  $registro_factura["fecha_creacion"];?></li>
-                        </ul>
-                    </div>
+                    <h3 id="text-factura">Cotización Nº <?php echo  $registro_factura["id_cotizacion"];?> </h3>
                 </div>
             </div>
             <div>
@@ -111,7 +101,7 @@
             </div>
             <div id="factura_pie">
                 <div id="botones">
-                    <a href="punto_de_venta.php" class="btn btn-info">Regresar</a> <a class="btn btn-info">Imprimir</a>
+                    <a href="cotizaciones.php" class="btn btn-info">Regresar</a> <a class="btn btn-info">Imprimir</a>
                 </div>
                 
                 <div id="totales">
