@@ -24,16 +24,16 @@
     $empresa = $_SESSION["empresa_db"];
     if(isset($_POST["filtro"])){
         $filtro= $_POST["filtro"];
-        $lista_categoria = $conexion->query("SELECT * FROM $empresa.tbl_clientes WHERE id_cliente LIKE '%$filtro%'");
+        $lista_categoria = $conexion->query("SELECT * FROM $empresa.tbl_clientes WHERE id_cliente LIKE '%$filtro%' limit 15");
     }
     else{
-        $lista_categoria = $conexion->query("SELECT * FROM $empresa.tbl_clientes");
+        $lista_categoria = $conexion->query("SELECT * FROM $empresa.tbl_clientes limit 15");
     }
 
     while($row = $lista_categoria->fetch_assoc())
         { 
 ?>
-        <!-- Head Tabla impuestos   --->
+        <!-- Head Tabla   --->
             <tr>
                 <th scope="row"><?php echo $row["id_cliente"]; ?></th>
                 <td><?php echo $row["nombre_cliente"];?></td>
@@ -41,7 +41,7 @@
 
         <td><?php if($permisos['modificar_categorias']== 1){ ?><a id="cerrar"  class="btn btn-info" data-toggle="modal" data-target="#example<?php echo $row["id_cliente"]; ?>" > <i class="fa fa-eye fa-lg"></i></a><?php } ?> <?php if($permisos['eliminar_categorias']== 1){ ?> <a class="btn btn-danger"  data-toggle="modal" data-target="#eliminar<?php echo $row["id_cliente"]; ?>" ><i class="fa fa-trash-o fa-lg"></i></a><?php } ?> </td>
             </tr>
-        <!--Modal editar usuario   --->
+        <!--Modal editar   --->
                 <div class="modal fade" id="example<?php echo $row["id_cliente"];?>" tabindex="-1" aria-labelledby="example<?php echo $row["id_cliente"];?>Label" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -53,13 +53,13 @@
                             </div>
                             <div class="modal-body">
                                 <!-- formulario usuario   --->
-                                <form action="../../scripts/administracion/actualizar_clientes.php" method="post">
+                                <form action="../../scripts/clientes/actualizar_clientes.php" method="post">
                                     <div class="form-row">
                                     <div class="form-group col-md-6">
-                    <input type="text" class="form-control" placeholder ="Código" name="codigo" required disabled>
+                    <input type="text" class="form-control" placeholder ="Código" name="codigo" value="<?php echo $row["id_cliente"];  ?>" required readonly>
                 </div>
                 <div class="form-group col-md-6">
-                    <input type="text" class="form-control" placeholder ="Nombre" name="nombre" required disabled>
+                    <input type="text" class="form-control" placeholder ="Nombre" value="<?php echo $row["nombre_cliente"];  ?>" name="nombre" required disabled>
                 </div>
 
                 <div class="form-group col-md-6">
@@ -81,18 +81,13 @@
                     </select>
                 </div>
                 <div class="form-group col-md-12">
-                    <textarea type="text" class="form-control" placeholder ="Dirección" name="direccion"required  disabled><?php echo $row["direccion"];  ?></textarea>
+                    <textarea type="text" class="form-control" placeholder ="Dirección" name="direccion" required  disabled><?php echo $row["direccion"];  ?></textarea>
                 </div>
                 <div class="form-group col-md-6">
-                    <input type="text" class="form-control" placeholder ="Telefono" name="telefono" required disabled >
+                    <input type="text" class="form-control" placeholder ="Telefono" name="telefono" value="<?php echo $row["telefono_cliente"];  ?>" required disabled >
                 </div>
                 <div class="form-group col-md-6">
-                    <select class="form-control" placeholder ="Tipo de comprobante" name="tipo_comprobante" required disabled>
-                        <option>Consumidor final</option>
-                        <option>Valor físcal</option>
-                        <option>Gubernamental</option>
-
-                    </select>
+                    <input type="text" class="form-control" placeholder ="Referencia" name="referencia" value="<?php echo $row["referencia"];  ?>" required disabled >
                 </div>
                 <div class="form-group col-md-6">
                     <select class="form-control" placeholder ="Tipo de cliente" name="tipo_cliente" required disabled>
@@ -102,24 +97,24 @@
                     </select>
                 </div>
                 <div class="form-group col-md-6">
-                    <input type="text" class="form-control" placeholder ="RNC" name="rnc" required disabled >
+                    <input type="text" class="form-control" placeholder ="RNC" value="<?php echo $row["rnc_cliente"];  ?>" name="rnc" required disabled >
                 </div>
                 <div class="form-group col-md-6">
                     <select class="form-control" placeholder ="Condición" name="condicion" required disabled >
                         <?php $condiciones_pago = $conexion->query("SELECT nombre_condicion_p FROM $empresa.tbl_condiciones_pago"); 
-                        while($row = $condiciones_pago->fetch_assoc()) {
+                        while($row2 = $condiciones_pago->fetch_assoc()) {
                         ?>
-                        <option><?php echo $row["nombre_condicion_p"];  ?></option>
+                        <option><?php echo $row2["nombre_condicion_p"];  ?></option>
                         <?php } ?>
 
                     </select>
                 </div>
                 <div class="form-group col-md-6">
-                    <input type="number" class="form-control" placeholder ="Límite de crédito" name="credito" required disabled >
+                    <input type="number" class="form-control" placeholder ="Límite de crédito" value="<?php echo $row["limite_credito"];  ?>" name="credito" required disabled >
                 </div>
 
                                         <div class="form-group col-md-12">   
-                                            Fecha: <?php echo $row["fecha_creacion"] . "  &nbsp &nbsp &nbsp  &nbsp  &nbsp  Creado por: " . $row["creada_por"]; ?>
+                                            Fecha: <?php echo $row["fecha_creacion"] . "  &nbsp &nbsp &nbsp  &nbsp  &nbsp  Creado por: " . $row["creado_por"]; ?>
                                         </div>
                                       
                                         <input type="hidden" name="id" value="<?php echo $row["id_cliente"]; ?>" >
@@ -164,9 +159,5 @@
 ?>
   </tbody>
 </table>
-
-<a href="../administracion/administracion.php" id="buscar" class="btn btn" >
-  Volver atras
-</a>
 
 <!-- Modal -->
