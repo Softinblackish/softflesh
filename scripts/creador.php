@@ -309,7 +309,7 @@ $perm = $conexion->query("
       ");
 
       $tabla_cotizaciones = $conexion->query("
-      CREATE TABLE `sofia17`.`tbl_cotizaciones` ( 
+      CREATE TABLE $nombre_sin_espacio.tbl_cotizaciones ( 
       `id_cotizacion` INT NOT NULL AUTO_INCREMENT , 
       `id_venta_temp` INT(10) NOT NULL , 
       `id_cliente` INT(10) NOT NULL , 
