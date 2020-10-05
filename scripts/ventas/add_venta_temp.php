@@ -39,7 +39,7 @@
             $precio = $_GET["precio"]* $nueva_cantidad;
             $total = $itbis + $precio;
             $actualizar_temp = $conexion->query("UPDATE $empresa.tbl_venta_temp SET cantidad = $nueva_cantidad, itbis = $itbis, precio = $precio, total = $total WHERE id_venta = $id_temp and id_articulo = $cod");
-            if(isset($_POST['cotizacion']))
+            if(isset($_GET['cotizacion']))
             {
                 header("location:../../views/venta/cotizaciones.php?id_temp=$id_temp");
 
@@ -50,11 +50,18 @@
             }
         }
         else{
+            if(isset($_GET['cotizacion']))
+            {
+                $cotizacion = 1;
+            }
+            else{
+                $cotizacion = 0;
+            }
             $itbis = $_GET["itbis"] * $cantidad;
             $precio = $_GET["precio"]* $cantidad;
             $total = $itbis + $precio;
-            $insert_venta_temp = $conexion->query("INSERT into $empresa.tbl_venta_temp (id_venta,id_articulo, articulo, itbis, precio, cantidad, total, creado_por) Values ($id_temp, $cod, '$nom', $itbis, $precio, $cantidad, $total, '$usuario')");
-            if(isset($_POST['cotizacion']))
+            $insert_venta_temp = $conexion->query("INSERT into $empresa.tbl_venta_temp (id_venta,id_articulo, articulo, itbis, precio, cantidad, total, cotizacion, creado_por) Values ($id_temp, $cod, '$nom', $itbis, $precio, $cantidad, $total, $cotizacion, '$usuario')");
+            if(isset($_GET['cotizacion']))
             {
                 header("location:../../views/venta/cotizaciones.php?id_temp=$id_temp");
 

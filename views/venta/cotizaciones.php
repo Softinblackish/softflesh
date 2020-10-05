@@ -191,7 +191,7 @@ else
                     <td>$<?php  echo $reg_art_temp["itbis"]; ?></td>
                     <td>$<?php  echo $reg_art_temp["precio"]; ?></td>
                     <td>$<?php  echo $reg_art_temp["total"]; ?></td>
-                    <td><a href="../../scripts/ventas/eliminar_arti_temp.php?id_articulo=<?php echo $reg_art_temp['id_venta_temp']; ?> && id_temp=<?php echo $id; ?>" class="btn btn-danger"><i class="fa fa-times fa-lg"></i></a></td> 
+                    <td><a href="../../scripts/ventas/eliminar_arti_temp.php?id_articulo=<?php echo $reg_art_temp['id_venta_temp']; ?> && id_temp=<?php echo $id; ?> && cotizacion= true" class="btn btn-danger"><i class="fa fa-times fa-lg"></i></a></td> 
                 </tr>
                 <?php
                     }}  
@@ -206,7 +206,7 @@ else
     <div style="float:left; position:absolute; width:20%; height:750px; margin-left:77%; margin-top:25px;background-color:white; border-radius:8px; box-shadow:1px 1px 5px">
         <div>
             <h5 style="padding:15px; background-color:rgb(87, 220, 200) ;color:white;">Información</h5>
-            <form action="../../scripts/ventas/registrar_venta.php" method="POST"><br>
+            <form action="../../scripts/ventas/registrar_cotizacion.php" method="POST"><br>
                 <div class="form-row">
                     <div class="col-md-10">
                         <input style="border-bottom-left-radius: 0px;  border-top-left-radius: 0px;" id="cliente"   class="form-control" value="c" placeholder="Buscar cliente" name="cliente" required/>

@@ -46,9 +46,9 @@
       CREATE TABLE $nombre_sin_espacio.tbl_cod_impuestos (
         `id_cod_impuesto` int(11) NOT NULL AUTO_INCREMENT ,
         `nom_codigo` varchar(100) NOT NULL,
-        `descripcion` varchar(200) NOT NULL,
+        `descripcion` varchar(200) ,
         `porciento` int(3) NOT NULL,
-        `creado_por` varchar(150) NOT NULL,
+        `creado_por` varchar(150) ,
         PRIMARY KEY (`id_cod_impuesto`)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8
       ");
@@ -274,7 +274,19 @@ $perm = $conexion->query("
       ");
 
       $tabla_venta_temp = $conexion->query("
-      CREATE TABLE $nombre_sin_espacio.tbl_venta_temp ( `id_venta_temp` INT NOT NULL AUTO_INCREMENT , `id_venta` INT(10) NOT NULL , `id_articulo` INT(10) NOT NULL , `articulo` VARCHAR(150) NOT NULL , `itbis` INT(10) NOT NULL , `precio` INT(10) NOT NULL , `total` INT(10) NOT NULL , `creado_por` VARCHAR(100) NOT NULL , `cantidad` INT(10) NOT NULL , `fecha_creacion` TIMESTAMP NOT NULL , PRIMARY KEY (`id_venta_temp`)) ENGINE = InnoDB;
+      CREATE TABLE $nombre_sin_espacio.tbl_venta_temp ( 
+      `id_venta_temp` INT NOT NULL AUTO_INCREMENT , 
+      `id_venta` INT(10) NOT NULL , 
+      `id_articulo` INT(10) NOT NULL , 
+      `articulo` VARCHAR(150) NOT NULL , 
+      `itbis` INT(10) NOT NULL ,
+      `cotizacion` INT(1) NOT NULL DEFAULT '0' 
+      `precio` INT(10) NOT NULL , 
+      `total` INT(10) NOT NULL , 
+      `creado_por` VARCHAR(100) NOT NULL , 
+      `cantidad` INT(10) NOT NULL , 
+      `fecha_creacion` TIMESTAMP NOT NULL ,
+      PRIMARY KEY (`id_venta_temp`)) ENGINE = InnoDB;
 
       ");
 
@@ -294,7 +306,20 @@ $perm = $conexion->query("
         `modificado por` varchar(200) NOT NULL,
         `fecha_modificado` timestamp NOT NULL DEFAULT current_timestamp(),
         PRIMARY KEY (`id_comprobante`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-      
+      ");
+
+      $tabla_cotizaciones = $conexion->query("
+      CREATE TABLE `sofia17`.`tbl_cotizaciones` ( 
+      `id_cotizacion` INT NOT NULL AUTO_INCREMENT , 
+      `id_venta_temp` INT(10) NOT NULL , 
+      `id_cliente` INT(10) NOT NULL , 
+      `itbis` INT(10) NOT NULL , 
+      `precio` INT(10) NOT NULL , 
+      `total` INT(10) NOT NULL , 
+      `creado_por` VARCHAR(50) NOT NULL , 
+      `fecha_creacion` DATE NOT NULL DEFAULT CURRENT_TIMESTAMP , 
+      `modificado_por` DATETIME NULL DEFAULT CURRENT_TIMESTAMP , 
+      PRIMARY KEY (`id_cotizacion`)) ENGINE = InnoDB;
       ");
       
 
