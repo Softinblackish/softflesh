@@ -1,14 +1,14 @@
 .container-compras{
     width: 1000px;
     height:1000px;
-    margin:70px;
+    margin:50px;
 
   /*  position: relative;
     background-color:darkgray;
     /*background-color: white;
      rgb(137, 202, 245);
     */
-    margin-left: 430px;
+    margin-left: 400px;
     margin-top: 0px;
 
 }
@@ -16,7 +16,7 @@
     width: 900px;
     margin: auto;
     position: relative;
-    top: 50px;
+    top: 10px;
     padding-top: 10px;
     padding: 10px;
     font-family: Georgia, 'Times New Roman', Times, serif;

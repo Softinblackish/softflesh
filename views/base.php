@@ -105,7 +105,9 @@
                                         <a href="../compras/frm_consultar_compras.php">
                                         <div id="lista_compras" class="menu_lv3 menu_compras">Ver lista de compras</div>
                                         </a>
+                                        <a href="../compras/frm_devoluciones.php">
                                         <div id="devoluciones_compra" class="menu_lv3 menu_compras">Devoluciones</div>
+                                        </a>
                                 </div><?php } ?>
 
                                 <?php if($permisos['cxp']== 1){ ?><div id="cxp" class="menu_lv1"><i class="fa fa-credit-card fa-lg" aria-hidden="true"></i> Cuentas por pagar

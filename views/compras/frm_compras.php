@@ -2,27 +2,25 @@
       SOLO HTML SIN CSS SIN JAVASCRIP SIN PHP-->
 
       <!-- php -->
-<?php include("../base.php"); ?>
-
-
-<?php include("../../scripts/compras/compras_general_id_temp.php"); 
-     $id_nueva_compra = $conexion->query("SELECT no_compra FROM $empresa.tbl_compra_id_temp where id_compra = 1 ");
-     $id_temp = $id_nueva_compra->fetch_assoc();
-     $no_compra = $id_temp["no_compra"];
-?>
+        <?php include("../base.php"); ?>
+        <?php include("../../scripts/compras/compras_general_id_temp.php"); 
+            $id_nueva_compra = $conexion->query("SELECT no_compra FROM $empresa.tbl_compra_id_temp where id_compra = 1 ");
+            $id_temp = $id_nueva_compra->fetch_assoc();
+            $no_compra = $id_temp["no_compra"];
+        ?>
       <!-- css -->
-<link rel="stylesheet" href="../../css/compras.css">
-<link rel="stylesheet" href="../../css/scroll.css">
+        <link rel="stylesheet" href="../../css/compras.css">
+        <link rel="stylesheet" href="../../css/scroll.css">
       <!-- js -->
-<!--
-      <script src="../../scripts/compras/articulosCompras.js"></script>                            
--->
-<script src="../../scripts/js/time_alert.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.js" integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM="
-  crossorigin="anonymous">
-</script>
+        <!--
+        <script src="../../scripts/compras/articulosCompras.js"></script>                            
+        -->
+        <script src="../../scripts/js/time_alert.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.js" integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM="
+        crossorigin="anonymous">
+        </script>
 
 
 <div class="container-compras">
@@ -219,68 +217,28 @@
             <br>
             <br>
         </form>
-    </div>    
 
-<script>
-    $("#articulo").change(function () {
-        var art = $("#articulo").val();
-        //alert(art);
-            $.ajax({
-                type: "post",
-                url: "../../scripts/compras/consulta_articulos.php",
-                dataType: "html",
-                data: "articulo="+art,
-                success: function(r){
-                    alert(r);
-                }
+
+        <script>
+            $("#articulo").change(function () {
+                var art = $("#articulo").val();
+                alert(art);
+                    $.ajax({
+                        type: 'post',
+                        url: '../../scripts/compras/BuscarArticulos.php',
+                        dataType: 'html',
+                        data: 'articulo='+art,
+                        success: function(r){
+                            alert(r);
+                        }
+                    });
             });
-    });
-</script>
+        </script>
 
+<!--Aqui el final de los div de este formulario-->
+    </div>    
 </div>
 
 
-
-        
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog">
-        
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Eliminar articulo</h4>   
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <p>Seguro que quieres borrarlo ?.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        
-        </div>
-    </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="borrarArticulo" role="dialog">
-        <div class="modal-dialog">
-        
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Eliminar articulo</h4>   
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <p>Seguro que quieres borrarlo ?.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        
-        </div>
-    </div>
+    
   
