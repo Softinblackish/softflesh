@@ -206,15 +206,13 @@
                 </table> 
             </div>
 
-            <br>
-            <br>
+            
             <label class="form-check-label" for="gridCheck">
                     Haga click en guardar para registrar esta compra 
             </label>
             <br>
             <a href="../../scripts/compras/borrar_id_temporal.php" id="btn" class="btn btn" >registrar compra</a>
             <a href="../administracion/administracion.php" id="btn" class="btn btn" >Volver atras</a>
-            <br>
             <br>
         </form>
 
@@ -234,7 +232,6 @@
                     });
             });
         </script>
-
 <!--Aqui el final de los div de este formulario-->
     </div>    
 </div>
