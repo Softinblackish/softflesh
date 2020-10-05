@@ -131,8 +131,5 @@
   </tbody>
 </table>
 
-<a href="../administracion/administracion.php" id="buscar" class="btn btn" >
-  Volver atras
-</a>
 
 <!-- Modal -->

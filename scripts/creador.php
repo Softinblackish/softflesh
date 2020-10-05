@@ -255,7 +255,7 @@ $perm = $conexion->query("
       $tabla_categoria = $conexion->query("
       CREATE TABLE $nombre_sin_espacio.tbl_clientes (
          `id_cliente` INT NOT NULL AUTO_INCREMENT , 
-         `codigo_cliente` VARCHAR(200) NOT NULL , 
+         `codigo_cliente` VARCHAR(200), 
          `nombre_cliente` VARCHAR(100) NOT NULL , 
          `Pais` VARCHAR(200) , 
          `provincia` VARCHAR(100) , 
@@ -264,13 +264,13 @@ $perm = $conexion->query("
          `tipo_cliente` VARCHAR(100) , 
          `referencia` VARCHAR(100) , 
          `rnc_cliente` VARCHAR(100) , 
-         `creado_por` VARCHAR(100) NOT NULL , 
+         `creado_por` VARCHAR(100)  , 
          `fecha_creacion` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , 
          `fecha_modificacion` TIMESTAMP DEFAULT CURRENT_TIMESTAMP , 
          `modificado_por` VARCHAR(100) , 
          `limite_credito` INT(10) , 
          `condicion_pago` VARCHAR(100) , 
-         `status` VARCHAR(10) NOT NULL , PRIMARY KEY (`id_cliente`)) ENGINE = InnoDB;
+         `status` VARCHAR(10), PRIMARY KEY (`id_cliente`)) ENGINE = InnoDB;
       ");
 
       $tabla_venta_temp = $conexion->query("

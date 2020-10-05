@@ -53,7 +53,6 @@
                         <h3><?php echo $empresa ?></h3>
                         Aqui va el slogan
                         </div>
-            
             </div>
             <div id="informacion">
                 <div id="informacion_cliente">

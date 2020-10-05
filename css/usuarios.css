@@ -1,12 +1,19 @@
 #box_lista{
     width:70%;
     float:left;
+    height: 1100px;
     margin-left:20px; 
     margin-top:20px;
     background-color:white;
     padding:40px; 
     border-radius:7px;
-    box-shadow:1px 1px 5px black
+    box-shadow:1px 1px 5px black;
+    overflow:scroll;
+    overflow-x:hidden;
+}
+.buscar::-webkit-scrollbar {
+    width: 8px;     /* Tamaño del scroll en vertical */
+    height: 118px;    /* Tamaño del scroll en horizontal */
 }
 form{
     float:right;
