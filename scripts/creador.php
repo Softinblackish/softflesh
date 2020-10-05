@@ -280,14 +280,13 @@ $perm = $conexion->query("
       `id_articulo` INT(10) NOT NULL , 
       `articulo` VARCHAR(150) NOT NULL , 
       `itbis` INT(10) NOT NULL ,
-      `cotizacion` INT(1) NOT NULL DEFAULT '0' 
+      `cotizacion` INT(1) NOT NULL DEFAULT '0',
       `precio` INT(10) NOT NULL , 
       `total` INT(10) NOT NULL , 
       `creado_por` VARCHAR(100) NOT NULL , 
       `cantidad` INT(10) NOT NULL , 
       `fecha_creacion` TIMESTAMP NOT NULL ,
       PRIMARY KEY (`id_venta_temp`)) ENGINE = InnoDB;
-
       ");
 
       $tabla_venta = $conexion->query("
