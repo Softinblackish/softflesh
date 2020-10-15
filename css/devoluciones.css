@@ -2,12 +2,6 @@
     width: 1000px;
     height:1000px;
     margin:50px;
-
-  /*  position: relative;
-    background-color:darkgray;
-    /*background-color: white;
-     rgb(137, 202, 245);
-    */
     margin-left: 400px;
     margin-top: 0px;
 
@@ -21,10 +15,6 @@
     padding: 10px;
     font-family: Georgia, 'Times New Roman', Times, serif;
     background-color:white;
-<<<<<<< HEAD
-=======
-    /*background-color: white;*/
->>>>>>> 2cde835202ca62b2e09a3150938f73107dd27f51
     box-shadow: 1px 1px 5px black;
     border-radius: 10px;
     
