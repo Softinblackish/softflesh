@@ -25,31 +25,51 @@
                <h2> Registro de artículos</h2>
             </div>
             <div class="form-row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-8">
                     <input type="text" name="nombre" placeholder ="Nombre del artículo" class="form-control">
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-4">
                     <input type="text" name="codigo_barra" placeholder ="Código Barra" class="form-control" >
                 </div>
             </div>
 
             <div class="form-row">
-                <div class="form-group col-md-12">
-                <input type="text" name="descripcion" placeholder ="Descripción" class="form-control" >
+                <div class="form-group col-md-3">
+                    <input type="number" name="precio_compra" placeholder ="precio compra" class="form-control" >
                 </div>
-                <div class="form-group col-md-6">
-                <input type="number" name="precio" placeholder ="precio" class="form-control" >
+                <div class="form-group col-md-3">
+                    <input type="number" name="precio_venta" placeholder ="precio venta" class="form-control" >
                 </div>
-                <div class="form-group col-md-6">
-                <input type="number" name="stop_min" placeholder ="Stop minimo" class="form-control" >
+                <div class="form-group col-md-3">
+                    <input type="number" name="ganancia" placeholder ="ganancia" class="form-control" >
+                </div>
+                <div class="form-group col-md-3">
+                    <input type="number" name="stop_min" placeholder ="Stock minimo" class="form-control" >
                 </div>
             </div>
 
-            <label for="inputState">Codigo de Impuestos: </label><br>
-            
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    <input type="text" name="cod_impuesto" class="form-control"  placeholder="Eje; 0000215EE150" >
+                    <select id="inputState" class="form-control" name="impuesto">
+                            <option selected="">7%</option>
+                            <option selected="">8%</option>
+                            <option selected="">10%</option>
+                            <option selected="">18%</option>
+                            <option selected="null">impuesto</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <select id="inputState" class="form-control" name="unidad">
+                            <option selected="">libra</option>
+                            <option selected="">metro</option>
+                            <option selected="">centimetos</option>
+                            <option selected="">pulgadas</option>
+                            <option selected="">pies</option>
+                            <option selected="">galones</option>
+                            <option selected="">una media(1/2)</option>
+                            <option selected="">una cuarta(1/4)</option>
+                            <option selected="null">Unidad</option>
+                    </select>
                 </div>
                 <div class="form-group col-md-4">
                     <select id="inputState" class="form-control" name="categoria">
@@ -60,17 +80,12 @@
                             <option selected="null">categoria</option>
                     </select>
                 </div>
-                <select id="inputState" class="form-control col-md-4" name="unidad">
-                        <option selected="">libra</option>
-                        <option selected="">metro</option>
-                        <option selected="">centimetos</option>
-                        <option selected="">pulgadas</option>
-                        <option selected="">pies</option>
-                        <option selected="">galones</option>
-                        <option selected="">una media(1/2)</option>
-                        <option selected="">una cuarta(1/4)</option>
-                        <option selected="null">Unidad</option>
-                </select>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <textarea name="nota" class="form-control" cols="50" rows="3" placeholder = "Descripcion"></textarea>
+                </div>
             </div>
 
             <label class="form-check-label" for="gridCheck">
