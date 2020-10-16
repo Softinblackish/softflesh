@@ -11,10 +11,10 @@
     <?php include("../base.php"); ?>
 
     <div id="info">
-        <div class="canvas2" style=" padding:30px; width:184px;">CLIENTES (5)</div>
-        <div class="canvas2" style=" padding:30px; width:184px;">SUPLIDORES (10)</div>
-        <div class="canvas2" style=" padding:30px; width:184px;">VENTAS (300)</div>
-        <div class="canvas2" style=" padding:30px; width:184px;"><?php echo date("d/m/y")." ".date("l");?></div>
+        <div class="canvas2" style=" padding:10px; width:184px;"><center><small>CLIENTES</small><br> <h3>5</h3></center></div>
+        <div class="canvas2" style=" padding:10px; width:184px;"><center><small>SUPLIDORES</small> <br> <h3>10</h3></center></div>
+        <div class="canvas2" style=" padding:10px; width:184px;"><center><small>VENTAS <br> <h3>300</h3></center></div>
+        <div class="canvas2" style=" padding:10px; width:184px;"> <center><?php echo date("d/m/y")?> <br> <h3><?php echo date("l");?></h3> </center></div>
     </div>
 <div id="graficos">
     <div class="canvas">
