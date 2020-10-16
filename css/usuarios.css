@@ -29,3 +29,10 @@ form{
 .box-modulos{
     height: 150px;
 }
+@media screen and (max-width: 1160px) 
+{
+    #box_lista{
+        width:95%;
+        
+    }
+}
