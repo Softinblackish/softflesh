@@ -9,7 +9,13 @@
 </head>
 <body>
     <?php include("../base.php"); ?>
-   
+
+    <div id="info">
+        <div class="canvas2" style=" padding:30px; width:184px;">CLIENTES (5)</div>
+        <div class="canvas2" style=" padding:30px; width:184px;">SUPLIDORES (10)</div>
+        <div class="canvas2" style=" padding:30px; width:184px;">VENTAS (300)</div>
+        <div class="canvas2" style=" padding:30px; width:184px;"><?php echo date("d/m/y")." ".date("l");?></div>
+    </div>
 <div id="graficos">
     <div class="canvas">
         <canvas id="myChart"></canvas>

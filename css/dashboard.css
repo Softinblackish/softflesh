@@ -1,9 +1,34 @@
 .canvas{
     width:420px;
     float:left;
-    margin-top:80px;
+    margin-top:30px;
     margin-left:50px;
     background-color:rgb(255, 253, 253);
     border-radius:5px; 
     box-shadow:black 1px 1px 5px;
+    color:white;
+}
+
+.canvas2
+{
+    width:420px;
+    float:left;
+    margin-top:30px;
+    margin-left:50px;
+    background-color:rgb(255, 253, 253);
+    border-radius:5px; 
+    box-shadow:black 1px 1px 5px;
+    color:white;
+    background-image: linear-gradient(-90deg, #17a2b8 0%,#882f88  50%, #882f88 20%);
+}
+@media screen and (max-width: 1160px) 
+{
+    .canvas2
+    {
+        margin-left:20px;
+    }
+    .canvas
+    {
+        margin-left:20px;
+    }
 }
