@@ -34,7 +34,7 @@
  
             // Definimos las mascaras para cada input
             $("#date").mask("99/99/9999");
-            $("#movil").mask("(999)-999-9999");
+            $(".movil").mask("(999)-999-9999");
             $("#letras").mask("aaa");
             $("#comodines").mask("?");
             $(".fa-2x").click(function(){
