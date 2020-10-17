@@ -37,6 +37,9 @@
             $("#movil").mask("(999)-999-9999");
             $("#letras").mask("aaa");
             $("#comodines").mask("?");
+            $(".fa-2x").click(function(){
+                $("#menu_lateral").toggle();
+            });
         });
     </script>
     
@@ -47,17 +50,18 @@
 <script src="../../scripts/js/base.js" type="text/javascript"> </script>
 </head>
 
-    <div id=contenedor >
-        <header>
-            <div id="menu_top" >
-                <div id="logo" class="option_top"><img src="../../img/logo-horizontal.png" alt=""></div>
-                <div id="notificaciones" class="option_top">
-                        <button class="btn btn-info">Cobros pendientes(35)</button>
-                        <button class="btn btn-info">Pagos a realizar(12)</button>
-                        <button class="btn btn-info">Artículos por debajo del límite(3)</button>
-                        <i class="fa fa-bell fa-lg"></i>
+    <div id="contenedor">
+        <header >
+            <div id="menu_top" class="padre1">
+                <div id="logo" class="option_top hijo1"><img src="../../img/logo.png" width="60" style="margin-top:-10px;"> <i style="margin-left:50px" class="fa fa-bars fa-2x" aria-hidden="true"></i></div>
+                
+                <div id="notificaciones" class="option_top hijo1">
+                        <button class="btn btn-info botones-top">Cobros pendientes(35)</button>
+                        <button class="btn btn-info botones-top">Pagos a realizar(12)</button>
+                        <button class="btn btn-info botones-top">Artículos por debajo del límite(3)</button>
+                       <center> <i class="fa fa-bell fa-lg"></i></center>
                 </div>
-                <div  id="usuario" class="option_top">
+                <div  id="usuario" class="option_top hijo1">
                         <?php 
                                 echo $_SESSION['user'];
                         ?>
@@ -96,6 +100,8 @@
                                 <?php if($permisos['ventas']== 1){ ?> <div id="ventas" class="menu_lv1"><i class="fa fa-cart-plus fa-lg" aria-hidden="true"></i> Ventas
                                         <a href="../venta/punto_de_venta.php"><div id="punto_de_venta"class="menu_lv3 menu_ventas" >Punto de venta</div></a>
                                         <a href="../venta/ver_ventas.php"><div id="lista_ventas" class="menu_lv3 menu_ventas">Ventas</div></a>
+                                        <div id="lista_ventas" class="menu_lv3 menu_ventas">Ventas en espera</div>
+                                        <div id="lista_ventas" class="menu_lv3 menu_ventas">Cierre de venta</div>
                                         <a href="../venta/cotizaciones.php"><div id="lista_ventas" class="menu_lv3 menu_ventas">Cotizaciones</div></a>
                                         <div id="devoluciones_venta" class="menu_lv3 menu_ventas">Devoluciones</div>
                                         <div id="devoluciones_venta" class="menu_lv3 menu_ventas">Reportes</div>

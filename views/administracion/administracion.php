@@ -10,13 +10,6 @@
 </ul>
 <?php }?>
 
-<?php if($permisos['roles']== 1){ ?> <ul class="list-group">
-  <li class="list-group-item" style="background-color:rgb(87, 220, 200); color:white;">Roles</li>
-<?php if($permisos['agregar_roles']== 1){ ?><a href="crear_rol.php"><li class="list-group-item"><i class="fa fa-plus-circle"></i> Agregar</li></a><?php } ?>
-<?php if($permisos['ver_roles']== 1){ ?><a href="ver_roles.php"><li class="list-group-item"><i class="fa fa-eye"></i> Ver Roles</li></a><?php } ?>
-</ul>
-<?php } ?>
-
 <?php if($permisos['empresa']== 1){ ?><ul class="list-group" >
   <li class="list-group-item superior"  style="background-color:#125c67;color:white;">Mi empresa</li>
   <a href="../usuarios/lista_usuarios.php"><li class="list-group-item"><i class="fa fa-pencil"></i> Información</li></a>
@@ -49,6 +42,14 @@
 </ul>
 <?php } ?>
 
+<?php if($permisos['condiciones_p']== 1){ ?><ul class="list-group" >
+  <li class="list-group-item active" style="background-color:#17a2b8;">Condición de pago</li>
+  <?php if($permisos['agregar_condiciones_p']== 1){ ?><a href="crear_condicion_pago.php"><li class="list-group-item"><i class="fa fa-plus-circle"></i> Agregar</li></a><?php } ?>
+    <?php if($permisos['ver_condiciones_p']== 1){ ?><a href="ver_condiciones_pago.php"><li class="list-group-item"><i class="fa fa-eye"></i> Ver condiciones de pago</li></a><?php } ?>
+  <a href="../usuarios/lista_usuarios.php"><li class="list-group-item"><i class="fa fa-list-alt"></i> reportes</li></a>
+</ul>
+<?php } ?>
+
 <ul class="list-group" >
   <li class="list-group-item " style="background-color:#882f88; color:white;">Comprobantes fiscales</li>
   <a href="comprobantes.php?tipo=Consumidor Final"><li class="list-group-item">Consumidor final</li></a>
@@ -57,10 +58,12 @@
   <a href="comprobantes.php?tipo=Proveedor informal"><li class="list-group-item">Proveedor informal</li></a>
   <a href="comprobantes.php?tipo=Gubernamental"><li class="list-group-item">Gubernamental</li></a>
 </ul>
-<?php if($permisos['condiciones_p']== 1){ ?><ul class="list-group" >
-  <li class="list-group-item active" style="background-color:#17a2b8;">Condición de pago</li>
-  <?php if($permisos['agregar_condiciones_p']== 1){ ?><a href="crear_condicion_pago.php"><li class="list-group-item"><i class="fa fa-plus-circle"></i> Agregar</li></a><?php } ?>
-    <?php if($permisos['ver_condiciones_p']== 1){ ?><a href="ver_condiciones_pago.php"><li class="list-group-item"><i class="fa fa-eye"></i> Ver condiciones de pago</li></a><?php } ?>
-  <a href="../usuarios/lista_usuarios.php"><li class="list-group-item"><i class="fa fa-list-alt"></i> reportes</li></a>
+
+
+
+<?php if($permisos['roles']== 1){ ?> <ul class="list-group">
+  <li class="list-group-item" style="background-color:rgb(87, 220, 200); color:white;">Roles</li>
+<?php if($permisos['agregar_roles']== 1){ ?><a href="crear_rol.php"><li class="list-group-item"><i class="fa fa-plus-circle"></i> Agregar</li></a><?php } ?>
+<?php if($permisos['ver_roles']== 1){ ?><a href="ver_roles.php"><li class="list-group-item"><i class="fa fa-eye"></i> Ver Roles</li></a><?php } ?>
 </ul>
 <?php } ?>

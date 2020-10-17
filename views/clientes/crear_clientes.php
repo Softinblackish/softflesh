@@ -3,7 +3,7 @@ $consulta_cliente = $conexion->query("SELECT id_cliente FROM $empresa.tbl_client
 $registro_cliente = $consulta_cliente->fetch_assoc();
 $id_nuevo_cliente = $registro_cliente["id_cliente"] + 1;
 ?>
-<link rel="stylesheet" href="../../css/articulos.css">
+<link rel="stylesheet" href="../../css/clientes.css">
 <div class="container-articulos">
     <div class="container form-row">
         <form id="form"  action="../../scripts/clientes/crear_clientes.php" method="post">

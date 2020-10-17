@@ -18,9 +18,12 @@
     
 
 }
+
 .fa-bell
 {
-    margin-left: 15px;
+    margin-top: 10px;
+    display: none !important;
+   
     
 }
 .option_top{
@@ -29,7 +32,7 @@
     margin-top: 10px;
 }
 #logo{
-    margin-left: 50px;
+    margin-left: 140px;
 }
 #notificaciones {
     margin-left: 13%;
@@ -41,7 +44,7 @@
 aside{
     font-family: 'Courier New', Courier, monospace;
     background-color:#0e444c;
-    width: 25%;
+    width: 350px;
     color:white;
 }
 .menu_lv1{
@@ -53,6 +56,7 @@ aside{
     padding-top: 5px;
     padding-bottom: 5px;
     margin-left: 20px;
+    border-bottom:solid 1px White ;
 }
 #menu_lateral
 {
@@ -68,7 +72,7 @@ aside{
     background-color: #125c67 ;
 }
 #menu-user{
-    background-color:white;
+    background-color:#882f88;
     height:auto;
     position:absolute; 
     width:140px;
@@ -80,7 +84,45 @@ aside{
     z-index: 80;
 }
 a {
-   color:white;
+   color:white !important;
 }
-
+@media screen and (max-width: 1160px) 
+{
+    #logo{
+        margin-left: 50px;
+    }
+    .botones-top
+    {
+        display: none !important;
+    }
+    .fa-bell
+    {
+    display: block !important;
+    
+    }
+    #menu_lateral{
+        display: none;
+    }
+    aside{
+        
+        width: 100%;
+        position: static;
+    }
+    .fa-2x
+    {
+        display:unset;
+    }
+}
+@media screen and (min-width: 1160px) 
+{
+    
+    #menu_lateral{
+        display: block !important;
+    }
+    .fa-2x
+    {
+        display: none !important;
+    }
+   
+}
 

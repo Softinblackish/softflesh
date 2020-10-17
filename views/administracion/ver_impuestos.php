@@ -67,7 +67,7 @@
                                             .
                                         </div>
                                         <div class="form-group col-md-12">   
-                                            Fecha: <?php echo $row["fecha_de_creacion"] . "  &nbsp &nbsp &nbsp  &nbsp  &nbsp  Creado por: " . $row["creado_por"]; ?>
+                                            Creado por: <?php echo $row["creado_por"]; ?>
                                         </div>
                                       
                                         <input type="hidden" name="id" value="<?php echo $row["id_cod_impuesto"]; ?>" >

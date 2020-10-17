@@ -24,8 +24,8 @@ form{
 #titulo{
     background-color: rgb(87, 220, 200); 
     color: white;
-     border-bottom-left-radius: 30px;
-      border-bottom-right-radius: 30px;
+     border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
 }
 #logo{
     z-index: 100;
