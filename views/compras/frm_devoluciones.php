@@ -28,7 +28,7 @@
             </div>
             <div class="form-group col-md-2">
                 <label>Num. factura</label>
-                <input class="form-control"  type="number" placeholder="Factura" name="filtro">
+                <input class="form-control"  type="number" placeholder="Factura" name="buscar">
             </div>
             <div class="form-group col-md-2">
             <label>.</label>
@@ -38,8 +38,8 @@
     </form> 
 
 
-    <div class="form-row">
-        <div class="form-group col-md-12">
+    <div class="table" >
+        <div >
 
                 <!--Aqui va la tabla de articulos de compras para devoluciones -->
                 
@@ -49,12 +49,12 @@
                             
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Fecha</th>
-                                <th scope="col" style="width:60%;"> Articulos </th>
-                                <th scope="col" style="width:15%;"> Cantidad </th>
-                                <th scope="col" style="width:15%;"> Precio </th>
-                                <th scope="col" style="width:15%;"> Total </th>
-                                <th scope="col" style="width:15%;"> Accion </th>
+                                <th scope="col" style="width:20%;">Fecha</th>
+                                <th scope="col" style="width:30%;"> Articulos </th>
+                                <th scope="col" style="width:10%;"> Cantidad </th>
+                                <th scope="col" style="width:10%;"> Precio </th>
+                                <th scope="col" style="width:10%;"> Total </th>
+                                <th scope="col" style="width:60%;"> Accion </th>
                             </tr>
 
                         </thead>
@@ -62,7 +62,7 @@
                             <?php
                             $empresa = $_SESSION["empresa_db"];
 
-                                if(isset($_POST["desde"], $_POST["hasta"] , $_POST["filtro"]))
+                                if(isset($_POST["desde"], $_POST["hasta"] , $_POST["buscar"]))
                                 {
                                     if($_POST["desde"] and $_POST["hasta"] )
                                         {
@@ -70,9 +70,9 @@
                                             $hasta = $_POST["hasta"];
                                             $consulta_articulos= $conexion->query("SELECT * from $empresa.tbl_compras WHERE fecha_creacion >= '$desde' and fecha_creacion <= '$hasta' ");
                                         }
-                                    if($_POST["filtro"])
+                                    if($_POST["buscar"])
                                         {
-                                            $consulta_articulos= $conexion->query("SELECT * FROM $empresa.tbl_art_compras WHERE articulo LIKE '%$filtro%' limit 5");
+                                            $consulta_articulos= $conexion->query("SELECT * FROM $empresa.tbl_art_compras WHERE articulo LIKE '%$buscar%' limit 5");
                                         }                  
                                 }else{
                                     $consulta_articulos= $conexion->query("SELECT * FROM $empresa.tbl_art_compras");
@@ -99,36 +99,16 @@
                                                     <!--Boton eliminar-->
                                                     <a                 class="btn btn-danger"data-toggle="modal" data-target="#eliminar<?php echo $row["no_compra"]; ?>" > <i class="fa fa-trash-o fa-lg"></i></a> </td>
                                                 </tr>
-                            <?php
-                                        }
-                            ?>
-                        </tbody>
-                    </table> 
-                
-
-        </div>
-        <div class="form-group col-md-4">
-            <a href="../administracion/administracion.php" id="btn" class="btn btn" >Volver atras</a>
-        </div>
-    </div>
 
 
 
-
-
-    <br><br>
-
-
-
-
-
-    <!--Modal editar compras   --->
+                                            <!--Modal editar compras   --->
         <div class="modal fade" id="example<?php echo $row["no_compra"];?>" tabindex="-1" 
-             aria-labelledby="example<?php echo $row["no_compra"];?>Label" aria-hidden="true">
+             aria-labelledby="example<?php echo $row["no_compra"];?>" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="example<?php echo $row["no_compra"];?>Label"><?php echo $row["nombre"]; ?></h5>
+                                <h5 class="modal-title" id="example<?php echo $row["no_compra"];?>"><?php echo $row["articulo"]; ?></h5>
                                 <button type="button" class="close cerrar" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                                 </button>
@@ -138,40 +118,25 @@
                                 <form action="../../scripts/compras/modificar.php" method="post">
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <input type="text" name="nombre" placeholder="Nombre" value="<?php echo $row["nombre"]; ?>" disabled class="form-control">
+                                            <input type="text" name="articulo" placeholder="articulo" value="<?php echo $row["articulo"]; ?>" disabled class="form-control">
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <input type="text" name="descripcion" placeholder ="descripcion" value="<?php echo $row["descripcion"]; ?>" disabled class="form-control" >
+                                            <input type="text" name="cantidad" placeholder ="cantidad" value="<?php echo $row["cantidad"]; ?>" disabled class="form-control" >
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <select id="inputState" class="form-control" name="categoria" disabled>
-                                                <option select><?php echo $row["categoria"]; ?></option>
-                                                <option>Electricos</option>
-                                                <option>comestibles</option>
-                                                <option>bebidas</option>
-                                                <option>herramientas</option>
-                                            </select>
+                                            <input type="text" name="precio" placeholder ="precio" value="<?php echo $row["precio_compra"]; ?>" disabled class="form-control" >
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <select id="inputState" class="form-control" name="unidad" disabled>
-                                                <option select ><?php echo $row["unidad"];  ?></option>
-                                                <option>libra</option>
-                                                <option>metro</option>
-                                                <option>centimetos</option>
-                                                <option>pulgadas</option>
-                                                <option>pies</option>
-                                                <option>galones</option>
-                                                <option>una media(1/2)</option>
-                                                <option>una cuarta(1/4)</option>
-                                                <option>Unidad</option>
-                                            </select>
+                                            <?php 
+                                             $precio = $row["precio_compra"];
+                                             $cantidad = $row["cantidad"];
+                                             $valor = $precio * $cantidad;
+                                            ?>
+                                            <input type="text" name="cantidad" placeholder ="valor" value="<?php echo $valor ?>" disabled class="form-control" >
                                         </div>
                                         <input type="hidden" name="id" value="<?php echo $row["no_compra"]; ?>">
                                         <div class="form-group col-md-6">
-                                            Ultimo acceso:  <?php echo $row["ultimo_acceso"]; ?>
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            Fecha de creación:  <?php echo $row["fecha_creacion"]; ?>
+                                            Fecha de creación:  <?php echo $row["fecha_orden"]; ?>
                                         </div>
                                     </div>
                             
@@ -207,6 +172,33 @@
                         </div>
                     </div>
         </div>
+
+
+
+                            <?php
+                                        }
+                            ?>
+                        </tbody>
+                    </table> 
+                
+
+        </div>
+        <div class="form-group col-md-4">
+            <a href="../administracion/administracion.php" id="btn" class="btn btn" >Volver atras</a>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    
 
 
 
