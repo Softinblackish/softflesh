@@ -99,16 +99,7 @@
                 <div class="form-group col-md-6">
                     <input type="text" class="form-control" placeholder ="RNC" value="<?php echo $row["rnc_cliente"];  ?>" name="rnc" required disabled >
                 </div>
-                <div class="form-group col-md-6">
-                    <select class="form-control" placeholder ="Condición" name="condicion" required disabled >
-                        <?php $condiciones_pago = $conexion->query("SELECT nombre_condicion_p FROM $empresa.tbl_condiciones_pago"); 
-                        while($row2 = $condiciones_pago->fetch_assoc()) {
-                        ?>
-                        <option><?php echo $row2["nombre_condicion_p"];  ?></option>
-                        <?php } ?>
-
-                    </select>
-                </div>
+            
                 <div class="form-group col-md-6">
                     <input type="number" class="form-control" placeholder ="Límite de crédito" value="<?php echo $row["limite_credito"];  ?>" name="credito" required disabled >
                 </div>

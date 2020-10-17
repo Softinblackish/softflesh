@@ -41,7 +41,7 @@ $id_nuevo_cliente = $registro_cliente["id_cliente"] + 1;
                     <textarea type="text" class="form-control" placeholder ="Dirección" name="direccion" required ></textarea>
                 </div>
                 <div class="form-group col-md-6">
-                    <input type="text" id="movil" class="form-control" placeholder ="(000)-000-0000" name="telefono" required >
+                    <input type="text" class="form-control movil" placeholder ="(000)-000-0000" name="telefono" required >
                 </div>
                 <div class="form-group col-md-6">
                     <input class="form-control" placeholder ="Referencia" name="referencia" required>
@@ -57,23 +57,14 @@ $id_nuevo_cliente = $registro_cliente["id_cliente"] + 1;
                 <div class="form-group col-md-6">
                     <input type="text" class="form-control" placeholder ="RNC" name="rnc" required >
                 </div>
-                <div class="form-group col-md-6">
-                    <select class="form-control" placeholder ="Condición" name="condicion" required>
-                        <?php $condiciones_pago = $conexion->query("SELECT nombre_condicion_p FROM $empresa.tbl_condiciones_pago"); 
-                        while($row = $condiciones_pago->fetch_assoc()) {
-                        ?>
-                        <option><?php echo $row["nombre_condicion_p"];  ?></option>
-                        <?php } ?>
-
-                    </select> 
-                </div>
+                
                 <div class="form-group col-md-6">
                     <input type="number" class="form-control" placeholder ="Límite de crédito" name="credito" required>
                 </div>
                 
             </div>
             <label class="form-check-label" for="gridCheck">
-                    Al hacer click en "Crear" se creará el usuario, parametrizar en ver usuarios. 
+                    Al hacer click en "Crear" se creará el usuario, parametrizar en ver clientes. 
             </label>
             <br>
             <input type="submit" id="btn" class="btn  btn" value="Crear"> <a href="../../scripts/clientes/crear_clientes.php" id="btn" class="btn btn">Cancelar</a>
