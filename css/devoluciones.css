@@ -2,29 +2,17 @@
     width: 1000px;
     height:1000px;
     margin:50px;
-
-  /*  position: relative;
-    background-color:darkgray;
-    /*background-color: white;
-     rgb(137, 202, 245);
-    */
-    margin-left: 400px;
+    margin-left: 350px;
     margin-top: 0px;
 
 }
 .container{
-    width: 900px;
+    width: 950px;
     margin: auto;
     position: relative;
     top: 10px;
-    padding-top: 10px;
-    padding: 10px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    padding-top: 25px!important;
     background-color:white;
-<<<<<<< HEAD
-=======
-    /*background-color: white;*/
->>>>>>> 2cde835202ca62b2e09a3150938f73107dd27f51
     box-shadow: 1px 1px 5px black;
     border-radius: 10px;
     
@@ -44,11 +32,17 @@
     padding: 45px;
 }
 .btn{
-    background-color:#0e444c; 
     color:white;
+}
+#buscar{
+    background-color:#882f88;
 }
 .cabeza_tabla{
     padding:15px; 
     background-color:#882f88;
     color:white;
+    width: 100%;
+}
+.table{
+    width: 100%;
 }

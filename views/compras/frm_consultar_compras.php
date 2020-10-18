@@ -28,10 +28,10 @@
     $empresa = $_SESSION["empresa_db"];
     if(isset($_POST["filtro"])){
         $filtro= $_POST["filtro"];
-        $lista_compras = $conexion->query("SELECT * FROM $empresa.tbl_compras WHERE suplidor LIKE '%$filtro%'");
+        $lista_compras = $conexion->query("SELECT * FROM $empresa.tbl_art_compras WHERE articulo LIKE '%$filtro%'");
     }
     else{
-        $lista_compras = $conexion->query("SELECT * FROM $empresa.tbl_compras");
+        $lista_compras = $conexion->query("SELECT * FROM $empresa.tbl_art_compras");
     }
 
     while($row = $lista_compras->fetch_assoc())
@@ -44,9 +44,13 @@
                 <td><?php echo $row["articulo"]; ?></td>
                 <td><?php echo $row["precio_compra"]; ?></td>
                 <td><?php echo $row["cantidad"]; ?></td>
-                <td><?php echo $row["valor_total"]; ?></td>
+                <?php 
+                $cantidad= $row["cantidad"];
+                $precio = $row["precio_compra"];
+                $total = $cantidad * $precio;
+                ?>
+                <td><?php  echo $total ?></td>
                 
-
                 <!--Boton actualizar informacion-->
                 <td><a id="cerrar"  class="btn btn-info" data-toggle="modal" data-target="#example<?php echo $row["no_compra"]; ?>" > <i class="fa fa-eye fa-lg"></i></a>  
                 <!--Boton eliminar-->
@@ -146,7 +150,7 @@
   </tbody>
 </table>
 
-<a href="../administracion/administracion.php" id="buscar" class="btn btn" >
+<a href="../compras/frm_compras.php" id="buscar" class="btn btn" >
   Volver atras
 </a>
 
