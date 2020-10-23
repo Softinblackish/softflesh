@@ -215,11 +215,15 @@ else
                         </select>
                         <div id="caja-clientes"></div>
                     </div>
+                    <div class="col-md-10">
+                    <br><br>
+                        <a class="btn btn-info" href="ver_cotizaciones.php">Lista de cotizaciones</a>
+                    </div>
                 </div>
         </div>
         <div>
             <strong>
-                <div style="padding:15px; margin-top:235px; background-color:rgb(87, 220, 200); color:white;">
+                <div style="padding:15px; margin-top:145px; background-color:rgb(87, 220, 200); color:white;">
                     <H5 >Totales</H5>
                 </div>
                 <?php 
@@ -258,7 +262,7 @@ else
 
             </strong>
         </div> <br>
-                <?php echo "&nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp"?> <button class="btn btn" <?php if(!isset($_GET["id_temp"])){?> disabled <?php } ?> style="background-color:rgb(87, 220, 200); color:white">Cancelar</button> <input type="submit"<?php if(!isset($_GET["id_temp"])){?> disabled <?php } ?> class="btn btn" style="background-color:rgb(87, 220, 200); color:white;" value="Registrar">
+                <?php echo "&nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp"?> <button class="btn btn" <?php if(!isset($_GET["id_temp"])){?> disabled <?php } ?> style="background-color:rgb(87, 220, 200); color:white">En espera</button> <input type="submit"<?php if(!isset($_GET["id_temp"])){?> disabled <?php } ?> class="btn btn" style="background-color:rgb(87, 220, 200); color:white;" value="Registrar">
                 </form>
    </div> 
    

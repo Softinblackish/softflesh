@@ -64,7 +64,7 @@
         }
         $ncf = $prefijo.$ceros.$numero_ncf;
         echo $ncf;
-
+            
             $insertar_venta = $conexion->query("INSERT INTO $empresa.tbl_ventas (id_venta_temp, id_cliente, condicion_pago, tipo_comprobante, comprobante, forma_pago, itbis, precio, total, creado_por) 
             values($id_temp, $cliente,'$condicion', '$comprobante','$ncf', '$forma', $itebis, $precio, $total, '$usuario')");
         
@@ -84,7 +84,9 @@
                 $cantidad_actualizada = $registros_articulos["cantidad_disponible"] - $registros_venta_temp["cantidad"]; //creo una variable que calcule una resta cantidad_disponible - cantidad temp
                 $actualizar_articulo = $conexion->query("UPDATE $empresa.tbl_articulos SET cantidad_disponible = $cantidad_actualizada WHERE id_articulo = $id_new");
             }
-        
+
+            $eliminar_cotizacion = $conexion->query("DELETE FROM $empresa.tbl_cotizaciones where id_venta_temp = $id_temp");
+            $update_venta = $conexion->query("UPDATE $empresa.tbl_venta_temp SET en_espera = 0  WHERE id_venta = $id_temp");
             header("location: ../../views/venta/factura_venta.php?id_venta=$id ");
        
     

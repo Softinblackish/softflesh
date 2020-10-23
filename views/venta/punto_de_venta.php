@@ -267,7 +267,7 @@ else
 
             </strong>
         </div> <br>
-                <?php echo "&nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp"?> <button class="btn btn" <?php if(!isset($_GET["id_temp"])){?> disabled <?php } ?> style="background-color:#882f88; color:white">Cancelar</button> <input type="submit"<?php if(!isset($_GET["id_temp"])){?> disabled <?php } ?> class="btn btn" style="background-color:#882f88; color:white;" value="Registrar">
+                <?php echo "&nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp"?> <a href="../../scripts/ventas/venta_espera.php?id_temp=<?php echo $id ?>" class="btn btn" <?php if(!isset($_GET["id_temp"])){?> disabled <?php } ?> style="background-color:#882f88; color:white">En espera</a> <input type="submit"<?php if(!isset($_GET["id_temp"])){?> disabled <?php } ?> class="btn btn" style="background-color:#882f88; color:white;" value="Registrar">
                 </form>
    </div> 
    
