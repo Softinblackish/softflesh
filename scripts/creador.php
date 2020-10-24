@@ -283,11 +283,14 @@ $perm = $conexion->query("
       `cotizacion` INT(1) NOT NULL DEFAULT '0',
       `precio` INT(10) NOT NULL , 
       `total` INT(10) NOT NULL , 
-      `creado_por` VARCHAR(100) NOT NULL , 
+      `creado_por` VARCHAR(100) NOT NULL ,
+      `en_espera` INT(1) NOT NULL DEFAULT '0',
       `cantidad` INT(10) NOT NULL , 
       `fecha_creacion` TIMESTAMP NOT NULL ,
       PRIMARY KEY (`id_venta_temp`)) ENGINE = InnoDB;
       ");
+
+      #$tabla_venta_temp = $conexion->query("ALTER TABLE `tbl_venta_temp` ADD `en_espera` INT(1) NOT NULL DEFAULT '0' AFTER `id_venta`;");
 
       $tabla_venta = $conexion->query("
       CREATE TABLE $nombre_sin_espacio.tbl_ventas ( `id_venta` INT NOT NULL AUTO_INCREMENT , `id_venta_temp` INT(10) NOT NULL , `id_cliente` INT(10) NOT NULL , `tipo_comprobante` VARCHAR(150) NOT NULL , `condicion_pago` VARCHAR(150) NOT NULL , `forma_pago` VARCHAR(50) NOT NULL , `itbis` INT(10) NOT NULL , `precio` INT(10) NOT NULL , `total` INT(10) NOT NULL , `comprobante` VARCHAR(100) NOT NULL , `creado_por` VARCHAR(150) NOT NULL , `fecha_creacion` TIMESTAMP NOT NULL , `modificado_por` VARCHAR(150) NULL , `fecha_modificacion` DATE NULL , PRIMARY KEY (`id_venta`)) ENGINE = InnoDB;
