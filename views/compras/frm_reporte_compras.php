@@ -36,7 +36,7 @@
             </div>
             <div class="form-group col-md-2">
             <label>.</label>
-            <a href="rpt_compras.php">
+            <a href="rpt_compras.php?desde=$desde & hasta = $hasta & filtro = $filtro">
                 <input type="" class="btn btn form-control" id="buscar" value="Imprimir">
             </a>    
             </div>
@@ -68,7 +68,7 @@
                             <?php
                             $empresa = $_SESSION["empresa_db"];
 
-                                if(isset($_POST["desde"], $_POST["hasta"] , $_POST["filtro"]))
+                                if(!empty($_POST["desde"] or $_POST["hasta"] or $_POST["filtro"]))
                                 {
                                     if($_POST["desde"] and $_POST["hasta"] )
                                         {

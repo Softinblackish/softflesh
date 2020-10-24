@@ -1,9 +1,4 @@
-@font-face {
-    font-family: SourceSansPro;
-    src: url(SourceSansPro-Regular.ttf);
-  }
-  
-  .clearfix:after {
+   .clearfix:after {
     content: "";
     display: table;
     clear: both;
