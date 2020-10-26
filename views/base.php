@@ -101,7 +101,7 @@
                                         <a href="../venta/punto_de_venta.php"><div id="punto_de_venta"class="menu_lv3 menu_ventas" >Punto de venta</div></a>
                                         <a href="../venta/ver_ventas.php"><div id="lista_ventas" class="menu_lv3 menu_ventas">Ventas</div></a>
                                         <a href="../venta/venta_espera.php"><div id="venta_espera" class="menu_lv3 menu_ventas">Ventas en espera</div></a>
-                                        <div id="lista_ventas" class="menu_lv3 menu_ventas">Cierre de venta</div>
+                                        <a href="../venta/cierre_ventas.php"><div id="lista_ventas" class="menu_lv3 menu_ventas">Cierre de venta</div></a>
                                         <a href="../venta/cotizaciones.php"><div id="lista_ventas" class="menu_lv3 menu_ventas">Cotizaciones</div></a>
                                         <div id="devoluciones_venta" class="menu_lv3 menu_ventas">Devoluciones</div>
                                         <div id="devoluciones_venta" class="menu_lv3 menu_ventas">Reportes</div>
