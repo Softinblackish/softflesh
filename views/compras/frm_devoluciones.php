@@ -183,9 +183,9 @@
                 
 
         </div>
-        <div class="form-group col-md-4">
-            <a href="../administracion/administracion.php" id="btn" class="btn btn" >Volver atras</a>
-        </div>
+        <a href="../compras/frm_compras.php" id="buscar" class="btn btn" >
+        Volver atras
+        </a>
     </div>
 
 

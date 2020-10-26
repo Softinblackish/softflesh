@@ -35,10 +35,7 @@
                 <input type="submit" class="btn btn form-control" id="buscar" value="Buscar">
             </div>
             <div class="form-group col-md-2">
-            <label>.</label>
-            <a href="rpt_compras.php?desde=$desde & hasta = $hasta & filtro = $filtro">
-                <input type="" class="btn btn form-control" id="buscar" value="Imprimir">
-            </a>    
+              
             </div>
         </div>
     </form> 
@@ -78,7 +75,8 @@
                                         }
                                     if($_POST["filtro"])
                                         {
-                                            $consulta_articulos= $conexion->query("SELECT * FROM $empresa.tbl_art_compras WHERE articulo LIKE '%$filtro%' limit 5");
+                                            $filtro = $_POST["filtro"];
+                                            $consulta_articulos= $conexion->query("SELECT * FROM $empresa.tbl_art_compras WHERE no_compra LIKE '%$filtro%' limit 5");
                                         }                  
                                 }else{
                                     $consulta_articulos= $conexion->query("SELECT * FROM $empresa.tbl_art_compras");
@@ -191,10 +189,29 @@
                             ?>
                         </tbody>
                     </table> 
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <a href="../compras/frm_compras.php" id="buscar" class="btn btn" >
+                            Volver atras
+                            </a>
+                        </div>
+                        <div class="form-group col-md-8">
+                                        <?php
+                                        $filtro=$_POST["filtro"];
+                                        $desde =$_POST["desde"];
+                                        $hasta =$_POST["hasta"];
+                                        
+                                        ?>
+                                        <?php echo $filtro; ?>
+                                <a href="rpt_compras.php?desde=<?php echo $desde; ?> &hasta=<?php echo $hasta;?>
+                                &filtro=<?php echo $filtro; ?> ">
+                                <input type="" class="btn btn form-control" id="buscar" value="Imprimir">
+                                </a> 
+                            
+                        </div>
+                    </div> 
                 
 
         </div>
-        <div class="form-group col-md-4">
-            <a href="../administracion/administracion.php" id="btn" class="btn btn" >Volver atras</a>
-        </div>
+        
     </div>
