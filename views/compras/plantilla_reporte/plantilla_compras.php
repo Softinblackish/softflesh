@@ -1,8 +1,6 @@
 <?php
-include("../../conexion/cone.php");
-session_start();
 
-function getPlantilla($desde,$hasta,$filtro){
+function getPlantilla($productos){
 
 $plantilla = '
   <body>
@@ -45,26 +43,8 @@ $plantilla = '
         <tbody>';
 
         
-        $empresa = $_SESSION["empresa_db"];
-        if(isset($_POST["desde"], $_POST["hasta"] , $_POST["filtro"]))
-        {
-            if($_POST["desde"] and $_POST["hasta"] )
-                {
-                    $desde = $_POST["desde"];
-                    $hasta = $_POST["hasta"];
-                    $consulta_articulos= $conexion->query("SELECT * from $empresa.tbl_compras WHERE fecha_creacion >= '$desde' and fecha_creacion <= '$hasta' ");
-                }
-            if($_POST["filtro"])
-                {
-                    $consulta_articulos= $conexion->query("SELECT * FROM $empresa.tbl_art_compras WHERE articulo LIKE '%$filtro%' limit 5");
-                }                  
-        }else{
-            $consulta_articulos= $conexion->query("SELECT * FROM $empresa.tbl_art_compras");
-        }
-
-        $productos = array();
-        while($rows = $consulta_articulos->fetch_assoc()) $productos[] = $rows;
-        foreach($product as $productos)
+        
+        foreach($productos as $product)
             { 
 
 
@@ -72,10 +52,10 @@ $plantilla = '
               $plantilla.='
                 <tr>
                   <td class="no">'   .$product["no_compra"].'</td>
-                  <td class="desc">' .$product["fecha_orden"].'</td>
-                  <td class="unit">' .$product["articulo"].'</td>
-                  <td class="qty">'  .$product["precio_compra"].'</td>
-                  <td class="total">'.$product["cantidad"].'</td>
+                  <td class="desc">' .$product["articulo"].'</td>
+                  <td class="unit">' .$product["precio_compra"].'</td>
+                  <td class="qty">'  .$product["cantidad"].'</td>
+                  <td class="total">'.$product["precio_compra"]*$product["cantidad"].'</td>
                 </tr>
               ';
 
