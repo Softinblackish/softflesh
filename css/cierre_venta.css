@@ -2,7 +2,7 @@
     width: 200px;
     height:1000px;
     margin:100px;
-    margin-left: 407px;
+    margin-left: 707px;
     margin-top: 0px;
     
 
@@ -45,9 +45,6 @@
 .form-row{
     padding-top: 5px;
     padding-bottom: 5px;
-}
-#form{
-    padding: 45px;
 }
 #btn{
     background-color:#0e444c; 

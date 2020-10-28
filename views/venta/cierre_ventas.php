@@ -4,6 +4,7 @@ $registro_cliente = $consulta_cliente->fetch_assoc();
 $id_nuevo_cliente = $registro_cliente["id_cliente"] + 1;
 ?>
 <Script>
+
     $(document).ready(function(){
         $("#new").click(function(){
             $("#formulario").show();
@@ -20,25 +21,34 @@ $id_nuevo_cliente = $registro_cliente["id_cliente"] + 1;
 <link rel="stylesheet" href="../../css/cierre_venta.css">
 <div class="container-articulos">
     <div class="container ">
-    <h2 id="top"> Cierre de ventas</h2>
             <div class="form-row">
-                <div class="form-group col-md-6 superior">
+        
+                <div class="form-group col-md-12 superior">
                     <center>  
                         <a href="ver_ventas.php">
                             <small>Listado de cierres </small>
                             <br><h3>365</h3>
                         </a>
-                    </center>
-                </div>
-                
-                <div class="form-group col-md-6 superior">
-                    <center>
+                        <hr>
                         <a id="new" href="#">
                             <small>Nuevo cierre</small>
                             <br><h3><i class="fa fa-plus-circle fa-lg"></i></h3>
                         </a>
+                        <hr>
+                        <a id="new" href="#">
+                            <small>Configuración</small>
+                            <br><h3><i  class="fa fa-cog fa-lg"></i></h3>
+                        </a>
+                        <hr>
+                        <a id="new" href="#">
+                            <small>Cajas</small>
+                       
+                            <br><h3><i class="fa fa-shopping-basket"></i></h3>
+                        
+                        </a>
                     </center>
-                </div>   
+                </div>  
+               
             </div>
             <form id="form"  action="../../scripts/clientes/crear_clientes.php" method="post">
             <div class="form-row" id="formulario" style="display:none;">
