@@ -15,7 +15,7 @@ if($ultimo_catacter== "_")
     }
 }
 
-$validation_name = $conexion->query("select * from $empresa_sin_espacio.tbl_usuario where nombre_usuario = '$user' and contraseña_usuario = '$password'");
+$validation_name = $conexion->query("select * from $empresa_sin_espacio.tbl_usuario where nombre_usuario = '$user' and contrasena_usuario = '$password'");
 if($verificacion_name = $validation_name->num_rows){
 $informacion_user= $validation_name->fetch_assoc();
 $rol=$informacion_user["rol_usuario"];

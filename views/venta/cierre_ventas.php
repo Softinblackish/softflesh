@@ -6,6 +6,8 @@ $id_nuevo_cliente = $registro_cliente["id_cliente"] + 1;
 <Script>
 
     $(document).ready(function(){
+        $(".cajas").hide();
+        $("#back").hide();
         $("#new").click(function(){
             $("#formulario").show();
             $(".superior").hide();
@@ -14,6 +16,17 @@ $id_nuevo_cliente = $registro_cliente["id_cliente"] + 1;
             $("#formulario").hide();
             $(".superior").show();
         });
+        $("#config").click(function(){
+            $(".cajas").show();
+            $("#back").show();
+            $(".superior").hide();
+        });
+        $("#back").click(function(){
+            $(".cajas").hide();
+            $("#back").hide();
+            $(".superior").show();
+        });
+
         
 
     });
@@ -22,7 +35,29 @@ $id_nuevo_cliente = $registro_cliente["id_cliente"] + 1;
 <div class="container-articulos">
     <div class="container ">
             <div class="form-row">
-        
+                <?php $consulta_cajas = $conexion->query("SELECT * FROM $empresa.tbl_cajas"); 
+                while($cajas = $consulta_cajas->fetch_assoc())
+                {
+                ?>
+                <div style="margin-right:15px; margin-left:18px;" class="form-group col-md-5 cajas">
+                    <center>
+                        <a href="ver_ventas.php">
+                            <small><?php echo $cajas[] ?></small>
+                            <br><h4>192.168.1.1</h4>
+                        </a>
+                    </center>
+                </div>
+                <?php
+                }
+                ?>
+
+                <div tyle="margin-right:15px; margin-left:18px;" class="form-group col-md-12">
+                    <center>
+                        <a id="back" class="btn btn-info">Volver</a>
+                    </center>
+                </div>
+                
+            
                 <div class="form-group col-md-12 superior">
                     <center>  
                         <a href="ver_ventas.php">
@@ -35,16 +70,9 @@ $id_nuevo_cliente = $registro_cliente["id_cliente"] + 1;
                             <br><h3><i class="fa fa-plus-circle fa-lg"></i></h3>
                         </a>
                         <hr>
-                        <a id="new" href="#">
+                        <a id="config" href="#">
                             <small>Configuración</small>
                             <br><h3><i  class="fa fa-cog fa-lg"></i></h3>
-                        </a>
-                        <hr>
-                        <a id="new" href="#">
-                            <small>Cajas</small>
-                       
-                            <br><h3><i class="fa fa-shopping-basket"></i></h3>
-                        
                         </a>
                     </center>
                 </div>  
@@ -101,9 +129,9 @@ $id_nuevo_cliente = $registro_cliente["id_cliente"] + 1;
                     <a class="btn btn" id="volver" style="width:100%; background-color:#882f88;">Volver atras</a>
                 </div> 
             </div>
+            
             <br>
-            <br>
-            <br>
+          
         </form>
     </div>    
     

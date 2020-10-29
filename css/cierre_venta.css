@@ -16,12 +16,16 @@
 .superior{
     background-image:linear-gradient(-90deg, #17a2b8 0%,hsl(300, 49%, 36%)  50%, #882f88 20%); 
     padding:10px;
-   
     box-shadow: black 1px 3px 5px;
-   
     border-radius: 5px;
-    
 }
+.cajas{
+    background-image:linear-gradient(-90deg, #17a2b8 0%,hsl(300, 49%, 36%)  50%, #882f88 20%); 
+    padding:10px;
+    box-shadow: black 1px 3px 5px;
+    border-radius: 5px;
+}
+
 .container{
     width: 350px;
     margin: auto;
@@ -40,11 +44,11 @@
 }
 .cabeza{
     border-bottom: 1px solid royalblue;
-    padding-bottom: 5px;
+    padding-bottom: 0px;
 }
 .form-row{
     padding-top: 5px;
-    padding-bottom: 5px;
+    padding-bottom: 0px;
 }
 #btn{
     background-color:#0e444c; 
