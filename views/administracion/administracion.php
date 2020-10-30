@@ -34,7 +34,8 @@
 </ul>
 <?php } ?>
 
-<?php if($permisos['categorias']== 1){ ?><ul class="list-group" >
+<?php if($permisos['categorias']== 1){ ?>
+<ul class="list-group" >
   <li class="list-group-item " style="background-color:rgb(87, 220, 200); color:white;">Categorías</li>
   <?php if($permisos['agregar_categorias']== 1){ ?><a href="crear_categorias.php"><li class="list-group-item"><i class="fa fa-plus-circle"></i> Agregar</li></a><?php } ?>
     <?php if($permisos['ver_categorias']== 1){ ?><a href="ver_categorias.php"><li class="list-group-item"><i class="fa fa-eye"></i> Ver categorias</li></a><?php } ?>
@@ -59,6 +60,13 @@
   <a href="comprobantes.php?tipo=Gubernamental"><li class="list-group-item">Gubernamental</li></a>
 </ul>
 
+<ul class="list-group" >
+  <li class="list-group-item " style="background-color:#0e444c; color:white;">Sucursales</li>
+  <?php if($permisos['agregar_categorias']== 1){ ?><a href="crear_sucursal.php"><li class="list-group-item"><i class="fa fa-plus-circle"></i> Agregar sucursal</li></a><?php } ?>
+  <?php if($permisos['agregar_categorias']== 1){ ?><a href="crear_caja.php"><li class="list-group-item"><i class="fa fa-plus-circle"></i> Agregar cajas</li></a><?php } ?>
+    <?php if($permisos['ver_categorias']== 1){ ?><a href="ver_sucursales.php"><li class="list-group-item"><i class="fa fa-eye"></i> Ver sucursales</li></a><?php } ?>
+    <?php if($permisos['ver_categorias']== 1){ ?><a href="ver_cajas.php"><li class="list-group-item"><i class="fa fa-eye"></i> Ver cajas</li></a><?php } ?>
+</ul>
 
 
 <?php if($permisos['roles']== 1){ ?> <ul class="list-group">

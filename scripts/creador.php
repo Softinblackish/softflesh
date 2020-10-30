@@ -52,6 +52,24 @@
         PRIMARY KEY (`id_cod_impuesto`)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8
       ");
+      $tabla_cajas = $conexion->query(" 
+      CREATE TABLE $nombre_sin_espacio.tbl_cajas ( 
+        `id_caja` INT NOT NULL AUTO_INCREMENT , 
+        `caja_nombre` VARCHAR(100) NULL , 
+        `caja_sucursal` VARCHAR(100) NULL , 
+        `ip` VARCHAR(50) NULL , 
+        PRIMARY KEY (`id_caja`)) ENGINE = InnoDB;
+        ");
+
+        $tabla_sucursales = $conexion->query(" 
+        CREATE TABLE $nombre_sin_espacio.tbl_sucursal ( 
+          `id_sucursal` INT NOT NULL AUTO_INCREMENT , 
+          `sucursal_nombre` VARCHAR(200) NULL , 
+          `sucursal_direccion` VARCHAR(300) NULL , 
+          `sucursal_encargado` VARCHAR(100) NULL , 
+          `sucursal_telefono` VARCHAR(100) NULL , 
+          PRIMARY KEY (`id_sucursal`)) ENGINE = InnoDB;
+        ");
 //tabla tbl compras_id_temp      
       $tabla_compras_id_temp = $conexion->query("
       CREATE TABLE $nombre_sin_espacio.tbl_compra_id_temp (
@@ -116,7 +134,19 @@
       ");
       
       $tabla_usuario = $conexion->query("
-      CREATE TABLE $nombre_sin_espacio.tbl_usuario ( `id_usuario` INT NOT NULL AUTO_INCREMENT , `nombre_usuario` VARCHAR(200) NOT NULL , `contraseña_usuario` VARCHAR(100) NOT NULL , `rol_usuario` VARCHAR(200) NOT NULL , `status` VARCHAR(100) NOT NULL DEFAULT 'Activo' , `fecha_creacion` TIMESTAMP NOT NULL , `nombre` VARCHAR(200) NULL , `cedula_usuario` VARCHAR(50) NULL , `sucursal_usuario` VARCHAR(100) NULL , `ultimo_acceso` TIMESTAMP NULL , `horario` VARCHAR(100) NULL , PRIMARY KEY (`id_usuario`)) ENGINE = InnoDB;
+      CREATE TABLE $nombre_sin_espacio.tbl_usuario ( 
+        `id_usuario` INT NOT NULL AUTO_INCREMENT , 
+        `nombre_usuario` VARCHAR(200) NOT NULL , 
+        `contrasena_usuario` VARCHAR(100) NOT NULL , 
+        `rol_usuario` VARCHAR(200) NOT NULL , 
+        `status` VARCHAR(100) NOT NULL DEFAULT 'Activo' , 
+        `fecha_creacion` TIMESTAMP NOT NULL , 
+        `nombre` VARCHAR(200) NULL , 
+        `cedula_usuario` VARCHAR(50) NULL , 
+        `sucursal_usuario` VARCHAR(100) NULL , 
+        `ultimo_acceso` TIMESTAMP NULL , 
+        `horario` VARCHAR(100) NULL , 
+        PRIMARY KEY (`id_usuario`)) ENGINE = InnoDB;
 
       ");
 

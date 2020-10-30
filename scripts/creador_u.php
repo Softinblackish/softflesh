@@ -1,20 +1,20 @@
 <?php
     $empresa = $_POST['empresa'];
     $nombre= $_POST["nombre"];
-    $contraseña = $_POST["contrasena"];
+    $contrasena = $_POST["contrasena"];
     echo $empresa;
     include("conexion/cone.php");
 
     $empresa_sin_espacio = str_replace(" ","_",$empresa);
-    $crear_usuario = $conexion->query("INSERT INTO $empresa_sin_espacio.tbl_usuario (nombre_usuario, contrasena_usuario, rol_usuario, status) values ('$nombre', '$contraseña', 'super_admin','activo')");
+    $crear_usuario = $conexion->query("INSERT INTO $empresa_sin_espacio.tbl_usuario (nombre_usuario, contrasena_usuario, rol_usuario, status) values ('$nombre', '$contrasena', 'super_admin','activo')");
     //header("location:../views/login/login.php");
 
 
     $crear_usuario = $conexion->query("
         insert INTO $empresa.tbl_usuario
-        (nombre_usuario, contraseña_usuario, rol_usuario, status) 
+        (nombre_usuario, contrasena_usuario, rol_usuario, status) 
         values
-        ('$nombre','$contraseña','super_admin','activo')
+        ('$nombre','$contrasena','super_admin','activo')
         
         ");
     $tipos_comprobantes = $conexion->query(" INSERT INTO $empresa.tbl_comprobantes (tipo, proximo, maximo, cantidad_alerta) values ('Valor fiscal',1,5,1)");
@@ -31,7 +31,7 @@
     
     $auto_permisos = $conexion->query("INSERT INTO $empresa.tbl_permisos (rol) VALUES ('super_admin')");
     
-    $auto_cliente = $conexion->query("INSERT INTO $empresa.tbl_clientes (nombre_cliente, referencia, condicion_pago, creado_por) values ('Genérico',' Ninguna','Al contado','System')");
+    $auto_cliente = $conexion->query("INSERT INTO $empresa.tbl_clientes (nombre_cliente, referencia, condicion_pago, creado_por) values ('Generico',' Ninguna','Al contado','System')");
     
     header("location:../views/login/login.php");
 
