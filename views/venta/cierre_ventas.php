@@ -39,7 +39,7 @@ $id_nuevo_cliente = $registro_cliente["id_cliente"] + 1;
                 ?>
                 <div class="form-group col-md-12 cajas">
                         <div class="form-group col-md-6" style="float:left">
-                        <a href="ver_ventas.php"><small><?php echo $cajas["caja_sucursal"]; ?></small>
+                        <a href="ver_ventas.php"><small><?php echo $cajas["caja_sucursal"];?></small>
                             <br><h4><?php echo $cajas["caja_nombre"]; ?></h4></a>
                         </div>
                         <div class="form-group col-md-6" style="float:right">
