@@ -52,6 +52,24 @@
         PRIMARY KEY (`id_cod_impuesto`)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8
       ");
+      $tabla_cajas = $conexion->query(" 
+      CREATE TABLE $nombre_sin_espacio.tbl_cajas ( 
+        `id_caja` INT NOT NULL AUTO_INCREMENT , 
+        `caja_nombre` VARCHAR(100) NULL , 
+        `caja_sucursal` VARCHAR(100) NULL , 
+        `ip` VARCHAR(50) NULL , 
+        PRIMARY KEY (`id_caja`)) ENGINE = InnoDB;
+        ");
+
+        $tabla_sucursales = $conexion->query(" 
+        CREATE TABLE $nombre_sin_espacio.tbl_sucursal ( 
+          `id_sucursal` INT NOT NULL AUTO_INCREMENT , 
+          `sucursal_nombre` VARCHAR(200) NULL , 
+          `sucursal_direccion` VARCHAR(300) NULL , 
+          `sucursal_encargado` VARCHAR(100) NULL , 
+          `sucursal_telefono` VARCHAR(100) NULL , 
+          PRIMARY KEY (`id_sucursal`)) ENGINE = InnoDB;
+        ");
 //tabla tbl compras_id_temp      
       $tabla_compras_id_temp = $conexion->query("
       CREATE TABLE $nombre_sin_espacio.tbl_compra_id_temp (
@@ -116,7 +134,19 @@
       ");
       
       $tabla_usuario = $conexion->query("
-      CREATE TABLE $nombre_sin_espacio.tbl_usuario ( `id_usuario` INT NOT NULL AUTO_INCREMENT , `nombre_usuario` VARCHAR(200) NOT NULL , `contraseña_usuario` VARCHAR(100) NOT NULL , `rol_usuario` VARCHAR(200) NOT NULL , `status` VARCHAR(100) NOT NULL DEFAULT 'Activo' , `fecha_creacion` TIMESTAMP NOT NULL , `nombre` VARCHAR(200) NULL , `cedula_usuario` VARCHAR(50) NULL , `sucursal_usuario` VARCHAR(100) NULL , `ultimo_acceso` TIMESTAMP NULL , `horario` VARCHAR(100) NULL , PRIMARY KEY (`id_usuario`)) ENGINE = InnoDB;
+      CREATE TABLE $nombre_sin_espacio.tbl_usuario ( 
+        `id_usuario` INT NOT NULL AUTO_INCREMENT , 
+        `nombre_usuario` VARCHAR(200) NOT NULL , 
+        `contrasena_usuario` VARCHAR(100) NOT NULL , 
+        `rol_usuario` VARCHAR(200) NOT NULL , 
+        `status` VARCHAR(100) NOT NULL DEFAULT 'Activo' , 
+        `fecha_creacion` TIMESTAMP NOT NULL , 
+        `nombre` VARCHAR(200) NULL , 
+        `cedula_usuario` VARCHAR(50) NULL , 
+        `sucursal_usuario` VARCHAR(100) NULL , 
+        `ultimo_acceso` TIMESTAMP NULL , 
+        `horario` VARCHAR(100) NULL , 
+        PRIMARY KEY (`id_usuario`)) ENGINE = InnoDB;
 
       ");
 
@@ -283,11 +313,14 @@ $perm = $conexion->query("
       `cotizacion` INT(1) NOT NULL DEFAULT '0',
       `precio` INT(10) NOT NULL , 
       `total` INT(10) NOT NULL , 
-      `creado_por` VARCHAR(100) NOT NULL , 
+      `creado_por` VARCHAR(100) NOT NULL ,
+      `en_espera` INT(1) NOT NULL DEFAULT '0',
       `cantidad` INT(10) NOT NULL , 
       `fecha_creacion` TIMESTAMP NOT NULL ,
       PRIMARY KEY (`id_venta_temp`)) ENGINE = InnoDB;
       ");
+
+      #$tabla_venta_temp = $conexion->query("ALTER TABLE `tbl_venta_temp` ADD `en_espera` INT(1) NOT NULL DEFAULT '0' AFTER `id_venta`;");
 
       $tabla_venta = $conexion->query("
       CREATE TABLE $nombre_sin_espacio.tbl_ventas ( `id_venta` INT NOT NULL AUTO_INCREMENT , `id_venta_temp` INT(10) NOT NULL , `id_cliente` INT(10) NOT NULL , `tipo_comprobante` VARCHAR(150) NOT NULL , `condicion_pago` VARCHAR(150) NOT NULL , `forma_pago` VARCHAR(50) NOT NULL , `itbis` INT(10) NOT NULL , `precio` INT(10) NOT NULL , `total` INT(10) NOT NULL , `comprobante` VARCHAR(100) NOT NULL , `creado_por` VARCHAR(150) NOT NULL , `fecha_creacion` TIMESTAMP NOT NULL , `modificado_por` VARCHAR(150) NULL , `fecha_modificacion` DATE NULL , PRIMARY KEY (`id_venta`)) ENGINE = InnoDB;

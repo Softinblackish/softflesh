@@ -13,13 +13,12 @@
     $telefono = $_POST["telefono"];
     $referencia = $_POST["referencia"];
     $rnc = $_POST["rnc"];
-    $condicion = $_POST["condicion"];
     $credito = $_POST["credito"];
 
 ECHO $empresa;
 
     $insert_cliente = $conexion->query("INSERT INTO $empresa.tbl_clientes
-    (`nombre_cliente`, `Pais`, `provincia`, `direccion`, `telefono_cliente`, `tipo_cliente`, `referencia`, `rnc_cliente`, `creado_por`,`limite_credito`, `condicion_pago`, `status`)
-     VALUES ('$nombre','$pais','$provincia','$direccion','$telefono','$tipo_cliente','$referencia','$rnc','$usuario','$credito','$condicion','Activo')");
+    (`nombre_cliente`, `Pais`, `provincia`, `direccion`, `telefono_cliente`, `tipo_cliente`, `referencia`, `rnc_cliente`, `creado_por`,`limite_credito`,`status`)
+     VALUES ('$nombre','$pais','$provincia','$direccion','$telefono','$tipo_cliente','$referencia','$rnc','$usuario','$credito','Activo')");
     header("location:../../views/clientes/ver_clientes.php");
 ?>

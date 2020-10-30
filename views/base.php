@@ -17,7 +17,10 @@
     <title>SoftFlesh</title>
    <link rel="stylesheet" href="../../css/base.css">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+   <!--
    <script src="http://code.jquery.com/jquery-1.9.1.js" type="text/javascript"></script>
+   -->
     <script src="../../scripts/js/query/dist/jquery.mask.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(function($){
@@ -31,7 +34,7 @@
  
             // Definimos las mascaras para cada input
             $("#date").mask("99/99/9999");
-            $("#movil").mask("(999)-999-9999");
+            $(".movil").mask("(999)-999-9999");
             $("#letras").mask("aaa");
             $("#comodines").mask("?");
             $(".fa-2x").click(function(){
@@ -97,8 +100,8 @@
                                 <?php if($permisos['ventas']== 1){ ?> <div id="ventas" class="menu_lv1"><i class="fa fa-cart-plus fa-lg" aria-hidden="true"></i> Ventas
                                         <a href="../venta/punto_de_venta.php"><div id="punto_de_venta"class="menu_lv3 menu_ventas" >Punto de venta</div></a>
                                         <a href="../venta/ver_ventas.php"><div id="lista_ventas" class="menu_lv3 menu_ventas">Ventas</div></a>
-                                        <div id="lista_ventas" class="menu_lv3 menu_ventas">Ventas en espera</div>
-                                        <div id="lista_ventas" class="menu_lv3 menu_ventas">Cierre de venta</div>
+                                        <a href="../venta/venta_espera.php"><div id="venta_espera" class="menu_lv3 menu_ventas">Ventas en espera</div></a>
+                                        <a href="../venta/cierre_ventas.php"><div id="lista_ventas" class="menu_lv3 menu_ventas">Cierre de venta</div></a>
                                         <a href="../venta/cotizaciones.php"><div id="lista_ventas" class="menu_lv3 menu_ventas">Cotizaciones</div></a>
                                         <div id="devoluciones_venta" class="menu_lv3 menu_ventas">Devoluciones</div>
                                         <div id="devoluciones_venta" class="menu_lv3 menu_ventas">Reportes</div>
@@ -114,8 +117,11 @@
                                         <a href="../compras/frm_devoluciones.php">
                                         <div id="devoluciones_compra" class="menu_lv3 menu_compras">Devoluciones</div>
                                         </a>
+                                        <a href="../compras/frm_reporte_compras.php">
+                                        <div id="devoluciones_compra" class="menu_lv3 menu_compras">Reporte Compra</div>
+                                        </a>
                                 </div><?php } ?>
-
+                                <a href="../dashboard/dashboard.php"> <div id="caja_chica" class="menu_lv1" style="color:white;"><i class="fa fa-bar-chart fa-lg" aria-hidden="true"></i> Caja Chica </div></a>
                                 <?php if($permisos['cxp']== 1){ ?><div id="cxp" class="menu_lv1"><i class="fa fa-credit-card fa-lg" aria-hidden="true"></i> Cuentas por pagar
                                         <div id="agregar_cxp" class="menu_lv3 menu_cxp">Agregar cuentas por pagar</div>
                                         <div id="lista_cxp" class="menu_lv3 menu_cxp">Ver cuentas por pagar</div>
@@ -134,7 +140,12 @@
                                 <div id="pasar_inventario" class="menu_lv3 menu_inventario">Pasar inventario</div>
                             
                         </div>
+                        <a href="../dashboard/dashboard.php"> <div class="menu_lv1" style="color:white;"><i class="fa fa-bar-chart fa-lg" aria-hidden="true"></i> Contabilidad</div></a>
+                        <a href="../dashboard/dashboard.php"> <div id="inventario" class="menu_lv1" style="color:white;"><i class="fa fa-bar-chart fa-lg" aria-hidden="true"></i> Bancos </div></a>
+                        <a href="../dashboard/dashboard.php"> <div id="inventario" class="menu_lv1" style="color:white;"><i class="fa fa-bar-chart fa-lg" aria-hidden="true"></i> Proyectos </div></a>
+                        <a href="../dashboard/dashboard.php"> <div id="inventario" class="menu_lv1" style="color:white;"><i class="fa fa-bar-chart fa-lg" aria-hidden="true"></i> Producción </div></a>
                         <a href="../dashboard/dashboard.php"> <div id="inventario" class="menu_lv1" style="color:white;"><i class="fa fa-bar-chart fa-lg" aria-hidden="true"></i> Dashboard </div></a>
+                        
                 
             </nav>
         </aside>
