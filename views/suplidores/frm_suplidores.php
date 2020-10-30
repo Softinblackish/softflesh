@@ -42,7 +42,11 @@ if($consulta_suplidores->num_rows >= 1 ){
             <label for="inputState">Telefonos de contacto: </label><br>
             <div class="form-row">
                 <div class="form-group col-md-4">
+<<<<<<< HEAD
                     <input type="tel" name="tel_no1_sup" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder ="(000)-000-0000" class="form-control " >
+=======
+                    <input type="tel" name="tel_no1_sup"  placeholder ="(000)-000-0000" class="form-control movil" >
+>>>>>>> f86b62dd724d93a97d0f553c183b1b7477fe3804
                 </div>
                 <div class="form-group col-md-4">
                     <input type="tel" name="tel_no2_sup" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder ="(000)-000-0000" class="form-control ">

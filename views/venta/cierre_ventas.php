@@ -3,7 +3,7 @@ $consulta_cliente = $conexion->query("SELECT id_cliente FROM $empresa.tbl_client
 $registro_cliente = $consulta_cliente->fetch_assoc();
 $id_nuevo_cliente = $registro_cliente["id_cliente"] + 1;
 ?>
-<Script>
+<script>
 
     $(document).ready(function(){
         $(".cajas").hide();
@@ -25,11 +25,9 @@ $id_nuevo_cliente = $registro_cliente["id_cliente"] + 1;
             $(".cajas").hide();
             $("#back").hide();
             $(".superior").show();
-        });
-
-        
-
+        }); 
     });
+    </script>
 </script>
 <link rel="stylesheet" href="../../css/cierre_venta.css">
 <div class="container-articulos">
@@ -39,13 +37,17 @@ $id_nuevo_cliente = $registro_cliente["id_cliente"] + 1;
                 while($cajas = $consulta_cajas->fetch_assoc())
                 {
                 ?>
-                <div style="margin-right:15px; margin-left:18px;" class="form-group col-md-5 cajas">
-                    <center>
-                        <a href="ver_ventas.php">
-                            <small><?php echo $cajas[] ?></small>
-                            <br><h4>192.168.1.1</h4>
-                        </a>
-                    </center>
+                <div class="form-group col-md-12 cajas">
+                        <div class="form-group col-md-6" style="float:left">
+                        <a href="ver_ventas.php"><small><?php echo $cajas["caja_sucursal"];?></small>
+                            <br><h4><?php echo $cajas["caja_nombre"]; ?></h4></a>
+                        </div>
+                        <div class="form-group col-md-6" style="float:right">
+                            
+                        <a href="../../scripts/ventas/vincular_caja.php?caja=<?php echo $cajas["id_caja"]; ?>"><small>Conectar con este dispositivo</small>
+                            <i class="fa fa-plug fa-lg" aria-hidden="true"></i></a>
+                        </div>
+                        <br><h4><?php echo $cajas["ip"]; ?></h4>
                 </div>
                 <?php
                 }
