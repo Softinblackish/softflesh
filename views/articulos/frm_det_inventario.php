@@ -7,22 +7,26 @@
       <!-- php -->
       <?php include("../base.php"); ?>
       <!-- js -->
+      
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
       <script src="../../scripts/js/time_alert.js"></script>
 
     <div class="container-inventario">
-        <div class="container form-row">
+    <div class="container form-row">
 
-            <form id="form" method="post">
-                <div class="cabeza">
-                    <h2>filtro de busqueda</h2>
+        <form id="form" method="post">
+           <div class="cabeza">
+             <h2>filtro de busqueda</h2>
+           </div>
+           <div class="form-row">
+                <div class="form-group col-md-12">
+                    <input type="text" name="filtro" placeholder ="Buscar" class="form-control">
                 </div>
-                <div class="form-row">
-                        <div class="form-group col-md-12">
-                            <input type="text" name="filtro" placeholder ="Buscar" class="form-control">
-                        </div>
-                </div>
-            </form>
+           </div>
+        </form>
+
+            <div class="form-row">
+        <div class="form-group col-md-12">
 
             <!--Aqui va la tabla del filtro de busqueda -->
             <div class="tamano_tablas Overflow">
@@ -71,20 +75,17 @@
                     </tbody>
                 </table> 
             </div>
-            
-        
+            </div>
+        <div class="form-group col-md-4">
             <a href="../administracion/administracion.php" id="btn" class="btn btn" >Volver atras</a>
+        </div>
+        <div class="form-group col-md-4">
             <a href="" id="btn" class="btn btn" >Ver en detalles</a>
-
-
-         <!--Aqui el final de los div de este formulario-->
-        </div>    
+        </div>
     </div>
+                 <!--Aqui el final de los div de este formulario-->
+    </div>    
+</div>
 
 <!-- Aqui ira el mensaje de cuando se guarda el art-->
 
-
-            
-
-            
-        

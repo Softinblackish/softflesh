@@ -4,8 +4,8 @@
     $empresa = $_SESSION["empresa_db"];
 
     $nombre=$_POST['nombre']; 
-    $precio=$_POST['precio'];
-    $descripcion=$_POST["descripcion"]; 
+    $precio=$_POST['precio_compra'];
+    $descripcion=$_POST["nota"]; 
     $cod_impuesto=$_POST['cod_impuesto']; 
     $stop_min=$_POST['stop_min']; 
     $codigo_barra= $_POST['codigo_barra']; 

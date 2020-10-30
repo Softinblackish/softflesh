@@ -50,7 +50,7 @@
 
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    <select id="inputState" class="form-control" name="impuesto">
+                    <select id="inputState" class="form-control" name="cod_impuesto">
                             <option selected="">7%</option>
                             <option selected="">8%</option>
                             <option selected="">10%</option>
