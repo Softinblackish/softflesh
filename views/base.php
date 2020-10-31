@@ -137,7 +137,7 @@
                                 <a href="../articulos/frm_articulos.php"><div id="agregar_articulo" class="menu_lv3 menu_inventario">Agregar articulo</div></a>
                                 <a href="../articulos/frm_consultar_articulos.php"><div id="lista_articulos" class="menu_lv3 menu_inventario">Ver lista de articulos</div></a>
                                 <div id="cargar_articulo" class="menu_lv3 menu_inventario">Cargar articulos</div>
-                                <div id="pasar_inventario" class="menu_lv3 menu_inventario">Pasar inventario</div>
+                                <a href="../articulos/frm_inventario.php"><div id="pasar_inventario" class="menu_lv3 menu_inventario">Pasar inventario</div></a>
                             
                         </div>
                         <a href="../dashboard/dashboard.php"> <div class="menu_lv1" style="color:white;"><i class="fa fa-bar-chart fa-lg" aria-hidden="true"></i> Contabilidad</div></a>
