@@ -30,9 +30,11 @@ try {
         }else{
             $consulta_articulos= $conexion->query("SELECT * FROM $empresa.tbl_art_compras");
         }
-
+ 
         $productos = array();
-        while($rows = $consulta_articulos->fetch_assoc()) $productos[] = $rows;
+        if($consulta_articulos->num_rows > 1){
+            while($rows = $consulta_articulos->fetch_assoc()) $productos[] = $rows;
+        }
     } catch (Exception $e) {
         echo 'Excepción capturada: ',  $e->getMessage(), "\n";
     }
