@@ -86,6 +86,23 @@
                 </div>
             </div>
 
+            <label for="inputState">Datos del proveedor: </label><br>
+            <div class="form-row">
+                <div class="form-group col-md-8">
+                    <select id="" name="nombre_proveedor" class="form-control" placeholder="nombre y apellido del proveedor" >
+                        <?php $suplidores = $conexion->query("SELECT nombre_sup FROM $empresa.tbl_suplidores"); 
+                        while($row = $suplidores->fetch_assoc()) {
+                        ?>
+                        <option value = <?php echo $row["nombre_sup"];  ?> ><?php echo $row["nombre_sup"];  ?></option>
+                        <?php } ?>
+
+                    </select> 
+                </div>
+                <div class="form-group col-md-4">
+                <input type="number" name="cod_proveedor" placeholder ="cod proveedor" class="form-control" readonly >
+                </div>
+            </div>
+
             <div class="form-row">
                 <div class="form-group col-md-12">
                     <textarea name="nota" class="form-control" cols="50" rows="3" placeholder = "Descripcion"></textarea>
