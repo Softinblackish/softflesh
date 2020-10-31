@@ -74,7 +74,7 @@
                                 echo $_SESSION['user'];
                         ?>
                         <i  class="fa fa-cog fa-lg"></i>
-                        <div id="menu-user" style="">
+                        <div id="menu-user" >
                                 <div style="padding-top:15px;padding-left:15px;"><a href="../administracion/admin_usuario.php"><i class="fa fa-user"></i> |   Usuario<hr></a></div>
                                 <?php if($permisos["administracion"]== 1){ ?><div style="padding-top:5px; padding-left:15px;"> <a href="../administracion/administracion.php"><i class="fa fa-cogs"></i> |  Config</a> <hr></div> <?php } ?>
                                 <div style="padding-top:5px; padding-left:15px;"><a href="../../scripts/cerrar_session.php"><i class="fa fa-reply-all"></i> |  Cerrar</a> <hr></div>
