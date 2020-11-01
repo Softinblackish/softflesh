@@ -10,4 +10,5 @@
 
      $vincular = $conexion->query("UPDATE $empresa.tbl_cajas SET ip = '$ip' where id_caja = $id");
 
+     header("location:../../views/venta/cierre_ventas.php");
 ?>

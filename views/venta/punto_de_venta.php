@@ -262,7 +262,7 @@ else
                 <input type="hidden" name="itbis" value="<?php echo $itbis_total;?>" />
                 <input type="hidden" name="precio" value="<?php echo $precio_total; ?>"/>
                 <input type="hidden" name="total" value="<?php echo $total_total; ?>"/>
-                <input type="hidden" name="id_temp" value="<?php echo $id; ?>"
+                <input type="hidden" name="id_temp" value="<?php echo $id; ?>"/>
 
 
             </strong>

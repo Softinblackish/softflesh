@@ -245,6 +245,7 @@ $perm = $conexion->query("
       COMMIT;");
 
 
+
       $tabla_roles = $conexion->query("
       CREATE TABLE $nombre_sin_espacio.roles (
         `id_rol` int(11) NOT  AUTO_INCREMENT,
@@ -254,6 +255,19 @@ $perm = $conexion->query("
         `fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
       ");
+
+      $tabla_roles = $conexion->query("
+      CREATE TABLE $nombre_sin_espacio.tbl_cierre_caja ( 
+      `id_cierre` INT NOT NULL AUTO_INCREMENT , 
+      `sucursal` VARCHAR(200) NULL , 
+      `caja` VARCHAR(100) NULL , 
+      `diferencia` INT(10) NULL , 
+      `vendido` INT(10) NULL , 
+      `total_caja` INT(10) NULL , 
+      `apertura` INT(10) NULL , 
+      `creado_por` VARCHAR(200) NOT NULL , 
+      `fecha_creacion` DATE NOT NULL DEFAULT CURRENT_TIMESTAMP , 
+      PRIMARY KEY (`id_cierre`)) ENGINE = InnoDB;");
 
       $tabla_almacenes = $conexion->query("
       CREATE TABLE $nombre_sin_espacio.tbl_almacenes ( 

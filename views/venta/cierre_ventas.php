@@ -6,8 +6,10 @@ $id_nuevo_cliente = $registro_cliente["id_cliente"] + 1;
 <script>
 
     $(document).ready(function(){
+        $(".holders_no").hide();
         $(".cajas").hide();
         $("#back").hide();
+        $("#sin_A").hide();
         $("#new").click(function(){
             $("#formulario").show();
             $(".superior").hide();
@@ -21,10 +23,84 @@ $id_nuevo_cliente = $registro_cliente["id_cliente"] + 1;
             $("#back").show();
             $(".superior").hide();
         });
+        $(".holders1").click(function(){
+            $(".holders1").hide();
+            $("#uno").val("");
+            $("#uno").show();
+            $("#uno").focus();
+        });
+        $(".holders5").click(function(){
+            $(".holders5").hide();
+            $("#cinco").val(" ");
+            $("#cinco").show();
+            $("#cinco").focus();
+        });
+        $(".holders10").click(function(){
+            $(".holders10").hide();
+            $("#diez").val(" ");
+            $("#diez").show();
+            $("#diez").focus();
+        });
+        $(".holders25").click(function(){
+            $(".holders25").hide();
+            $("#veinticinco").val(" ");
+            $("#veinticinco").show();
+            $("#veinticinco").focus();
+        });
+        $(".holders50").click(function(){
+            $(".holders50").hide();
+            $("#cincuenta").val(" ");
+            $("#cincuenta").show();
+            $("#cincuenta").focus();
+        });
+        $(".holders100").click(function(){
+            $(".holders100").hide();
+            $("#cien").val(" ");
+            $("#cien").show();
+            $("#cien").focus();
+        });
+        $(".holders200").click(function(){
+            $(".holders200").hide();
+            $("#dosciento").val(" ");
+            $("#dosciento").show();
+            $("#cien").focus();
+        });
+        $(".holders500").click(function(){
+            $(".holders500").hide();
+            $("#quiniento").val(" ");
+            $("#quiniento").show();
+            $("#quiniento").focus();
+        });
+        $(".holders1000").click(function(){
+            $(".holders1000").hide();
+            $("#mil").val(" ");
+            $("#mil").show();
+            $("#mil").focus();
+        });
+        $(".holders2000").click(function(){
+            $(".holders2000").hide();
+            $("#dosmil").val(" ");
+            $("#dosmil").show();
+            $("#dosmil").focus();
+        });
         $("#back").click(function(){
             $(".cajas").hide();
             $("#back").hide();
             $(".superior").show();
+        }); 
+        $(".monedas").keyup(function(){
+             var uno = $("#uno").val();
+             var cinco = $("#cinco").val();
+             var diez = $("#diez").val();
+             var veinticinco = $("#veinticinco").val();
+             var cincuenta = $("#cincuenta").val();
+             var cien = $("#cien").val();
+             var dosciento = $("#dosciento").val();
+             var quiniento = $("#quiniento").val();
+             var mil = $("#mil").val();
+             var dosmil = $("#dosmil").val();
+             var resultados = parseInt(uno) + parseInt(cinco)*5 + parseInt(diez)*10 + parseInt(veinticinco)*25 + parseInt(cincuenta)*50 + parseInt(cien)*100 + parseInt(dosciento)*200 + parseInt(quiniento)*500 + parseInt(mil)*1000 + parseInt(dosmil)*2000;
+             $("#total").val(resultados);
         }); 
     });
     </script>
@@ -39,15 +115,44 @@ $id_nuevo_cliente = $registro_cliente["id_cliente"] + 1;
                 ?>
                 <div class="form-group col-md-12 cajas">
                         <div class="form-group col-md-6" style="float:left">
-                        <a href="ver_ventas.php"><small><?php echo $cajas["caja_sucursal"];?></small>
-                            <br><h4><?php echo $cajas["caja_nombre"]; ?></h4></a>
+                        <a><small><?php echo $cajas["caja_sucursal"];?></small>
+                            <br><h4><?php echo $cajas["caja_nombre"]; ?></h4>
+                            <small>
+                           
+                                <?php 
+                                    $apertura = $cajas["apertura"];
+                                    if($apertura > 0)
+                                    {
+                                        ?>
+                                          <div class="con_A">  Apertura:
+                                            <?php
+                                                echo "$".$cajas["apertura"];
+                                            ?> 
+                                            <br>
+                                            <A href="../../scripts/ventas/insertar_apertura.php?actualizar=<?php echo $cajas["id_caja"];?>">Modificar</a>
+                                          </div>
+                                            <?php
+                                    }
+                                    else{
+                                        ?> 
+                            
+                                        Apertura:
+                                            <form action="../../scripts/ventas/insertar_apertura.php" method="post">
+                                                <input type="number" class="form-control" min="1" name="apertura" placeholder="Insertar">
+                                                <input type="hidden" name="caja" value="<?php echo $cajas["id_caja"]; ?>">
+                                            </form>
+                                        
+                                        <?php
+                                    } ?>
+                            </small>
+                        </a>
                         </div>
                         <div class="form-group col-md-6" style="float:right">
                             
                         <a href="../../scripts/ventas/vincular_caja.php?caja=<?php echo $cajas["id_caja"]; ?>"><small>Conectar con este dispositivo</small>
                             <i class="fa fa-plug fa-lg" aria-hidden="true"></i></a>
                         </div>
-                        <br><h4><?php echo $cajas["ip"]; ?></h4>
+                        <br><h4><?php echo $cajas["ip"];?></h4>
                 </div>
                 <?php
                 }
@@ -80,54 +185,99 @@ $id_nuevo_cliente = $registro_cliente["id_cliente"] + 1;
                 </div>  
                
             </div>
-            <form id="form"  action="../../scripts/clientes/crear_clientes.php" method="post">
+            <form id="form"  action="../../scripts/cierre_ventas.php" method="post">
             <div class="form-row" id="formulario" style="display:none;">
                 <div class="form-group col-md-6">
                     <labe>Apertura</label>
-                    <input class="form-control" placeholder="Apertura">
+                    <?php
+                        
+                        $ip = $_SERVER['REMOTE_ADDR'];
+                        $consulta_caja = $conexion->query("SELECT * FROM $empresa.tbl_cajas where ip = '$ip'");
+                        $resultados_Caja = $consulta_caja->fetch_assoc();
+                     ?> 
+                    <input class="form-control" placeholder="<?php echo $resultados_Caja["apertura"]; ?>" readonly>
                 </div>
+                <div class="form-group col-md-6">
+                    <labe>Vendido</label>
+                        <?php  
+
+                            $fecha = date("y-m-d");
+                            $consulta_venta = $conexion->query("SELECT SUM(total) AS total FROM $empresa.tbl_ventas where fecha_creacion like '%$fecha%'");  
+                            $resultados_venta = $consulta_venta->fetch_assoc();
+                        ?>
+                    <input class="form-control" name="venta" placeholder="<?php  echo $resultados_venta['total']?>">
+                </div> 
+                <div class="form-group col-md-6">
+                    <labe>En caja</label>
+                    <input class="form-control" name="caja" placeholder="<?php  echo $en_caja = $resultados_Caja["apertura"] + $resultados_venta["total"]; ?>">
+                </div> 
                 <div class="form-group col-md-6">
                     <labe>Diferencia</label>
-                    <input class="form-control" placeholder="Total">
+                    <input class="form-control" name="diferencia" placeholder="Total">
                 </div> 
                 <div class="form-group col-md-12">
-                Distribución de efectivo
+                <small>Colocar la cantidad de monedas o billetes en sus casilla correspondientes</small>
                    
                 </div>   
-                <div class="form-group col-md-6">
-                    <input class="form-control" placeholder="$1">
+                <div class="form-group col-md-6" >
+            
+                <input class="form-control monedas holders1" placeholder="$1">
+                 <input class="form-control monedas holders_no" type="number" min="0"  id="uno" value="0" required >
                 </div> 
                 <div class="form-group col-md-6">
-                    <input class="form-control" placeholder="$5">
+               
+                    <input class="form-control monedas holders5 " type="number" placeholder="$5" >    
+                    <input class="form-control monedas holders_no" type="number" min="0"  id="cinco" value="0" required>
                 </div> 
                 <div class="form-group col-md-6">
-                    <input class="form-control" placeholder="$10">
+                
+                    <input class="form-control monedas holders10" type="number" placeholder="$10">
+                    <input class="form-control monedas holders_no" type="number" min="0" id="diez" value="0" required>
                 </div> 
                 <div class="form-group col-md-6">
-                    <input class="form-control" placeholder="$25">
+              
+                    <input class="form-control monedas holders25" type="number" placeholder="$25">
+                    <input class="form-control monedas holders_no" type="number" min="0" id="veinticinco" value="0" required>
                 </div> 
                 <div class="form-group col-md-6">
-                    <input class="form-control" placeholder="$50">
+              
+                    <input class="form-control monedas holders50" type="number" placeholder="$50"> 
+                    <input class="form-control monedas holders_no" type="number" min="0" id="cincuenta" value="0" required>
                 </div> 
                 <div class="form-group col-md-6">
-                    <input class="form-control" placeholder="$100">
+               
+                    <input class="form-control monedas holders100" type="number" placeholder="$100">
+                    <input class="form-control monedas holders_no" type="number" min="0" id="cien" value="0" required>
                 </div> 
                 <div class="form-group col-md-6">
-                    <input class="form-control" placeholder="$500">
+              
+                    <input class="form-control monedas holders200" type="number" placeholder="$200">
+                    <input class="form-control monedas holders_no" type="number" min="0" id="dosciento" value="0" required>
                 </div> 
                 <div class="form-group col-md-6">
-                    <input class="form-control" placeholder="$1000">
+              
+                    <input class="form-control monedas holders500" type="number" placeholder="$500">
+                    <input class="form-control monedas holders_no" type="number" min="0" id="quiniento" value="0" required>
                 </div> 
                 <div class="form-group col-md-6">
-                    <input class="form-control" placeholder="$2000">
+              
+                <input class="form-control monedas holders1000" type="number" placeholder="$1000">
+                    <input class="form-control monedas holders_no" type="number" min="0" id="mil" value="0" required>
                 </div> 
                 <div class="form-group col-md-6">
-                    <input class="form-control" placeholder="Total">
+         
+                <input class="form-control monedas holders2000" type="number" placeholder="$2000">
+                    <input class="form-control monedas holders_no" type="number" min="0" id="dosmil" value="0" required>
                 </div> 
                 <div class="form-group col-md-6">
+                <label>Total:</label>
+                    <input class="form-control" name="total" id="total" placeholder="Total" readonly>
+                </div> 
+                <br>
+                <div class="form-group col-md-12">
                     <input class="btn btn-info"style="width:100%;" type="submit" value="Registrar">
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-12">
                     <a class="btn btn" id="volver" style="width:100%; background-color:#882f88;">Volver atras</a>
                 </div> 
             </div>

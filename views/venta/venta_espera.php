@@ -13,7 +13,6 @@
             <th scope="col">Sucursal</th>
             <th scope="col">Caja</th>
             <th scope="col">Creado por</th>
-            <th scope="col">Total</th>
             <th scope="col">Ver</th>
             </tr>
         </thead>
@@ -31,7 +30,6 @@
                             <td>Sambil</td>
                             <td>Caja-01</td>
                             <td><?php echo $row["creado_por"]; ?></td>
-                            <td>$<?php echo $row["total"]; ?></td>
                             <td><a id="cerrar" href="punto_de_venta.php?id_temp=<?php echo $row['id_venta'];?>"  class="btn btn-info" >Continuar</a> <a id="cerrar"  class="btn btn-danger" data-toggle="modal" data-target="#eliminar<?php echo $row["id_venta"];?>" ><i class="fa fa-times fa-lg"></i></a></td>
                         </tr>
              

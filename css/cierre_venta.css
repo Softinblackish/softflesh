@@ -25,7 +25,10 @@
     box-shadow: black 1px 3px 5px;
     border-radius: 5px;
 }
-
+#sin_A
+{
+    display: none;
+}
 .container{
     width: 350px;
     margin: auto;

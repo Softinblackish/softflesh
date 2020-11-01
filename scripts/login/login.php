@@ -23,6 +23,8 @@ $rol=$informacion_user["rol_usuario"];
 if($verificacion_name >= 1)
 {
     session_start();
+    $ip = $_SERVER['REMOTE_ADDR'];
+    $_SESSION['caja']= $ip;
     $_SESSION["user"]= $user;
     $_SESSION['rol']= $rol;
     $_SESSION["empresa"]=$empresa;
