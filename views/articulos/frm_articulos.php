@@ -7,6 +7,7 @@
       <link rel="stylesheet" href="../../css/articulos.css">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
       <script src="../../scripts/js/time_alert.js"></script>
+      <script src="../../scripts/js/articulo.js"></script>
 
 <div class="container-articulos">
     <div class="container form-row">
@@ -35,26 +36,29 @@
 
             <div class="form-row">
                 <div class="form-group col-md-3">
-                    <input type="number" name="precio_compra" placeholder ="precio compra" class="form-control" >
+                    <input type="number" id="precioCompra" name="precio_compra" placeholder ="precio compra" class="form-control" >
                 </div>
                 <div class="form-group col-md-3">
-                    <input type="number" name="precio_venta" placeholder ="precio venta" class="form-control" >
+                    <input type="number" id="precioVenta" name="precio_venta" placeholder ="precio venta" class="form-control" >
                 </div>
                 <div class="form-group col-md-3">
-                    <input type="number" name="ganancia" placeholder ="ganancia" class="form-control" >
+                    <input id="ganancia" name="ganancia" placeholder ="ganancia" class="form-control" readonly>
                 </div>
                 <div class="form-group col-md-3">
                     <input type="number" name="stop_min" placeholder ="Stock minimo" class="form-control" >
+                </div>
+                <div class="form-group col-md-12">
+                    <input id="gananciaImp" name="ganancia" placeholder ="ganancia + Impuestos" class="form-control" readonly>
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    <select id="inputState" class="form-control" name="impuesto">
-                            <option selected="">7%</option>
-                            <option selected="">8%</option>
-                            <option selected="">10%</option>
-                            <option selected="">18%</option>
+                    <select id="porcentaje" class="form-control" name="cod_impuesto">
+                            <option selected="">7</option>
+                            <option selected="">8</option>
+                            <option selected="">10</option>
+                            <option selected="">18</option>
                             <option selected="null">impuesto</option>
                     </select>
                 </div>
@@ -79,6 +83,23 @@
                             <option selected="">herramientas</option>
                             <option selected="null">categoria</option>
                     </select>
+                </div>
+            </div>
+
+            <label for="inputState">Datos del proveedor: </label><br>
+            <div class="form-row">
+                <div class="form-group col-md-8">
+                    <select id="" name="nombre_proveedor" class="form-control" placeholder="nombre y apellido del proveedor" >
+                        <?php $suplidores = $conexion->query("SELECT nombre_sup FROM $empresa.tbl_suplidores"); 
+                        while($row = $suplidores->fetch_assoc()) {
+                        ?>
+                        <option value = <?php echo $row["nombre_sup"];  ?> ><?php echo $row["nombre_sup"];  ?></option>
+                        <?php } ?>
+
+                    </select> 
+                </div>
+                <div class="form-group col-md-4">
+                <input type="number" name="cod_proveedor" placeholder ="cod proveedor" class="form-control" readonly >
                 </div>
             </div>
 

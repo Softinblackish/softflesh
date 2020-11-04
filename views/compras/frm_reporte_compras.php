@@ -64,8 +64,8 @@
                         <tbody>
                             <?php
                             $empresa = $_SESSION["empresa_db"];
-
-                                if(!empty($_POST["desde"] or $_POST["hasta"] or $_POST["filtro"]))
+                            
+                            if( isset($_POST["desde"]) || isset($_POST["hasta"]) || isset($_POST["filtro"]) )
                                 {
                                     if($_POST["desde"] and $_POST["hasta"] )
                                         {
@@ -196,17 +196,22 @@
                             </a>
                         </div>
                         <div class="form-group col-md-8">
-                                        <?php
-                                        $filtro=$_POST["filtro"];
-                                        $desde =$_POST["desde"];
-                                        $hasta =$_POST["hasta"];
-                                        
-                                        ?>
-                                        <?php echo $filtro; ?>
-                                <a href="rpt_compras.php?desde=<?php echo $desde; ?> &hasta=<?php echo $hasta;?>
-                                &filtro=<?php echo $filtro; ?> ">
-                                <input type="" class="btn btn form-control" id="buscar" value="Imprimir">
-                                </a> 
+                            <?php
+                            if( isset($_POST["desde"]) || isset($_POST["hasta"]) || isset($_POST["filtro"]) ){
+                                $filtro=$_POST["filtro"];
+                                $desde =$_POST["desde"];
+                                $hasta =$_POST["hasta"];
+                            }else{
+                                $filtro=0;
+                                $desde ="";
+                                $hasta ="";
+                            }
+                            ?>
+                            <?php //echo $filtro; ?>
+                            <a href="rpt_compras.php?desde=<?php echo $desde; ?> &hasta=<?php echo $hasta;?>
+                            &filtro=<?php echo $filtro; ?> ">
+                                <input type="" class="btn btn form-control" id="buscar" value="Imprimir" readonly>
+                            </a> 
                             
                         </div>
                     </div> 

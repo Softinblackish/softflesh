@@ -122,7 +122,7 @@ else
                             ?> 
                                 <input id="id_temp" type="hidden" value="<?php echo $id ?>" name="id">     
                             <?php }?>
-                        <td><button type="submit" class="btn btn-info" value="d"><i class="fa fa-arrow-circle-o-down fa-lg"></1></button></td> 
+                        <td><button type="submit" class="btn btn-info" value="d"><i class="fa fa-arrow-circle-o-down fa-lg"></i></button></td> 
                     </form>
 
                 </tr>

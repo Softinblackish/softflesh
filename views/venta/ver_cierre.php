@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <div id="box_lista">
-<h2>Listado de cotizaciones</h2>
+<h2>Cierres de venta</h2>
 <form action="" method="post">
     <div class="form-row">
         <div class="form-group col-md-3">
@@ -16,7 +16,7 @@
             <input class="form-control"  type="date" placeholder="Buscar" name="hasta">
         </div>
         <div class="form-group col-md-3">
-            <label>Cotización</label>
+            <label>Cierre</label>
             <input class="form-control"  type="number" placeholder="Factura" name="filtro">
         </div>
         <div class="form-group col-md-2">
@@ -29,10 +29,10 @@
 <table class="table">
   <thead class="thead">
     <tr>
-      <th scope="col">Cotizacion</th>
-      <th scope="col" width="20%">Cliente</th>
+      <th scope="col">Caja</th>
+      <th scope="col" width="20%">Sucursal</th>
+      <th scope="col">Usuario</th>
       <th scope="col">Fecha</th>
-      <th scope="col">Total</th>
       <th scope="col">Accion</th>
     </tr>
   </thead>
@@ -46,39 +46,44 @@
         {
             $desde = $_POST["desde"];
             $hasta = $_POST["hasta"];   
-            $lista_usuario = $conexion->query("SELECT * FROM $empresa.tbl_cotizaciones WHERE fecha_creacion >= '$desde' and fecha_creacion <= '$hasta' ");
+            $lista_usuario = $conexion->query("SELECT * FROM $empresa.tbl_cierre_caja WHERE fecha_creacion >= '$desde' and fecha_creacion <= '$hasta' ");
         }
         if( $_POST["filtro"] != null)
         {
             $filtro = $_POST["filtro"];
-            $lista_usuario = $conexion->query("SELECT * FROM $empresa.tbl_cotizaciones WHERE id_cotizacion = $filtro ");
+            $lista_usuario = $conexion->query("SELECT * FROM $empresa.tbl_cierre_caja WHERE id_cierre = $filtro ");
         }
 
     }
     else{
-        $lista_cotizaciones = $conexion->query("SELECT * FROM $empresa.tbl_cotizaciones order by id_cotizacion desc limit 10 ");
+        $lista_cotizaciones = $conexion->query("SELECT * FROM $empresa.tbl_cierre_caja order by id_cierre desc limit 10 ");
     }
 
     while($row = $lista_cotizaciones->fetch_assoc())
         { 
-            $cliente = $row['id_cliente'];
-            $consulta_clientes = $conexion->query("SELECT * FROM $empresa.tbl_clientes where id_cliente = $cliente");
+            $cliente = $row['id_cierre'];
+            $consulta_clientes = $conexion->query("SELECT * FROM $empresa.tbl_cierre_caja where id_cierre = $cliente");
             $row2 = $consulta_clientes->fetch_assoc();
+
+            $nombre_caja = $row2["caja"];
+            $consulta_cajas = $conexion->query("SELECT caja_nombre FROM $empresa.tbl_cajas where ip = '$nombre_caja' ");
+            $resultado_cajas = $consulta_cajas->fetch_assoc();
 ?>
         <!-- Head Tabla usuario   --->
             <tr>
-                <th scope="row"><?php echo $row["id_cotizacion"]; ?></th>
-                <td width="20%"><?php echo $row2["nombre_cliente"]; ?></td>
+                <th scope="row"><?php echo $resultado_cajas["caja_nombre"]; ?></th>
+                <td width="20%"><?php echo $row2["sucursal"]; ?></td>
+                <td><?php echo $row["creado_por"]; ?></td>
                 <td><?php echo $row["fecha_creacion"]; ?></td>
-                <td><?php echo $row["total"]; ?></td>
-                <td><a class="btn btn-info" data-toggle="modal" data-target="#example<?php echo $row["id_cotizacion"]; ?>">Facturar</a></td>
+                
+                <td><a class="btn btn-info" data-toggle="modal" data-target="#example<?php echo $row["id_cierre"]; ?>">Info <i class="fa fa-plus-circle"></i></a></td>
             </tr>
         <!--Modal editar usuario   --->
-                <div class="modal fade" id="example<?php echo $row["id_cotizacion"];?>" tabindex="-1" aria-labelledby="example<?php echo $row["id_cotizacion"];?>Label" aria-hidden="true">
+                <div class="modal fade" id="example<?php echo $row["id_cierre"];?>" tabindex="-1" aria-labelledby="example<?php echo $row["id_cierre"];?>Label" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header" style="background-color:#17a2b8; color:white;">
-                                <h5 class="modal-title" id="example<?php echo $row["id_cotizacion "];?>Label">Cotización No. <?php echo $row["id_cotizacion"]; ?></h5>
+                                <h5 class="modal-title" id="example<?php echo $row["id_cierre"];?>Label">Info <?php echo $row["caja"]; ?></h5>
                                 <button type="button" class="close cerrar" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                                 </button>

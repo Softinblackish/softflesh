@@ -15,7 +15,7 @@
     width: 900px;
     margin: auto;
     position: relative;
-    top: 50px;
+    top: 10px;
     padding-top: 10px;
     padding: 10px;
     font-family: Georgia, 'Times New Roman', Times, serif;
@@ -30,7 +30,7 @@
 
 .cabeza {
     border-bottom: 1px solid royalblue;
-    padding-bottom: 5px;
+    padding-bottom: 0px;
 }
 
 .form-row {
@@ -48,7 +48,7 @@
 }
 
 .cabeza_tabla {
-    padding: 15px;
+    padding: 3px;
     background-color: #882f88;
     color: white;
 }

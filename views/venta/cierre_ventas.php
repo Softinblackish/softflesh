@@ -88,6 +88,7 @@ $id_nuevo_cliente = $registro_cliente["id_cliente"] + 1;
             $("#back").hide();
             $(".superior").show();
         }); 
+        
         $(".monedas").keyup(function(){
              var uno = $("#uno").val();
              var cinco = $("#cinco").val();
@@ -100,7 +101,14 @@ $id_nuevo_cliente = $registro_cliente["id_cliente"] + 1;
              var mil = $("#mil").val();
              var dosmil = $("#dosmil").val();
              var resultados = parseInt(uno) + parseInt(cinco)*5 + parseInt(diez)*10 + parseInt(veinticinco)*25 + parseInt(cincuenta)*50 + parseInt(cien)*100 + parseInt(dosciento)*200 + parseInt(quiniento)*500 + parseInt(mil)*1000 + parseInt(dosmil)*2000;
+             
              $("#total").val(resultados);
+
+             var caja_result = $("#cajon").val();
+             var resultado = parseInt(caja_result) - resultados;
+             var total = resultado;
+             $("#diferencia").val(total);
+         
         }); 
     });
     </script>
@@ -113,7 +121,7 @@ $id_nuevo_cliente = $registro_cliente["id_cliente"] + 1;
                 while($cajas = $consulta_cajas->fetch_assoc())
                 {
                 ?>
-                <div class="form-group col-md-12 cajas">
+                <div class="form-group col-md-4 cajas">
                         <div class="form-group col-md-6" style="float:left">
                         <a><small><?php echo $cajas["caja_sucursal"];?></small>
                             <br><h4><?php echo $cajas["caja_nombre"]; ?></h4>
@@ -150,9 +158,10 @@ $id_nuevo_cliente = $registro_cliente["id_cliente"] + 1;
                         <div class="form-group col-md-6" style="float:right">
                             
                         <a href="../../scripts/ventas/vincular_caja.php?caja=<?php echo $cajas["id_caja"]; ?>"><small>Conectar con este dispositivo</small>
-                            <i class="fa fa-plug fa-lg" aria-hidden="true"></i></a>
+                            <i class="fa fa-plug fa-lg" aria-hidden="true"></i></a><br>
+                            <p><?php echo $cajas["ip"];?></p>
                         </div>
-                        <br><h4><?php echo $cajas["ip"];?></h4>
+                        
                 </div>
                 <?php
                 }
@@ -167,7 +176,7 @@ $id_nuevo_cliente = $registro_cliente["id_cliente"] + 1;
             
                 <div class="form-group col-md-12 superior">
                     <center>  
-                        <a href="ver_ventas.php">
+                        <a href="ver_cierre.php">
                             <small>Listado de cierres </small>
                             <br><h3>365</h3>
                         </a>
@@ -185,7 +194,7 @@ $id_nuevo_cliente = $registro_cliente["id_cliente"] + 1;
                 </div>  
                
             </div>
-            <form id="form"  action="../../scripts/cierre_ventas.php" method="post">
+            <form id="form"  action="../../scripts/ventas/cierre_ventas.php" method="post">
             <div class="form-row" id="formulario" style="display:none;">
                 <div class="form-group col-md-6">
                     <labe>Apertura</label>
@@ -195,25 +204,25 @@ $id_nuevo_cliente = $registro_cliente["id_cliente"] + 1;
                         $consulta_caja = $conexion->query("SELECT * FROM $empresa.tbl_cajas where ip = '$ip'");
                         $resultados_Caja = $consulta_caja->fetch_assoc();
                      ?> 
-                    <input class="form-control" placeholder="<?php echo $resultados_Caja["apertura"]; ?>" readonly>
+                    <input class="form-control" name="apertura" value="<?php echo $resultados_Caja["apertura"]; ?>" readonly>
                 </div>
                 <div class="form-group col-md-6">
                     <labe>Vendido</label>
                         <?php  
-
                             $fecha = date("y-m-d");
-                            $consulta_venta = $conexion->query("SELECT SUM(total) AS total FROM $empresa.tbl_ventas where fecha_creacion like '%$fecha%'");  
+                            $caja= $_SESSION["caja"];
+                            $consulta_venta = $conexion->query("SELECT SUM(total) AS total FROM $empresa.tbl_ventas where fecha_creacion like '%$fecha%' and caja = '$caja'");  
                             $resultados_venta = $consulta_venta->fetch_assoc();
                         ?>
-                    <input class="form-control" name="venta" placeholder="<?php  echo $resultados_venta['total']?>">
+                    <input class="form-control" name="venta" value="<?php  echo $resultados_venta['total']?>">
                 </div> 
                 <div class="form-group col-md-6">
                     <labe>En caja</label>
-                    <input class="form-control" name="caja" placeholder="<?php  echo $en_caja = $resultados_Caja["apertura"] + $resultados_venta["total"]; ?>">
+                    <input class="form-control" id="cajon" name="caja" value="<?php  echo $en_caja = $resultados_Caja["apertura"] + $resultados_venta["total"]; ?>">
                 </div> 
                 <div class="form-group col-md-6">
                     <labe>Diferencia</label>
-                    <input class="form-control" name="diferencia" placeholder="Total">
+                    <input class="form-control" id="diferencia" name="diferencia" placeholder="Total">
                 </div> 
                 <div class="form-group col-md-12">
                 <small>Colocar la cantidad de monedas o billetes en sus casilla correspondientes</small>
