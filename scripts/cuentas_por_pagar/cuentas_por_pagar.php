@@ -12,5 +12,5 @@
             values ('$nombre', '$detalle', '$cantidad', '$price', '$total')");
     
 
-    header('location: ../../views/cuentas_por_pagar.php')
+    header('location: ../../views/cuentas_por_pagar.php?registro="si"')
 ?>

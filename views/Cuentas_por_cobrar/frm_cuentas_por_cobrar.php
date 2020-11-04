@@ -48,7 +48,7 @@
 				</div>
 			</div>
 			<br>
-			<input type="submit" id="btn" class="btn btn" value="Registrar articulo" >
+			<input type="submit" id="btn" class="btn btn" value="Registrar cobro" >
 
 			<a href="../administracion/administracion.php" id="btn" class="btn btn" >Volver atras</a>
 		</form>

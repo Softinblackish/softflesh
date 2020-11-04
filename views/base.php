@@ -130,12 +130,13 @@
                                         </a>
                                 </div><?php } ?>
                                 <a href="../dashboard/dashboard.php"> <div id="caja_chica" class="menu_lv1" style="color:white;"><i class="fa fa-bar-chart fa-lg" aria-hidden="true"></i> Caja Chica </div></a>
-                                <?php if($permisos['cxp']== 1){ ?><div id="cxp" class="menu_lv1"><i class="fa fa-credit-card fa-lg" aria-hidden="true"></i> Cuentas por pagar
-                                        <div id="agregar_cxp" class="menu_lv3 menu_cxp">Agregar cuentas por pagar</div>
+                                
+                                <?php if($permisos['cxp']== 1){ ?><div id="cxp" class="menu_lv1"><i class="fa fa-credit-card fa-lg" aria-hidden="true"></i> Cuentas por pagar <!--Formulario cuentas por pagar--> 
+                                        <a href="../Cuentas_por_pagar/frm_cuentas_por_pagar.php"><div id="agregar_cxp" class="menu_lv3 menu_cxp">Agregar cuentas por pagar</div>
                                         <div id="lista_cxp" class="menu_lv3 menu_cxp">Ver cuentas por pagar</div>
                                 </div><?php }?>
 
-                                <?php if($permisos['cxc']== 1){ ?><div id="cxc" class="menu_lv1"><i class="fa fa-money fa-lg" aria-hidden="true"></i> Cuentas por cobrar<!--agregue una referencia a mi formularios-->                         
+                                <?php if($permisos['cxc']== 1){ ?><div id="cxc" class="menu_lv1"><i class="fa fa-money fa-lg" aria-hidden="true"></i> Cuentas por cobrar <!--Formulario cuentas por cobrar-->                         
                                         <a href="../Cuentas_por_cobrar/frm_cuentas_por_cobrar.php"><div id="agregar_cxc" class="menu_lv3 menu_cxc">Agregar cuenta por cobrar</div></a>
                                         <div id="lista_cxc" class="menu_lv3 menu_cxc">Ver cuentas por cobrar</div>
                                 </div> <?php } ?>
