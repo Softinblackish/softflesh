@@ -17,7 +17,7 @@
         </div>
         <div class="form-group col-md-3">
             <label>Cierre</label>
-            <input class="form-control"  type="number" placeholder="Factura" name="filtro">
+            <input class="form-control"  type="number" placeholder="Cierre" name="filtro">
         </div>
         <div class="form-group col-md-2">
         <label>.</label>
@@ -46,33 +46,33 @@
         {
             $desde = $_POST["desde"];
             $hasta = $_POST["hasta"];   
-            $lista_usuario = $conexion->query("SELECT * FROM $empresa.tbl_cierre_caja WHERE fecha_creacion >= '$desde' and fecha_creacion <= '$hasta' ");
+            $lista_cierres = $conexion->query("SELECT * FROM $empresa.tbl_cierre_caja WHERE fecha_creacion >= '$desde' and fecha_creacion <= '$hasta' ");
         }
-        if( $_POST["filtro"] != null)
+        if(isset($_POST["filtro"]))
         {
             $filtro = $_POST["filtro"];
-            $lista_usuario = $conexion->query("SELECT * FROM $empresa.tbl_cierre_caja WHERE id_cierre = $filtro ");
+            $lista_cierres = $conexion->query("SELECT * FROM $empresa.tbl_cierre_caja WHERE id_cierre = $filtro ");
         }
 
     }
     else{
-        $lista_cotizaciones = $conexion->query("SELECT * FROM $empresa.tbl_cierre_caja order by id_cierre desc limit 10 ");
+        $lista_cierres = $conexion->query("SELECT * FROM $empresa.tbl_cierre_caja ");
     }
 
-    while($row = $lista_cotizaciones->fetch_assoc())
+    while($row = $lista_cierres->fetch_assoc())
         { 
-            $cliente = $row['id_cierre'];
-            $consulta_clientes = $conexion->query("SELECT * FROM $empresa.tbl_cierre_caja where id_cierre = $cliente");
-            $row2 = $consulta_clientes->fetch_assoc();
+            $cierre = $row['id_cierre'];
+            $consulta_cierre = $conexion->query("SELECT * FROM $empresa.tbl_cierre_caja where id_cierre = $cierre");
+            $row2 = $consulta_cierre->fetch_assoc();
 
             $nombre_caja = $row2["caja"];
-            $consulta_cajas = $conexion->query("SELECT caja_nombre FROM $empresa.tbl_cajas where ip = '$nombre_caja' ");
+            $consulta_cajas = $conexion->query("SELECT caja_nombre, caja_sucursal FROM $empresa.tbl_cajas where ip = '$nombre_caja' ");
             $resultado_cajas = $consulta_cajas->fetch_assoc();
 ?>
         <!-- Head Tabla usuario   --->
             <tr>
                 <th scope="row"><?php echo $resultado_cajas["caja_nombre"]; ?></th>
-                <td width="20%"><?php echo $row2["sucursal"]; ?></td>
+                <td width="20%"><?php echo $resultado_cajas["caja_sucursal"]; ?></td>
                 <td><?php echo $row["creado_por"]; ?></td>
                 <td><?php echo $row["fecha_creacion"]; ?></td>
                 
@@ -93,48 +93,34 @@
                                 <form action="../../scripts/ventas/registrar_venta.php" method="POST">
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <input type="text" name="client" placeholder="Nombre" value="<?php echo $row["id_cliente"]; ?>" readonly class="form-control">
+                                        <label>ID</label>
+                                            <input type="text" name="client" placeholder="Nombre" value="<?php echo $row["id_cierre"]; ?>" readonly class="form-control">
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <?php $consulta_condicion_p = $conexion->query("SELECT nombre_condicion_p from $empresa.tbl_condiciones_pago");?>
-                                            <select class="form-control" name="condicion">
-                                                <?php while($condiciones_p = $consulta_condicion_p->fetch_assoc()) { ?>
-                                               <option><?php echo $condiciones_p["nombre_condicion_p"] ?></option>
-                                               <?php
-                                                }
-                                               ?>
-                                            </select>
+                                        <label>Apertura</label>
+                                           <input type="text" name="" value="<?php echo $row["apertura"]; ?>" id="" readonly class="form-control">
                                         </div>
                                         <div class="form-group col-md-6">  
-                                        <?php $consulta_comprobante = $conexion->query("SELECT tipo from $empresa.tbl_comprobantes");?>
-                                            <select class="form-control" name="tipo_comprobante">
-                                                <?php while($comprobante = $consulta_comprobante->fetch_assoc()) { ?>
-                                               <option><?php echo $comprobante["tipo"] ?></option>
-                                               <?php
-                                                }
-                                               ?>
-                                            </select>
+                                        <label>Vendido</label>
+                                            <input type="text" value="<?php echo $row["vendido"]; ?>" id="" readonly class="form-control">
+                                        </div>
+                                        <div class="form-group col-md-6"> 
+                                        <label>Total en caja</label> 
+                                            <input type="text" value="<?php echo $row["total_caja"]; ?>" id="" readonly class="form-control">
                                         </div>
                                         <div class="form-group col-md-6">  
-                                            <select class="form-control" name="forma">
-                                                    <option>Efectivo</option>
-                                                    <option>Tarjeta</option>
-                                            </select>
+                                        <label>En caja al cierre</label>
+                                            <input type="text" value="<?php echo $row["total"]; ?>" id="" readonly class="form-control">
                                         </div>
-                                        <?php
-                                        $id = $row["id_cotizacion"];
-                                        $consulta_cotizaciones_id = $conexion->query("SELECT * from $empresa.tbl_cotizaciones WHERE id_cotizacion= $id "); 
-                                        $resultados = $consulta_cotizaciones_id -> fetch_assoc();
-                                        ?>
-                                        <input type="hidden" name="itbis" value="<?php echo $resultados["itbis"]; ?>">
-                                        <input type="hidden" name="precio" value="<?php echo $resultados["precio"]; ?>">
-                                        <input type="hidden" name="total" value="<?php echo $resultados["total"]; ?>">
-                                        <input type="hidden" name="id_temp" value="<?php echo $resultados["id_venta_temp"];?>">
+                                        <div class="form-group col-md-6">  
+                                        <label>Diferencia</label>
+                                            <input type="text" value="<?php echo $row["diferencia"]; ?>" id="" readonly class="form-control">
+                                        </div>
+                                      
                                     </div>
                             
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary cerrar" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                                <input type="submit" class="btn btn-primary guardar" value="Convertir">
                             </div>
                             </form>
 
