@@ -37,6 +37,9 @@
 				</div>
 			</div>
 			<div class=form-row>			
+				<div class="form-group col-md-12">		
+					<input type="text" name="Articulos"placeholder="Articulos" class="form-control">
+				</div>
 				<div class="form-group col-md-4">		
 					<input type="text" name="cantidad"placeholder="Cantidad" class="form-control">
 				</div>
