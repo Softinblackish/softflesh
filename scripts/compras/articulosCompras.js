@@ -76,7 +76,7 @@ $(document).ready(function(){
                       var var_total_SI = parseFloat($("#total_SI").val()); //80
                       var var_porciento = var_total_SI * var_porcentaje; //80 * 0.08 = 6.4
                       var var_total_CI = var_total_SI + var_porciento; //40 + 6.4 = 46.4
-                      $("#total_I").val(var_total_CI);
+                      $("#total_I").val(var_porciento);
                       $("#total").val(var_total_CI);
                     });
                     //alert(json[0].precio);
