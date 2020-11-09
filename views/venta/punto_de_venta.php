@@ -122,7 +122,7 @@ else
                             ?> 
                                 <input id="id_temp" type="hidden" value="<?php echo $id ?>" name="id">     
                             <?php }?>
-                        <td><button type="submit" class="btn btn-info" value="d"><i class="fa fa-arrow-circle-o-down fa-lg"></1></button></td> 
+                        <td><button type="submit" class="btn btn-info" value="d"><i class="fa fa-arrow-circle-o-down fa-lg"></i></button></td> 
                     </form>
 
                 </tr>
@@ -262,7 +262,7 @@ else
                 <input type="hidden" name="itbis" value="<?php echo $itbis_total;?>" />
                 <input type="hidden" name="precio" value="<?php echo $precio_total; ?>"/>
                 <input type="hidden" name="total" value="<?php echo $total_total; ?>"/>
-                <input type="hidden" name="id_temp" value="<?php echo $id; ?>"
+                <input type="hidden" name="id_temp" value="<?php echo $id; ?>"/>
 
 
             </strong>

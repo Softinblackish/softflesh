@@ -1,53 +1,59 @@
-<!--  AQUI DEBE DE IR SOLAMENTE UN FORMULARIO DE REGISTRO DE ARTICULOS 
-      SOLO HTML SIN CSS SIN JAVASCRIP SIN PHP-->
-      <?php include("../base.php"); ?>
-<link rel="stylesheet" href="../../css/articulos.css">
+<!--AQUI VA UN FORMULARIO/OS DE CUENTAS POR PAGAR SIN PHP, SIN CSS-->
+
+<!--PHP-->
+<?php include("../base.php") ?>
+<!--CSS-->
+<link rel="stylesheet" href="../../css/cuentas_por_pagar.css">
+<!--JS-->
+<script type="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="../../scripts/js/time_alert.js"></script>
+
 <div class="container-articulos">
-    <div class="container form-row">
-        <form id="form"  action="" method="post">
-            <div class="cabeza">
-               <h2> Registro de artículos</h2>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <input type="text" name="nombre" placeholder ="Nombre del artículo" class="form-control">
-                </div>
-                <div class="form-group col-md-6">
-                    <input type="text" name="codigo" placeholder ="Código" class="form-control" >
-                </div>
-            </div>
+	<div class="container form-row">
+		<form id="form" action="../../scripts/Cuentas_por_pagar/cuentas_por_pagar.php" method="post">
+			<div class="cabeza">
+				<!--msj de verificacion-->
+				<?php if(isset($_GET["registro"])){ ?>
+	                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+	                     <strong>listo! </strong> Nuevo artículo registrado
+	                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	                        <span aria-hidden="true">&times;</span>
+	                    </button>
+	                </div>
+	            <?php } ?>
+	            
+				<!--fin-->
+				<h2>Agregar Cuentas por Pagar</h2>
+			</div>
+			<div class=form-row>
+				<div class="form-group col-md-12">
+					<input type="text" name="nombre" placeholder="Nombre del Cliente" class="form-control">
+				</div>	
+			</div>
+			<div class=form-row>			
+				<div class="form-group col-md-12">
+					<textarea name="detalle"
+					cols="50" rows="3" placeholder="Detalle sobre las condiciones" class="form-control"></textarea>
+				</div>
+			</div>
+			<div class=form-row>			
+				<div class="form-group col-md-12">		
+					<input type="text" name="Articulos"placeholder="Articulos" class="form-control">
+				</div>
+				<div class="form-group col-md-4">		
+					<input type="text" name="cantidad"placeholder="Cantidad" class="form-control">
+				</div>
+				<div class="form-group col-md-4">
+					<input type="text" name="precio"placeholder="Precio" class="form-control">
+				</div>
+				<div class="form-group col-md-4">	
+					<input type="text" name="total"placeholder="Total" class="form-control">
+				</div>
+			</div>
+			<br>
+			<input type="submit" id="btn" class="btn btn" value="Registrar pago" >
 
-            <div class="form-row">
-                <input type="text" name="descripcion" placeholder ="Descripción" class="form-control" >
-                <br><br>
-                <input type="text" name="referencia" placeholder ="Referencia" class="form-control col-md-6" >
-            </div>
-
-            <label for="inputState">Codigo de Impuestos: </label><br>
-            
-            <div class="form-row">
-                <div class="form-group col-md-4">
-                    <input type="text" name="codigo_barra" class="form-control" id="inputCity" placeholder="Eje; 0000215EE150" >
-                </div>
-                <div class="form-group col-md-4">
-                    <select id="inputState" class="form-control" name="categoria">
-                            <option selected="">Electricos</option>
-                            <option selected="">comestibles</option>
-                    </select>
-                </div>
-                <select id="inputState" class="form-control col-md-4" name="almacen">
-                        <option selected="">01-Santiago</option>
-                        <option>02-La vega</option>
-                </select>
-            </div>
-
-            <label class="form-check-label" for="gridCheck">
-                    Haga click en guardar para registrar este nuevo artículo 
-            </label>
-            <br>
-            <button type="button" id="btn" class="btn btn">Success</button>
-            <br>
-            <br>
-        </form>
-    </div>    
+			<a href="../administracion/administracion.php" id="btn" class="btn btn" >Volver atras</a>
+		</form>
+	</div>
 </div>

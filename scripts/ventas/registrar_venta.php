@@ -64,9 +64,10 @@
         }
         $ncf = $prefijo.$ceros.$numero_ncf;
         echo $ncf;
+        $caja = $_SESSION["caja"];
             
-            $insertar_venta = $conexion->query("INSERT INTO $empresa.tbl_ventas (id_venta_temp, id_cliente, condicion_pago, tipo_comprobante, comprobante, forma_pago, itbis, precio, total, creado_por) 
-            values($id_temp, $cliente,'$condicion', '$comprobante','$ncf', '$forma', $itebis, $precio, $total, '$usuario')");
+            $insertar_venta = $conexion->query("INSERT INTO $empresa.tbl_ventas (id_venta_temp, id_cliente, condicion_pago, tipo_comprobante, comprobante, forma_pago, itbis, precio, total, caja , creado_por) 
+            values($id_temp, $cliente,'$condicion', '$comprobante','$ncf', '$forma', $itebis, $precio, $total, '$caja', '$usuario')");
         
             $actualizar_comprobante = $conexion->query("UPDATE $empresa.tbl_comprobantes SET proximo= $proximo WHERE tipo='$comprobante'");
             

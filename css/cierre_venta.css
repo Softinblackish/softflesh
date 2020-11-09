@@ -1,8 +1,7 @@
 .container-articulos{
-    width: 200px;
     height:1000px;
     margin:100px;
-    margin-left: 707px;
+    margin-left: 375px;
     margin-top: 0px;
     
 
@@ -22,12 +21,17 @@
 .cajas{
     background-image:linear-gradient(-90deg, #17a2b8 0%,hsl(300, 49%, 36%)  50%, #882f88 20%); 
     padding:10px;
+    margin-left: 5px;
+    margin-right: 5px;
     box-shadow: black 1px 3px 5px;
     border-radius: 5px;
 }
-
+#sin_A
+{
+    display: none;
+}
 .container{
-    width: 350px;
+    width: 107%;
     margin: auto;
     position: relative;
     top: 20px;
