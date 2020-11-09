@@ -404,14 +404,22 @@ $perm = $conexion->query("
         `valor_devuelto` INT(10) NULL , 
         `id_venta_temp` INT(10) NULL , 
         PRIMARY KEY (`id_devoluciones_det`)) ENGINE = InnoDB;
-
           ");
 
-      
-      
-
-
-      
+        $tabla_art_compra_temp = $conexion->query("
+        CREATE TABLE $nombre_sin_espacio.tbl_art_compras (
+          `id_compra` int(11) NOT NULL AUTO_INCREMENT,
+          `no_compra` int(11) NULL,
+          `articulo` varchar(100) NULL,
+          `precio_compra` int(10) NULL,
+          `cantidad` int(11) NULL,
+          `stock` int(11) NULL,
+          `total` int(11) NULL,
+          `caducidad` date DEFAULT '0000-00-00' NULL,
+          `nota` varchar(100) NULL,
+          `fecha_orden` timestamp DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+          PRIMARY KEY (`id_compra`)) ENGINE=InnoDB ;
+          ");
 header("location:../views/creador_u.php?empresa=$nombre_sin_espacio");
 /*
       }
