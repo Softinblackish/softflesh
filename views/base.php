@@ -131,7 +131,8 @@
                                 </div><?php } ?>
                                 <a href="../dashboard/dashboard.php"> <div id="caja_chica" class="menu_lv1" style="color:white;"><i class="fa fa-bar-chart fa-lg" aria-hidden="true"></i> Caja Chica </div></a>
                                 
-                                <?php if($permisos['cxp']== 1){ ?><div id="cxp" class="menu_lv1"><i class="fa fa-credit-card fa-lg" aria-hidden="true"></i> Cuentas por pagar <!--Formulario cuentas por pagar--> 
+                                <?php if($permisos['cxp']== 1){ ?><div id="cxp" class="menu_lv1"><i class="fa fa-credit-card fa-lg" aria-hidden="true"></i> Cuentas por pagar 
+                                <!--Formulario cuentas por pagar--> 
                                         <a href="../Cuentas_por_pagar/frm_cuentas_por_pagar.php"><div id="agregar_cxp" class="menu_lv3 menu_cxp">Agregar cuentas por pagar</div>
                                         <div id="lista_cxp" class="menu_lv3 menu_cxp">Ver cuentas por pagar</div>
                                 </div><?php }?>
