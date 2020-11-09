@@ -111,7 +111,7 @@
                                         <a href="../venta/venta_espera.php"><div id="venta_espera" class="menu_lv3 menu_ventas">Ventas en espera</div></a>
                                         <a href="../venta/cierre_ventas.php"><div id="lista_ventas" class="menu_lv3 menu_ventas">Cierre de venta</div></a>
                                         <a href="../venta/cotizaciones.php"><div id="lista_ventas" class="menu_lv3 menu_ventas">Cotizaciones</div></a>
-                                        <a href="#"><div id="devoluciones_venta" class="menu_lv3 menu_ventas">Devoluciones</div></a>
+                                        <div id="devoluciones_venta" class="menu_lv3 menu_ventas">Devoluciones</div>
                                         <div id="devoluciones_venta" class="menu_lv3 menu_ventas">Reportes</div>
                                 </div><?php } ?>
 
@@ -131,14 +131,9 @@
                                 </div><?php } ?>
                                 <a href="../dashboard/dashboard.php"> <div id="caja_chica" class="menu_lv1" style="color:white;"><i class="fa fa-bar-chart fa-lg" aria-hidden="true"></i> Caja Chica </div></a>
                                 
-<<<<<<< HEAD
                                 <?php if($permisos['cxp']== 1){ ?><div id="cxp" class="menu_lv1"><i class="fa fa-credit-card fa-lg" aria-hidden="true"></i> Cuentas por pagar 
                                 <!--Formulario cuentas por pagar--> 
                                         <a href="../Cuentas_por_pagar/frm_cuentas_por_pagar.php"><div id="agregar_cxp" class="menu_lv3 menu_cxp">Agregar cuentas por pagar</div>
-=======
-                                <?php if($permisos['cxp']== 1){ ?><div id="cxp" class="menu_lv1"><i class="fa fa-credit-card fa-lg" aria-hidden="true"></i> Cuentas por pagar <!--Formulario cuentas por pagar--> 
-                                        <a href="../Cuentas_por_pagar/frm_cuentas_por_pagar.php"><div id="agregar_cxp" class="menu_lv3 menu_cxp">Agregar cuentas por pagar</div></a>
->>>>>>> 3ffb204722d08aa2adb98dbd78b52b6004c6ff7d
                                         <div id="lista_cxp" class="menu_lv3 menu_cxp">Ver cuentas por pagar</div>
                                 </div><?php }?>
 
