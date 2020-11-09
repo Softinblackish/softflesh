@@ -108,6 +108,7 @@
         `precio_compra` DOUBLE,
         `cantidad` int(11),
         `stock` int(11),
+        `total` DOUBLE,
         `caducidad` date DEFAULT '0000-00-00',
         `nota` varchar(100),
         `fecha_orden` timestamp DEFAULT current_timestamp() ON UPDATE current_timestamp(),
@@ -384,10 +385,41 @@ $perm = $conexion->query("
       `modificado_por` DATETIME NULL DEFAULT CURRENT_TIMESTAMP , 
       PRIMARY KEY (`id_cotizacion`)) ENGINE = InnoDB;
       ");
-      
 
+      $tabla_devoluciones = $conexion->query("
+      CREATE TABLE $nombre_sin_espacio.tbl_devoluciones ( 
+        `id_devolucion_temp` INT NOT NULL AUTO_INCREMENT , 
+        `id_venta_temp` INT(10) NULL , 
+        `comprobante` VARCHAR(50) NULL , 
+        `creado_por` VARCHAR(100) NULL , 
+        `fecha_creacion` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP , 
+        PRIMARY KEY (`id_devolucion_temp`)) ENGINE = InnoDB;
+        ");
 
-      
+        $tabla_devoluciones = $conexion->query("
+        CREATE TABLE $nombre_sin_espacio.tbl_devoluciones_det ( 
+        `id_devoluciones_det` INT NOT NULL AUTO_INCREMENT , 
+        `id_articulo` INT(10) NULL , 
+        `cantidad` INT(10) NULL , 
+        `valor_devuelto` INT(10) NULL , 
+        `id_venta_temp` INT(10) NULL , 
+        PRIMARY KEY (`id_devoluciones_det`)) ENGINE = InnoDB;
+          ");
+
+        $tabla_art_compra_temp = $conexion->query("
+        CREATE TABLE $nombre_sin_espacio.tbl_art_compras (
+          `id_compra` int(11) NOT NULL AUTO_INCREMENT,
+          `no_compra` int(11) NULL,
+          `articulo` varchar(100) NULL,
+          `precio_compra` int(10) NULL,
+          `cantidad` int(11) NULL,
+          `stock` int(11) NULL,
+          `total` int(11) NULL,
+          `caducidad` date DEFAULT '0000-00-00' NULL,
+          `nota` varchar(100) NULL,
+          `fecha_orden` timestamp DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+          PRIMARY KEY (`id_compra`)) ENGINE=InnoDB ;
+          ");
 header("location:../views/creador_u.php?empresa=$nombre_sin_espacio");
 /*
       }

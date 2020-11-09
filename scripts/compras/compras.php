@@ -19,6 +19,7 @@
     $precio_compra= $_POST['precio_compra'];
     $cantidad= $_POST['cantidad'];
     $stock= $_POST['stock'];
+    $total= $_POST['total'];
     $valor_total= $_POST['valor_total'];
     $caducidad = empty($_POST['caducidad']) ? '0000-00-00' : $_POST['caducidad']; 
     $nota= $_POST['nota'];
@@ -35,13 +36,16 @@
         }
 
         
-        $Reg_art_compras = $conexion->query("insert into $empresa.tbl_art_compras (no_compra, articulo, precio_compra, cantidad, stock, caducidad, nota)
-            values ($no_compra, '$articulo',  $precio_compra, $cantidad, $stock, '$caducidad', '$nota')
+        $Reg_art_compras = $conexion->query("insert into $empresa.tbl_art_compras (no_compra, articulo, precio_compra, cantidad, total, stock, caducidad, nota)
+            values ($no_compra, '$articulo',  $precio_compra, $cantidad, $total ,$stock, '$caducidad', '$nota')
             ");    
     
             //echo $empresa . "  " .$no_compra." ".$forma_pago."  ".$moneda."  ".$entregar_a." ".$nombre_proveedor." ".$cod_proveedor." <br>";
 
             //echo $empresa . "  " .$no_compra."  ".$caducidad."  ".$articulo."  ".$precio_compra."  ".$cantidad."  ".$valor_total."  ".$nota."  ".$stock." ";
+        //echo $valor_total;
+        $Act_Valor_Total = $conexion->query("UPDATE $empresa.tbl_compras set valor_total = $valor_total where no_compra = $no_compra ");
+
 //cxcobrar y cxpagar
     header('location:../../views/compras/frm_compras.php?registro="si" ')
 ?>

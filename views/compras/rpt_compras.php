@@ -14,7 +14,7 @@ $filtro =  isset($_GET['filtro'])? $_GET['filtro']: '1';
 
 
 try {
-        if(!empty($desde || $hasta || $filtro))
+        if( isset($_POST["desde"]) || isset($_POST["hasta"]) || isset($_POST["filtro"]) )
         {
             if($desde and $hasta )
                 {
@@ -32,7 +32,8 @@ try {
         }
  
         $productos = array();
-        if($consulta_articulos->num_rows > 1){
+        if($consulta_articulos->num_rows >= 1){
+            
             while($rows = $consulta_articulos->fetch_assoc()) $productos[] = $rows;
         }
     } catch (Exception $e) {
@@ -49,7 +50,7 @@ $mpdf = new \Mpdf\Mpdf();
 $plantilla = getPlantilla($productos);
 //css de la plantilla
 $css = file_get_contents("plantilla_reporte/style.css");
-
+$mpdf->WriteHTML($css,1);
 $mpdf->WriteHTML($css,\Mpdf\HTMLparserMode::HEADER_CSS);
 $mpdf->WriteHTML($plantilla,\Mpdf\HTMLparserMode::HTML_BODY);
 $mpdf->Output('compras.pdf','I');
