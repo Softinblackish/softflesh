@@ -108,6 +108,7 @@
         `precio_compra` DOUBLE,
         `cantidad` int(11),
         `stock` int(11),
+        `total` DOUBLE,
         `caducidad` date DEFAULT '0000-00-00',
         `nota` varchar(100),
         `fecha_orden` timestamp DEFAULT current_timestamp() ON UPDATE current_timestamp(),

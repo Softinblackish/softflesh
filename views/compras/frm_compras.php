@@ -63,6 +63,18 @@
                         <option value="cajero3">c por pagar</option>
                     </select>
                 </div>
+                <div class="form-group col-md-3">
+                    <label for="inputState">Forma de pago:</label>
+                    <input type="text" name="forma_pago" class="form-control"  placeholder="forma de pago" >
+                </div>
+                <div class="form-group col-md-9">
+                    <label for="inputState">Total General:</label>
+                    <?php $articulos = $conexion->query("SELECT sum(total)as totalgeneral FROM $empresa.tbl_art_compras"); 
+                    $row = $articulos->fetch_assoc();
+                    $TotalGeneral = $row["totalgeneral"];
+                    ?>
+                    <input type="number" name="total_general" class="form-control"  placeholder="total" id="total_G" value =  <?php echo $TotalGeneral ?>  readonly>
+                </div>
             </div>
 
             <label for="inputState">Datos del proveedor: </label><br>
@@ -127,8 +139,8 @@
                     <input  name="impuestodf" class="form-control"  placeholder="impuesto" id ="impuesto">
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="inputState">Forma de pago:</label>
-                    <input type="text" name="forma_pago" class="form-control"  placeholder="forma de pago" >
+                    <label for="inputState">Stock:</label>
+                    <input type="number" name="stock" class="form-control"  placeholder="Stock" id ="stock" readonly>
                 </div>
                 
             </div>
@@ -142,13 +154,10 @@
                     <input type="number" name="sin_impuestos" class="form-control"  placeholder="total sin impuestos" id="total_SI" readonly>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="inputState">Total General:</label>
-                    <input type="number" name="valor_total" class="form-control"  placeholder="total" id="total" readonly>
+                    <label for="inputState">Total:</label>
+                    <input type="number" name="total" class="form-control"  placeholder="total" id="total" readonly>
                 </div>
-                <div class="form-group col-md-3">
-                    <label for="inputState">Stock:</label>
-                    <input type="number" name="stock" class="form-control"  placeholder="Stock" id ="stock" readonly>
-                </div>
+                
             </div>
 
             <div class="form-row">
