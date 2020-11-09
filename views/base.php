@@ -164,6 +164,4 @@
         {
                header("location: ../login/login.php");
         }
-
-
 ?>
