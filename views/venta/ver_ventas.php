@@ -1,8 +1,18 @@
 <?php include("../base.php");
 ?>
+<script>
+
+</script>
 <link rel="stylesheet" href="../../css/usuarios.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="../../scripts/js/usuarios.js"></script>
+<script src="../../scripts/js/devolucion_articulos.js"></script>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+
+
 <div id="box_lista" class="buscar">
 <h2>Listado de ventas</h2>
 <form action="" method="post">
@@ -94,8 +104,9 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header" style="background-color:#17a2b8; color:white;">
-                                <h5 class="modal-title" id="example<?php echo $row["id_venta"];?>Label">Factura: <?php echo $row["id_venta"]; ?></h5>
+                                <h5 class="modal-title" id="example<?php echo $row["id_venta"];?>Label">Factura:<?php echo $row["id_venta"]; ?></h5>
                                 <button type="button" class="close cerrar" data-dismiss="modal" aria-label="Close">
+                                <input type="hidden" name="fac" id="fac" value="<?php echo $row["id_venta_temp"]; ?>">
                                 <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
@@ -125,15 +136,19 @@
                                         </div>
 
 
-                                        <div class="form-group col-md-6"> 
-                                           <Strong> <label>Artículos</label></strong>  <br>
+                                        <div class="form-group col-md-12"> 
+                                           <Strong> <label style="float:left;">Artículos </label> <a class="btn btn-info" id="crear_devolucion" style="float:right"> Crear devolucion</a></strong>  <br>
                                             <hr>
                                              <?php
                                             $id_temp = $row['id_venta_temp'];
-                                            $consulta_articulos = $conexion->query("SELECT articulo, cantidad FROM $empresa.tbl_venta_temp where id_venta = $id_temp");
+                                            $consulta_articulos = $conexion->query("SELECT id_articulo, articulo, cantidad FROM $empresa.tbl_venta_temp where id_venta = $id_temp");
                                             while($list_articulos = $consulta_articulos->fetch_assoc())
                                             {
-                                                echo $list_articulos['articulo']." (".$list_articulos['cantidad'].")";?>  <br><hr> <?php
+                                            ?> 
+                                              <input type="hidden" class="articulo<?php echo $list_articulos['id_articulo']?>" value="<?php echo $list_articulos['id_articulo']?>">
+                                              <input class="form-control col-md-2 cantidad_devuelta art<?php echo $list_articulos['id_articulo']?>" type="number" value="0" min="0" max="<?php echo $list_articulos['cantidad']?>" style="float:left;" name="">
+                                              <a class="btn btn-info cantidad_devuelta add<?php echo $list_articulos['id_articulo']?>">add</a>  
+                                              <a class="btn btn-warning block<?php echo $list_articulos['id_articulo']?>" style="display:none">Block</a> <?php echo "-".$list_articulos['articulo']." (".$list_articulos['cantidad'].")";?>  <br><hr> <?php
                                             }
                                         ?>
                                         </div>
@@ -142,6 +157,8 @@
                             
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary cerrar" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
+                                <input type="submit" class="btn btn-primary" value="Registrar devolución">
+
                             </div>
                             </form>
 
