@@ -12,9 +12,9 @@
         <link rel="stylesheet" href="../../css/compras.css">
         <link rel="stylesheet" href="../../css/scroll.css">
       <!-- js -->
-        <!--
+        
         <script src="../../scripts/compras/articulosCompras.js"></script>                            
-        -->
+        
         <script src="../../scripts/js/time_alert.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -78,7 +78,7 @@
                     </select> 
                 </div>
                 <div class="form-group col-md-6">
-                <input type="number" name="cod_proveedor" placeholder ="cod proveedor" class="form-control" >
+                <input type="number" name="cod_proveedor" placeholder ="cod proveedor" class="form-control" readonly>
                 </div>
             </div>
 
@@ -115,37 +115,47 @@
                 </div>
 
                 <div class="form-group col-md-3">
-                    <input type="number" name="precio_compra" class="form-control" id = "precio_compra" placeholder="precio compra" >
+                    <label for="inputState">Precio Compra:</label>
+                    <input type="number" name="precio_compra" class="form-control" id ="precio_compra" placeholder="precio compra" >
                 </div>
                 <div class="form-group col-md-3">
-                    <input type="number" min = 1 name="cantidad" class="form-control"  placeholder="cantidad" >
+                    <label for="inputState">Cantidad:</label>
+                    <input type="number" min = 1 name="cantidad" class="form-control"  placeholder="cantidad" id="cantidad">
                 </div>
                 <div class="form-group col-md-3">
+                    <label for="inputState">Itebis:</label>
+                    <input  name="impuestodf" class="form-control"  placeholder="impuesto" id ="impuesto">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="inputState">Forma de pago:</label>
                     <input type="text" name="forma_pago" class="form-control"  placeholder="forma de pago" >
                 </div>
-                <div class="form-group col-md-3">
-                    <input type="number" name="stock" class="form-control"  placeholder="Stock" id = "stock" >
-                </div>
+                
             </div>
-            <div class="form-row">
-                
-                
-                                                
+            <div class="form-row">                           
                 <div class="form-group col-md-3">
-                    <input type="number" name="valor_impuestos" class="form-control"  placeholder="total con impuestos" >
+                    <label for="inputState">Total con Impuestos:</label>
+                    <input type="number" name="valor_impuestos" class="form-control"  placeholder="total con impuestos" id="total_I" readonly>
                 </div>
                 <div class="form-group col-md-3">
-                    <input type="number" name="sin_impuestos" class="form-control"  placeholder="total sin impuestos" >
+                    <label for="inputState">Total sin Impestos:</label>
+                    <input type="number" name="sin_impuestos" class="form-control"  placeholder="total sin impuestos" id="total_SI" readonly>
                 </div>
                 <div class="form-group col-md-3">
-                 <input type="number" name="valor_total" class="form-control"  placeholder="total" >
+                    <label for="inputState">Total General:</label>
+                    <input type="number" name="valor_total" class="form-control"  placeholder="total" id="total" readonly>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="inputState">Stock:</label>
+                    <input type="number" name="stock" class="form-control"  placeholder="Stock" id ="stock" readonly>
                 </div>
             </div>
 
             <div class="form-row">
                 
                 <div class="form-group col-md-12">
-                    <textarea name="nota" class="form-control" cols="50" rows="3" placeholder = "Descripcion"></textarea>
+                    <label for="inputState">Descripcion:</label>
+                    <textarea name="nota" class="form-control" cols="50" rows="3" placeholder = "Descripcion" id="descripcion"></textarea>
                 </div>
                 
             </div>
@@ -215,26 +225,24 @@
             <br>
         </form>
 
-
-        <script>
-            $("#articulo").change(function () {
-                var art = $("#articulo").val();
-                alert(art);
-                    $.ajax({
-                        type: 'post',
-                        url: '../../scripts/compras/BuscarArticulos.php',
-                        dataType: 'html',
-                        data: 'articulo='+art,
-                        success: function(r){
-                            alert(r);
-                        }
-                    });
-            });
-        </script>
 <!--Aqui el final de los div de este formulario-->
     </div>    
 </div>
 
 
     
-  
+<script>
+$(document).ready(function(){
+
+    $("#impuesto").keyup(function() {
+      //alert("hol");
+      var var_porcentaje = (parseFloat($("#impuesto").val()) / 100); //0.08
+      var var_total_SI = parseFloat($("#total_SI").val()); //80
+      var var_porciento = var_total_SI * var_porcentaje; //80 * 0.08 = 6.4
+      //var var_gananciaAnt = parseFloat($("#ganancia").val()); //40
+      var var_ganancia = var_total_SI + var_porciento; //40 + 6.4 = 46.4
+      $("#total_I").val(var_ganancia);
+    });
+
+});
+</script>
