@@ -384,6 +384,29 @@ $perm = $conexion->query("
       `modificado_por` DATETIME NULL DEFAULT CURRENT_TIMESTAMP , 
       PRIMARY KEY (`id_cotizacion`)) ENGINE = InnoDB;
       ");
+
+      $tabla_devoluciones = $conexion->query("
+      CREATE TABLE $nombre_sin_espacio.tbl_devoluciones ( 
+        `id_devolucion_temp` INT NOT NULL AUTO_INCREMENT , 
+        `id_venta_temp` INT(10) NULL , 
+        `comprobante` VARCHAR(50) NULL , 
+        `creado_por` VARCHAR(100) NULL , 
+        `fecha_creacion` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP , 
+        PRIMARY KEY (`id_devolucion_temp`)) ENGINE = InnoDB;
+        ");
+
+        $tabla_devoluciones = $conexion->query("
+        CREATE TABLE $nombre_sin_espacio.tbl_devoluciones_det ( 
+        `id_devoluciones_det` INT NOT NULL AUTO_INCREMENT , 
+        `id_articulo` INT(10) NULL , 
+        `cantidad` INT(10) NULL , 
+        `valor_devuelto` INT(10) NULL , 
+        `id_venta_temp` INT(10) NULL , 
+        PRIMARY KEY (`id_devoluciones_det`)) ENGINE = InnoDB;
+
+          ");
+
+      
       
 
 
