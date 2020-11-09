@@ -69,11 +69,11 @@
                 </div>
                 <div class="form-group col-md-9">
                     <label for="inputState">Total General:</label>
-                    <?php $articulos = $conexion->query("SELECT sum(total)as totalgeneral FROM $empresa.tbl_art_compras"); 
+                    <?php $articulos = $conexion->query("SELECT round(sum(total),0)as totalgeneral FROM $empresa.tbl_art_compras"); 
                     $row = $articulos->fetch_assoc();
                     $TotalGeneral = $row["totalgeneral"];
                     ?>
-                    <input type="number" name="total_general" class="form-control"  placeholder="total" id="total_G" value =  <?php echo $TotalGeneral ?>  readonly>
+                    <input type="number" name="valor_total" class="form-control"  placeholder="total" id="total_G" value = <?php echo $TotalGeneral ?> readonly>
                 </div>
             </div>
 
@@ -200,7 +200,7 @@
                                     $consulta_art_temp = $conexion->query("select * from $empresa.tbl_compras where no_compra= $no_compra");
                             }else
                             {
-                                $consulta_art_temp = $conexion->query("select * from $empresa.tbl_art_compras where no_compra = $no_compra limit 5");
+                                $consulta_art_temp = $conexion->query("select * from $empresa.tbl_art_compras where no_compra = $no_compra");
                             }    
                             while($reg_art_temp = $consulta_art_temp->fetch_assoc())
                                     {
