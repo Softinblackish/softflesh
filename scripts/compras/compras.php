@@ -43,6 +43,9 @@
             //echo $empresa . "  " .$no_compra." ".$forma_pago."  ".$moneda."  ".$entregar_a." ".$nombre_proveedor." ".$cod_proveedor." <br>";
 
             //echo $empresa . "  " .$no_compra."  ".$caducidad."  ".$articulo."  ".$precio_compra."  ".$cantidad."  ".$valor_total."  ".$nota."  ".$stock." ";
+        //echo $valor_total;
+        $Act_Valor_Total = $conexion->query("UPDATE $empresa.tbl_compras set valor_total = $valor_total where no_compra = $no_compra ");
+
 //cxcobrar y cxpagar
     header('location:../../views/compras/frm_compras.php?registro="si" ')
 ?>
