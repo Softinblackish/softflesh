@@ -147,7 +147,7 @@
                                             ?> 
                                               <input type="hidden" class="articulo<?php echo $list_articulos['id_articulo']?>" value="<?php echo $list_articulos['id_articulo']?>">
                                               <input class="form-control col-md-2 cantidad_devuelta art<?php echo $list_articulos['id_articulo']?>" type="number" value="0" min="0" max="<?php echo $list_articulos['cantidad']?>" style="float:left;" name="">
-                                              <a class="btn btn-info cantidad_devuelta add<?php echo $list_articulos['id_articulo']?>">add</a>  
+                                              <a href="../../scripts/ventas/devolucion_temp.php" class="btn btn-info cantidad_devuelta add<?php echo $list_articulos['id_articulo']?>">add</a>  
                                               <a class="btn btn-warning block<?php echo $list_articulos['id_articulo']?>" style="display:none">Block</a> <?php echo "-".$list_articulos['articulo']." (".$list_articulos['cantidad'].")";?>  <br><hr> <?php
                                             }
                                         ?>
