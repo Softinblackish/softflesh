@@ -38,11 +38,11 @@ else
 </style>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <script src="../../scripts/js/llamada_clientes.js"></script>
+
 <script type="text/javascript">
     window.history.forward();
     function sinVueltaAtras(){ window.history.forward(); }
 </script>
-
 <div>
     <div onload="sinVueltaAtras();" onpageshow="if (event.persisted) sinVueltaAtras();" onunload="" style="float:left; width:48.5%; margin-left:25px; margin-top:25px;background-color:white; border-radius:8px; box-shadow:1px 1px 5px; ">
         
@@ -100,7 +100,7 @@ else
                     <th scope="row"><?php echo $registros_articulos["id_articulo"]; ?></th>
                     <td width="40%"><?php echo $registros_articulos["nombre"]; ?></td>
                     <td>$<?php echo $itbis ?></td>
-                    <td>$<?php echo $registros_articulos["precio"]; ?></td> 
+                    <td class="parmil"><?php echo $registros_articulos["precio"]; ?></td> 
 
                     <form action="../../scripts/ventas/add_venta_temp.php" method="GET">
                         <input type="hidden" value="<?php echo $registros_articulos["id_articulo"]; ?>" name="cod">
@@ -256,7 +256,7 @@ else
                 <!--- Solo vista ----------->  
                 <span style="margin-left:10px">Total itbis:</span>  <input max="4" style="float:right;  border-bottom-right-radius: 0px;  border-top-right-radius: 0px; " class="form-control col-md-4"  value="$<?php echo $itbis_total;?>" disabled/> <br><br>
                 <span style="margin-left:10px">Total precio: </span> <input  max="5" style="float:right; border-bottom-right-radius: 0px;  border-top-right-radius: 0px;  " class="form-control col-md-4"  value="$<?php echo $precio_total; ?>" disabled/><br><br>
-                <span style="margin-left:10px">Total:</span>  <input  max="4" style="float:right; border-bottom-right-radius: 0px;  border-top-right-radius: 0px;  " class="form-control col-md-4" value="$<?php echo $total_total; ?>" disabled/><br><br>
+                <span style="margin-left:10px">Total:</span>  <input   max="4" style="float:right; border-bottom-right-radius: 0px;  border-top-right-radius: 0px;  " class="form-control col-md-4 parmil" value="<?php echo $total_total; ?>" readonly/><br><br>
 
                 <!-------Esto es lo que realmente se envia ----->
                 <input type="hidden" name="itbis" value="<?php echo $itbis_total;?>" />

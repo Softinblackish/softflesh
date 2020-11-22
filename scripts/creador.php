@@ -400,6 +400,7 @@ $perm = $conexion->query("
         CREATE TABLE $nombre_sin_espacio.tbl_devoluciones_det ( 
         `id_devoluciones_det` INT NOT NULL AUTO_INCREMENT , 
         `id_articulo` INT(10) NULL , 
+        `id_random` INT(10) NULL , 
         `cantidad` INT(10) NULL , 
         `valor_devuelto` INT(10) NULL , 
         `id_venta_temp` INT(10) NULL , 
@@ -420,6 +421,33 @@ $perm = $conexion->query("
           `fecha_orden` timestamp DEFAULT current_timestamp() ON UPDATE current_timestamp(),
           PRIMARY KEY (`id_compra`)) ENGINE=InnoDB ;
           ");
+
+
+          $tabla_art_compra_temp = $conexion->query("
+          CREATE TABLE $nombre_sin_espacio.tbl_nota_credito ( 
+            `id_nota_credito` INT NOT NULL AUTO_INCREMENT , 
+            `comprobante_factura` VARCHAR(50) NOT NULL , 
+            `comprobante` VARCHAR(50) NOT NULL , 
+            `fecha_creacion` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , 
+            `creado_por` VARCHAR(100) NOT NULL , 
+            `factura` VARCHAR(12) NOT NULL , 
+            `total` INT(10) NOT NULL , 
+            `id_articulos_lista` INT(10) NOT NULL , 
+            `cliente` INT(10) NOT NULL , 
+            `descripcion` VARCHAR(300) , 
+            PRIMARY KEY (`id_nota_credito`)) ENGINE = InnoDB;
+
+            ");
+
+
+
+
+
+
+
+
+
+
 header("location:../views/creador_u.php?empresa=$nombre_sin_espacio");
 /*
       }

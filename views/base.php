@@ -22,31 +22,15 @@
    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     
    <!--No joder con esta linea evitese problemas....-->
-   <link rel="stylesheet" href="../../css/Diseño/bootstrap.min.css">
+   <!--<link rel="stylesheet" href="../../css/Diseño/bootstrap.min.css">-->
    
    <script src="http://code.jquery.com/jquery-1.9.1.js" type="text/javascript"></script>
    
    
     <script src="../../scripts/js/query/dist/jquery.mask.js" type="text/javascript"></script>
+    <script src="../../scripts/js/mascaras.js" type="text/javascript"></script>
     <script type="text/javascript">
-        $(document).ready(function($){
-            $("#numero1").mask("9,99", {
- 
-                // Generamos un evento en el momento que se rellena
-                completed:function(){
-                    $("#numero1").addClass("ok")
-                }
-            });
- 
-            // Definimos las mascaras para cada input
-            $("#date").mask("99/99/9999");
-            $(".movil").mask("(999)-999-9999");
-            $("#letras").mask("aaa");
-            $("#comodines").mask("?");
-            $(".fa-2x").click(function(){
-                $("#menu_lateral").toggle();
-            });
-        });
+       
     </script>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
