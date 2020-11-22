@@ -13,7 +13,9 @@
         <link rel="stylesheet" href="../../css/scroll.css">
       <!-- js -->
         
-        <script src="../../scripts/compras/articulosCompras.js"></script>                            
+        <script src="../../scripts/compras/articulosCompras.js"></script>
+        <!--Cargar codigo suplidores-->
+        <script src="../../scripts/compras/codprovCompras.js"></script>                            
         
         <script src="../../scripts/js/time_alert.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -41,10 +43,7 @@
                     <label for="inputState">No de commpra:</label>
                     <input type="number" name="no_compra" readonly placeholder ="no de compra" value = <?php echo $no_compra ?> class="form-control">
                 </div>
-                <div class="form-group col-md-3">
-                    <label for="inputState">caducidad:</label>
-                    <input type="date" name="caducidad" class="form-control" >
-                </div>
+                
                 
                 <div class="form-group col-md-3">
                     <label for="inputState">recibido por:</label>
@@ -58,8 +57,8 @@
                 <div class="form-group col-md-3">
                     <label for="inputState">Moneda:</label>
                     <select name="moneda" class="form-control" cajeros>
-                        <option value="cajero1">usd</option>
-                        <option value="cajero2">do</option>
+                        <option value="cajero1">do</option>
+                        <option value="cajero2">usd</option>
                         <option value="cajero3">c por pagar</option>
                     </select>
                 </div>
@@ -67,7 +66,7 @@
                     <label for="inputState">Forma de pago:</label>
                     <input type="text" name="forma_pago" class="form-control"  placeholder="forma de pago" >
                 </div>
-                <div class="form-group col-md-9">
+                <div class="form-group col-md-12">
                     <label for="inputState">Total General:</label>
                     <?php $articulos = $conexion->query("SELECT round(sum(total),0)as totalgeneral FROM $empresa.tbl_art_compras"); 
                     $row = $articulos->fetch_assoc();
@@ -80,7 +79,7 @@
             <label for="inputState">Datos del proveedor: </label><br>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <select id="" name="nombre_proveedor" class="form-control" placeholder="nombre y apellido del proveedor">
+                    <select id="nombre_proveedor" name="nombre_proveedor" class="form-control" placeholder="nombre y apellido del proveedor">
                         <?php $suplidores = $conexion->query("SELECT nombre_sup FROM $empresa.tbl_suplidores"); 
                         while($row = $suplidores->fetch_assoc()) {
                         ?>
@@ -90,7 +89,7 @@
                     </select> 
                 </div>
                 <div class="form-group col-md-6">
-                <input type="number" name="cod_proveedor" placeholder ="cod proveedor" class="form-control" readonly>
+                <input type="number" id="cod_proveedor" name="cod_proveedor" placeholder ="cod proveedor" class="form-control" readonly>
                 </div>
             </div>
 
@@ -136,7 +135,7 @@
                 </div>
                 <div class="form-group col-md-3">
                     <label for="inputState">Itebis:</label>
-                    <input  name="impuestodf" class="form-control"  placeholder="impuesto" id ="impuesto">
+                    <input  name="impuestodf" class="form-control"  placeholder="impuesto" id ="impuesto" readonly>
                 </div>
                 <div class="form-group col-md-3">
                     <label for="inputState">Stock:</label>
@@ -144,7 +143,11 @@
                 </div>
                 
             </div>
-            <div class="form-row">                           
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="inputState">caducidad:</label>
+                    <input type="date" name="caducidad" class="form-control" >
+                </div>                           
                 <div class="form-group col-md-3">
                     <label for="inputState">Total con Impuestos:</label>
                     <input type="number" name="valor_impuestos" class="form-control"  placeholder="total con impuestos" id="total_I" readonly>
@@ -169,8 +172,8 @@
                 
             </div>
 
+            <!--Aqui se pasan las compras-->
             <div class="form-row">
-                
                 <div class="form-group col-md-6">
                     <button type="submit" class="btn btn">Pasar compra</button>
                 </div>
@@ -209,12 +212,7 @@
                                             <th><?php  echo $reg_art_temp["articulo"]; ?></th>
                                             <td><?php  echo $reg_art_temp["cantidad"]; ?></td>
                                             <td><?php  echo $reg_art_temp["precio_compra"]; ?></td>
-                                            <?php 
-                                            $cantidad= $reg_art_temp["cantidad"];
-                                            $precio = $reg_art_temp["precio_compra"];
-                                            $total = $cantidad * $precio;
-                                            ?>
-                                            <td><?php  echo $total ?></td>
+                                            <td><?php  echo $reg_art_temp["total"]; ?></td>
                                             <td><a href="../../scripts/compras/borrarArtCompras.php?id_compra=<?php echo $reg_art_temp['id_compra']; ?>&no_compra=<?php echo $reg_art_temp['no_compra']; ?>" class="btn btn-danger"><i class="fa fa-times fa-lg"></i></a></td> 
                                             </tr>
                         <?php

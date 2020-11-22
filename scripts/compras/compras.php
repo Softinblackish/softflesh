@@ -35,10 +35,24 @@
             ");
         }
 
-        
-        $Reg_art_compras = $conexion->query("insert into $empresa.tbl_art_compras (no_compra, articulo, precio_compra, cantidad, total, stock, caducidad, nota)
+
+        //aqui un proceso
+        $procesoNoRepet = $conexion->query("SELECT articulo FROM $empresa.tbl_art_compras where articulo = '$articulo' ");
+        $comprobacionNoRepet = $procesoNoRepet->fetch_assoc();
+        if($procesoNoRepet->num_rows >= 1 ){
+            $Update_art_compras = $conexion->query("UPDATE $empresa.tbl_art_compras set precio_compra = $precio_compra,cantidad = $cantidad, total = $total WHERE articulo = '$articulo' and no_compra = $no_compra "); 
+        }else{
+            
+            $Reg_art_compras = $conexion->query("insert into $empresa.tbl_art_compras (no_compra, articulo, precio_compra, cantidad, total, stock, caducidad, nota)
             values ($no_compra, '$articulo',  $precio_compra, $cantidad, $total ,$stock, '$caducidad', '$nota')
-            ");    
+            "); 
+        }
+        //aqui el fin del proceso
+
+        
+        /*$Reg_art_compras = $conexion->query("insert into $empresa.tbl_art_compras (no_compra, articulo, precio_compra, cantidad, total, stock, caducidad, nota)
+            values ($no_compra, '$articulo',  $precio_compra, $cantidad, $total ,$stock, '$caducidad', '$nota')
+            ");*/    
     
             //echo $empresa . "  " .$no_compra." ".$forma_pago."  ".$moneda."  ".$entregar_a." ".$nombre_proveedor." ".$cod_proveedor." <br>";
 

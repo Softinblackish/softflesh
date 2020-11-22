@@ -64,7 +64,7 @@
 
                                 if(isset($_POST["desde"], $_POST["hasta"] , $_POST["buscar"]))
                                 {
-                                    if($_POST["desde"] and $_POST["hasta"] )
+                                    if($_POST["desde"] && $_POST["hasta"] )
                                         {
                                             $desde = $_POST["desde"];
                                             $hasta = $_POST["hasta"];
@@ -72,7 +72,8 @@
                                         }
                                     if($_POST["buscar"])
                                         {
-                                            $consulta_articulos= $conexion->query("SELECT * FROM $empresa.tbl_art_compras WHERE articulo LIKE '%$buscar%' limit 5");
+                                            $buscar = $_POST["buscar"];
+                                            $consulta_articulos = $conexion->query("SELECT * FROM $empresa.tbl_art_compras WHERE no_compra LIKE '%$buscar%'");
                                         }                  
                                 }else{
                                     $consulta_articulos= $conexion->query("SELECT * FROM $empresa.tbl_art_compras");

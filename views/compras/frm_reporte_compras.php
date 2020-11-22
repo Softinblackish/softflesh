@@ -40,10 +40,10 @@
         </div>
     </form> 
 
-
+    <!--
     <div class="form-row">
         <div class="form-group col-md-12">
-
+-->
                 <!--Aqui va la tabla de articulos de compras para devoluciones -->
                 
                     <table class="table">
@@ -190,12 +190,12 @@
                         </tbody>
                     </table> 
                     <div class="form-row">
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-6">
                             <a href="../compras/frm_compras.php" id="buscar" class="btn btn" >
                             Volver atras
                             </a>
                         </div>
-                        <div class="form-group col-md-8">
+                        <div class="form-group col-md-6">
                             <?php
                             if( isset($_POST["desde"]) || isset($_POST["hasta"]) || isset($_POST["filtro"]) ){
                                 $filtro=$_POST["filtro"];
