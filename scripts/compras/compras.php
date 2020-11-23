@@ -38,7 +38,7 @@
 
 
         //aqui un proceso
-        $procesoNoRepet = $conexion->query("SELECT articulo FROM $empresa.tbl_art_compras where articulo = '$articulo' ");
+        $procesoNoRepet = $conexion->query("SELECT articulo FROM $empresa.tbl_art_compras where articulo = '$articulo' and no_compra = $no_compra ");
         $comprobacionNoRepet = $procesoNoRepet->fetch_assoc();
         if($procesoNoRepet->num_rows >= 1 ){
             $Update_art_compras = $conexion->query("UPDATE $empresa.tbl_art_compras set precio_compra = $precio_compra,cantidad = $cantidad,itbis = $itbis ,total = $total WHERE articulo = '$articulo' and no_compra = $no_compra "); 

@@ -48,31 +48,47 @@
                 <div class="form-group col-md-3">
                     <label for="inputState">recibido por:</label>
                     <select name="entregar_a" class="form-control" cajeros>
-                        <option value="cajero1">cajero1</option>
-                        <option value="cajero2">cajero2</option>
-                        <option value="cajero3">cajero3</option>
-                        <option value="cajero4">cajero4</option>
+                    <?php $user = $conexion->query("SELECT nombre_usuario FROM $empresa.tbl_usuario"); 
+                        while($row = $user->fetch_assoc()) {
+                        ?>
+                        <option value = <?php echo $row["nombre_usuario"];  ?> ><?php echo $row["nombre_usuario"];  ?></option>
+                        <?php } ?>
                     </select>
                 </div>
                 <div class="form-group col-md-3">
                     <label for="inputState">Moneda:</label>
                     <select name="moneda" class="form-control" cajeros>
-                        <option value="cajero1">do</option>
-                        <option value="cajero2">usd</option>
-                        <option value="cajero3">c por pagar</option>
+                        <option value="cajero1">DO</option>
+                        <option value="cajero2">USD</option>
+                        <option value="cajero3">EURO</option>
+                        <option value="cajero3">LIBRA</option>
+                        <option value="cajero3">JENES</option>
+                        <option value="cajero3">BITCOIN</option>
                     </select>
                 </div>
                 <div class="form-group col-md-3">
                     <label for="inputState">Forma de pago:</label>
-                    <input type="text" name="forma_pago" class="form-control"  placeholder="forma de pago" >
+                    <select name="forma_pago" class="form-control" placeholder="forma de pago">
+                        <option value="">EFECTIVO</option>
+                        <option value="">TARJETA</option>
+                        <option value="">NOTA DE DEBITO</option>
+                    </select>
                 </div>
-                <div class="form-group col-md-12">
-                    <label for="inputState">Total General:</label>
-                    <?php $articulos = $conexion->query("SELECT round(sum(total),0)as totalgeneral FROM $empresa.tbl_art_compras"); 
+                <div class="form-group col-md-6">
+                    <label for="inputState">Total:</label>
+                    <?php $articulos = $conexion->query("SELECT round(sum(total),0)as totalgeneral FROM $empresa.tbl_art_compras where no_compra = $no_compra"); 
                     $row = $articulos->fetch_assoc();
                     $TotalGeneral = $row["totalgeneral"];
                     ?>
                     <input type="number" name="valor_total" class="form-control"  placeholder="total" id="total_G" value = <?php echo $TotalGeneral ?> readonly>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputState">Total General:</label>
+                    <?php $articulos = $conexion->query("SELECT round(sum(total),0)as totalgeneral FROM $empresa.tbl_art_compras"); 
+                    $row = $articulos->fetch_assoc();
+                    $Total = $row["totalgeneral"];
+                    ?>
+                    <input type="number" name="" class="form-control" value = <?php echo $Total ?> readonly>
                 </div>
             </div>
 
@@ -80,16 +96,22 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <select id="nombre_proveedor" name="nombre_proveedor" class="form-control" placeholder="nombre y apellido del proveedor">
-                        <?php $suplidores = $conexion->query("SELECT nombre_sup FROM $empresa.tbl_suplidores"); 
+                        <?php $suplidores = $conexion->query("SELECT * FROM $empresa.tbl_suplidores"); 
+                        
                         while($row = $suplidores->fetch_assoc()) {
                         ?>
                         <option value = <?php echo $row["nombre_sup"];  ?> ><?php echo $row["nombre_sup"];  ?></option>
-                        <?php } ?>
+                        <?php } 
+                        
+                        ?>
 
                     </select> 
                 </div>
                 <div class="form-group col-md-6">
-                <input type="number" id="cod_proveedor" name="cod_proveedor" placeholder ="cod proveedor" class="form-control" readonly>
+                <?php $suplidores = $conexion->query("SELECT * FROM $empresa.tbl_suplidores");
+                    $dato = $suplidores->fetch_assoc();
+                ?>
+                <input type="number" id="cod_proveedor" name="cod_proveedor" value = "<?php echo $dato["codigo_sup"]; ?>" class="form-control" readonly>
                 </div>
             </div>
 

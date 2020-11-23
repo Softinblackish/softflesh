@@ -62,14 +62,26 @@
                             <?php
                             $empresa = $_SESSION["empresa_db"];
                             try {
-                                if(isset($_POST["desde"], $_POST["hasta"] , $_POST["buscar"]))
+                                if(isset($_POST["desde"], $_POST["hasta"], $_POST["buscar"]))
                                 {
                                     if($_POST["desde"] && $_POST["hasta"] )
                                         {
                                             $desde = $_POST["desde"];
                                             $hasta = $_POST["hasta"];
-                                            $consulta_articulos= $conexion->query("SELECT * from $empresa.tbl_compras WHERE fecha_creacion >= '$desde' and fecha_creacion <= '$hasta' ");
+                                            $consulta_articulos= $conexion->query("SELECT * from $empresa.tbl_art_compras WHERE fecha_orden >= '$desde' and fecha_orden <= '$hasta' ");
                                         }
+
+                                    if($_POST["desde"])
+                                        {
+                                            $desde = $_POST["desde"];
+                                            $consulta_articulos = $conexion->query("SELECT * FROM $empresa.tbl_art_compras WHERE fecha_orden >= '$desde' ");
+                                        }
+
+                                    if($_POST["hasta"] )
+                                    {
+                                        $hasta = $_POST["hasta"];   
+                                        $consulta_articulos = $conexion->query("SELECT * FROM $empresa.tbl_art_compras WHERE fecha_orden <= '$hasta' ");
+                                    }
                                     if($_POST["buscar"])
                                         {
                                             $buscar = $_POST["buscar"];
@@ -119,7 +131,7 @@
                                             <input type="text" name="articulo" placeholder="articulo" value="<?php echo $row["articulo"]; ?>" disabled class="form-control">
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <input type="text" name="cantidad" placeholder ="cantidad" value="<?php echo $row["cantidad"]; ?>"  class="form-control" >
+                                            <input type="text" name="cantidad" placeholder ="cantidad" value="<?php echo $row["cantidad"]; ?>" disabled class="form-control" >
                                         </div>
                                         <div class="form-group col-md-6">
                                             <input type="text" name="precio" placeholder ="precio" value="<?php echo $row["precio_compra"]; ?>" disabled class="form-control" >
