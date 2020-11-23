@@ -23,6 +23,7 @@
     $valor_total= $_POST['valor_total'];
     $caducidad = empty($_POST['caducidad']) ? '0000-00-00' : $_POST['caducidad']; 
     $nota= $_POST['nota'];
+    $itbis= $_POST['impuestodf'];
 
     
         $consulta_det_compras = $conexion->query("SELECT no_compra FROM $empresa.tbl_compras where no_compra = $no_compra ");
@@ -40,11 +41,11 @@
         $procesoNoRepet = $conexion->query("SELECT articulo FROM $empresa.tbl_art_compras where articulo = '$articulo' ");
         $comprobacionNoRepet = $procesoNoRepet->fetch_assoc();
         if($procesoNoRepet->num_rows >= 1 ){
-            $Update_art_compras = $conexion->query("UPDATE $empresa.tbl_art_compras set precio_compra = $precio_compra,cantidad = $cantidad, total = $total WHERE articulo = '$articulo' and no_compra = $no_compra "); 
+            $Update_art_compras = $conexion->query("UPDATE $empresa.tbl_art_compras set precio_compra = $precio_compra,cantidad = $cantidad,itbis = $itbis ,total = $total WHERE articulo = '$articulo' and no_compra = $no_compra "); 
         }else{
             
-            $Reg_art_compras = $conexion->query("insert into $empresa.tbl_art_compras (no_compra, articulo, precio_compra, cantidad, total, stock, caducidad, nota)
-            values ($no_compra, '$articulo',  $precio_compra, $cantidad, $total ,$stock, '$caducidad', '$nota')
+            $Reg_art_compras = $conexion->query("insert into $empresa.tbl_art_compras (no_compra, articulo, precio_compra, cantidad,itbis, total, stock, caducidad, nota)
+            values ($no_compra, '$articulo',  $precio_compra, $cantidad,$itbis, $total ,$stock, '$caducidad', '$nota')
             "); 
         }
         //aqui el fin del proceso

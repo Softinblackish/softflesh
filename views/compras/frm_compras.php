@@ -190,6 +190,7 @@
                             <th scope="col" style="width:60%;"> Artículos </th>
                             <th scope="col" style="width:8%;"> Cantidad </th>
                             <th scope="col" style="width:15%;"> Precio </th>
+                            <th scope="col" style="width:10%;"> itbis </th>
                             <th scope="col" style="width:15%;"> Total </th>
                             <th scope="col" style="width:15%;"> Borrar </th>
                         </tr>
@@ -212,6 +213,7 @@
                                             <th><?php  echo $reg_art_temp["articulo"]; ?></th>
                                             <td><?php  echo $reg_art_temp["cantidad"]; ?></td>
                                             <td><?php  echo $reg_art_temp["precio_compra"]; ?></td>
+                                            <td><?php  echo $reg_art_temp["itbis"]; ?></td>
                                             <td><?php  echo $reg_art_temp["total"]; ?></td>
                                             <td><a href="../../scripts/compras/borrarArtCompras.php?id_compra=<?php echo $reg_art_temp['id_compra']; ?>&no_compra=<?php echo $reg_art_temp['no_compra']; ?>" class="btn btn-danger"><i class="fa fa-times fa-lg"></i></a></td> 
                                             </tr>
