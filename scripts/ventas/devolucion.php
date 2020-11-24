@@ -8,28 +8,18 @@
     $conteo = 0;
     $id_venta = $_POST["venta_temp"];
 
-    $id_random = random_int(1,9999999999);
-    $consulta_devolucion_det = $conexion->query("SELECT * from $empresa.tbl_devoluciones_det WHERE id_random = $id_random");
-    $resultado_devoluciones_det = $consulta_devolucion_det->num_rows;
-    /*echo $id_random;
-    if($resultado_devoluciones_det > 0)
-    {
-        $id_random = random_int(1,9999999999);
-        echo $id_random;
-    }
-*/
     while ($conteo < 100) {
         if(isset($_POST["articulo_".$conteo]))
         {
-            $cantidad = $_POST["".$conteo];
+            $cantidad = $_POST["cantidad_".$conteo];
             $articulo = $_POST["articulo_".$conteo];
             echo $articulo;
-            /*
+            
             #consultas
-            $consulta_venta_temp = $conexion->query("SELECT cantidad FROM $empresa.tbl_venta_temp where id_venta = $id_venta and id_articulo = $articulo ");
+            $consulta_venta_temp = $conexion->query("SELECT cantidad, id_articulo FROM $empresa.tbl_venta_temp where id_venta = $id_venta and id_articulo = $articulo ");
             $resultado_venta = $consulta_venta_temp->fetch_assoc();
 
-            $consulta_venta = $conexion->query("SELECT comprobante, id_venta, id_clientes from $empresa.tbl_ventas where id_venta_temp = $id_venta");
+            $consulta_venta = $conexion->query("SELECT comprobante, id_venta, id_cliente from $empresa.tbl_ventas where id_venta_temp = $id_venta");
             $resultado_factura= $consulta_venta->fetch_assoc();
 
             $consulta_articulo = $conexion->query("SELECT precio, cantidad_disponible, cod_impuesto from $empresa.tbl_articulos WHERE id_articulo = $articulo");
@@ -42,7 +32,7 @@
             #inserciones
 
             $comprobante = $resultado_factura["comprobante"];
-            $insertar_devoluciones_det = $conexion->query("INSERT INTO $empresa.tbl_devoluciones_det (id_random, id_articulo, cantidad, valor_devuelto, id_venta_temp) values($id_random,'b040000001','$usuario', $factura,)");
+            //$insertar_devoluciones_det = $conexion->query("INSERT INTO $empresa.tbl_devoluciones_det (id_random, id_articulo, cantidad, valor_devuelto, id_venta_temp) values($id_random,'b040000001','$usuario', $factura,)");
       
 
             
@@ -52,13 +42,19 @@
             $nuevo_itbis= $resultado_cod_impuesto["porciento"] * $cantidad;
             $nuevo_precio = $resultado_articulo["precio"] * $cantidad;
             $nuevo_total = $nuevo_precio + $nuevo_itbis;
+
+        
             
-            $actualizar_venta_temp = $conexion->query("UPDATE $empresa.tbl_venta_temp SET cantidad = $cantidad, precio = $nuevo_precio, itbis = $nuevo_itbis, total = $nuevo_total where id_venta = $id_venta and id_articulo = $articulo");
-            echo $articulo." ".$id_venta." Cantidad nueva: ".$cantidad." Sumar a la cantidad existente: ".$calculo_cantidad." Nuevo precio: ".$nuevo_precio." Nuevo itbis: ".$nuevo_itbis." nuevo total: ".$nuevo_total."<br>";
-       */
-    } }
-        $conteo++;
-    $insertar_nota_c = $conexion->query("INSERT INTO $empresa.tbl.nota_credito (comprobante_factura, comprobante, creador_por, factura, total, id_articulo_lista, cliente, descripcion) values('$comprobante','b040000001','$usuario', $factura,)");
+           // $actualizar_venta_temp = $conexion->query("UPDATE $empresa.tbl_venta_temp SET cantidad = $cantidad, precio = $nuevo_precio, itbis = $nuevo_itbis, total = $nuevo_total where id_venta = $id_venta and id_articulo = $articulo");
+            echo "id del articulo: ".$articulo." id_temporal: ".$id_venta." Cantidad nueva: ".$cantidad." Sumar a la cantidad existente: ".$calculo_cantidad." Nuevo precio: ".$nuevo_precio." Nuevo itbis: ".$nuevo_itbis." nuevo total: ".$nuevo_total."<br>";
+            
+            
+            $insertar_detalle = $conexion->query("INSERT INTO $empresa.tbl_devoluciones_det (id_articulo, cantidad, id_venta_temp) values ($articulo, $cantidad, $id_venta)");
+    }
+    $conteo++;
+}
+       
+            $insertar_nota_c = $conexion->query("INSERT INTO $empresa.tbl.nota_credito (comprobante_factura, comprobante, creado_por, factura, total, id_articulo_lista, cliente, descripcion) values('$comprobante','b040000001','$usuario', $factura, )");
 
     
 ?>

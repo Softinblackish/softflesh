@@ -399,10 +399,8 @@ $perm = $conexion->query("
         $tabla_devoluciones = $conexion->query("
         CREATE TABLE $nombre_sin_espacio.tbl_devoluciones_det ( 
         `id_devoluciones_det` INT NOT NULL AUTO_INCREMENT , 
-        `id_articulo` INT(10) NULL , 
-        `id_random` INT(10) NULL , 
+        `id_articulo` INT(10) NULL ,
         `cantidad` INT(10) NULL , 
-        `valor_devuelto` INT(10) NULL , 
         `id_venta_temp` INT(10) NULL , 
         PRIMARY KEY (`id_devoluciones_det`)) ENGINE = InnoDB;
           ");

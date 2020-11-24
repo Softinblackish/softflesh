@@ -117,16 +117,16 @@
                                         <div class="form-group col-md-12"> 
                                            <Strong> <label style="float:left;">Artículos</label> <br>
                                             <hr>
-                                           
                                             <?php
                                             $id_temp = $row['id_venta_temp'];
                                             $consulta_articulos = $conexion->query("SELECT id_articulo, id_venta, articulo, cantidad FROM $empresa.tbl_venta_temp where id_venta = $id_temp");
                                             while($list_articulos = $consulta_articulos->fetch_assoc())
                                             {
                                             ?> 
+                                            
                                               <input type="hidden" name="venta_temp" value="<?php echo $list_articulos['id_venta']?>">
                                               <input type="hidden" name="articulo_<?php echo $list_articulos['id_articulo']?>" value="<?php echo $list_articulos['id_articulo']?>">
-                                              <input class="form-control col-md-12 articulo<?php echo $list_articulos['id_articulo']?>" type="number" value="<?php echo $list_articulos['cantidad']?>" min="0" max="<?php echo $list_articulos['cantidad']?>" style="float:left;" name="<?php echo $list_articulos['id_articulo']?>">
+                                              <input class="form-control col-md-12 articulo<?php echo $list_articulos['id_articulo']?>" type="number" value="<?php echo $list_articulos['cantidad']?>" min="0" max="<?php echo $list_articulos['cantidad']?>" style="float:left;" name="cantidad_<?php echo $list_articulos['id_articulo']?>">
                                               <?php 
                                                 echo $list_articulos['articulo'];
                                               ?> 
