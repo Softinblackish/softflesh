@@ -13,7 +13,9 @@
         <link rel="stylesheet" href="../../css/scroll.css">
       <!-- js -->
         
-        <script src="../../scripts/compras/articulosCompras.js"></script>                            
+        <script src="../../scripts/compras/articulosCompras.js"></script>
+        <!--Cargar codigo suplidores-->
+        <script src="../../scripts/compras/codprovCompras.js"></script>                            
         
         <script src="../../scripts/js/time_alert.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -41,56 +43,75 @@
                     <label for="inputState">No de commpra:</label>
                     <input type="number" name="no_compra" readonly placeholder ="no de compra" value = <?php echo $no_compra ?> class="form-control">
                 </div>
-                <div class="form-group col-md-3">
-                    <label for="inputState">caducidad:</label>
-                    <input type="date" name="caducidad" class="form-control" >
-                </div>
+                
                 
                 <div class="form-group col-md-3">
                     <label for="inputState">recibido por:</label>
                     <select name="entregar_a" class="form-control" cajeros>
-                        <option value="cajero1">cajero1</option>
-                        <option value="cajero2">cajero2</option>
-                        <option value="cajero3">cajero3</option>
-                        <option value="cajero4">cajero4</option>
+                    <?php $user = $conexion->query("SELECT nombre_usuario FROM $empresa.tbl_usuario"); 
+                        while($row = $user->fetch_assoc()) {
+                        ?>
+                        <option value = <?php echo $row["nombre_usuario"];  ?> ><?php echo $row["nombre_usuario"];  ?></option>
+                        <?php } ?>
                     </select>
                 </div>
                 <div class="form-group col-md-3">
                     <label for="inputState">Moneda:</label>
                     <select name="moneda" class="form-control" cajeros>
-                        <option value="cajero1">usd</option>
-                        <option value="cajero2">do</option>
-                        <option value="cajero3">c por pagar</option>
+                        <option value="cajero1">DO</option>
+                        <option value="cajero2">USD</option>
+                        <option value="cajero3">EURO</option>
+                        <option value="cajero3">LIBRA</option>
+                        <option value="cajero3">JENES</option>
+                        <option value="cajero3">BITCOIN</option>
                     </select>
                 </div>
                 <div class="form-group col-md-3">
                     <label for="inputState">Forma de pago:</label>
-                    <input type="text" name="forma_pago" class="form-control"  placeholder="forma de pago" >
+                    <select name="forma_pago" class="form-control" placeholder="forma de pago">
+                        <option value="">EFECTIVO</option>
+                        <option value="">TARJETA</option>
+                        <option value="">NOTA DE DEBITO</option>
+                    </select>
                 </div>
-                <div class="form-group col-md-9">
-                    <label for="inputState">Total General:</label>
-                    <?php $articulos = $conexion->query("SELECT round(sum(total),0)as totalgeneral FROM $empresa.tbl_art_compras"); 
+                <div class="form-group col-md-6">
+                    <label for="inputState">Total:</label>
+                    <?php $articulos = $conexion->query("SELECT round(sum(total),0)as totalgeneral FROM $empresa.tbl_art_compras where no_compra = $no_compra"); 
                     $row = $articulos->fetch_assoc();
                     $TotalGeneral = $row["totalgeneral"];
                     ?>
                     <input type="number" name="valor_total" class="form-control"  placeholder="total" id="total_G" value = <?php echo $TotalGeneral ?> readonly>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputState">Total General:</label>
+                    <?php $articulos = $conexion->query("SELECT round(sum(total),0)as totalgeneral FROM $empresa.tbl_art_compras"); 
+                    $row = $articulos->fetch_assoc();
+                    $Total = $row["totalgeneral"];
+                    ?>
+                    <input type="number" name="" class="form-control" value = <?php echo $Total ?> readonly>
                 </div>
             </div>
 
             <label for="inputState">Datos del proveedor: </label><br>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <select id="" name="nombre_proveedor" class="form-control" placeholder="nombre y apellido del proveedor">
-                        <?php $suplidores = $conexion->query("SELECT nombre_sup FROM $empresa.tbl_suplidores"); 
+                    <select id="nombre_proveedor" name="nombre_proveedor" class="form-control" placeholder="nombre y apellido del proveedor">
+                        <?php $suplidores = $conexion->query("SELECT * FROM $empresa.tbl_suplidores"); 
+                        
                         while($row = $suplidores->fetch_assoc()) {
                         ?>
                         <option value = <?php echo $row["nombre_sup"];  ?> ><?php echo $row["nombre_sup"];  ?></option>
-                        <?php } ?>
+                        <?php } 
+                        
+                        ?>
 
                     </select> 
                 </div>
                 <div class="form-group col-md-6">
-                <input type="number" name="cod_proveedor" placeholder ="cod proveedor" class="form-control" readonly>
+                <?php $suplidores = $conexion->query("SELECT * FROM $empresa.tbl_suplidores");
+                    $dato = $suplidores->fetch_assoc();
+                ?>
+                <input type="number" id="cod_proveedor" name="cod_proveedor" value = "<?php echo $dato["codigo_sup"]; ?>" class="form-control" readonly>
                 </div>
             </div>
 
@@ -136,7 +157,7 @@
                 </div>
                 <div class="form-group col-md-3">
                     <label for="inputState">Itebis:</label>
-                    <input  name="impuestodf" class="form-control"  placeholder="impuesto" id ="impuesto">
+                    <input  name="impuestodf" class="form-control"  placeholder="impuesto" id ="impuesto" readonly>
                 </div>
                 <div class="form-group col-md-3">
                     <label for="inputState">Stock:</label>
@@ -144,7 +165,11 @@
                 </div>
                 
             </div>
-            <div class="form-row">                           
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="inputState">caducidad:</label>
+                    <input type="date" name="caducidad" class="form-control" >
+                </div>                           
                 <div class="form-group col-md-3">
                     <label for="inputState">Total con Impuestos:</label>
                     <input type="number" name="valor_impuestos" class="form-control"  placeholder="total con impuestos" id="total_I" readonly>
@@ -169,8 +194,8 @@
                 
             </div>
 
+            <!--Aqui se pasan las compras-->
             <div class="form-row">
-                
                 <div class="form-group col-md-6">
                     <button type="submit" class="btn btn">Pasar compra</button>
                 </div>
@@ -187,6 +212,7 @@
                             <th scope="col" style="width:60%;"> Artículos </th>
                             <th scope="col" style="width:8%;"> Cantidad </th>
                             <th scope="col" style="width:15%;"> Precio </th>
+                            <th scope="col" style="width:10%;"> itbis </th>
                             <th scope="col" style="width:15%;"> Total </th>
                             <th scope="col" style="width:15%;"> Borrar </th>
                         </tr>
@@ -209,12 +235,8 @@
                                             <th><?php  echo $reg_art_temp["articulo"]; ?></th>
                                             <td><?php  echo $reg_art_temp["cantidad"]; ?></td>
                                             <td><?php  echo $reg_art_temp["precio_compra"]; ?></td>
-                                            <?php 
-                                            $cantidad= $reg_art_temp["cantidad"];
-                                            $precio = $reg_art_temp["precio_compra"];
-                                            $total = $cantidad * $precio;
-                                            ?>
-                                            <td><?php  echo $total ?></td>
+                                            <td><?php  echo $reg_art_temp["itbis"]; ?></td>
+                                            <td><?php  echo $reg_art_temp["total"]; ?></td>
                                             <td><a href="../../scripts/compras/borrarArtCompras.php?id_compra=<?php echo $reg_art_temp['id_compra']; ?>&no_compra=<?php echo $reg_art_temp['no_compra']; ?>" class="btn btn-danger"><i class="fa fa-times fa-lg"></i></a></td> 
                                             </tr>
                         <?php

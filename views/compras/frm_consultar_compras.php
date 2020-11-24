@@ -44,12 +44,8 @@
                 <td><?php echo $row["articulo"]; ?></td>
                 <td><?php echo $row["precio_compra"]; ?></td>
                 <td><?php echo $row["cantidad"]; ?></td>
-                <?php 
-                $cantidad= $row["cantidad"];
-                $precio = $row["precio_compra"];
-                $total = $cantidad * $precio;
-                ?>
-                <td><?php  echo $total ?></td>
+                <td><?php echo $row["total"]; ?></td>
+                
                 
                 <!--Boton actualizar informacion-->
                 <td><a id="cerrar"  class="btn btn-info" data-toggle="modal" data-target="#example<?php echo $row["no_compra"]; ?>" > <i class="fa fa-eye fa-lg"></i></a>  
@@ -61,7 +57,7 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="example<?php echo $row["no_compra"];?>Label"><?php echo $row["nombre"]; ?></h5>
+                                <h5 class="modal-title" id="example<?php echo $row["no_compra"];?>Label">Articulo de Compra</h5>
                                 <button type="button" class="close cerrar" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                                 </button>
@@ -71,40 +67,23 @@
                                 <form action="../../scripts/compras/modificar.php" method="post">
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <input type="text" name="nombre" placeholder="Nombre" value="<?php echo $row["nombre"]; ?>" disabled class="form-control">
+                                            <input type="text" name="nombre" placeholder="Nombre" value="<?php echo $row["articulo"]; ?>" disabled class="form-control">
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <input type="text" name="descripcion" placeholder ="descripcion" value="<?php echo $row["descripcion"]; ?>" disabled class="form-control" >
+                                            <input type="text" name="cantidad" placeholder ="cantidad" value="<?php echo $row["cantidad"]; ?>" disabled class="form-control" >
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <select id="inputState" class="form-control" name="categoria" disabled>
-                                                <option select><?php echo $row["categoria"]; ?></option>
-                                                <option>Electricos</option>
-                                                <option>comestibles</option>
-                                                <option>bebidas</option>
-                                                <option>herramientas</option>
-                                            </select>
+                                        <input type="text" name="cantidad" placeholder ="cantidad" value="<?php echo $row["precio_compra"]; ?>" disabled class="form-control" >
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <select id="inputState" class="form-control" name="unidad" disabled>
-                                                <option select ><?php echo $row["unidad"];  ?></option>
-                                                <option>libra</option>
-                                                <option>metro</option>
-                                                <option>centimetos</option>
-                                                <option>pulgadas</option>
-                                                <option>pies</option>
-                                                <option>galones</option>
-                                                <option>una media(1/2)</option>
-                                                <option>una cuarta(1/4)</option>
-                                                <option>Unidad</option>
-                                            </select>
+                                        <input type="text" name="cantidad" placeholder ="cantidad" value="<?php echo $row["total"]; ?>" disabled class="form-control" >
                                         </div>
                                         <input type="hidden" name="id" value="<?php echo $row["no_compra"]; ?>">
                                         <div class="form-group col-md-6">
-                                            Ultimo acceso:  <?php echo $row["ultimo_acceso"]; ?>
+                                            Codigo:  <?php echo $row["no_compra"]; ?>
                                         </div>
                                         <div class="form-group col-md-6">
-                                            Fecha de creación:  <?php echo $row["fecha_creacion"]; ?>
+                                            Fecha de creación:  <?php echo $row["fecha_orden"]; ?>
                                         </div>
                                     </div>
                             

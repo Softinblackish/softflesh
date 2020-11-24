@@ -61,22 +61,36 @@
                         <tbody>
                             <?php
                             $empresa = $_SESSION["empresa_db"];
-
-                                if(isset($_POST["desde"], $_POST["hasta"] , $_POST["buscar"]))
+                            try {
+                                if(isset($_POST["desde"], $_POST["hasta"], $_POST["buscar"]))
                                 {
-                                    if($_POST["desde"] and $_POST["hasta"] )
+                                    if($_POST["desde"] && $_POST["hasta"] )
                                         {
                                             $desde = $_POST["desde"];
                                             $hasta = $_POST["hasta"];
-                                            $consulta_articulos= $conexion->query("SELECT * from $empresa.tbl_compras WHERE fecha_creacion >= '$desde' and fecha_creacion <= '$hasta' ");
+                                            $consulta_articulos= $conexion->query("SELECT * from $empresa.tbl_art_compras WHERE fecha_orden >= '$desde' and fecha_orden <= '$hasta' ");
                                         }
+
+                                    if($_POST["desde"])
+                                        {
+                                            $desde = $_POST["desde"];
+                                            $consulta_articulos = $conexion->query("SELECT * FROM $empresa.tbl_art_compras WHERE fecha_orden >= '$desde' ");
+                                        }
+
+                                    if($_POST["hasta"] )
+                                    {
+                                        $hasta = $_POST["hasta"];   
+                                        $consulta_articulos = $conexion->query("SELECT * FROM $empresa.tbl_art_compras WHERE fecha_orden <= '$hasta' ");
+                                    }
                                     if($_POST["buscar"])
                                         {
-                                            $consulta_articulos= $conexion->query("SELECT * FROM $empresa.tbl_art_compras WHERE articulo LIKE '%$buscar%' limit 5");
+                                            $buscar = $_POST["buscar"];
+                                            $consulta_articulos = $conexion->query("SELECT * FROM $empresa.tbl_art_compras WHERE no_compra LIKE '%$buscar%'");
                                         }                  
                                 }else{
                                     $consulta_articulos= $conexion->query("SELECT * FROM $empresa.tbl_art_compras");
-                                }    
+                                }
+                                   
                                         while($row = $consulta_articulos->fetch_assoc())
                                         {
                             ?>
@@ -87,12 +101,8 @@
                                                     <td><?php echo $row["articulo"]; ?></td>
                                                     <td><?php echo $row["cantidad"]; ?></td>
                                                     <td><?php echo $row["precio_compra"]; ?></td>
-                                                    <?php 
-                                                    $cantidad= $row["cantidad"];
-                                                    $precio = $row["precio_compra"];
-                                                    $total = $cantidad * $precio;
-                                                    ?>
-                                                    <td><?php  echo $total ?></td>
+                                                    <td><?php  echo $row["total"]; ?></td>
+                                                    
                                                     
                                                     <!--Boton actualizar informacion-->
                                                     <td><a id="cerrar"  class="btn btn-info" data-toggle="modal" data-target="#example<?php echo $row["no_compra"]; ?>" > <i class="fa fa-eye fa-lg"></i></a>  
@@ -127,12 +137,7 @@
                                             <input type="text" name="precio" placeholder ="precio" value="<?php echo $row["precio_compra"]; ?>" disabled class="form-control" >
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <?php 
-                                             $precio = $row["precio_compra"];
-                                             $cantidad = $row["cantidad"];
-                                             $valor = $precio * $cantidad;
-                                            ?>
-                                            <input type="text" name="cantidad" placeholder ="valor" value="<?php echo $valor ?>" disabled class="form-control" >
+                                            <input type="text" name="cantidad" placeholder ="valor" value="<?php echo $row["total"]; ?>" disabled class="form-control" >
                                         </div>
                                         <input type="hidden" name="id" value="<?php echo $row["no_compra"]; ?>">
                                         <div class="form-group col-md-6">
@@ -176,7 +181,9 @@
 
 
                             <?php
-                                        }
+                                        }}catch (Exception $e) {
+                                            echo 'Caught exception: ', $e->getMessage(), "\n";
+                                          }
                             ?>
                         </tbody>
                     </table> 
