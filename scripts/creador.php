@@ -25,6 +25,8 @@
         `id_articulo` int(11) NOT NULL AUTO_INCREMENT,
         `nombre` varchar(100),
         `precio` float,
+        `precio_compra` DOUBLE,
+        `precio_venta` DOUBLE,
         `descripcion` varchar(200),
         `cod_impuesto` varchar(100),
         `stop_min` int(10),

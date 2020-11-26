@@ -7,7 +7,7 @@ $(document).ready(function() {
         var prov = $("#nombre_proveedor").val();
         $.ajax({
             type: 'post',
-            url: '../../scripts/compras/BuscarCodigoProveedor.php',
+            url: '../../scripts/articulos/BuscarCodigoArticulos.php',
             dataType: "html",
             data: "proveedor=" + prov,
             //dataType: 'json',

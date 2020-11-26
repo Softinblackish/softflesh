@@ -8,6 +8,8 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
       <script src="../../scripts/js/time_alert.js"></script>
       <script src="../../scripts/js/articulo.js"></script>
+      <!--Cargar codigo suplidores-->
+      <script src="../../scripts/articulos/codproarticulos.js"></script>   
 
 <div class="container-articulos">
     <div class="container form-row">
@@ -55,11 +57,11 @@
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <select id="porcentaje" class="form-control" name="cod_impuesto">
-                            <option selected="">7</option>
-                            <option selected="">8</option>
-                            <option selected="">10</option>
-                            <option selected="">18</option>
-                            <option selected="null">impuesto</option>
+                    <?php $porcentajes = $conexion->query("SELECT porciento FROM $empresa.tbl_cod_impuestos"); 
+                        while($row = $porcentajes->fetch_assoc()) {
+                        ?>
+                        <option value = <?php echo $row["porciento"];  ?> ><?php echo $row["porciento"];  ?></option>
+                        <?php } ?>
                     </select>
                 </div>
                 <div class="form-group col-md-4">
@@ -77,11 +79,11 @@
                 </div>
                 <div class="form-group col-md-4">
                     <select id="inputState" class="form-control" name="categoria">
-                            <option selected="">Electricos</option>
-                            <option selected="">comestibles</option>
-                            <option selected="">bebidas</option>
-                            <option selected="">herramientas</option>
-                            <option selected="null">categoria</option>
+                    <?php $categorias = $conexion->query("SELECT nombre_categoria FROM $empresa.tbl_categorias"); 
+                        while($row = $categorias->fetch_assoc()) {
+                        ?>
+                        <option value = <?php echo $row["nombre_categoria"];  ?> ><?php echo $row["nombre_categoria"];  ?></option>
+                        <?php } ?>
                     </select>
                 </div>
             </div>
@@ -89,7 +91,7 @@
             <label for="inputState">Datos del proveedor: </label><br>
             <div class="form-row">
                 <div class="form-group col-md-8">
-                    <select id="" name="nombre_proveedor" class="form-control" placeholder="nombre y apellido del proveedor" >
+                    <select id="nombre_proveedor" name="nombre_proveedor" class="form-control" placeholder="nombre y apellido del proveedor" >
                         <?php $suplidores = $conexion->query("SELECT nombre_sup FROM $empresa.tbl_suplidores"); 
                         while($row = $suplidores->fetch_assoc()) {
                         ?>
@@ -97,9 +99,13 @@
                         <?php } ?>
 
                     </select> 
+
                 </div>
                 <div class="form-group col-md-4">
-                <input type="number" name="cod_proveedor" placeholder ="cod proveedor" class="form-control" readonly >
+                        <?php $suplidores = $conexion->query("SELECT * FROM $empresa.tbl_suplidores");
+                        $dato = $suplidores->fetch_assoc();
+                        ?>
+                        <input type="number" id="cod_proveedor" name="cod_proveedor" value = "<?php echo $dato["codigo_sup"]; ?>" class="form-control" readonly>
                 </div>
             </div>
 
@@ -108,6 +114,7 @@
                     <textarea name="nota" class="form-control" cols="50" rows="3" placeholder = "Descripcion"></textarea>
                 </div>
             </div>
+            
 
             <label class="form-check-label" for="gridCheck">
                     Haga click en guardar para registrar este nuevo artículo 
