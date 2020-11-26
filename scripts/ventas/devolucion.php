@@ -29,32 +29,33 @@
             $consulta_cod_impuesto = $conexion->query("SELECT porciento FROM $empresa.tbl_cod_impuestos WHERE id_cod_impuesto = $cod_impuesto");
             $resultado_cod_impuesto = $consulta_cod_impuesto->fetch_assoc();
 
-            #inserciones
 
             $comprobante = $resultado_factura["comprobante"];
-            //$insertar_devoluciones_det = $conexion->query("INSERT INTO $empresa.tbl_devoluciones_det (id_random, id_articulo, cantidad, valor_devuelto, id_venta_temp) values($id_random,'b040000001','$usuario', $factura,)");
-      
-
-            
             //para retornar la cantidad a los articulos
             $calculo_cantidad = $resultado_venta["cantidad"] - $cantidad;
             //modificar valores en venta_temp
             $nuevo_itbis= $resultado_cod_impuesto["porciento"] * $cantidad;
             $nuevo_precio = $resultado_articulo["precio"] * $cantidad;
             $nuevo_total = $nuevo_precio + $nuevo_itbis;
+            // cantidad a sumar en la tabla de articulos
+            $retorno_cantidad = $resultado_articulo["cantidad_disponible"] + $cantidad;
 
-        
+            if($resultado_venta["cantidad"] != $cantidad)
+            {
+                $actualizar_venta_temp = $conexion->query("UPDATE $empresa.tbl_articulos SET cantidad_disponible = $retorno_cantidad where id_articulo = $articulo");
+
+            }
+                $actualizar_venta = $conexion->query("UPDATE $empresa.tbl_ventas SET devolucion = 1 where id_venta_temp = $id_venta");
+
             
-           // $actualizar_venta_temp = $conexion->query("UPDATE $empresa.tbl_venta_temp SET cantidad = $cantidad, precio = $nuevo_precio, itbis = $nuevo_itbis, total = $nuevo_total where id_venta = $id_venta and id_articulo = $articulo");
             echo "id del articulo: ".$articulo." id_temporal: ".$id_venta." Cantidad nueva: ".$cantidad." Sumar a la cantidad existente: ".$calculo_cantidad." Nuevo precio: ".$nuevo_precio." Nuevo itbis: ".$nuevo_itbis." nuevo total: ".$nuevo_total."<br>";
-            
-            
+
             $insertar_detalle = $conexion->query("INSERT INTO $empresa.tbl_devoluciones_det (id_articulo, cantidad, id_venta_temp) values ($articulo, $cantidad, $id_venta)");
     }
     $conteo++;
 }
        
-            $insertar_nota_c = $conexion->query("INSERT INTO $empresa.tbl.nota_credito (comprobante_factura, comprobante, creado_por, factura, total, id_articulo_lista, cliente, descripcion) values('$comprobante','b040000001','$usuario', $factura, )");
-
+            $insertar_nota_c = $conexion->query("INSERT INTO $empresa.tbl_nota_credito (comprobante_factura, comprobante, creado_por, id_articulos_lista) values('$comprobante','b040000001','$usuario', $id_venta)");
+            header("location: ../../views/venta/devoluciones.php");
     
 ?>

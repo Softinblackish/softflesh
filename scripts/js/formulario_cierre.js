@@ -24,8 +24,16 @@
             $("#uno").focus();
             
         }); 
+
+        $(".holders5").click(function(){
+            $(".holders5").hide();
+            $("#cinco").val("");
+            $("#cinco").show();
+            $("#cinco").focus();
+        });
         
         $(".monedas").keyup(function(){
+
              var uno = $("#uno").val();
              var cinco = $("#cinco").val();
              var diez = $("#diez").val();
@@ -36,23 +44,15 @@
              var quiniento = $("#quiniento").val();
              var mil = $("#mil").val();
              var dosmil = $("#dosmil").val();
-             var resultados = parseInt(uno) + parseInt(cinco)*5 + parseInt(diez)*10 + parseInt(veinticinco)*25 + parseInt(cincuenta)*50 + parseInt(cien)*100 + parseInt(dosciento)*200 + parseInt(quiniento)*500 + parseInt(mil)*1000 + parseInt(dosmil)*2000;
-             
-             $("#total").val(resultados);
-
+             var resultados = parseInt(uno) + parseInt(cinco) + parseInt(diez)*10 + parseInt(veinticinco)*25 + parseInt(cincuenta)*50 + parseInt(cien)*100 + parseInt(dosciento)*200 + parseInt(quiniento)*500 + parseInt(mil)*1000 + parseInt(dosmil)*2000;
+             alert(resultados);
              var caja_result = $("#cajon").val();
              var resultado = parseInt(caja_result) - resultados;
              var total = resultado;
              $("#diferencia").val(total);
-         
         }); 
     });
-        $(".holders5").click(function(){
-            $(".holders5").hide();
-            $("#cinco").val(" ");
-            $("#cinco").show();
-            $("#cinco").focus();
-        });
+        
         $(".holders10").click(function(){
             $(".holders10").hide();
             $("#diez").val(" ");

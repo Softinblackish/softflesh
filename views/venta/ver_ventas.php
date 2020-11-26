@@ -45,7 +45,7 @@
       <th scope="col">Comprobante</th>
       <th scope="col">Forma de pago</th>
       <th scope="col">Condición de pago</th>
-      <th scope="col">Ver</th>
+      <th scope="col">Acción</th>
     </tr>
   </thead>
   <tbody>
@@ -95,9 +95,19 @@
                 <td width="20%"><?php echo $row2["nombre_cliente"]; ?></td>
                 <td><?php echo $row["comprobante"]; ?></td>
                 <td><?php echo $row["forma_pago"]; ?></td>
-
                 <td><?php echo $row["condicion_pago"]; ?></td>
-        <td><?php if($permisos['modificar_user']== 1){ ?><a id="cerrar"  class="btn btn-info" data-toggle="modal" data-target="#example<?php echo $row["id_venta"]; ?>" > <i class="fa fa-eye fa-lg"></i></a><?php } ?></td>
+        <td>
+            <?php 
+                if($permisos['modificar_user']== 1)
+                    { ?>
+                        <a id="cerrar"  class="btn btn-info" data-toggle="modal" data-target="#example<?php echo $row["id_venta"]; ?>" > <i class="fa fa-eye fa-lg"></i></a>     
+                        <?php if($row["devolucion"] == 0) 
+                            { ?>
+            	                <a id="cerrar"  class="btn btn" style="background-color:#882f88" data-toggle="modal" data-target="#example2<?php echo $row["id_venta"]; ?>" > Devolución</a>
+                        <?php 
+                            } ?></td>
+            <?php 
+                } ?>
             </tr>
         <!--Modal editar usuario   --->
                 <div class="modal fade" id="example<?php echo $row["id_venta"];?>" tabindex="-1" aria-labelledby="example<?php echo $row["id_venta"];?>Label" aria-hidden="true">
@@ -137,20 +147,73 @@
 
 
                                         <div class="form-group col-md-12"> 
-                                           <Strong> <label style="float:left;">Artículos </label> <a class="btn btn-info" id="crear_devolucion" style="float:right"> Crear devolucion</a></strong>  <br>
+                                           <Strong> <label style="float:left;">Artículos </label></strong>  <br>
                                             <hr>
                                              <?php
                                             $id_temp = $row['id_venta_temp'];
                                             $consulta_articulos = $conexion->query("SELECT id_articulo, articulo, cantidad FROM $empresa.tbl_venta_temp where id_venta = $id_temp");
                                             while($list_articulos = $consulta_articulos->fetch_assoc())
                                             {
-                                            ?> 
-                                              <input type="hidden" class="articulo<?php echo $list_articulos['id_articulo']?>" value="<?php echo $list_articulos['id_articulo']?>">
-                                              <input class="form-control col-md-2 cantidad_devuelta art<?php echo $list_articulos['id_articulo']?>" type="number" value="0" min="0" max="<?php echo $list_articulos['cantidad']?>" style="float:left;" name="">
-                                              <a href="../../scripts/ventas/devolucion_temp.php" class="btn btn-info cantidad_devuelta add<?php echo $list_articulos['id_articulo']?>">add</a>  
-                                              <a class="btn btn-warning block<?php echo $list_articulos['id_articulo']?>" style="display:none">Block</a> <?php echo "-".$list_articulos['articulo']." (".$list_articulos['cantidad'].")";?>  <br><hr> <?php
+                                            ?>   
+                                              <a class="btn btn-warning block<?php echo $list_articulos['id_articulo']?>" style="display:none">Block</a> <?php echo $list_articulos['articulo']." (".$list_articulos['cantidad'].")";?>  <br><hr> <?php
                                             }
                                         ?>
+                                        </div>
+                                       
+                                    </div>
+                            
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary cerrar" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
+
+                            </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+</div>
+
+
+
+
+
+
+ <!--Modal editar usuario   --->
+ <div class="modal fade" id="example2<?php echo $row["id_venta"];?>" tabindex="-1" aria-labelledby="example2<?php echo $row["id_venta"];?>Label" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header" style="background-color:#882f88; color:white;">
+                                <h5 class="modal-title" id="example2<?php echo $row["id_venta"];?>Label">Devolución de artículos</h5>
+                                <button type="button" class="close cerrar" data-dismiss="modal" aria-label="Close">
+                                <input type="hidden" name="fac" id="fac" value="<?php echo $row["id_venta_temp"]; ?>">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- formulario usuario   --->
+                                <form action="../../scripts/ventas/devolucion.php" method="post">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12"> 
+                                           <Strong> <label style="float:left;">Artículos</label> <br>
+                                            <hr>
+                                            <?php
+                                            $id_temp = $row['id_venta_temp'];
+                                            $consulta_articulos = $conexion->query("SELECT id_articulo, id_venta, articulo, cantidad FROM $empresa.tbl_venta_temp where id_venta = $id_temp");
+                                            while($list_articulos = $consulta_articulos->fetch_assoc())
+                                            {
+                                            ?> 
+                                            
+                                              <input type="hidden" name="venta_temp" value="<?php echo $list_articulos['id_venta']?>">
+                                              <input type="hidden" name="articulo_<?php echo $list_articulos['id_articulo']?>" value="<?php echo $list_articulos['id_articulo']?>">
+                                              <input class="form-control col-md-12 articulo<?php echo $list_articulos['id_articulo']?>" type="number" value="<?php echo $list_articulos['cantidad']?>" min="0" max="<?php echo $list_articulos['cantidad']?>" style="float:left;" name="cantidad_<?php echo $list_articulos['id_articulo']?>">
+                                              <?php 
+                                                echo $list_articulos['articulo'];
+                                              ?> 
+                                              <br><hr>
+                                             <?php
+                                            }
+                                            ?>
+                                    
                                         </div>
                                        
                                     </div>
@@ -166,6 +229,16 @@
                     </div>
                 </div>
 </div>
+
+
+
+
+
+
+
+
+
+
         <!--Modal Eliminar usuario   --->
         <div class="modal fade" id="eliminar<?php echo $row["id_usuario"];?>" tabindex="-1" aria-labelledby="eliminar<?php echo $row["id_usuario"];?>Label" aria-hidden="true">
                     <div class="modal-dialog">
@@ -197,16 +270,5 @@
 ?>
   </tbody>
 </table>
-
-<nav aria-label="Page navigation example">
-  <ul class="pagination">
-    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-  </ul>
-</nav>
-
 
 <!-- Modal -->

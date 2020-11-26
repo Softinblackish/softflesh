@@ -14,7 +14,7 @@
 
 
 <div id="box_lista" class="buscar">
-<h2>Listado de ventas</h2>
+<h2>Listado de devoluciones</h2>
 <form action="" method="post">
     <div class="form-row">
         <div class="form-group col-md-4">
@@ -40,66 +40,60 @@
 <table class="table">
   <thead class="thead">
     <tr>
-      <th scope="col">Factura</th>
-      <th scope="col" width="20%">Cliente</th>
-      <th scope="col">Comprobante</th>
-      <th scope="col">Forma de pago</th>
-      <th scope="col">Condición de pago</th>
+      <th scope="col">Nota de crédito</th>
+      <th scope="col" width="20%">Comprobante</th>
+      <th scope="col">Comprobante factura</th>
+      <th scope="col">Fecha</th>
       <th scope="col">Ver</th>
     </tr>
   </thead>
   <tbody>
   <?php 
     $empresa = $_SESSION["empresa_db"];
-    
     if(isset($_POST["desde"], $_POST["hasta"] , $_POST["filtro"]))
     {
         if( $_POST["desde"] and $_POST["hasta"] )
         {
             $desde = $_POST["desde"];
             $hasta = $_POST["hasta"];   
-            $lista_venta = $conexion->query("SELECT * FROM $empresa.tbl_ventas WHERE fecha_creacion >= '$desde' and fecha_creacion <= '$hasta' ");
+            $lista_venta = $conexion->query("SELECT * FROM $empresa.tbl_nota_credito WHERE fecha_creacion >= '$desde' and fecha_creacion <= '$hasta' ");
         }
 
         if( $_POST["desde"])
         {
             $desde = $_POST["desde"];
-            $lista_venta = $conexion->query("SELECT * FROM $empresa.tbl_ventas WHERE fecha_creacion >= '$desde' ");
+            $lista_venta = $conexion->query("SELECT * FROM $empresa.tbl_nota_credito WHERE fecha_creacion >= '$desde' ");
         }
 
         if($_POST["hasta"] )
         {
             $hasta = $_POST["hasta"];   
-            $lista_venta = $conexion->query("SELECT * FROM $empresa.tbl_ventas WHERE fecha_creacion <= '$hasta' ");
+            $lista_venta = $conexion->query("SELECT * FROM $empresa.tbl_nota_credito WHERE fecha_creacion <= '$hasta' ");
         }
 
         if( $_POST["filtro"])
         {
             $filtro = $_POST["filtro"];
-            $lista_venta = $conexion->query("SELECT * FROM $empresa.tbl_ventas WHERE id_venta = $filtro ");
+            $lista_venta = $conexion->query("SELECT * FROM $empresa.tbl_nota_credito WHERE id_nota_credito = $filtro ");
         }
     }
     else{
-        $lista_venta = $conexion->query("SELECT * FROM $empresa.tbl_ventas order by id_venta desc limit 10 ");
+        $lista_venta = $conexion->query("SELECT * FROM $empresa.tbl_nota_credito");
     }
 
     while($row = $lista_venta->fetch_assoc())
         { 
-            $cliente = $row['id_cliente'];
-            $consulta_clientes = $conexion->query("SELECT * FROM $empresa.tbl_clientes where id_cliente = $cliente");
-            $row2 = $consulta_clientes->fetch_assoc();
+           
 ?>
-        <!-- Head Tabla usuario   --->
+        <!-- Head Tabla devoluciones   --->
             <tr>
-                <th scope="row"><?php echo $row["id_venta"]; ?></th>
-                <td width="20%"><?php echo $row2["nombre_cliente"]; ?></td>
+                <th scope="row"><?php echo $row["id_nota_credito"]; ?></th>
                 <td><?php echo $row["comprobante"]; ?></td>
-                <td><?php echo $row["forma_pago"]; ?></td>
-
-                <td><?php echo $row["condicion_pago"]; ?></td>
+                <td><?php echo $row["comprobante_factura"]; ?></td>
+                <td><?php echo $row["fecha_creacion"]; ?></td>
         <td><?php if($permisos['modificar_user']== 1){ ?><a id="cerrar"  class="btn btn-info" data-toggle="modal" data-target="#example<?php echo $row["id_venta"]; ?>" > <i class="fa fa-eye fa-lg"></i></a><?php } ?></td>
             </tr>
-        <!--Modal editar usuario   --->
+        <!--Modal editar devolucion   --->
                 <div class="modal fade" id="example<?php echo $row["id_venta"];?>" tabindex="-1" aria-labelledby="example<?php echo $row["id_venta"];?>Label" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -111,7 +105,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <!-- formulario usuario   --->
+                                <!-- formulario devolucion   --->
                                 <form action="../../scripts/ventas/devolucion.php" method="post">
                                     <div class="form-row">
                                         <div class="form-group col-md-12"> 

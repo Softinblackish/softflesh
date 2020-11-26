@@ -120,13 +120,12 @@ $id_nuevo_cliente = $registro_cliente["id_cliente"] + 1;
                    
                 </div>   
                 <div class="form-group col-md-6" >
-            
-                <input class="form-control monedas holders1" placeholder="$1">
-                 <input class="form-control monedas holders_no" type="number" min="0"  id="uno" value="0" required >
+                    <input class="form-control monedas holders1" placeholder="$1">
+                    <input class="form-control monedas holders_no" type="number" min="0"  id="uno" value="0" required >
                 </div> 
                 <div class="form-group col-md-6">
                
-                    <input class="form-control monedas holders5 " type="number" placeholder="$5" >    
+                    <input class="form-control monedas holders5" placeholder="$5" >    
                     <input class="form-control monedas holders_no" type="number" min="0"  id="cinco" value="0" required>
                 </div> 
                 <div class="form-group col-md-6">
@@ -145,7 +144,6 @@ $id_nuevo_cliente = $registro_cliente["id_cliente"] + 1;
                     <input class="form-control monedas holders_no" type="number" min="0" id="cincuenta" value="0" required>
                 </div> 
                 <div class="form-group col-md-6">
-               
                     <input class="form-control monedas holders100" type="number" placeholder="$100">
                     <input class="form-control monedas holders_no" type="number" min="0" id="cien" value="0" required>
                 </div> 

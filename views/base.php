@@ -95,7 +95,7 @@
                                         <a href="../venta/venta_espera.php"><div id="venta_espera" class="menu_lv3 menu_ventas">Ventas en espera</div></a>
                                         <a href="../venta/cierre_ventas.php"><div id="lista_ventas" class="menu_lv3 menu_ventas">Cierre de venta</div></a>
                                         <a href="../venta/cotizaciones.php"><div id="lista_ventas" class="menu_lv3 menu_ventas">Cotizaciones</div></a>
-                                        <div id="devoluciones_venta" class="menu_lv3 menu_ventas">Devoluciones</div>
+                                        <a href="../venta/devoluciones.php"><div id="devoluciones_venta" class="menu_lv3 menu_ventas">Devoluciones</div></a>
                                         <div id="devoluciones_venta" class="menu_lv3 menu_ventas">Reportes</div>
                                 </div><?php } ?>
 
