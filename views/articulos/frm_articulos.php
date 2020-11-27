@@ -49,8 +49,11 @@
                 <div class="form-group col-md-3">
                     <input type="number" name="stop_min" placeholder ="Stock minimo" class="form-control" >
                 </div>
-                <div class="form-group col-md-12">
+                <div class="form-group col-md-8">
                     <input id="gananciaImp" name="ganancia" placeholder ="ganancia + Impuestos" class="form-control" readonly>
+                </div>
+                <div class="form-group col-md-4">
+                    <input type="number" name="cantidad_actual" placeholder ="cantidad Actual" class="form-control" >
                 </div>
             </div>
 
@@ -87,7 +90,7 @@
                     </select>
                 </div>
             </div>
-
+            
             <label for="inputState">Datos del proveedor: </label><br>
             <div class="form-row">
                 <div class="form-group col-md-8">
