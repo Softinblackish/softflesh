@@ -57,10 +57,10 @@
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <select id="porcentaje" class="form-control" name="cod_impuesto">
-                    <?php $porcentajes = $conexion->query("SELECT porciento FROM $empresa.tbl_cod_impuestos"); 
-                        while($row = $porcentajes->fetch_assoc()) {
+                    <?php $nombre_impuesto = $conexion->query("SELECT nom_codigo, porciento FROM $empresa.tbl_cod_impuestos"); 
+                        while($row = $nombre_impuesto->fetch_assoc()) {
                         ?>
-                        <option value = <?php echo $row["porciento"];  ?> ><?php echo $row["porciento"];  ?></option>
+                        <option value = <?php echo $row["porciento"];  ?> ><?php echo $row["nom_codigo"];  ?></option>
                         <?php } ?>
                     </select>
                 </div>

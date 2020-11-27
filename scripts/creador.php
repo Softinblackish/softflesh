@@ -27,6 +27,7 @@
         `precio` float,
         `precio_compra` DOUBLE,
         `precio_venta` DOUBLE,
+        `precio_ganancia` DOUBLE,
         `descripcion` varchar(200),
         `cod_impuesto` varchar(100),
         `stop_min` int(10),
