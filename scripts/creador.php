@@ -10,12 +10,12 @@
 
    
 
-    /*$empresas_existentes= $conexion->query("SELECT nombre_empresa from empresas_suscritas.informacion_empresa where nombre_empresa = '$db_empresa'");
+    $empresas_existentes= $conexion->query("SELECT nombre_empresa from empresas_suscritas.informacion_empresa where nombre_empresa = '$db_empresa'");
     $verificacion_empresas_existentes = $empresas_existentes->num_rows;
     echo $verificacion_empresas_existentes; 
     if($verificacion_empresas_existentes < 1)
     {
-*/
+
       $nombre_sin_espacio = str_replace(" ", "_", $db_empresa);
       $registrar_empresa = $conexion->query("INSERT INTO empresas_suscritas.informacion_empresa (nombre_empresa, direccion_empresa, telefono_empresa, rnc_empresa, correo_empresa, encargado, telefono_encargado) value ('$db_empresa','$direccion','$telefono', '$rnc', '$correo','$encargado', '$tel_encargado')");
       $crear_db = $conexion->query("CREATE DATABASE IF NOT EXISTS $nombre_sin_espacio");
@@ -105,7 +105,7 @@
 //tabla tbl compras articulos
       $tabla_compra = $conexion->query("
       CREATE TABLE $nombre_sin_espacio.tbl_art_compras (
-        `id_compra` int(11) NOT NULL AUTO_INCREMENT,
+        `id_compra` int NOT NULL AUTO_INCREMENT,
         `no_compra` int(11),
         `articulo` varchar(100),
         `precio_compra` DOUBLE,
@@ -127,7 +127,7 @@
         `nombre_sup` varchar(100),
         `codigo_sup` varchar(50),
         `contacto_sup` varchar(100), 
-        `sector_sup` varchar(100), 
+        `sector_sup` varchar(100),
         `ciudad_sup` varchar(100), 
         `tel_no1_sup` varchar(15), 
         `tel_no2_sup` varchar(15), 
@@ -298,8 +298,14 @@ $perm = $conexion->query("
       ");
 
       $tabla_categoria = $conexion->query("
-      CREATE TABLE $nombre_sin_espacio.tbl_condiciones_pago ( `id_condicion_p` INT NOT NULL AUTO_INCREMENT , `nombre_condicion_p` VARCHAR(100) NOT NULL , `dias_condicion_p` VARCHAR(10) NOT NULL , `descripcion_condicion_p` VARCHAR(200) NULL , `creado_por` VARCHAR(150) NOT NULL , `fecha_creacion` TIMESTAMP NOT NULL , PRIMARY KEY (`id_condicion_p`)) ENGINE = InnoDB;
-
+      CREATE TABLE $nombre_sin_espacio.tbl_condiciones_pago ( 
+        `id_condicion_p` INT NOT NULL AUTO_INCREMENT , 
+        `nombre_condicion_p` VARCHAR(100) NOT NULL , 
+        `dias_condicion_p` VARCHAR(10) NOT NULL , 
+        `descripcion_condicion_p` VARCHAR(200) NULL , 
+        `creado_por` VARCHAR(150) NOT NULL , 
+        `fecha_creacion`
+         TIMESTAMP NOT NULL , PRIMARY KEY (`id_condicion_p`)) ENGINE = InnoDB;
       ");
       
       $tabla_categoria = $conexion->query("
@@ -349,6 +355,7 @@ $perm = $conexion->query("
       `id_cliente` INT(10) NOT NULL , 
       `tipo_comprobante` VARCHAR(150) NOT NULL , 
       `condicion_pago` VARCHAR(150) NOT NULL , 
+      `devolucion` int(1) NOT NULL DEFAULT '0' , 
       `forma_pago` VARCHAR(50) NOT NULL , 
       `itbis` INT(10) NOT NULL , 
       `precio` INT(10) NOT NULL , 
@@ -403,17 +410,15 @@ $perm = $conexion->query("
         $tabla_devoluciones = $conexion->query("
         CREATE TABLE $nombre_sin_espacio.tbl_devoluciones_det ( 
         `id_devoluciones_det` INT NOT NULL AUTO_INCREMENT , 
-        `id_articulo` INT(10) NULL , 
-        `id_random` INT(10) NULL , 
+        `id_articulo` INT(10) NULL ,
         `cantidad` INT(10) NULL , 
-        `valor_devuelto` INT(10) NULL , 
         `id_venta_temp` INT(10) NULL , 
         PRIMARY KEY (`id_devoluciones_det`)) ENGINE = InnoDB;
           ");
 
         $tabla_art_compra_temp = $conexion->query("
         CREATE TABLE $nombre_sin_espacio.tbl_art_compras (
-          `id_compra` int(11) NOT NULL AUTO_INCREMENT,
+          `id_compra` int NOT NULL AUTO_INCREMENT,
           `no_compra` int(11) NULL,
           `articulo` varchar(100) NULL,
           `precio_compra` int(10) NULL,
@@ -427,36 +432,25 @@ $perm = $conexion->query("
           ");
 
 
-          $tabla_art_compra_temp = $conexion->query("
+          $tabla_nota_credito = $conexion->query("
           CREATE TABLE $nombre_sin_espacio.tbl_nota_credito ( 
             `id_nota_credito` INT NOT NULL AUTO_INCREMENT , 
             `comprobante_factura` VARCHAR(50) NOT NULL , 
             `comprobante` VARCHAR(50) NOT NULL , 
             `fecha_creacion` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , 
             `creado_por` VARCHAR(100) NOT NULL , 
-            `factura` VARCHAR(12) NOT NULL , 
-            `total` INT(10) NOT NULL , 
-            `id_articulos_lista` INT(10) NOT NULL , 
-            `cliente` INT(10) NOT NULL , 
+            `total` INT(10)  NULL , 
+            `id_articulos_lista` INT(10) NOT NULL ,  
             `descripcion` VARCHAR(300) , 
             PRIMARY KEY (`id_nota_credito`)) ENGINE = InnoDB;
 
             ");
 
 
-
-
-
-
-
-
-
-
-header("location:../views/creador_u.php?empresa=$nombre_sin_espacio");
-/*
+          header("location:../views/creador_u.php?empresa=$nombre_sin_espacio");
       }
       else
       {
         echo ("Empresa ya existe");
-      }*/
+      }
 ?>

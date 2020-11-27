@@ -10,4 +10,5 @@
 
     $nuevo_usuario=$conexion->query("INSERT INTO $empresa.tbl_usuario (nombre_usuario, contrasena_usuario, rol_usuario) values('$nombre', '$pass','$rol') ");
     header("location:../../views/usuarios/nuevo_usuario.php?agregado = true");
+
 ?>
