@@ -57,8 +57,9 @@
       $tabla_cajas = $conexion->query(" 
       CREATE TABLE $nombre_sin_espacio.tbl_cajas ( 
         `id_caja` INT NOT NULL AUTO_INCREMENT , 
-        `caja_nombre` VARCHAR(100) NULL , 
-        `caja_sucursal` VARCHAR(100) NULL , 
+        `caja_nombre` VARCHAR(100) NULL ,
+        `apertura` int(10) NULL , 
+        `caja_sucursal` VARCHAR(100) NULL ,
         `ip` VARCHAR(50) NULL , 
         PRIMARY KEY (`id_caja`)) ENGINE = InnoDB;
         ");

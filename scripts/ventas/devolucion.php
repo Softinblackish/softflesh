@@ -50,12 +50,12 @@
             
             echo "id del articulo: ".$articulo." id_temporal: ".$id_venta." Cantidad nueva: ".$cantidad." Sumar a la cantidad existente: ".$calculo_cantidad." Nuevo precio: ".$nuevo_precio." Nuevo itbis: ".$nuevo_itbis." nuevo total: ".$nuevo_total."<br>";
 
-            $insertar_detalle = $conexion->query("INSERT INTO $empresa.tbl_devoluciones_det (id_articulo, cantidad, id_venta_temp) values ($articulo, $cantidad, $id_venta)");
+            $insertar_detalle = $conexion->query("INSERT INTO $empresa.tbl_devoluciones_det (id_articulo, cantidad, id_venta_temp) values ($articulo, $calculo_cantidad, $id_venta)");
     }
     $conteo++;
 }
        
             $insertar_nota_c = $conexion->query("INSERT INTO $empresa.tbl_nota_credito (comprobante_factura, comprobante, creado_por, id_articulos_lista) values('$comprobante','b040000001','$usuario', $id_venta)");
-            header("location: ../../views/venta/devoluciones.php");
+            //header("location: ../../views/venta/devoluciones.php");
     
 ?>
