@@ -29,33 +29,41 @@
             </div>
             <div class="form-row">
                 <div class="form-group col-md-8">
+                    <label for="inputState">Nombre Articulo:</label>
                     <input type="text" name="nombre" placeholder ="Nombre del artículo" class="form-control">
                 </div>
                 <div class="form-group col-md-4">
+                <label for="inputState">Codigo Barra:</label>
                     <input type="text" name="codigo_barra" placeholder ="Código Barra" class="form-control" >
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group col-md-4">
+                <label for="inputState">Precio Compra:</label>
                     <input type="number" id="precioCompra" name="precio_compra" placeholder ="precio compra" class="form-control" >
                 </div>
                 <div class="form-group col-md-4">
+                <label for="inputState">Precio:</label>
                     <input type="number" id="precioVenta" name="precio" placeholder ="precio" class="form-control" >
                 </div>
                 <div class="form-group col-md-4">
+                <label for="inputState">Ganancia:</label>
                     <input id="ganancia" name="ganancia" placeholder ="ganancia" class="form-control" readonly>
                 </div>
                 <div class="form-group col-md-6">
+                <label for="inputState">Stock Minimo:</label>
                     <input type="number" name="stop_min" placeholder ="Stock minimo" class="form-control" >
                 </div>
                 <div class="form-group col-md-6">
+                <label for="inputState">Cantidad Actual:</label>
                     <input type="number" name="cantidad_actual" placeholder ="cantidad Actual" class="form-control" >
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group col-md-4">
+                <label for="inputState">Codigo Impuesto:</label>
                     <select id="porcentaje" class="form-control" name="cod_impuesto">
                     <?php $nombre_impuesto = $conexion->query("SELECT nom_codigo, porciento, id_cod_impuesto FROM $empresa.tbl_cod_impuestos"); 
                         while($row = $nombre_impuesto->fetch_assoc()) {
@@ -65,6 +73,7 @@
                     </select>
                 </div>
                 <div class="form-group col-md-4">
+                <label for="inputState">Unidad:</label>
                     <select id="inputState" class="form-control" name="unidad">
                             <option selected="">libra</option>
                             <option selected="">metro</option>
@@ -78,6 +87,7 @@
                     </select>
                 </div>
                 <div class="form-group col-md-4">
+                <label for="inputState">Categoria:</label>
                     <select id="inputState" class="form-control" name="categoria">
                     <?php $categorias = $conexion->query("SELECT nombre_categoria FROM $empresa.tbl_categorias"); 
                         while($row = $categorias->fetch_assoc()) {
@@ -88,7 +98,7 @@
                 </div>
             </div>
             
-            <label for="inputState">Datos del proveedor: </label><br>
+            <label for="inputState">Datos del proveedor </label><br>
             <div class="form-row">
                 <div class="form-group col-md-8">
                     <select id="nombre_proveedor" name="nombre_proveedor" class="form-control" placeholder="nombre y apellido del proveedor" >
@@ -101,7 +111,8 @@
                     </select> 
 
                 </div>
-                <div class="form-group col-md-4">
+                
+                <div class="form-group col-md-3" >
                         <?php $suplidores = $conexion->query("SELECT * FROM $empresa.tbl_suplidores");
                         $dato = $suplidores->fetch_assoc();
                         ?>
@@ -110,6 +121,7 @@
             </div>
 
             <div class="form-row">
+            <label for="inputState">Descripcion</label>
                 <div class="form-group col-md-12">
                     <textarea name="nota" class="form-control" cols="50" rows="3" placeholder = "Descripcion"></textarea>
                 </div>
