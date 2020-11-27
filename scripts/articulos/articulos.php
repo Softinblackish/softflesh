@@ -6,18 +6,20 @@
     $nombre=$_POST['nombre']; 
     $precio_compra=$_POST['precio_compra'];
     $precio_venta=$_POST['precio_venta'];
+    $ganancia=$_POST['ganancia'];
     $descripcion=$_POST["nota"]; 
     $cod_impuesto=$_POST['cod_impuesto']; 
     $stop_min=$_POST['stop_min']; 
+    $cantidad_actual=$_POST['cantidad_actual']; 
     $codigo_barra= $_POST['codigo_barra']; 
     $categoria=$_POST['categoria']; 
     $unidad=$_POST['unidad'];
    
 
-    //echo $empresa . " " .$nombre. "  ".$precio_compra." ".$precio_venta." ".$descripcion. " " .$stop_min. " " .$codigo_barra." ".$categoria." ".$unidad. " ".$cod_impuesto;
+    //echo $empresa . "   " .$nombre. "     ".$precio_compra."     ".$precio_venta."     ".$ganancia."    ".$descripcion. "   " .$stop_min. "   " .$codigo_barra."   ".$categoria."   ".$unidad. "   ".$cod_impuesto;
   
-    $Reg_articulos = $conexion->query( "INSERT into $empresa.tbl_articulos (nombre, precio_compra, precio_venta ,descripcion, codigo_barra, cod_impuesto, stop_min,  categoria, unidad, status)
-            values ('$nombre', $precio_compra, $precio_venta,'$descripcion', '$codigo_barra', '$cod_impuesto', $stop_min,'$categoria','$unidad','ACTIVO')");
+    $Reg_articulos = $conexion->query( "INSERT into $empresa.tbl_articulos (nombre, precio_compra, precio_venta , precio_ganancia, descripcion, codigo_barra, cod_impuesto, stop_min, cantidad_actual, categoria, unidad, status)
+            values ('$nombre', $precio_compra, $precio_venta, $ganancia, '$descripcion', '$codigo_barra', '$cod_impuesto', $stop_min, $cantidad_actual,'$categoria','$unidad','ACTIVO')");
 
    header('location:../../views/articulos/frm_articulos.php?registro="no" ');
 

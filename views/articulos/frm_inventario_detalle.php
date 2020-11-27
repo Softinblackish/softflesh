@@ -13,12 +13,12 @@
     <div class="container-inventario">
         <div class="container">
 
-            <form id="form" method="post">
+            <form action="" method="post">
                 <div class="cabeza">
-                    <h2>Pasar Inventario</h2>
+                    <h2>Detalle Inventario</h2>
                 </div>
                 <br>
-                <input type="text" name="filtro" placeholder ="Buscar Articulo" class="form-control">   
+                <input type="text" name="filtro" placeholder ="Buscar" class="form-control">   
                 <button type="submit" class="btn btn">Buscar</button>
             </form>
 
@@ -30,10 +30,13 @@
                         
                         <tr>
                             <th scope="col" style="width:60%;"> Artículos </th>
+                            <th scope="col" style="width:15%;"> Stock </th>
+                            <th scope="col" style="width:15%;"> Cantidad Actual </th>
                             <th scope="col" style="width:60%;"> Categoria </th>
-                            <th scope="col" style="width:15%;"> stock </th>
-                            <th scope="col" style="width:15%;"> Id Barra </th>                        
-                            <th scope="col" style="width:15%;"> Precio compra </th>
+                            <th scope="col" style="width:60%;"> Unidad </th>
+                            <th scope="col" style="width:15%;"> Id Barra </th>
+                            <th scope="col" style="width:15%;"> Precio compra</th>
+                            <th scope="col" style="width:15%;"> Precio Venta </th>
                             <th scope="col" style="width:15%;"> Impuestos </th>
                             <th scope="col" style="width:15%;"> Total </th>
                             <th scope="col" style="width:15%;"> Borrar </th>
@@ -45,8 +48,7 @@
                             if(isset($_GET["filtro"]))
                             {
                                     $id=$_GET["filtro"];
-                                    $consulta_art_temp = $conexion->query("select * from $empresa.tbl_articulos where     
-                                    nombre like %$filtro% or codigo_barra like %$filtro% ");
+                                    $consulta_art_temp = $conexion->query("select * from $empresa.tbl_articulos WHERE  nombre LIKE '%$filtro%' or codigo_barra LIKE '%$filtro%' or categoria LIKE '%$filtro%' or unidad LIKE '%$filtro%' or precio_compra LIKE '%$filtro%'");
                             }else
                             {
                                 $consulta_art_temp = $conexion->query("select * from $empresa.tbl_articulos");
@@ -56,10 +58,13 @@
                         ?>
                                             <tr>
                                             <th><?php  echo $reg_art_temp["nombre"]; ?></th>
-                                            <td><?php  echo $reg_art_temp["categoria"]; ?></td>
                                             <td><?php  echo $reg_art_temp["stop_min"]; ?></td>
+                                            <th><?php  echo $reg_art_temp["cantidad_actual"]; ?></th>
+                                            <th><?php  echo $reg_art_temp["categoria"]; ?></th>
+                                            <th><?php  echo $reg_art_temp["unidad"]; ?></th>
                                             <td><?php  echo $reg_art_temp["codigo_barra"]; ?></td>
                                             <td><?php  echo $reg_art_temp["precio_compra"]; ?></td>
+                                            <td><?php  echo $reg_art_temp["precio_venta"]; ?></td>
                                             <td><?php  echo $reg_art_temp["cod_impuesto"]; ?></td>
                                             <td><?php  echo $reg_art_temp["precio_ganancia"]; ?></td>
                                             <td><a href="../../scripts/compras/borrarArtCompras.php?id_compra=<?php echo $reg_art_temp['id_compra']; ?>&no_compra=<?php echo $reg_art_temp['no_compra']; ?>" class="btn btn-danger"><i class="fa fa-times fa-lg"></i></a></td> 
@@ -71,8 +76,8 @@
                 </table> 
             </div>
             
-            <button><a href="../articulos/frm_inventario_detalle.php" id="btn" class="btn btn" >Ver en detalles</a></button>
-            <button><a href="../administracion/administracion.php" id="btn" class="btn btn" >Volver atras</a></button>
+        
+            <button> <a href="../articulos/frm_inventario.php" id="btn" class="btn btn" >Volver atras</a></button>
             
 
 
