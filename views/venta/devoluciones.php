@@ -80,8 +80,7 @@
     else{
         $lista_venta = $conexion->query("SELECT * FROM $empresa.tbl_nota_credito");
     }
-    $test = $lista_venta->num_rows;
-    echo $test;
+    
     while($row = $lista_venta->fetch_assoc())
         { 
            ?>
@@ -94,19 +93,19 @@
                     <?php if($permisos['modificar_user']== 1)
                         {
                     ?>
-                        <a id="cerrar"  class="btn btn-info" data-toggle="modal" data-target="#example<?php echo $row["id_venta"]; ?>" > <i class="fa fa-eye fa-lg"></i></a>
+                        <a id="cerrar"  class="btn btn-info" data-toggle="modal" data-target="#example<?php echo $row["id_nota_credito"]; ?>" > <i class="fa fa-eye fa-lg"></i></a>
                     <?php 
                         } 
                     ?>
                 </td>
             </tr>
                  <!--Modal editar devolucion   --->
-                <div class="modal fade" id="example<?php echo $row["id_venta"];?>" tabindex="-1" aria-labelledby="example<?php echo $row["id_venta"];?>Label" aria-hidden="true">
+                <div class="modal fade" id="example<?php echo $row["id_nota_credito"];?>" tabindex="-1" aria-labelledby="example<?php echo $row["id_nota_credito"];?>Label" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header" style="background-color:#17a2b8; color:white;">
-                                <h5 class="modal-title" id="example<?php echo $row["id_venta"];?>Label">
-                                    Factura:<?php echo $row["id_venta"]; ?>
+                                <h5 class="modal-title" id="example<?php echo $row["id_nota_credito"];?>Label">
+                                    Devolución:<?php echo $row["id_nota_credito"]; ?>
                                 </h5>
                                 <button type="button" class="close cerrar" data-dismiss="modal" aria-label="Close">
                                     <input type="hidden" name="fac" id="fac" value="<?php echo $row["id_venta_temp"]; ?>">
@@ -120,20 +119,23 @@
                                         <div class="form-group col-md-12"> 
                                             <Strong> 
                                                 <label style="float:left;">Artículos</label> <br>
+                                            </strong>
                                             <hr>
                                             <?php
-                                                $id_temp = $row['id_nota_credito'];
-                                                $consulta_articulos = $conexion->query("SELECT id_articulo, id_venta, articulo, cantidad FROM $empresa.tbl_venta_temp where id_venta = $id_temp");
-                                                while($list_articulos = $consulta_articulos->fetch_assoc())
+                                                $id_temp = $row['id_articulos_lista'];
+                                                $consulta_det = $conexion->query("SELECT * FROM $empresa.tbl_devoluciones_det where id_venta_temp = $id_temp");
+                                                while($list_articulos = $consulta_det->fetch_assoc())
                                                 {
-                                                    echo $list_articulos['articulo'];
+                                                    $id_art_det = $list_articulos['id_articulo'];
+                                                    $consulta_arti = $conexion->query("SELECT nombre from $empresa.tbl_articulos WHERE id_articulo = $id_art_det");
+                                                    $resultado_arti = $consulta_arti->fetch_assoc();
+                                                    echo "<strong>".$resultado_arti["nombre"]."</strong><br> Cantidad devuelta: ". $list_articulos["cantidad"]; ?> <br><hr> <?php
                                                 }
                                             ?>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary cerrar" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                                        <input type="submit" class="btn btn-primary" value="Registrar devolución">
                                     </div>
                                 </form>
                             </div>

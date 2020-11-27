@@ -7,7 +7,6 @@
     background-color:white;
     padding:40px; 
     border-radius:7px;
-   
     overflow:scroll;
     overflow-x:hidden;
 }
@@ -19,7 +18,7 @@ form{
     float:right;
 }
 #buscar{
-    background-color:#0e444c;
+    background-color: #882f88;
     color:white;
 }
 .thead{
