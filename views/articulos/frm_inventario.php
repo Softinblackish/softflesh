@@ -29,14 +29,10 @@
                     <thead>      
                         
                         <tr>
-                            <th scope="col" style="width:60%;"> Artículos </th>
-                            <th scope="col" style="width:60%;"> Categoria </th>
-                            <th scope="col" style="width:15%;"> stock </th>
-                            <th scope="col" style="width:15%;"> Id Barra </th>                        
-                            <th scope="col" style="width:15%;"> Precio compra </th>
-                            <th scope="col" style="width:15%;"> Impuestos </th>
-                            <th scope="col" style="width:15%;"> Total </th>
-                            <th scope="col" style="width:15%;"> Borrar </th>
+                            <th scope="col" style="width:50%;"> Artículos </th>
+                            <th scope="col" > Categoria </th> 
+                            <th scope="col" style="width:20%;"> Cant. en sistema </th>
+                            <th scope="col" > Cant. fisica </th>                       
                         </tr>
 
                     </thead>
@@ -50,19 +46,20 @@
                             }else
                             {
                                 $consulta_art_temp = $conexion->query("select * from $empresa.tbl_articulos");
-                            }    
+                            }
+                            ?>
+                            <form action="../../scripts/articulos/pase_inventario.php" method="POST">   
+                            <?php
                             while($reg_art_temp = $consulta_art_temp->fetch_assoc())
                                     {
                         ?>
                                             <tr>
                                             <th><?php  echo $reg_art_temp["nombre"]; ?></th>
                                             <td><?php  echo $reg_art_temp["categoria"]; ?></td>
-                                            <td><?php  echo $reg_art_temp["stop_min"]; ?></td>
-                                            <td><?php  echo $reg_art_temp["codigo_barra"]; ?></td>
-                                            <td><?php  echo $reg_art_temp["precio_compra"]; ?></td>
-                                            <td><?php  echo $reg_art_temp["cod_impuesto"]; ?></td>
-                                            <td><?php  echo $reg_art_temp["precio_ganancia"]; ?></td>
-                                            <td><a href="../../scripts/compras/borrarArtCompras.php?id_compra=<?php echo $reg_art_temp['id_compra']; ?>&no_compra=<?php echo $reg_art_temp['no_compra']; ?>" class="btn btn-danger"><i class="fa fa-times fa-lg"></i></a></td> 
+                                            <td><?php  echo $reg_art_temp["cantidad_actual"]; ?></td>
+                                            <td> <input required type="number" min = '0' class="form-control" name="cantidad<?php  echo $reg_art_temp["id_articulo"] ; ?>">   </td>
+                                            <input required type="hidden" value="<?php  echo $reg_art_temp["id_articulo"] ; ?>"name="articulo<?php  echo $reg_art_temp["id_articulo"] ; ?>" > 
+                                            
                                             </tr>
                         <?php
                                     }
@@ -71,8 +68,8 @@
                 </table> 
             </div>
             
-            <a style="background-color:#882f88;" href="../articulos/frm_inventario_detalle.php"  class="btn btn" >Ver en detalles</a>
-            
+            <input type="submit" style="background-color:#882f88;"   class="btn btn" value="Registrar" >
+            </form>
             
 
 

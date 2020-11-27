@@ -443,8 +443,27 @@ $perm = $conexion->query("
             `id_articulos_lista` INT(10) NOT NULL ,  
             `descripcion` VARCHAR(300) , 
             PRIMARY KEY (`id_nota_credito`)) ENGINE = InnoDB;
-
             ");
+
+            $tabla_pase_inventario = $conexion->query("
+            CREATE TABLE  $nombre_sin_espacio.tbl_pase_inventario ( 
+              `id_pase_inventario` INT NOT NULL AUTO_INCREMENT , 
+              `fecha_creacion` TIMESTAMP NOT NULL , 
+              `creado_por` VARCHAR(50) NULL , 
+              `irregularidades` INT(10) NULL DEFAULT '0' ,
+             PRIMARY KEY (`id_pase_inventario`)) ENGINE = InnoDB;
+             ");
+
+             $tabla_pase_inventario_det = $conexion->query("
+             CREATE TABLE $nombre_sin_espacio.tbl_pase_inventario_det ( 
+               `id_pase_inventario_det` INT NOT NULL AUTO_INCREMENT , 
+               `id_articulo` INT NOT NULL , 
+               `cantidad_fisica` INT NOT NULL , 
+               `diferencia` INT NOT NULL , 
+               `categoria` INT NOT NULL , 
+               `id_identificador` INT(15) NOT NULL ,
+               `cantidad_en_sistema` INT NOT NULL ) ENGINE = InnoDB;
+               ");
 
 
           header("location:../views/creador_u.php?empresa=$nombre_sin_espacio");
