@@ -44,7 +44,7 @@
                     <input type="number" id="precioCompra" name="precio_compra" placeholder ="precio compra" class="form-control" >
                 </div>
                 <div class="form-group col-md-4">
-                <label for="inputState">Precio:</label>
+                <label for="inputState">Precio Venta:</label>
                     <input type="number" id="precioVenta" name="precio" placeholder ="precio" class="form-control" >
                 </div>
                 <div class="form-group col-md-4">

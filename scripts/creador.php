@@ -287,14 +287,15 @@ $perm = $conexion->query("
        PRIMARY KEY (`id_almacen`)) ENGINE = InnoDB;
 
       ");
+
       $tabla_categoria = $conexion->query("
       CREATE TABLE $nombre_sin_espacio.tbl_categorias (
-        `id_categoria` int(11) NOT NULL,
+        `id_categoria` int(11) NOT NULL AUTO_INCREMENT,
         `nombre_categoria` varchar(200) NOT NULL,
         `descripcion_categoria` varchar(100),
         `creada_por` varchar(200) NOT NULL,
-        `fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+        `fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+        PRIMARY KEY (`id_categoria`)) ENGINE = InnoDB;
       ");
 
       $tabla_categoria = $conexion->query("
