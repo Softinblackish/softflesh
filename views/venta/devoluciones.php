@@ -80,28 +80,37 @@
     else{
         $lista_venta = $conexion->query("SELECT * FROM $empresa.tbl_nota_credito");
     }
-
+    $test = $lista_venta->num_rows;
+    echo $test;
     while($row = $lista_venta->fetch_assoc())
         { 
-           
-?>
-        <!-- Head Tabla devoluciones   --->
+           ?>
             <tr>
                 <th scope="row"><?php echo $row["id_nota_credito"]; ?></th>
                 <td><?php echo $row["comprobante"]; ?></td>
                 <td><?php echo $row["comprobante_factura"]; ?></td>
                 <td><?php echo $row["fecha_creacion"]; ?></td>
-        <td><?php if($permisos['modificar_user']== 1){ ?><a id="cerrar"  class="btn btn-info" data-toggle="modal" data-target="#example<?php echo $row["id_venta"]; ?>" > <i class="fa fa-eye fa-lg"></i></a><?php } ?></td>
+                <td>
+                    <?php if($permisos['modificar_user']== 1)
+                        {
+                    ?>
+                        <a id="cerrar"  class="btn btn-info" data-toggle="modal" data-target="#example<?php echo $row["id_venta"]; ?>" > <i class="fa fa-eye fa-lg"></i></a>
+                    <?php 
+                        } 
+                    ?>
+                </td>
             </tr>
-        <!--Modal editar devolucion   --->
+                 <!--Modal editar devolucion   --->
                 <div class="modal fade" id="example<?php echo $row["id_venta"];?>" tabindex="-1" aria-labelledby="example<?php echo $row["id_venta"];?>Label" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header" style="background-color:#17a2b8; color:white;">
-                                <h5 class="modal-title" id="example<?php echo $row["id_venta"];?>Label">Factura:<?php echo $row["id_venta"]; ?></h5>
+                                <h5 class="modal-title" id="example<?php echo $row["id_venta"];?>Label">
+                                    Factura:<?php echo $row["id_venta"]; ?>
+                                </h5>
                                 <button type="button" class="close cerrar" data-dismiss="modal" aria-label="Close">
-                                <input type="hidden" name="fac" id="fac" value="<?php echo $row["id_venta_temp"]; ?>">
-                                <span aria-hidden="true">&times;</span>
+                                    <input type="hidden" name="fac" id="fac" value="<?php echo $row["id_venta_temp"]; ?>">
+                                    <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
@@ -109,79 +118,31 @@
                                 <form action="../../scripts/ventas/devolucion.php" method="post">
                                     <div class="form-row">
                                         <div class="form-group col-md-12"> 
-                                           <Strong> <label style="float:left;">Artículos</label> <br>
+                                            <Strong> 
+                                                <label style="float:left;">Artículos</label> <br>
                                             <hr>
                                             <?php
-                                            $id_temp = $row['id_venta_temp'];
-                                            $consulta_articulos = $conexion->query("SELECT id_articulo, id_venta, articulo, cantidad FROM $empresa.tbl_venta_temp where id_venta = $id_temp");
-                                            while($list_articulos = $consulta_articulos->fetch_assoc())
-                                            {
-                                            ?> 
-                                            
-                                              <input type="hidden" name="venta_temp" value="<?php echo $list_articulos['id_venta']?>">
-                                              <input type="hidden" name="articulo_<?php echo $list_articulos['id_articulo']?>" value="<?php echo $list_articulos['id_articulo']?>">
-                                              <input class="form-control col-md-12 articulo<?php echo $list_articulos['id_articulo']?>" type="number" value="<?php echo $list_articulos['cantidad']?>" min="0" max="<?php echo $list_articulos['cantidad']?>" style="float:left;" name="cantidad_<?php echo $list_articulos['id_articulo']?>">
-                                              <?php 
-                                                echo $list_articulos['articulo'];
-                                              ?> 
-                                              <br><hr>
-                                             <?php
-                                            }
+                                                $id_temp = $row['id_nota_credito'];
+                                                $consulta_articulos = $conexion->query("SELECT id_articulo, id_venta, articulo, cantidad FROM $empresa.tbl_venta_temp where id_venta = $id_temp");
+                                                while($list_articulos = $consulta_articulos->fetch_assoc())
+                                                {
+                                                    echo $list_articulos['articulo'];
+                                                }
                                             ?>
-                                    
                                         </div>
-                                       
                                     </div>
-                            
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary cerrar" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                                <input type="submit" class="btn btn-primary" value="Registrar devolución">
-
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary cerrar" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
+                                        <input type="submit" class="btn btn-primary" value="Registrar devolución">
+                                    </div>
+                                </form>
                             </div>
-                            </form>
-
                         </div>
                     </div>
                 </div>
-</div>
-        <!--Modal Eliminar usuario   --->
-        <div class="modal fade" id="eliminar<?php echo $row["id_usuario"];?>" tabindex="-1" aria-labelledby="eliminar<?php echo $row["id_usuario"];?>Label" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="eliminar<?php echo $row["id_usuario"];?>Label">Eliminar</h5>
-                                <button type="button" class="close cerrar" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                Seguro que desea eliminar el usuario de:<strong> <?php echo $row["nombre_usuario"];?> </strong>?
-                            </div>
-                            
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary cerrar" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                                <a href="../../scripts/usuarios/eliminar_usuarios.php?id=<?php echo $row["id_usuario"]?>" class="btn btn-danger" value="Guardar">Borrar</a>
-                            </div>
-                            </form>
-
-                        </div>
-                    </div>
-                </div>
-                
-</div>
-
-<?php
-        }
-?>
+                <?php
+                }
+            ?>
   </tbody>
 </table>
 
-<nav aria-label="Page navigation example">
-  <ul class="pagination">
-    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-  </ul>
-</nav>
