@@ -22,7 +22,7 @@ $(document).ready(function() {
         var var_precioVenta = parseFloat($("#precioVenta").val()); //80
         var var_porciento = var_precioVenta * var_porcentaje; //80 * 0.08 = 6.4
         var var_gananciaAnt = parseFloat($("#ganancia").val()); //40
-        var var_gananciaAct = parseFloat($("#ganancia").val()) + var_porciento; //40 + 6.4 = 46.4
+        var var_gananciaAct = parseFloat($("#precioVenta").val()) + var_porciento; //40 + 6.4 = 46.4
 
         $("#gananciaImp").val(var_gananciaAct);
     });

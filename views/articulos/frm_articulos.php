@@ -37,22 +37,19 @@
             </div>
 
             <div class="form-row">
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-4">
                     <input type="number" id="precioCompra" name="precio_compra" placeholder ="precio compra" class="form-control" >
                 </div>
-                <div class="form-group col-md-3">
-                    <input type="number" id="precioVenta" name="precio_venta" placeholder ="precio venta" class="form-control" >
-                </div>
-                <div class="form-group col-md-3">
-                    <input id="ganancia" name="ganancia" placeholder ="ganancia" class="form-control" readonly>
-                </div>
-                <div class="form-group col-md-3">
-                    <input type="number" name="stop_min" placeholder ="Stock minimo" class="form-control" >
-                </div>
-                <div class="form-group col-md-8">
-                    <input id="gananciaImp" name="ganancia" placeholder ="ganancia + Impuestos" class="form-control" readonly>
+                <div class="form-group col-md-4">
+                    <input type="number" id="precioVenta" name="precio" placeholder ="precio" class="form-control" >
                 </div>
                 <div class="form-group col-md-4">
+                    <input id="ganancia" name="ganancia" placeholder ="ganancia" class="form-control" readonly>
+                </div>
+                <div class="form-group col-md-6">
+                    <input type="number" name="stop_min" placeholder ="Stock minimo" class="form-control" >
+                </div>
+                <div class="form-group col-md-6">
                     <input type="number" name="cantidad_actual" placeholder ="cantidad Actual" class="form-control" >
                 </div>
             </div>
@@ -60,10 +57,10 @@
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <select id="porcentaje" class="form-control" name="cod_impuesto">
-                    <?php $nombre_impuesto = $conexion->query("SELECT nom_codigo, porciento FROM $empresa.tbl_cod_impuestos"); 
+                    <?php $nombre_impuesto = $conexion->query("SELECT nom_codigo, porciento, id_cod_impuesto FROM $empresa.tbl_cod_impuestos"); 
                         while($row = $nombre_impuesto->fetch_assoc()) {
                         ?>
-                        <option value = <?php echo $row["porciento"];  ?> ><?php echo $row["nom_codigo"];  ?></option>
+                        <option value = <?php echo $row["id_cod_impuesto"];  ?> ><?php echo $row["nom_codigo"];  ?></option>
                         <?php } ?>
                     </select>
                 </div>
@@ -125,7 +122,6 @@
             <br>
             <br>
             <input type="submit" id="btn" class="btn btn" value="Registrar articulo" >
-            <a href="../administracion/administracion.php" id="btn" class="btn btn" >Volver atras</a>
             <br>
         </form>
     </div>    

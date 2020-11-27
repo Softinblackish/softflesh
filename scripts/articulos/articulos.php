@@ -5,7 +5,7 @@
 
     $nombre=$_POST['nombre']; 
     $precio_compra=$_POST['precio_compra'];
-    $precio_venta=$_POST['precio_venta'];
+    $precio=$_POST['precio'];
     $ganancia=$_POST['ganancia'];
     $descripcion=$_POST["nota"]; 
     $cod_impuesto=$_POST['cod_impuesto']; 
@@ -15,11 +15,17 @@
     $categoria=$_POST['categoria']; 
     $unidad=$_POST['unidad'];
    
-
-    //echo $empresa . "   " .$nombre. "     ".$precio_compra."     ".$precio_venta."     ".$ganancia."    ".$descripcion. "   " .$stop_min. "   " .$codigo_barra."   ".$categoria."   ".$unidad. "   ".$cod_impuesto;
+    $lista_impuestos = $conexion->query("SELECT * FROM $empresa.tbl_cod_impuestos WHERE id_cod_impuesto = $cod_impuesto");
+    $resultado_impuesto = $lista_impuestos->fetch_assoc();
+    $impuestos =$resultado_impuesto["porciento"]/100;
+    $valor_impuestos = $impuestos * $precio;
+    $precio_total = $valor_impuestos + $precio;
+   
+     
+    //echo $empresa . "   " .$nombre. "   ".$precio."  ".$precio_compra."     ".$precio_venta."     ".$ganancia."    ".$descripcion. "   " .$stop_min. "   " .$codigo_barra."   ".$categoria."   ".$unidad. "   ".$cod_impuesto;
   
-    $Reg_articulos = $conexion->query( "INSERT into $empresa.tbl_articulos (nombre, precio_compra, precio_venta , precio_ganancia, descripcion, codigo_barra, cod_impuesto, stop_min, cantidad_actual, categoria, unidad, status)
-            values ('$nombre', $precio_compra, $precio_venta, $ganancia, '$descripcion', '$codigo_barra', '$cod_impuesto', $stop_min, $cantidad_actual,'$categoria','$unidad','ACTIVO')");
+    $Reg_articulos = $conexion->query( "INSERT into $empresa.tbl_articulos (nombre, precio, precio_compra, precio_ganancia, descripcion, codigo_barra, cod_impuesto, stop_min, cantidad_actual, categoria, unidad, status)
+            values ('$nombre', $precio_total, $precio_compra, $ganancia, '$descripcion', '$codigo_barra', '$cod_impuesto', $stop_min, $cantidad_actual,'$categoria','$unidad','ACTIVO')");
 
    header('location:../../views/articulos/frm_articulos.php?registro="no" ');
 

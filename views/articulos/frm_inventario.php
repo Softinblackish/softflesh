@@ -71,8 +71,8 @@
                 </table> 
             </div>
             
-            <button><a href="../articulos/frm_inventario_detalle.php" id="btn" class="btn btn" >Ver en detalles</a></button>
-            <button><a href="../administracion/administracion.php" id="btn" class="btn btn" >Volver atras</a></button>
+            <a style="background-color:#882f88;" href="../articulos/frm_inventario_detalle.php"  class="btn btn" >Ver en detalles</a>
+            
             
 
 

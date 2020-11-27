@@ -128,9 +128,9 @@
                             
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary cerrar" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                                <a href="../../scripts/articulos/eliminar.php?id=<?php echo $row["codigo_barra"]?>" class="btn btn-danger" value="borrar">Borrar</a>
+                                <a href="../../scripts/articulos/eliminar.php?id=<?php echo $row["id_articulo"]?>" class="btn btn-danger">Borrar</a>
                             </div>
-                            </form>
+                            
 
                         </div>
                     </div>
@@ -144,8 +144,6 @@
 
 </table>
 
-<a href="../administracion/administracion.php" id="buscar" class="btn btn" >
-  Volver atras
-</a>
+
 
 <!-- Modal -->

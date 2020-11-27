@@ -35,7 +35,7 @@
     $empresa = $_SESSION["empresa_db"];
     if(isset($_POST["filtro"])){
         $filtro= $_POST["filtro"];
-        $lista_articulos = $conexion->query("SELECT * FROM $empresa.tbl_suplidores WHERE nombre_sup LIKE '%$filtro%'");
+        $lista_articulos = $conexion->query("SELECT * FROM $empresa.tbl_suplidores nombre_sup LIKE '%$filtro%'");
     }
     else{
         $lista_articulos = $conexion->query("SELECT * FROM $empresa.tbl_suplidores");
