@@ -2,8 +2,13 @@
 
 
     //$conexion = new mysqli("localhost","root","1234");
+<<<<<<< HEAD
     $conexion = new mysqli("localhost","root","");
 
+=======
+      $conexion = new mysqli("localhost","root","");
+    //$conexion = new mysqli("localhost","root","Freddy0770");
+>>>>>>> d6d0f1a12bb3eda177afff0700fc2bff789fdccf
     
 
 
