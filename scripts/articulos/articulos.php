@@ -24,7 +24,7 @@
      
     //echo $empresa . "   " .$nombre. "   ".$precio."  ".$precio_compra."     ".$precio_venta."     ".$ganancia."    ".$descripcion. "   " .$stop_min. "   " .$codigo_barra."   ".$categoria."   ".$unidad. "   ".$cod_impuesto;
   
-    $Reg_articulos = $conexion->query( "INSERT into $empresa.tbl_articulos (nombre, precio, precio_compra, precio_ganancia, descripcion, codigo_barra, cod_impuesto, stop_min, cantidad_actual, categoria, unidad, status)
+    $Reg_articulos = $conexion->query( "INSERT into $empresa.tbl_articulos (nombre, precio, precio_compra, descripcion, codigo_barra, cod_impuesto, stop_min, cantidad_actual, categoria, unidad, status)
             values ('$nombre', $precio_total, $precio_compra, $ganancia, '$descripcion', '$codigo_barra', '$cod_impuesto', $stop_min, $cantidad_actual,'$categoria','$unidad','ACTIVO')");
 
    //header('location:../../views/articulos/frm_articulos.php?registro="no" ');
