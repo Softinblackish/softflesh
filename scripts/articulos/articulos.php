@@ -27,6 +27,6 @@
     $Reg_articulos = $conexion->query( "INSERT into $empresa.tbl_articulos (nombre, precio, precio_compra, descripcion, codigo_barra, cod_impuesto, stop_min, cantidad_actual, categoria, unidad, status)
             values ('$nombre', $precio_total, $precio_compra, $ganancia, '$descripcion', '$codigo_barra', '$cod_impuesto', $stop_min, $cantidad_actual,'$categoria','$unidad','ACTIVO')");
 
-   //header('location:../../views/articulos/frm_articulos.php?registro="no" ');
+   header('location:../../views/articulos/frm_articulos.php?registro="no" ');
 
 ?>

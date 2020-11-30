@@ -46,7 +46,7 @@
                 <div class="form-group col-md-4">
                 <label for="inputState">Precio:</label>
                     <input type="number" id="precioVenta" name="precio" placeholder ="" class="form-control" >
-                </div>
+                </div>git
                 <div class="form-group col-md-4">
                 <label for="inputState">Ganancia:</label>
                     <input id="ganancia" name="ganancia" placeholder ="" class="form-control" readonly>
