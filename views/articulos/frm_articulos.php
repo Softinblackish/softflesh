@@ -30,34 +30,34 @@
             <div class="form-row">
                 <div class="form-group col-md-8">
                     <label for="inputState">Nombre Articulo:</label>
-                    <input type="text" name="nombre" placeholder ="Nombre del artículo" class="form-control">
+                    <input type="text" name="nombre" placeholder ="" class="form-control">
                 </div>
                 <div class="form-group col-md-4">
                 <label for="inputState">Codigo Barra:</label>
-                    <input type="text" name="codigo_barra" placeholder ="Código Barra" class="form-control" >
+                    <input type="text" name="codigo_barra" placeholder ="" class="form-control" >
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group col-md-4">
                 <label for="inputState">Precio Compra:</label>
-                    <input type="number" id="precioCompra" name="precio_compra" placeholder ="precio compra" class="form-control" >
+                    <input type="number" id="precioCompra" name="precio_compra" placeholder ="" class="form-control" >
                 </div>
                 <div class="form-group col-md-4">
-                <label for="inputState">Precio Venta:</label>
-                    <input type="number" id="precioVenta" name="precio" placeholder ="precio" class="form-control" >
+                <label for="inputState">Precio:</label>
+                    <input type="number" id="precioVenta" name="precio" placeholder ="" class="form-control" >
                 </div>
                 <div class="form-group col-md-4">
                 <label for="inputState">Ganancia:</label>
-                    <input id="ganancia" name="ganancia" placeholder ="ganancia" class="form-control" readonly>
+                    <input id="ganancia" name="ganancia" placeholder ="" class="form-control" readonly>
                 </div>
                 <div class="form-group col-md-6">
                 <label for="inputState">Stock Minimo:</label>
-                    <input type="number" name="stop_min" placeholder ="Stock minimo" class="form-control" >
+                    <input type="number" name="stop_min" placeholder ="" class="form-control" >
                 </div>
                 <div class="form-group col-md-6">
                 <label for="inputState">Cantidad Actual:</label>
-                    <input type="number" name="cantidad_actual" placeholder ="cantidad Actual" class="form-control" >
+                    <input type="number" name="cantidad_actual" placeholder ="" class="form-control" >
                 </div>
             </div>
 
