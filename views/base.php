@@ -133,7 +133,15 @@
                                 <a href="../articulos/frm_inventario.php"><div id="pasar_inventario" class="menu_lv3 menu_inventario">Pasar inventario</div></a>
                             
                         </div>
-                        <a href="../dashboard/dashboard.php"> <div class="menu_lv1" style="color:white;"><i class="fa fa-bar-chart fa-lg" aria-hidden="true"></i> Contabilidad</div></a>
+                        <a href="../dashboard/dashboard.php"> <div class="menu_lv1" style="color:white;"><i class="fa fa-bar-chart fa-lg" aria-hidden="true"></i> Contabilidad
+                        
+                                <a href="../articulos/frm_articulos.php"><div id="agregar_articulo" class="menu_lv3 menu_inventario">Reporte 606</div></a>
+                                <a href="../articulos/frm_consultar_articulos.php"><div id="lista_articulos" class="menu_lv3 menu_inventario">Reporte 607</div></a>
+                                <div id="cargar_articulo" class="menu_lv3 menu_inventario">Reporte 608</div>
+                                <a href="../articulos/frm_inventario.php"><div id="pasar_inventario" class="menu_lv3 menu_inventario">Libro Diario</div></a>
+                                <a href="../articulos/frm_inventario.php"><div id="pasar_inventario" class="menu_lv3 menu_inventario">Estados Financieros</div></a>
+
+                        </div></a>
                         <a href="../dashboard/dashboard.php"> <div id="inventario" class="menu_lv1" style="color:white;"><i class="fa fa-bar-chart fa-lg" aria-hidden="true"></i> Bancos </div></a>
                         <a href="../dashboard/dashboard.php"> <div id="inventario" class="menu_lv1" style="color:white;"><i class="fa fa-bar-chart fa-lg" aria-hidden="true"></i> Proyectos </div></a>
                         <a href="../dashboard/dashboard.php"> <div id="inventario" class="menu_lv1" style="color:white;"><i class="fa fa-bar-chart fa-lg" aria-hidden="true"></i> Producción </div></a>
