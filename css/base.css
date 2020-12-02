@@ -10,6 +10,11 @@
     border-bottom:solid;
     border-bottom-color:grey;
 }
+.botones-top
+    {
+        background-color:#882f88 !important;
+        color:white !important;
+    }
 #nombre_empresa{
     padding-bottom: 17px;
     padding-top: 10px;
@@ -69,7 +74,9 @@ aside{
     padding-left: 70px;
     margin-left:-50px;
     padding-bottom:7px;
-    background-color: #125c67 ;
+    background-color:rgb(87, 220, 200);
+    color:black;
+    font-style: oblique;
 }
 #menu-user{
     background-color:#882f88;

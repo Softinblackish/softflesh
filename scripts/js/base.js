@@ -25,6 +25,10 @@ $(document).ready(function() {
         $(".menu_inventario").toggle(); 
      });
 
+     $("#contabilidad").click(function() {
+      $(".menu_contabilidad").toggle(); 
+   });
+
      $("#usuario").click(function() {
       $("#menu-user").toggle(); 
    });
