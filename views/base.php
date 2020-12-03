@@ -132,10 +132,10 @@
                         <div id="contabilidad" class="menu_lv1"><i class="fa fa-bar-chart fa-lg" aria-hidden="true"></i> Contabilidad
                         
                                 <a><div class="menu_lv3 menu_contabilidad">Reporte 606</div></a>
-                                <a><div class="menu_lv3 menu_contabilidad">Reporte 607</div></a>
+                                <a href="../contabilidad/reporte_607.php"><div class="menu_lv3 menu_contabilidad">Reporte 607</div></a>
                                    <div class="menu_lv3 menu_contabilidad">Reporte 608</div>
                                    <div class="menu_lv3 menu_contabilidad">Balance Géneral</div>
-                                <a><div class="menu_lv3 menu_contabilidad">Libro Diario</div></a>
+                                <a><div class="menu_lv3 menu_contabilidad">Entrada de Diario</div></a>
                                 <a><div class="menu_lv3 menu_contabilidad">Estados Financieros</div></a>
 
                         </div>

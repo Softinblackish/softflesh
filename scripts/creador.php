@@ -26,7 +26,6 @@
         `nombre` varchar(100),
         `precio` float,
         `precio_compra` DOUBLE,
-        `precio_ganancia` DOUBLE,
         `precio_venta` DOUBLE,
         `descripcion` varchar(200),
         `cod_impuesto` varchar(100),
