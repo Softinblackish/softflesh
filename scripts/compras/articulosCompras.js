@@ -19,9 +19,10 @@ $(document).ready(function(){
                     var json = JSON.parse(res);
                     $("#precio_compra").val(json[0].precio);
                     $("#stock").val(json[0].stop_min);
+                    //alert(json[0].precio);
                     $("#impuesto").val(json[0].cod_impuesto);
                     $("#descripcion").val(json[0].descripcion);
-                    //stop_min cod_impuesto
+                    //cantidad_actual cod_impuesto
                     $("#cantidad").keyup(function() {
                       var var_precioCompra = parseFloat($("#precio_compra").val());
                       var var_cantidad = parseFloat($("#cantidad").val());
