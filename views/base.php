@@ -48,9 +48,9 @@
                 <div id="logo" class="option_top hijo1"><img src="../../img/logo.png" width="60" style="margin-top:-10px;"> <i style="margin-left:50px" class="fa fa-bars fa-2x" aria-hidden="true"></i></div>
                 
                 <div id="notificaciones" class="option_top hijo1">
-                        <button class="btn btn-info botones-top">Cobros pendientes(35)</button>
-                        <button class="btn btn-info botones-top">Pagos a realizar(12)</button>
-                        <button class="btn btn-info botones-top">Artículos por debajo del límite(3)</button>
+                        <button class="btn  botones-top">Cobros pendientes(35)</button>
+                        <button class="btn  botones-top">Pagos a realizar(12)</button>
+                        <button class="btn botones-top">Artículos por debajo del límite(3)</button>
                        <center> <i class="fa fa-bell fa-lg"></i></center>
                 </div>
                 <div  id="usuario" class="option_top hijo1">
@@ -69,15 +69,11 @@
         <aside style="float:left;" >
               <nav>
                 <div id="menu_lateral">
-                    <div id="nombre_empresa"><?php echo $_SESSION["empresa"]; ?></div>
+                    <div id="nombre_empresa"><Strong><?php echo $_SESSION["empresa"]; ?></strong></div>
                         <div id="menu">
                                 <?php if($permisos['clientes']== 1){ ?> <div id="clientes" class="menu_lv1"><i class="fa fa-users fa-lg" aria-hidden="true"></i> Clientes
-                                        <div id="agregar_clientes"class="menu_lv3 menu_clientes">
-                                                <a href="../clientes/crear_clientes.php"> Agregar cliente</a>
-                                        </div>
-                                        <div id="lista_clientes" class="menu_lv3 menu_clientes">
-                                                <a href="../clientes/ver_clientes.php">Ver lista de clientes</a>
-                                        </div>
+                                                <a href="../clientes/crear_clientes.php"><div class="menu_lv3 menu_clientes"> Agregar cliente</div></a>
+                                                <a href="../clientes/ver_clientes.php"><div class="menu_lv3 menu_clientes" >Ver lista de clientes</div></a>
                                 </div><?php }?>
 
                                 <?php if($permisos['suplidores']== 1){ ?> <div id="suplidores" class="menu_lv1"><i class="fa fa-handshake-o fa-lg" aria-hidden="true"></i> Suplidores
@@ -133,7 +129,16 @@
                                 <a href="../articulos/frm_inventario.php"><div id="pasar_inventario" class="menu_lv3 menu_inventario">Pasar inventario</div></a>
                             
                         </div>
-                        <a href="../dashboard/dashboard.php"> <div class="menu_lv1" style="color:white;"><i class="fa fa-bar-chart fa-lg" aria-hidden="true"></i> Contabilidad</div></a>
+                        <div id="contabilidad" class="menu_lv1"><i class="fa fa-bar-chart fa-lg" aria-hidden="true"></i> Contabilidad
+                        
+                                <a><div class="menu_lv3 menu_contabilidad">Reporte 606</div></a>
+                                <a href="../contabilidad/reporte_607.php"><div class="menu_lv3 menu_contabilidad">Reporte 607</div></a>
+                                   <div class="menu_lv3 menu_contabilidad">Reporte 608</div>
+                                   <div class="menu_lv3 menu_contabilidad">Balance Géneral</div>
+                                <a><div class="menu_lv3 menu_contabilidad">Entrada de Diario</div></a>
+                                <a><div class="menu_lv3 menu_contabilidad">Estados Financieros</div></a>
+
+                        </div>
                         <a href="../dashboard/dashboard.php"> <div id="inventario" class="menu_lv1" style="color:white;"><i class="fa fa-bar-chart fa-lg" aria-hidden="true"></i> Bancos </div></a>
                         <a href="../dashboard/dashboard.php"> <div id="inventario" class="menu_lv1" style="color:white;"><i class="fa fa-bar-chart fa-lg" aria-hidden="true"></i> Proyectos </div></a>
                         <a href="../dashboard/dashboard.php"> <div id="inventario" class="menu_lv1" style="color:white;"><i class="fa fa-bar-chart fa-lg" aria-hidden="true"></i> Producción </div></a>

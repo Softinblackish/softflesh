@@ -54,6 +54,7 @@
                                 <th scope="col" style="width:10%;"> Cantidad </th>
                                 <th scope="col" style="width:10%;"> Precio </th>
                                 <th scope="col" style="width:10%;"> Total </th>
+                                <th scope="col" style="width:60%;"> Cant a devolver </th>
                                 <th scope="col" style="width:60%;"> Accion </th>
                             </tr>
 
@@ -102,12 +103,13 @@
                                                     <td><?php echo $row["cantidad"]; ?></td>
                                                     <td><?php echo $row["precio_compra"]; ?></td>
                                                     <td><?php  echo $row["total"]; ?></td>
-                                                    
+                                                    <td> <input required type="number" name="cantidad" min = '0' class="form-control" name=""></td>
                                                     
                                                     <!--Boton actualizar informacion-->
-                                                    <td><a id="cerrar"  class="btn btn-info" data-toggle="modal" data-target="#example<?php echo $row["no_compra"]; ?>" > <i class="fa fa-eye fa-lg"></i></a>  
+                                                    <td>
+                                                    <a href="../../scripts/compras/devoluciones.php?id=<?php echo $row["no_compra"]?>" id="actualizar"  class="btn btn-info" data-toggle="modal" data-target="#example<?php echo $row["no_compra"]; ?>" > <i class="fa fa-eye fa-lg"></i></a>  
                                                     <!--Boton eliminar-->
-                                                    <a                 class="btn btn-danger"data-toggle="modal" data-target="#eliminar<?php echo $row["no_compra"]; ?>" > <i class="fa fa-trash-o fa-lg"></i></a> </td>
+                                                    </td>
                                                 </tr>
 
 
