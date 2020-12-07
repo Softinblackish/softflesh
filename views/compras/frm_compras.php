@@ -160,7 +160,7 @@
                     <input  name="impuestodf" class="form-control"  placeholder="impuesto" id ="impuesto" readonly>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="inputState">Stock:</label>
+                    <label for="inputState">Cantidad Actual:</label>
                     <input type="number" name="stock" class="form-control"  placeholder="Stock" id ="stock" readonly>
                 </div>
                 
