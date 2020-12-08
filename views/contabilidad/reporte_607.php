@@ -79,7 +79,7 @@
         {
             $desde = $_POST["desde"];
             $hasta = $_POST["hasta"];   
-            $lista_venta = $conexion->query("SELECT * FROM $empresa.tbl_ventas WHERE fecha_creacion >= '$desde' and fecha_creacion <= '$hasta' ");
+            $lista_venta = $conexion->query("SELECT * FROM $empresa.tbl_ventas WHERE fecha_creacion >= '$desde' and fecha_creacion <= '$hasta' and tipo_comprobante <> 'Consumidor final'");
         }
 
         if( $_POST["desde"])
@@ -101,7 +101,7 @@
         }
     }
     else{
-        $lista_venta = $conexion->query("SELECT * FROM $empresa.tbl_ventas order by id_venta desc limit 10 ");
+        $lista_venta = $conexion->query("SELECT * FROM $empresa.tbl_ventas  where tipo_comprobante <> 'Consumidor final' order by id_venta desc");
     }
     $contador = 1;
     while($row = $lista_venta->fetch_assoc())
