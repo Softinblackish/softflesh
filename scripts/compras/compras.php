@@ -72,7 +72,7 @@
             $Reg_art_compras = $conexion->query("insert into $empresa.tbl_art_compras (no_compra, articulo, precio_compra, cantidad,itbis, total, stock, caducidad, nota)
             values ($no_compra, '$articulo',  $precio_compra, $cantidad,$itbis, $total ,$stock, '$caducidad', '$nota')
             "); 
-            $ActualizarCantidades($cantidad,$articulo);
+            ActualizarCantidades($cantidad,$articulo);
         }
 
         

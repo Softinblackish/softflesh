@@ -9,7 +9,7 @@ try {
 //precio,cantidad_actual,cod_impuesto,descripcion
     if(isset($_POST["articulo"])) {    
         $articulo = $_POST["articulo"];
-        $consulta_articulos= $conexion->query("SELECT * FROM $empresa.tbl_articulos WHERE nombre LIKE '%$articulo%' limit 1");
+        $consulta_articulos= $conexion->query("SELECT round(precio,0) as precio,cantidad_actual,cod_impuesto,descripcion FROM $empresa.tbl_articulos WHERE nombre LIKE '%$articulo%' limit 1");
                              
     }else{
         //$consulta_articulos= $conexion->query("SELECT * FROM $empresa.tbl_art_compras");
