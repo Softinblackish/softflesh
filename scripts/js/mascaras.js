@@ -1,4 +1,5 @@
-$(document).ready(function($){
+
+$(document).ready(function(){
     $("#numero1").mask("9,99", {
 
         // Generamos un evento en el momento que se rellena
@@ -34,8 +35,8 @@ $(document).ready(function($){
     {
         $(".parmil").mask("999,000,000");
     }
-
-    $(".movil").mask("(999)-999-9999");
+    
+    $("#movil").mask("(999)-999-9999");
     $("#letras").mask("aaa");
     $("#comodines").mask("?");
     $(".fa-2x").click(function(){

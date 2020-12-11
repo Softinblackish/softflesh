@@ -113,10 +113,23 @@
         <!-- Head Tabla usuario   --->
             <tr>
                 <th scope="row"><?php echo $contador?></th>
-                <td width="20%"><?php echo $row2["nombre_cliente"]; ?></td>
-                <td>1</td>
+                <td width="20%"><?php echo $row2["rnc_cliente"]; ?></td>
+                <td><?php echo $row2["tipo_identificacion"]; ?></td>
 
-                <td><?php echo $row["comprobante"]; ?></td>
+                
+                <td>
+                    <?php
+                        if($row["devolucion"]== 1)
+                        {
+                            $comprobante_factura = $row["comprobante"]; 
+                            $consulta_notas_credito = $conexion->query("SELECT * FROM $empresa.tbl_nota_credito where comprobante_factura = '$comprobante_factura'");
+                            $resultados = $consulta_notas_credito->fetch_assoc();
+                            echo $resultados["comprobante"];
+                        }
+                        else{
+                            echo $row["comprobante"];
+                        }
+                    ?></td>
                 <td><?php echo $row["comprobante"]; ?></td>
 
                 <td>02</td>

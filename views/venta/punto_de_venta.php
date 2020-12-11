@@ -220,6 +220,7 @@ else
                         <select style="border-bottom-left-radius: 0px;  border-top-left-radius: 0px;" class="form-control" name="forma">
                             <option>Efectívo</option>
                             <option>Tarjeta</option>
+                            <option>Nota de débito</option>
                         </select>
                     <br><br></div>
 
@@ -256,7 +257,7 @@ else
                 <!--- Solo vista ----------->  
                 <span style="margin-left:10px">Total itbis:</span>  <input max="4" style="float:right;  border-bottom-right-radius: 0px;  border-top-right-radius: 0px; " class="form-control col-md-4"  value="$<?php echo $itbis_total;?>" disabled/> <br><br>
                 <span style="margin-left:10px">Total precio: </span> <input  max="5" style="float:right; border-bottom-right-radius: 0px;  border-top-right-radius: 0px;  " class="form-control col-md-4"  value="$<?php echo $precio_total; ?>" disabled/><br><br>
-                <span style="margin-left:10px">Total:</span>  <input   max="4" style="float:right; border-bottom-right-radius: 0px;  border-top-right-radius: 0px;  " class="form-control col-md-4 parmil" value="<?php echo $total_total; ?>" readonly/><br><br>
+                <span style="margin-left:10px">Total:</span>  <input   style="float:right; border-bottom-right-radius: 0px;  border-top-right-radius: 0px;  " class="form-control col-md-4 parmil" value="$<?php echo $total_total; ?>" readonly/><br><br>
 
                 <!-------Esto es lo que realmente se envia ----->
                 <input type="hidden" name="itbis" value="<?php echo $itbis_total;?>" />

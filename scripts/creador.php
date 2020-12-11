@@ -317,6 +317,8 @@ $perm = $conexion->query("
          `Pais` VARCHAR(200) , 
          `provincia` VARCHAR(100) , 
          `direccion` VARCHAR(100) , 
+         `correo` VARCHAR(100) , 
+         `tipo_identificacion` INT(1) , 
          `telefono_cliente` VARCHAR(100) , 
          `tipo_cliente` VARCHAR(100) , 
          `referencia` VARCHAR(100) , 
