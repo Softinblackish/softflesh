@@ -120,6 +120,21 @@
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8
       ");
 
+      $tabla_impuestos = $conexion->query("
+      CREATE TABLE $nombre_sin_espacio.tbl_devoluciones_compra (
+        `id` int(11) NOT NULL AUTO_INCREMENT ,
+        `articulo` varchar(100) NOT NULL,
+        `precio` DOUBLE,
+        `cantidad` DOUBLE,
+        `total` DOUBLE,
+        `cantidad_devuelta` DOUBLE,
+        `new_total` DOUBLE,
+        `creado_por` varchar(150),
+        `caducidad` date DEFAULT '0000-00-00',
+        `fecha_orden` timestamp DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+        PRIMARY KEY (`id`)
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+      ");
 
       $tabla_tmp_compra= $conexion->query("
       CREATE TABLE $nombre_sin_espacio.tbl_suplidores (

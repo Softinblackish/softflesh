@@ -5,13 +5,21 @@
 
     $id = $_POST["id"];
     $cantidad = $_POST["cantidad"];
+    $articulo = $_POST["articulo"];
+    $precio = $_POST["precio"];
+    $total = $_POST["total"];
+    $cantidad_Actual = $_POST["cantidad_actual"];
+    $caducidad = empty($_POST['caducidad']) ? '0000-00-00' : $_POST['caducidad'];
 
-    echo $id."".$cantidad;
 
-    //aqui se aguregara que sume al inventario lo que se borro por la devolucion
+    $Reg_art_compras = $conexion->query("insert into $empresa.tbl_devoluciones_compra (id,articulo, precio, cantidad,total, cantidad_devuelta, caducidad)
+            values ($id, '$articulo',  $precio, $cantidad_actual,$total ,$cantidad, '$caducidad')
+            "); 
 
-    //$resultado = $conexion->query("delete from $empresa.tbl_art_compras where no_compra = $id");
-    /*
+    //echo $id." ".$cantidad." ".$articulo." ".$precio." ".$total." ".$cantidad_Actual;
+
+    ActualizarCantidades_negativo($cantidad,$articulo);
+    
     function ActualizarCantidades_negativo($var_cantidad,$articulo)
         {
             include("../conexion/cone.php");
@@ -32,6 +40,6 @@
                     //throw $th;
                 }
         };
-*/
-    //header('location: ../../views/compras/frm_compras.php')
+
+    header('location: ../../views/compras/frm_devoluciones.php')
 ?>

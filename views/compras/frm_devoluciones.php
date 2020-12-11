@@ -107,7 +107,11 @@
                                                         <td> <input required type="number" name="cantidad" min = '0' class="form-control"></td>
 
                                                         <input type="hidden" name="id" class="form-control" value="<?php echo $row["no_compra"]; ?>">
-                                                        <!---->
+                                                        <input type="hidden" name="articulo" class="form-control" value="<?php echo $row["articulo"]; ?>">
+                                                        <input type="hidden" name="cantidad_actual" class="form-control" value="<?php echo $row["cantidad"]; ?>">
+                                                        <input type="hidden" name="precio" class="form-control" value="<?php echo $row["precio_compra"]; ?>">
+                                                        <input type="hidden" name="total" class="form-control" value="<?php echo $row["total"]; ?>">
+                                                        <input type="hidden" name="caducidad" class="form-control" value="<?php echo $row["caducidad"]; ?>">
                                                         
                                                         <td>
                                                             <button type="sumit"><i class="fa fa-eye fa-lg"></i></button>

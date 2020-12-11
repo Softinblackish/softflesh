@@ -17,7 +17,7 @@ $(document).ready(function(){
                 //data: { articulo : $("#articulo").val() },
                 success: function(res){
                     var json = JSON.parse(res);
-                    $("#precio_compra").val(json[0].precio);
+                    $("#precio_compra").val(Math.round(json[0].precio));
                     $("#stock").val(json[0].cantidad_actual);
                     //alert(json[0].precio);
                     $("#impuesto").val(json[0].cod_impuesto);
