@@ -1,0 +1,48 @@
+.container-devoluciones{
+    width: 1000px;
+    height:1000px;
+    margin:50px;
+    margin-left: 350px;
+    margin-top: 0px;
+
+}
+.container{
+    width: 950px;
+    margin: auto;
+    position: relative;
+    top: 10px;
+    padding-top: 25px!important;
+    background-color:white;
+    box-shadow: 1px 1px 5px black;
+    border-radius: 10px;
+    
+}
+.buton{
+    margin: 10px;
+}
+.cabeza{
+    border-bottom: 1px solid royalblue;
+    padding-bottom: 5px;
+}
+.form-row{
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+#form{
+    padding: 45px;
+}
+.btn{
+    color:white;
+}
+#buscar{
+    background-color:#882f88;
+}
+.cabeza_tabla{
+    padding:15px; 
+    background-color:#882f88;
+    color:white;
+    width: 100%;
+}
+.table{
+    width: 100%;
+}
