@@ -1,10 +1,10 @@
-<!--  AQUI DEBE DE IR SOLAMENTE UN FORMULARIO DE REGISTRO DE ARTICULOS 
+<!--  AQUI DEBE DE IR SOLAMENTE UN FORMULARIO DE REGISTRO DE CARGAR ARTICULOS 
       SOLO HTML SIN CSS SIN JAVASCRIP SIN PHP-->
 
       <!-- php -->
       <?php include("../base.php"); ?>
       <!-- js -->
-      <link rel="stylesheet" href="../../css/articulos.css">
+      <link rel="stylesheet" href="../../css/cargar_articulos.css">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
       <script src="../../scripts/js/time_alert.js"></script>
       <script src="../../scripts/js/articulo.js"></script>
@@ -14,7 +14,7 @@
 <div class="container-articulos">
     <div class="container form-row">
 
-        <form id="form" action="../../scripts/articulos/articulos.php" method="post">
+        <form id="form" action="../../scripts/articulos/cargar_articulos.php" method="post">
 
             <div class="cabeza">
             <?php if(isset($_GET["registro"])){ ?>
@@ -25,7 +25,7 @@
                     </button>
                 </div>
             <?php } ?>
-               <h2> Registro de artículos</h2>
+               <h2> Carga de artículos</h2>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-8">
@@ -40,22 +40,14 @@
 
             <div class="form-row">
                 <div class="form-group col-md-4">
-                <label for="inputState">Precio Compra:</label>
-                    <input type="number" id="precioCompra" name="precio_compra" placeholder ="" class="form-control" >
-                </div>
-                <div class="form-group col-md-4">
                 <label for="inputState">Precio:</label>
                     <input type="number" id="precioVenta" name="precio" placeholder ="" class="form-control" >
                 </div>
                 <div class="form-group col-md-4">
-                <label for="inputState">Ganancia:</label>
-                    <input id="ganancia" name="ganancia" placeholder ="" class="form-control" readonly>
-                </div>
-                <div class="form-group col-md-6">
                 <label for="inputState">Stock Minimo:</label>
                     <input type="number" name="stop_min" placeholder ="" class="form-control" >
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-4">
                 <label for="inputState">Cantidad Actual:</label>
                     <input type="number" name="cantidad_actual" placeholder ="" class="form-control" >
                 </div>
@@ -98,27 +90,7 @@
                 </div>
             </div>
             
-            <label for="inputState">Datos del proveedor </label><br>
-            <div class="form-row">
-                <div class="form-group col-md-8">
-                    <select id="nombre_proveedor" name="nombre_proveedor" class="form-control" placeholder="nombre y apellido del proveedor" >
-                        <?php $suplidores = $conexion->query("SELECT nombre_sup FROM $empresa.tbl_suplidores"); 
-                        while($row = $suplidores->fetch_assoc()) {
-                        ?>
-                        <option value = <?php echo $row["nombre_sup"];  ?> ><?php echo $row["nombre_sup"];  ?></option>
-                        <?php } ?>
-
-                    </select> 
-
-                </div>
-                
-                <div class="form-group col-md-3" >
-                        <?php $suplidores = $conexion->query("SELECT * FROM $empresa.tbl_suplidores");
-                        $dato = $suplidores->fetch_assoc();
-                        ?>
-                        <input type="number" id="cod_proveedor" name="cod_proveedor" value = "<?php echo $dato["codigo_sup"]; ?>" class="form-control" readonly>
-                </div>
-            </div>
+            
 
             <div class="form-row">
             <label for="inputState">Descripcion</label>
