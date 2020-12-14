@@ -103,82 +103,21 @@
                                                     <td><?php echo $row["cantidad"]; ?></td>
                                                     <td><?php echo $row["precio_compra"]; ?></td>
                                                     <td><?php  echo $row["total"]; ?></td>
-                                                    <td> <input required type="number" name="cantidad" min = '0' class="form-control" name=""></td>
-                                                    
-                                                    <!--Boton actualizar informacion-->
-                                                    <td>
-                                                    <a href="../../scripts/compras/devoluciones.php?id=<?php echo $row["no_compra"]?>" id="actualizar"  class="btn btn-info" data-toggle="modal" data-target="#example<?php echo $row["no_compra"]; ?>" > <i class="fa fa-eye fa-lg"></i></a>  
-                                                    <!--Boton eliminar-->
-                                                    </td>
+                                                    <form action="../../scripts/compras/devoluciones.php" method="post">
+                                                        <td> <input required type="number" name="cantidad" min = '0' class="form-control"></td>
+
+                                                        <input type="hidden" name="id" class="form-control" value="<?php echo $row["no_compra"]; ?>">
+                                                        <input type="hidden" name="articulo" class="form-control" value="<?php echo $row["articulo"]; ?>">
+                                                        <input type="hidden" name="cantidad_actual" class="form-control" value="<?php echo $row["cantidad"]; ?>">
+                                                        <input type="hidden" name="precio" class="form-control" value="<?php echo $row["precio_compra"]; ?>">
+                                                        <input type="hidden" name="total" class="form-control" value="<?php echo $row["total"]; ?>">
+                                                        <input type="hidden" name="caducidad" class="form-control" value="<?php echo $row["caducidad"]; ?>">
+                                                        
+                                                        <td>
+                                                            <button type="sumit"><i class="fa fa-eye fa-lg"></i></button>
+                                                        </td>
+                                                    </form>
                                                 </tr>
-
-
-
-                                            <!--Modal editar compras   --->
-        <div class="modal fade" id="example<?php echo $row["no_compra"];?>" tabindex="-1" 
-             aria-labelledby="example<?php echo $row["no_compra"];?>" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="example<?php echo $row["no_compra"];?>"><?php echo $row["articulo"]; ?></h5>
-                                <button type="button" class="close cerrar" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <!-- formulario compras   --->
-                                <form action="../../scripts/compras/modificar.php" method="post">
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <input type="text" name="articulo" placeholder="articulo" value="<?php echo $row["articulo"]; ?>" disabled class="form-control">
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <input type="text" name="cantidad" placeholder ="cantidad" value="<?php echo $row["cantidad"]; ?>" disabled class="form-control" >
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <input type="text" name="precio" placeholder ="precio" value="<?php echo $row["precio_compra"]; ?>" disabled class="form-control" >
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <input type="text" name="cantidad" placeholder ="valor" value="<?php echo $row["total"]; ?>" disabled class="form-control" >
-                                        </div>
-                                        <input type="hidden" name="id" value="<?php echo $row["no_compra"]; ?>">
-                                        <div class="form-group col-md-6">
-                                            Fecha de creación:  <?php echo $row["fecha_orden"]; ?>
-                                        </div>
-                                    </div>
-                            
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary cerrar" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                                        <button type="button" class="btn btn-warning editar" ><i class="fa fa-pencil fa-lg"></i></button>
-                                        <input type="submit" class="btn btn-primary guardar" value="Guardar" style="display:none;">
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-        </div>
-
-    <!--Modal Eliminar compras   --->
-        <div class="modal fade" id="eliminar<?php echo $row["no_compra"];?>" tabindex="-1" 
-                    aria-labelledby="eliminar<?php echo $row["no_compra"];?>Label" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="eliminar<?php echo $row["no_compra"];?>Label">Eliminar</h5>
-                                <button type="button" class="close cerrar" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                Seguro que desea eliminar el articulo :<strong> <?php echo $row["articulo"];?> </strong>?
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary cerrar" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                                <a href="../../scripts/compras/eliminar.php?id=<?php echo $row["no_compra"]?>" class="btn btn-danger" value="borrar">Borrar</a>
-                            </div>
-                        </div>
-                    </div>
-        </div>
 
 
 
@@ -217,3 +156,10 @@
 <!--Aqui el final de los div de este formulario-->
     </div>    
 </div>
+
+
+<!--
+<td>
+<a href="../../scripts/compras/devoluciones.php?id=<?php echo $row["no_compra"]?>" id="actualizar" class="btn btn-info"> <i class="fa fa-eye fa-lg"></i></a>  
+</td>
+-->
