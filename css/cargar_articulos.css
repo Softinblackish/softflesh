@@ -1,0 +1,48 @@
+.container-articulos {
+    width: 400px;
+    height: 1000px;
+    margin: 100px;
+    /*  position: relative;
+    background-color:darkgray;
+    /*background-color: white;
+     rgb(137, 202, 245);
+    */
+    margin-left: 557px;
+    margin-top: 0px;
+}
+
+.container {
+    width: 600px;
+    margin: auto;
+    position: relative;
+    top: 100px;
+    padding-top: 10px;
+    padding: 10px;
+    background-color: white;
+    /*background-color: white;*/
+    box-shadow: 1px 1px 5px black;
+    border-radius: 10px;
+}
+
+.buton {
+    margin: 10px;
+}
+
+.cabeza {
+    border-bottom: 1px solid royalblue;
+    padding-bottom: 5px;
+}
+
+.form-row {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+#form {
+    padding: 45px;
+}
+
+#btn {
+    background-color: #0e444c;
+    color: white;
+}
