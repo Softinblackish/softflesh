@@ -129,6 +129,9 @@
                                 <a href="../articulos/frm_inventario.php"><div id="pasar_inventario" class="menu_lv3 menu_inventario">Pasar inventario</div></a>
                             
                         </div>
+                        <div id="nomina" class="menu_lv1"><i class="fa fa-inbox fa-lg"></i> Nomina
+                                <a href="../nomina/frm_nomina.php"><div id="" class="menu_lv3 menu_inventario">Agregar nomina</div></a>
+                        </div>
                         <div id="contabilidad" class="menu_lv1"><i class="fa fa-bar-chart fa-lg" aria-hidden="true"></i> Contabilidad
                         
                                 <a><div class="menu_lv3 menu_contabilidad">Reporte 606</div></a>
