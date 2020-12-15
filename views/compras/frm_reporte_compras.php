@@ -57,7 +57,7 @@
                                 <th scope="col" style="width:10%;"> Cantidad </th>
                                 <th scope="col" style="width:10%;"> Precio </th>
                                 <th scope="col" style="width:10%;"> Total </th>
-                                <th scope="col" style="width:60%;"> Accion </th>
+                                <!--<th scope="col" style="width:60%;"> Accion </th>-->
                             </tr>
 
                         </thead>
@@ -72,16 +72,20 @@
                                             $desde = $_POST["desde"];
                                             $hasta = $_POST["hasta"];
                                             $consulta_articulos= $conexion->query("SELECT * from $empresa.tbl_compras WHERE fecha_creacion >= '$desde' and fecha_creacion <= '$hasta' ");
+                                            $consulta=1;
                                         }
                                     if($_POST["filtro"])
                                         {
                                             $filtro = $_POST["filtro"];
                                             $consulta_articulos= $conexion->query("SELECT * FROM $empresa.tbl_art_compras WHERE no_compra LIKE '%$filtro%' limit 5");
+                                            $consulta=1;
                                         }                  
                                 }else{
-                                    $consulta_articulos= $conexion->query("SELECT * FROM $empresa.tbl_art_compras");
+                                    //$consulta_articulos= $conexion->query("SELECT * FROM $empresa.tbl_art_compras");
+                                    $consulta=0;
                                 }    
-                                        while($row = $consulta_articulos->fetch_assoc())
+                                if($consulta > 0 ) {    
+                                    while($row = $consulta_articulos->fetch_assoc())
                                         {
                             ?>
                                                 <!-- Head Tabla Compras   --->
@@ -98,10 +102,10 @@
                                                     ?>
                                                     <td><?php  echo $total ?></td>
                                                     
-                                                    <!--Boton actualizar informacion-->
-                                                    <td><a id="cerrar"  class="btn btn-info" data-toggle="modal" data-target="#example<?php echo $row["no_compra"]; ?>" > <i class="fa fa-eye fa-lg"></i></a>  
-                                                    <!--Boton eliminar-->
-                                                    <a                 class="btn btn-danger"data-toggle="modal" data-target="#eliminar<?php echo $row["no_compra"]; ?>" > <i class="fa fa-trash-o fa-lg"></i></a> </td>
+                                                    <!--Boton actualizar informacion-
+                                                    <td><a id="cerrar"  class="btn btn-info" data-toggle="modal" data-target="#example<?php echo $row["no_compra"]; ?>" > <i class="fa fa-eye fa-lg"></i></a> --> 
+                                                    <!--Boton eliminar
+                                                    <a                 class="btn btn-danger"data-toggle="modal" data-target="#eliminar<?php echo $row["no_compra"]; ?>" > <i class="fa fa-trash-o fa-lg"></i></a> </td>-->
                                                 </tr>
 
 
@@ -186,6 +190,7 @@
 
                             <?php
                                         }
+                                    }else{}
                             ?>
                         </tbody>
                     </table> 

@@ -1,14 +1,24 @@
 <?php include("../base.php");
       include("../../scripts/conexion/cone.php");
 ?>
-<link rel="stylesheet" href="../../css/usuarios.css">
+<!--<link rel="stylesheet" href="../../css/usuarios.css">-->
+<link rel="stylesheet" href="../../css/consultaCompras.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="../../scripts/js/usuarios.js"></script>
-<div id="box_lista">
-<h2>Compras</h2>
+
+<div class="container-devoluciones">
+<div class="container form-row">
+
+
 <form action="" method="post">
+    <div class="cabeza">
+        <h2>Lista de Compras</h2>
+    </div>
+    </br>
     <input  type="text" placeholder="Buscar" name="filtro">
     <input type="submit" class="btn btn" id="buscar" value=" Buscar">
+    </br>
+    </br>
 </form>
      <br><br>
 <table class="table">
@@ -20,7 +30,7 @@
       <th scope="col">precio</th>
       <th scope="col">Cantidad</th>
       <th scope="col">Total</th>
-      <th scope="col">Accion</th>
+      <!--<th scope="col">Accion</th>-->
     </tr>
   </thead>
   <tbody>
@@ -47,10 +57,10 @@
                 <td><?php echo $row["total"]; ?></td>
                 
                 
-                <!--Boton actualizar informacion-->
-                <td><a id="cerrar"  class="btn btn-info" data-toggle="modal" data-target="#example<?php echo $row["no_compra"]; ?>" > <i class="fa fa-eye fa-lg"></i></a>  
-                <!--Boton eliminar-->
-                <a                 class="btn btn-danger"data-toggle="modal" data-target="#eliminar<?php echo $row["no_compra"]; ?>" > <i class="fa fa-trash-o fa-lg"></i></a> </td>
+                <!--Boton actualizar informacion-
+                <td><a id="cerrar"  class="btn btn-info" data-toggle="modal" data-target="#example<?php echo $row["no_compra"]; ?>" > <i class="fa fa-eye fa-lg"></i></a>-->  
+                <!--Boton eliminar-
+                <a                 class="btn btn-danger"data-toggle="modal" data-target="#eliminar<?php echo $row["no_compra"]; ?>" > <i class="fa fa-trash-o fa-lg"></i></a> </td>-->
             </tr>
         <!--Modal editar compras   --->
                 <div class="modal fade" id="example<?php echo $row["no_compra"];?>" tabindex="-1" aria-labelledby="example<?php echo $row["no_compra"];?>Label" aria-hidden="true">
@@ -134,3 +144,7 @@
 </a>
 
 <!-- Modal -->
+
+
+    </div>
+    </div>
