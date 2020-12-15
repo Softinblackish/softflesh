@@ -132,7 +132,7 @@
                     ?></td>
                 <td><?php echo $row["comprobante"]; ?></td>
 
-                <td>02</td>
+                <td>1</td>
                 <td><?php echo $row["fecha_creacion"]; ?></td>
                 <td>N/A</td>
 
