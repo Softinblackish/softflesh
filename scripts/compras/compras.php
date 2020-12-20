@@ -34,6 +34,7 @@
             $Reg_det_compras = $conexion->query("insert into $empresa.tbl_compras (no_compra, nombre_proveedor, cod_proveedor, forma_pago , moneda,  entregar_a, valor_total)
             values ($no_compra, '$nombre_proveedor','$cod_proveedor',$forma_pago , '$moneda', '$entregar_a', $valor_total)
             ");
+            $Reg_new_id_compra = $conexion->query("insert into $empresa.tbl_compra_id_temp (no_compra) values ($no_compra);");
         }
 
 

@@ -3,148 +3,60 @@
     session_start();
     $empresa= $_SESSION["empresa_db"];
     //cabeza inicial de la compra.
-    $no_compra= $_POST['no_compra'];
+    $no_nomina= $_POST['no_nomina'];
 
-    //Datos de la compra como tal.
-    $forma_pago= $_POST['forma_pago']; 
-    $moneda= $_POST['moneda'];
-    $entregar_a= $_POST['entregar_a'];
-    //Datos de los proveedores 
-    $nombre_proveedor= $_POST['nombre_proveedor']; 
-    $cod_proveedor = $_POST['cod_proveedor'];
+    //Datos de la nomina como tal.
+    $salario_base= $_POST['salario_base']; 
+    $salario_dia= $_POST['salario_dia'];
+    $salario_hora= $_POST['salario_hora'];
+    $empleado= $_POST['empleado'];
+    $hora_extra= $_POST['hora_extra']; 
+    $departamento = $_POST['departamento'];
+    $puesto= $_POST['puesto'];
+    $dias_laborables= $_POST['dias_laborables'];
+    $turno= $_POST['turno'];
+    $pension= $_POST['pension'];
+    $salud= $_POST['salud'];
+    $ars = $_POST['ars']; 
+    $vacaciones= $_POST['vacaciones'];
+    $cesantia= $_POST['cesantia'];
+    $sueldo= $_POST['sueldo'];
+    $percepciones= $_POST['percepciones'];
+    $total_percepcion= $_POST['total_percepcion'];
+    $deduciones= $_POST['deduciones'];
+    $total_deduciones= $_POST['total_deduciones'];
+
     
-
-    //Datos de los articulos 
-    $articulo= $_POST['articulo'];
-    $precio_compra= $_POST['precio_compra'];
-    $cantidad= $_POST['cantidad'];
-    $stock= $_POST['stock'];
-    $total= $_POST['total'];
-    $valor_total= $_POST['valor_total'];
-    $caducidad = empty($_POST['caducidad']) ? '0000-00-00' : $_POST['caducidad']; 
-    $nota= $_POST['nota'];
-    $itbis= $_POST['impuestodf'];
-
-    
-        $consulta_det_compras = $conexion->query("SELECT no_compra FROM $empresa.tbl_compras where no_compra = $no_compra ");
-        $registro_det_compras = $consulta_det_compras->fetch_assoc();
-        if($consulta_det_compras->num_rows >= 1 ){
-            
-        }else{
-            $Reg_det_compras = $conexion->query("insert into $empresa.tbl_compras (no_compra, nombre_proveedor, cod_proveedor, forma_pago , moneda,  entregar_a, valor_total)
-            values ($no_compra, '$nombre_proveedor','$cod_proveedor',$forma_pago , '$moneda', '$entregar_a', $valor_total)
-            ");
-        }
-
-
-
+    $tabla_articulo = $conexion->query("
+    CREATE TABLE $nombre_sin_espacio.tbl_articulos (
+    `id_nomina` int(11) NOT NULL AUTO_INCREMENT,
+    `empleado` varchar(100),
+    `salario_base` Double,
+    `salario_dia` DOUBLE,
+    `salario_hora` DOUBLE,
+    `hora_extra` DOUBLE,
+    `departamento` varchar(100),
+    `puesto` varchar(100),
+    `dias_laborables` varchar(100),
+    `turno` varchar(50),
+    `pension` DOUBLE,
+    `salud` DOUBLE,
+    `ars` varchar(100),
+    `vacasiones` DOUBLE,
+    `cesantia` DOUBLE,
+    `sueldo` DOUBLE,
+    `no_nomina` int(11),
+    `fecha_creacion` timestamp DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+    PRIMARY KEY (`id_nomina`)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+  ");
+        $Reg_det_compras = $conexion->query("insert into $empresa.tbl_nomina (no_nomina, hora_extra, departamento, salario_base , salario_dia,  empleado, salud) values ($no_nomina, '$hora_extra','$departamento',$salario_base , '$salario_dia', '$empleado', $salud)");
         
+     //echo $empresa . "  " .$no_nomina." ".$salario_base."  ".$salario_dia."  ".$empleado." ".$hora_extra." ".$departamento." <br>";
 
-        //Registro de detalle de articulos de la compra
-        $procesoNoRepet = $conexion->query("SELECT articulo FROM $empresa.tbl_art_compras where articulo = '$articulo' and no_compra = $no_compra ");
-        $comprobacionNoRepet = $procesoNoRepet->fetch_assoc();
-        if($procesoNoRepet->num_rows >= 1 ){
-                //selecion de la cantidad anterior
-                $cantidad_anterior = $conexion->query("SELECT cantidad FROM $empresa.tbl_art_compras where articulo = '$articulo' and no_compra = $no_compra");
-                $comprobacion_Cant_existente = $cantidad_anterior->fetch_assoc();
-                $cantidadRegistro = $cantidad_anterior->num_rows;
-                if($cantidadRegistro >=1 ){
-                    $cantidad_art_existente = $comprobacion_Cant_existente["cantidad"];
-                    //Comparacion de las cantidades
-                    //echo $articulo." ".$cantidad." ".$comprobacion_Cant_existente["cantidad"];
-                    if($cantidad > $cantidad_art_existente){
-                        $cant_a_actualizar = $cantidad - $cantidad_art_existente;//5
-                        ActualizarCantidades($cant_a_actualizar,$articulo); 
-                    }elseif($cantidad < $cantidad_art_existente){
-                        $cant_a_actualizar = $cantidad_art_existente - $cantidad;
-                        ActualizarCantidades_negativo($cant_a_actualizar,$articulo); 
-                    }else{
-
-                    }
-                    
-                }else{
-                    
-                }
-
-                $Update_art_compras = $conexion->query("UPDATE $empresa.tbl_art_compras set precio_compra = $precio_compra,cantidad=$cantidad,itbis = $itbis ,total = $total WHERE articulo = '$articulo' and no_compra = $no_compra"); 
-                
-        }else{
-            $Reg_art_compras = $conexion->query("insert into $empresa.tbl_art_compras (no_compra, articulo, precio_compra, cantidad,itbis, total, stock, caducidad, nota)
-            values ($no_compra, '$articulo',  $precio_compra, $cantidad,$itbis, $total ,$stock, '$caducidad', '$nota')
-            "); 
-            ActualizarCantidades($cantidad,$articulo);
-        }
-
-        
-
-        
+     //echo $empresa . "  " .$no_nomina."  ".$ars."  ".$salario_hora."  ".$puesto."  ".$dias_laborables."  ".$salud."  ".$vacaciones."  ".$turno." ";
+    //$Act_salud = $conexion->query("UPDATE $empresa.tbl_compras set salud = $salud where no_nomina = $no_nomina ");
 
 
-
-
-
-        //modificar las cantidades en positivo
-        function ActualizarCantidades($var_cantidad,$articulo)
-        {
-            include("../conexion/cone.php");
-            $empresa= $_SESSION["empresa_db"];
-            echo $var_cantidad." ".$articulo;
-            try {
-                //code...
-            
-                    $consulta_cantidad = $conexion->query("SELECT cantidad_actual FROM $empresa.tbl_articulos where nombre = '$articulo' ");
-                    $registro_cantidad = $consulta_cantidad->fetch_assoc();
-                    if($consulta_cantidad->num_rows >= 1 ){
-                        $cantidad_art_actual = $registro_cantidad["cantidad_actual"];
-                        $cantidad_art_Nueva = $cantidad_art_actual + $var_cantidad;
-                        $Aumentar_cantidad_articulos = $conexion->query("UPDATE $empresa.tbl_articulos set cantidad_actual = $cantidad_art_Nueva WHERE nombre = '$articulo'");
-                    }else{
-                        //$Reg_New_artCantidad = $conexion->query("insert into $empresa.tbl_articulos (cantidad_actual) values ($var_cantidad)");
-                    }
-                } catch (\Throwable $th) {
-                    //throw $th;
-                }
-        };
-
-        //modificar las cantidades en negativo
-
-        function ActualizarCantidades_negativo($var_cantidad,$articulo)
-        {
-            include("../conexion/cone.php");
-            $empresa= $_SESSION["empresa_db"];
-            try {
-                //code...
-                    echo $var_cantidad;
-                    $consulta_cantidad = $conexion->query("SELECT cantidad_actual FROM $empresa.tbl_articulos where nombre = '$articulo' ");
-                    $registro_cantidad = $consulta_cantidad->fetch_assoc();
-                    if($consulta_cantidad->num_rows >= 1 ){
-                        $cantidad_art_actual = $registro_cantidad["cantidad_actual"];
-                        $cantidad_art_Nueva = $cantidad_art_actual - $var_cantidad;
-                        $Aumentar_cantidad_articulos = $conexion->query("UPDATE $empresa.tbl_articulos set cantidad_actual = $cantidad_art_Nueva WHERE nombre = '$articulo'");
-                    }else{
-                        $Reg_New_artCantidad = $conexion->query("insert into $empresa.tbl_articulos (cantidad_actual) values ($var_cantidad)");
-                    }
-                } catch (\Throwable $th) {
-                    //throw $th;
-                }
-        };
-        
-        //aqui el fin del proceso
-
-
-
-
-
-        /*$Reg_art_compras = $conexion->query("insert into $empresa.tbl_art_compras (no_compra, articulo, precio_compra, cantidad, total, stock, caducidad, nota)
-            values ($no_compra, '$articulo',  $precio_compra, $cantidad, $total ,$stock, '$caducidad', '$nota')
-            ");*/    
-    
-            //echo $empresa . "  " .$no_compra." ".$forma_pago."  ".$moneda."  ".$entregar_a." ".$nombre_proveedor." ".$cod_proveedor." <br>";
-
-            //echo $empresa . "  " .$no_compra."  ".$caducidad."  ".$articulo."  ".$precio_compra."  ".$cantidad."  ".$valor_total."  ".$nota."  ".$stock." ";
-        //echo $valor_total;
-        $Act_Valor_Total = $conexion->query("UPDATE $empresa.tbl_compras set valor_total = $valor_total where no_compra = $no_compra ");
-
-//cxcobrar y cxpagar
-    header('location:../../views/compras/frm_compras.php?registro="si" ')
+    //header('location:../../views/nomina/frm_nomina.php?registro="si" ')
 ?>

@@ -4,9 +4,9 @@
       <!-- php -->
       <?php include("../base.php"); ?>
         <?php include("../../scripts/compras/compras_general_id_temp.php"); 
-            $id_nueva_compra = $conexion->query("SELECT no_compra FROM $empresa.tbl_compra_id_temp where id_compra = 1 ");
+            $id_nueva_compra = $conexion->query("SELECT no_nomina FROM $empresa.tbl_nomina_id_temp");
             $id_temp = $id_nueva_compra->fetch_assoc();
-            $no_compra = $id_temp["no_compra"];
+            $no_compra = $id_temp["no_nomina"];
         ?>
       <!-- css -->
         <link rel="stylesheet" href="../../css/compras.css">
@@ -34,13 +34,13 @@
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label for="inputState">No de nomina:</label>
-                    <input type="number" name="no_compra" readonly placeholder ="no de nomina" value = <?php echo $no_compra ?> class="form-control">
+                    <input type="" name="no_nomina"  placeholder ="no de nomina" value = <?php echo $no_compra ?> class="form-control">
                 </div>
                 
                 
                 <div class="form-group col-md-3">
                     <label for="inputState">Nombre Empleado:</label>
-                    <select name="entregar_a" class="form-control" cajeros>
+                    <select name="empleado" class="form-control" cajeros>
                     <?php $user = $conexion->query("SELECT nombre_usuario FROM $empresa.tbl_usuario"); 
                         while($row = $user->fetch_assoc()) {
                         ?>
@@ -50,27 +50,27 @@
                 </div>
                 <div class="form-group col-md-3">
                     <label for="inputState">Salario Base:</label>
-                    <input type="number" name="" class="form-control" value = "" readonly>
+                    <input type="number"  min="0" name="salario_base" class="form-control" value = "" >
                 </div>
                 <div class="form-group col-md-3">
                     <label for="inputState">Salario Dia:</label>
-                    <input type="number" name="" class="form-control" value = "" readonly>
+                    <input type="number" name="salario_dia" class="form-control" value = "" >
                 </div>
                 <div class="form-group col-md-3">
                     <label for="inputState">Salario hora:</label>
-                    <input type="number" name="" class="form-control" value = "" readonly>
+                    <input type="number" name="salario_hora" class="form-control" value = "" >
                 </div>
                 <div class="form-group col-md-3">
                     <label for="inputState">Horas Extras:</label>
-                    <input type="number" name="" class="form-control" value = "" readonly>
+                    <input type="number" name="horas_extras" class="form-control" value = "" >
                 </div>
                 <div class="form-group col-md-3">
                     <label for="inputState">Departamento:</label>
-                    <input type="number" name="" class="form-control" value = "" readonly>
+                    <input type="" name="departamento" class="form-control" value = "" >
                 </div>
                 <div class="form-group col-md-3">
                     <label for="inputState">Puesto:</label>
-                    <input type="number" name="" class="form-control" value = "" readonly>
+                    <input type="" name="puesto" class="form-control" value = "" >
                 </div>
             </div>
 
@@ -78,119 +78,83 @@
             <div class="form-row">
             <div class="form-group col-md-3">
                     <label for="inputState">Dias laborables:</label>
-                    <input type="number" name="" class="form-control" value = "" readonly>
+                    <select name="dias_laborables" class="form-control" cajeros>
+                        <option value ="">lunes-viernes</option>
+                        <option value ="">fines de semana</option>
+                        <option value ="">1-3 dias a la semana</option>
+                        <option value ="">1-5 dias a la semana</option>
+                        <option value ="">lunes-Domingo</option>
+                    </select>
                 </div>
                 <div class="form-group col-md-3">
                     <label for="inputState">turno:</label>
-                    <input type="number" name="" class="form-control" value = "" readonly>
+                    <select name="turno" class="form-control" cajeros>
+                        <option value ="">Dia completo</option>
+                        <option value ="">mañana</option>
+                        <option value ="">Talde</option>
+                        <option value ="">Noche</option>
+                    </select>
                 </div>
                 <div class="form-group col-md-3">
                     <label for="inputState">Pension:</label>
-                    <input type="number" name="" class="form-control" value = "" readonly>
+                    <input type="number" name="pension" class="form-control" value = "" >
                 </div>
                 <div class="form-group col-md-3">
                     <label for="inputState">Salud:</label>
-                    <input type="number" name="" class="form-control" value = "" readonly>
+                    <input type="" name="salud" class="form-control" value = "" >
                 </div>
             </div>
             <div class="form-row">
             <div class="form-group col-md-3">
-                    <label for="inputState">Vacaciones:</label>
-                    <input type="number" name="" class="form-control" value = "" readonly>
+                    <label for="inputState">Salario Vacaciones:</label>
+                    <input type="number" name="vacaciones" class="form-control" value = "" >
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="inputState">Cesantia:</label>
-                    <input type="number" name="" class="form-control" value = "" readonly>
+                    <label for="inputState">total Cesantia:</label>
+                    <input type="number" name="cesantia" class="form-control" value = "" >
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="inputState">ARS:</label>
-                    <input type="number" name="" class="form-control" value = "" readonly>
+                    <label for="inputState">total ARS:</label>
+                    <input type="number" name="ars" class="form-control" value = "" >
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="inputState">Neto:</label>
-                    <input type="number" name="" class="form-control" value = "" readonly>
-                </div>
-            </div>
-
-            <!--impuestos-->
-            <!--
-            <label for="inputState">Datos de los Impuestos: </label><br>
-            <div class="form-row">
-                <div class="form-group col-md-3">
-                    <input type="number" min = 1 name="cod_impuesto" class="form-control"  placeholder="Cod impuesto" >
-                </div>
-                <div class="form-group col-md-3">
-                    <input type="text" name="" class="form-control"  placeholder="nombre impuesto" >
-                </div>
-                <div class="form-group col-md-3">
-                    <input type="number" name="" class="form-control"  placeholder="valor impuesto" >
-                </div>
-                <div class="form-group col-md-3">
-                    <input type="number" name="comprobante" class="form-control"  placeholder="Comprobante" >
+                    <label for="inputState">sueldo:</label>
+                    <input type="number" name="sueldo" class="form-control" value = "" >
                 </div>
             </div>
-            -->
-            <label for="inputState">Datos de los productos: </label><br>
-            
             <div class="form-row">
-                <div class="form-group col-md-12">
-                    <select id="articulo" name="articulo" class="form-control" placeholder="articulo">
-                        <?php $articulos = $conexion->query("SELECT nombre FROM $empresa.tbl_articulos"); 
-                        while($row = $articulos->fetch_assoc()) {
-                        ?>
-                        <option value = <?php echo $row["nombre"];  ?> ><?php echo $row["nombre"];  ?></option>
-                        <?php } ?>
-
-                    </select> 
-                </div>
-
-                <div class="form-group col-md-3">
-                    <label for="inputState">Precio Compra:</label>
-                    <input type="number" name="precio_compra" class="form-control" id ="precio_compra" placeholder="precio compra" >
-                </div>
-                <div class="form-group col-md-3">
-                    <label for="inputState">Cantidad:</label>
-                    <input type="number" min = 1 name="cantidad" class="form-control"  placeholder="cantidad" id="cantidad">
-                </div>
-                <div class="form-group col-md-3">
-                    <label for="inputState">Itebis:</label>
-                    <input  name="impuestodf" class="form-control"  placeholder="impuesto" id ="impuesto" readonly>
-                </div>
-                <div class="form-group col-md-3">
-                    <label for="inputState">Cantidad Actual:</label>
-                    <input type="number" name="stock" class="form-control"  placeholder="Stock" id ="stock" readonly>
-                </div>
-                
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-3">
-                    <label for="inputState">caducidad:</label>
-                    <input type="date" name="caducidad" class="form-control" >
-                </div>                           
-                <div class="form-group col-md-3">
-                    <label for="inputState">Total con Impuestos:</label>
-                    <input type="number" name="valor_impuestos" class="form-control"  placeholder="total con impuestos" id="total_I" readonly>
-                </div>
-                <div class="form-group col-md-3">
-                    <label for="inputState">Total sin Impestos:</label>
-                    <input type="number" name="sin_impuestos" class="form-control"  placeholder="total sin impuestos" id="total_SI" readonly>
+            <div class="form-group col-md-3">
+                    <label for="inputState">Percepciones:</label>
+                    <select name="percepciones" class="form-control" cajeros>
+                        <option value ="">Viaticos</option>
+                        <option value ="">Gasolina</option>
+                        <option value ="">extra</option>
+                        <option value ="">Bonos</option>
+                        <option value ="">Ninguno</option>
+                    </select>
                 </div>
                 <div class="form-group col-md-3">
                     <label for="inputState">Total:</label>
-                    <input type="number" name="total" class="form-control"  placeholder="total" id="total" readonly>
+                    <input type="number" name="total_percepcion" class="form-control" value = "" >
                 </div>
-                
+                <div class="form-group col-md-3">
+                    <label for="inputState">Deduciones:</label>
+                    <select name="deduciones" class="form-control" cajeros>
+                        <option value ="">imp. s/p A trabajo </option>
+                        <option value ="">Imss</option>
+                        <option value ="">ahorro</option>
+                        <option value ="">Deuda</option>
+                        <option value ="">otros</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="inputState">Total:</label>
+                    <input type="number" name="total_deduciones" class="form-control" value = "" >
+                </div>
             </div>
 
-            <div class="form-row">
-                
-                <div class="form-group col-md-12">
-                    <label for="inputState">Descripcion:</label>
-                    <textarea name="nota" class="form-control" cols="50" rows="3" placeholder = "Descripcion" id="descripcion"></textarea>
-                </div>
-                
-            </div>
-
+            
+            
             <!--Aqui se pasan las compras-->
             <div class="form-row">
                 <div class="form-group col-md-6">
@@ -202,15 +166,15 @@
             <!--Aqui va la tabla temp de compras-->
             <div class="tamano_tablas Overflow">
                 <table class="table">
-                    <h5 class="cabeza_tabla" >Artículos ingresados</h5>
+                    <h5 class="cabeza_tabla" >Registro nomina</h5>
                     <thead>      
                         
                         <tr>
-                            <th scope="col" style="width:60%;"> Artículos </th>
-                            <th scope="col" style="width:8%;"> Cantidad </th>
-                            <th scope="col" style="width:15%;"> Precio </th>
-                            <th scope="col" style="width:10%;"> itbis </th>
-                            <th scope="col" style="width:15%;"> Total </th>
+                            <th scope="col" style="width:60%;"> Nombre </th>
+                            <th scope="col" style="width:25%;"> Salario Base </th>
+                            <th scope="col" style="width:15%;"> Departamento </th>
+                            <th scope="col" style="width:10%;"> Puesto </th>
+                            <th scope="col" style="width:15%;"> Turno </th>
                             <th scope="col" style="width:15%;"> Borrar </th>
                         </tr>
 
@@ -248,7 +212,7 @@
                     Haga click en guardar para registrar esta compra 
             </label>
             <br>
-            <a href="../../scripts/compras/borrar_id_temporal.php" id="btn" class="btn btn" >registrar compra</a>
+            <a href="../../scripts/compras/_id_temporal.php" id="btn" class="btn btn" >registrar compra</a>
             <a href="../administracion/administracion.php" id="btn" class="btn btn" >Volver atras</a>
             <br>
         </form>
@@ -259,18 +223,3 @@
 
 
     
-<script>
-$(document).ready(function(){
-
-    $("#impuesto").keyup(function() {
-      //alert("hol");
-      var var_porcentaje = (parseFloat($("#impuesto").val()) / 100); //0.08
-      var var_total_SI = parseFloat($("#total_SI").val()); //80
-      var var_porciento = var_total_SI * var_porcentaje; //80 * 0.08 = 6.4
-      //var var_gananciaAnt = parseFloat($("#ganancia").val()); //40
-      var var_ganancia = var_total_SI + var_porciento; //40 + 6.4 = 46.4
-      $("#total_I").val(var_ganancia);
-    });
-
-});
-</script>

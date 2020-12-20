@@ -81,6 +81,14 @@
         PRIMARY KEY (`id_compra`)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8
       ");
+//tabla tbl nomina_id_temp      
+      $tabla_compras_id_temp = $conexion->query("
+      CREATE TABLE $nombre_sin_espacio.tbl_nomina_id_temp (
+        `id_nomina` int(11) NOT NULL AUTO_INCREMENT,
+        `no_nomina` DOUBLE,
+        PRIMARY KEY (`id_compra`)
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+      ");
 //tabla tbl compras
       $tabla_compra = $conexion->query("
       CREATE TABLE $nombre_sin_espacio.tbl_compras (
@@ -101,6 +109,32 @@
         PRIMARY KEY (`id_compra`)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8
       ");
+      
+      
+//tabla tbl nomina
+      $tabla_articulo = $conexion->query("
+      CREATE TABLE $nombre_sin_espacio.tbl_nomina (
+      `id_nomina` int(11) NOT NULL AUTO_INCREMENT,
+      `empleado` varchar(100),
+      `salario_base` Double,
+      `salario_dia` DOUBLE,
+      `salario_hora` DOUBLE,
+      `hora_extra` DOUBLE,
+      `departamento` varchar(100),
+      `puesto` varchar(100),
+      `dias_laborables` varchar(100),
+      `turno` varchar(50),
+      `pension` DOUBLE,
+      `salud` DOUBLE,
+      `ars` varchar(100),
+      `vacasiones` DOUBLE,
+      `cesantia` DOUBLE,
+      `sueldo` DOUBLE,
+      `no_nomina` int(11),
+      `fecha_creacion` timestamp DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+      PRIMARY KEY (`id_nomina`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+    ");
 
 //tabla tbl compras articulos
       $tabla_compra = $conexion->query("
