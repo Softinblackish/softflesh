@@ -137,7 +137,7 @@
     ");
 
 //tabla tbl compras articulos
-      $tabla_compra = $conexion->query("
+      $tabla_art_compra = $conexion->query("
       CREATE TABLE $nombre_sin_espacio.tbl_art_compras (
         `id_compra` int NOT NULL AUTO_INCREMENT,
         `no_compra` int(11),
@@ -366,6 +366,8 @@ $perm = $conexion->query("
          `Pais` VARCHAR(200) , 
          `provincia` VARCHAR(100) , 
          `direccion` VARCHAR(100) , 
+         `correo` VARCHAR(100) , 
+         `tipo_identificacion` INT(1) , 
          `telefono_cliente` VARCHAR(100) , 
          `tipo_cliente` VARCHAR(100) , 
          `referencia` VARCHAR(100) , 
@@ -468,14 +470,14 @@ $perm = $conexion->query("
 
         $tabla_art_compra_temp = $conexion->query("
         CREATE TABLE $nombre_sin_espacio.tbl_art_compras (
-          `id_compra` int NOT NULL AUTO_INCREMENT,
-          `no_compra` int(11) NULL,
+          `id_compra` INT NOT NULL AUTO_INCREMENT,
+          `no_compra` INT(11) NULL,
           `articulo` varchar(100) NULL,
-          `precio_compra` int(10) NULL,
-          `cantidad` int(11) NULL,
-          `stock` int(11) NULL,
-          `total` int(11) NULL,
-          `caducidad` date DEFAULT '0000-00-00' NULL,
+          `precio_compra` INT(10) NULL,
+          `cantidad` INT(11) NULL,
+          `stock` INT(11) NULL,
+          `total` INT(11) NULL,
+          `caducidad`  DATE NULL,
           `nota` varchar(100) NULL,
           `fecha_orden` timestamp DEFAULT current_timestamp() ON UPDATE current_timestamp(),
           PRIMARY KEY (`id_compra`)) ENGINE=InnoDB ;

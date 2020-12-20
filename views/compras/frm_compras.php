@@ -40,13 +40,13 @@
             </div>
             <div class="form-row">
                 <div class="form-group col-md-3">
-                    <label for="inputState">No de commpra:</label>
+                    <label for="inputState">No de compra:</label>
                     <input type="number" name="no_compra" readonly placeholder ="no de compra" value = <?php echo $no_compra ?> class="form-control">
                 </div>
                 
                 
                 <div class="form-group col-md-3">
-                    <label for="inputState">recibido por:</label>
+                    <label for="inputState">Recibido por:</label>
                     <select name="entregar_a" class="form-control" cajeros>
                     <?php $user = $conexion->query("SELECT nombre_usuario FROM $empresa.tbl_usuario"); 
                         while($row = $user->fetch_assoc()) {
