@@ -1,29 +1,28 @@
-<!--  AQUI DEBE DE IR SOLAMENTE UN FORMULARIO DE REGISTRO DE COMPRAS
+<!--  AQUI DEBE DE IR SOLAMENTE UN FORMULARIO DE REGISTRO DE nominaS
       SOLO HTML SIN CSS SIN JAVASCRIP SIN PHP-->
 
       <!-- php -->
       <?php include("../base.php"); ?>
-        <?php include("../../scripts/compras/compras_general_id_temp.php"); 
-            $id_nueva_compra = $conexion->query("SELECT no_nomina FROM $empresa.tbl_nomina_id_temp");
-            $id_temp = $id_nueva_compra->fetch_assoc();
-            $no_compra = $id_temp["no_nomina"];
+        <?php include("../../scripts/nomina/nomina_general_id_temp.php"); 
+            $id_nueva_nomina = $conexion->query("SELECT no_nomina FROM $empresa.tbl_nomina_id_temp");
+            $id_temp = $id_nueva_nomina->fetch_assoc();
+            $no_nomina = $id_temp["no_nomina"];
         ?>
       <!-- css -->
-        <link rel="stylesheet" href="../../css/compras.css">
+        <link rel="stylesheet" href="../../css/nomina.css">
         <link rel="stylesheet" href="../../css/scroll.css">
       <!-- js -->
-        <script src="../../scripts/compras/articulosCompras.js"></script>
         <script src="../../scripts/js/time_alert.js"></script>
         
 
 
-<div class="container-compras">
+<div class="container-nominas">
     <div class="container form-row">
         <form id="form" action="../../scripts/nomina/nomina.php" method="post">
             <div class="cabeza">
                 <?php if(isset($_GET["registro"])){ ?>
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                        <strong>listo! </strong> Nueva Compra registrada
+                        <strong>listo! </strong> Nueva nomina registrada
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -34,7 +33,7 @@
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label for="inputState">No de nomina:</label>
-                    <input type="" name="no_nomina"  placeholder ="no de nomina" value = <?php echo $no_compra ?> class="form-control">
+                    <input type="" name="no_nomina"  placeholder ="no de nomina" value = <?php echo $no_nomina ?> class="form-control">
                 </div>
                 
                 
@@ -62,7 +61,7 @@
                 </div>
                 <div class="form-group col-md-3">
                     <label for="inputState">Horas Extras:</label>
-                    <input type="number" name="horas_extras" class="form-control" value = "" >
+                    <input type="number" name="hora_extra" class="form-control" value = "" >
                 </div>
                 <div class="form-group col-md-3">
                     <label for="inputState">Departamento:</label>
@@ -100,7 +99,7 @@
                     <input type="number" name="pension" class="form-control" value = "" >
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="inputState">Salud:</label>
+                    <label for="inputState">Desc de Salud:</label>
                     <input type="" name="salud" class="form-control" value = "" >
                 </div>
             </div>
@@ -114,8 +113,13 @@
                     <input type="number" name="cesantia" class="form-control" value = "" >
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="inputState">total ARS:</label>
-                    <input type="number" name="ars" class="form-control" value = "" >
+                    <label for="inputState">ARS:</label>
+                    <select name="ars" class="form-control" cajeros>
+                        <option value ="">Humano</option>
+                        <option value ="">palic salud</option>
+                        <option value ="">Universal</option>
+                        <option value ="">reservas</option>
+                    </select>
                 </div>
                 <div class="form-group col-md-3">
                     <label for="inputState">sueldo:</label>
@@ -155,15 +159,15 @@
 
             
             
-            <!--Aqui se pasan las compras-->
+            <!--Aqui se pasan las nominas-->
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <button type="submit" class="btn btn">Pasar compra</button>
+                    <button type="submit" class="btn btn">Pasar nomina</button>
                 </div>
             </div>
             
 
-            <!--Aqui va la tabla temp de compras-->
+            <!--Aqui va la tabla temp de nominas-->
             <div class="tamano_tablas Overflow">
                 <table class="table">
                     <h5 class="cabeza_tabla" >Registro nomina</h5>
@@ -181,24 +185,24 @@
                     </thead>
                     <tbody>
                         <?php
-                            if(isset($_GET["id_temp"]))
+                            if(isset($_GET["no_nomina"]))
                             {
                                     //$id=$_GET["id_temp"];
-                                    $consulta_art_temp = $conexion->query("select * from $empresa.tbl_compras where no_compra= $no_compra");
+                                    $consulta_nomina = $conexion->query("select * from $empresa.tbl_nomina where no_nomina= $no_nomina");
                             }else
                             {
-                                $consulta_art_temp = $conexion->query("select * from $empresa.tbl_art_compras where no_compra = $no_compra");
+                                $consulta_nomina = $conexion->query("select * from $empresa.tbl_nomina where no_nomina = $no_nomina");
                             }    
-                            while($reg_art_temp = $consulta_art_temp->fetch_assoc())
+                            while($reg_nomina = $consulta_nomina->fetch_assoc())
                                     {
                         ?>
                                             <tr>
-                                            <th><?php  echo $reg_art_temp["articulo"]; ?></th>
-                                            <td><?php  echo $reg_art_temp["cantidad"]; ?></td>
-                                            <td><?php  echo $reg_art_temp["precio_compra"]; ?></td>
-                                            <td><?php  echo $reg_art_temp["itbis"]; ?></td>
-                                            <td><?php  echo $reg_art_temp["total"]; ?></td>
-                                            <td><a href="../../scripts/compras/borrarArtCompras.php?id_compra=<?php echo $reg_art_temp['id_compra']; ?>&no_compra=<?php echo $reg_art_temp['no_compra']; ?>" class="btn btn-danger"><i class="fa fa-times fa-lg"></i></a></td> 
+                                            <th><?php  echo $reg_nomina["empleado"]; ?></th>
+                                            <td><?php  echo $reg_nomina["salario_base"]; ?></td>
+                                            <td><?php  echo $reg_nomina["deparmento"]; ?></td>
+                                            <td><?php  echo $reg_nomina["puesto"]; ?></td>
+                                            <td><?php  echo $reg_nomina["turno"]; ?></td>
+                                            <td><a href="../../scripts/nomina/nominas.php?id_nomina=<?php echo $reg_nomina['id_nomina']; ?>&no_nomina=<?php echo $reg_nomina['no_nomina']; ?>" class="btn btn-danger"><i class="fa fa-times fa-lg"></i></a></td> 
                                             </tr>
                         <?php
                                     }
@@ -209,10 +213,10 @@
 
             
             <label class="form-check-label" for="gridCheck">
-                    Haga click en guardar para registrar esta compra 
+                    Haga click en guardar para registrar esta nomina 
             </label>
             <br>
-            <a href="../../scripts/compras/_id_temporal.php" id="btn" class="btn btn" >registrar compra</a>
+            <a href="../../scripts/nominas/_id_temporal.php" id="btn" class="btn btn" >registrar nomina</a>
             <a href="../administracion/administracion.php" id="btn" class="btn btn" >Volver atras</a>
             <br>
         </form>

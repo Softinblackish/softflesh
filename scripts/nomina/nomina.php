@@ -26,7 +26,7 @@
     $deduciones= $_POST['deduciones'];
     $total_deduciones= $_POST['total_deduciones'];
 
-    
+    /*
     $tabla_articulo = $conexion->query("
     CREATE TABLE $nombre_sin_espacio.tbl_articulos (
     `id_nomina` int(11) NOT NULL AUTO_INCREMENT,
@@ -49,8 +49,8 @@
     `fecha_creacion` timestamp DEFAULT current_timestamp() ON UPDATE current_timestamp(),
     PRIMARY KEY (`id_nomina`)
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8
-  ");
-        $Reg_det_compras = $conexion->query("insert into $empresa.tbl_nomina (no_nomina, hora_extra, departamento, salario_base , salario_dia,  empleado, salud) values ($no_nomina, '$hora_extra','$departamento',$salario_base , '$salario_dia', '$empleado', $salud)");
+  ");*/
+        $Reg_det_compras = $conexion->query("insert into $empresa.tbl_nomina (no_nomina,salario_base,salario_dia,salario_hora,hora_extra, departamento, puesto, dias_laborables, turno, pension, salud,ars,vacaciones,cesantia,sueldo) values ($no_nomina, $salario_base,$salario_dia,$salario_hora,$hora_extra,'$departamento', '$puesto', '$dias_laborables','$turno',$pension, $salud,'$ars',$vacaciones,$cesantia,$sueldo)");
         
      //echo $empresa . "  " .$no_nomina." ".$salario_base."  ".$salario_dia."  ".$empleado." ".$hora_extra." ".$departamento." <br>";
 
@@ -58,5 +58,5 @@
     //$Act_salud = $conexion->query("UPDATE $empresa.tbl_compras set salud = $salud where no_nomina = $no_nomina ");
 
 
-    //header('location:../../views/nomina/frm_nomina.php?registro="si" ')
+    header('location:../../views/nomina/frm_nomina.php?registro="si" ')
 ?>
