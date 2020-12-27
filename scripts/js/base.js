@@ -25,13 +25,17 @@ $(document).ready(function() {
         $(".menu_inventario").toggle(); 
      });
 
+     $("#nomina").click(function() {
+        $(".menu_nomina").toggle(); 
+     });
+
      $("#contabilidad").click(function() {
-      $(".menu_contabilidad").toggle(); 
-   });
+        $(".menu_contabilidad").toggle(); 
+     });
 
      $("#usuario").click(function() {
-      $("#menu-user").toggle(); 
-   });
+        $("#menu-user").toggle(); 
+     });
 
    
 });

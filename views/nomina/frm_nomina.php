@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="../../css/scroll.css">
       <!-- js -->
         <script src="../../scripts/js/time_alert.js"></script>
+        <script src="../../scripts/nomina/calculos.js"></script>
         
 
 
@@ -28,39 +29,39 @@
                         </button>
                     </div>
                 <?php } ?>
-               <h2> Nominas de Empleados</h2>
+               <h2> Registro de Empleados</h2>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label for="inputState">No de nomina:</label>
                     <input type="" name="no_nomina"  placeholder ="no de nomina" value = <?php echo $no_nomina ?> class="form-control">
                 </div>
-                
-                
                 <div class="form-group col-md-3">
                     <label for="inputState">Nombre Empleado:</label>
-                    <select name="empleado" class="form-control" cajeros>
-                    <?php $user = $conexion->query("SELECT nombre_usuario FROM $empresa.tbl_usuario"); 
-                        while($row = $user->fetch_assoc()) {
-                        ?>
-                        <option value = <?php echo $row["nombre_usuario"];  ?> ><?php echo $row["nombre_usuario"];  ?></option>
-                        <?php } ?>
-                    </select>
+                    <input type="" name="empleado"  placeholder ="Nombre empleado" class="form-control" value = ""> 
                 </div>
                 <div class="form-group col-md-3">
                     <label for="inputState">Salario Base:</label>
-                    <input type="number"  min="0" name="salario_base" class="form-control" value = "" >
+                    <input type="number"  min="0" id="salario_base" name="salario_base" class="form-control" value = "" >
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="inputState">Salario Dia:</label>
-                    <input type="number" name="salario_dia" class="form-control" value = "" >
+                    <label for="inputState">Horas de trabajo:</label>
+                    <input type="number" min="1" max="16" id="horas_trabajadas" name="horas_trabajadas" class="form-control" value = "8" >
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="inputState">Salario hora:</label>
-                    <input type="number" name="salario_hora" class="form-control" value = "" >
+                    <label for="inputState">Salario mensual:</label>
+                    <input type="number" id="salario_mes" name="salario_mes" class="form-control" value = "0" readonly>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="inputState">Horas Extras:</label>
+                    <label for="inputState">Salario Diario:</label>
+                    <input type="number" id="salario_dia" name="salario_dia" class="form-control" value = "0" readonly>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="inputState">Salario x hora:</label>
+                    <input type="number" id="salario_hora" name="salario_hora" class="form-control" value = "0" readonly>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="inputState">Pago x Horas Extras:</label>
                     <input type="number" name="hora_extra" class="form-control" value = "" >
                 </div>
                 <div class="form-group col-md-3">
@@ -71,6 +72,13 @@
                     <label for="inputState">Puesto:</label>
                     <input type="" name="puesto" class="form-control" value = "" >
                 </div>
+                <div class="form-group col-md-3">
+                    <label for="inputState">Esdo del Empleado:</label>
+                    <select name="dias_laborables" class="form-control" cajeros>
+                        <option value ="activo">ACTIVO</option>
+                        <option value ="no activo">NO ACTIVO</option>
+                    </select>
+                </div>
             </div>
 
             <label for="inputState">Datos laborales del Empleado </label><br>
@@ -78,29 +86,29 @@
             <div class="form-group col-md-3">
                     <label for="inputState">Dias laborables:</label>
                     <select name="dias_laborables" class="form-control" cajeros>
-                        <option value ="">lunes-viernes</option>
-                        <option value ="">fines de semana</option>
-                        <option value ="">1-3 dias a la semana</option>
-                        <option value ="">1-5 dias a la semana</option>
-                        <option value ="">lunes-Domingo</option>
+                        <option value ="lunes-viernes">lunes-viernes</option>
+                        <option value ="fines de semana">fines de semana</option>
+                        <option value ="1-3 dias a la semana">1-3 dias a la semana</option>
+                        <option value ="1-5 dias a la semana">1-5 dias a la semana</option>
+                        <option value ="lunes-Domingo">lunes-Domingo</option>
                     </select>
                 </div>
                 <div class="form-group col-md-3">
                     <label for="inputState">turno:</label>
                     <select name="turno" class="form-control" cajeros>
-                        <option value ="">Dia completo</option>
-                        <option value ="">mañana</option>
-                        <option value ="">Talde</option>
-                        <option value ="">Noche</option>
+                        <option value ="Dia completo">Dia completo</option>
+                        <option value ="mañana">mañana</option>
+                        <option value ="Talde">Talde</option>
+                        <option value ="Noche">Noche</option>
                     </select>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="inputState">Pension:</label>
-                    <input type="number" name="pension" class="form-control" value = "" >
+                    <label for="inputState">Desc de Pension:</label>
+                    <input type="number" id="pension" name="pension" class="form-control" value = "20" >
                 </div>
                 <div class="form-group col-md-3">
                     <label for="inputState">Desc de Salud:</label>
-                    <input type="" name="salud" class="form-control" value = "" >
+                    <input type="" id="salud" name="salud" class="form-control" value = "15" >
                 </div>
             </div>
             <div class="form-row">
@@ -115,15 +123,15 @@
                 <div class="form-group col-md-3">
                     <label for="inputState">ARS:</label>
                     <select name="ars" class="form-control" cajeros>
-                        <option value ="">Humano</option>
-                        <option value ="">palic salud</option>
-                        <option value ="">Universal</option>
-                        <option value ="">reservas</option>
+                        <option value ="Humano">Humano</option>
+                        <option value ="palic salud">palic salud</option>
+                        <option value ="Universal">Universal</option>
+                        <option value ="reservas">reservas</option>
                     </select>
                 </div>
                 <div class="form-group col-md-3">
                     <label for="inputState">sueldo:</label>
-                    <input type="number" name="sueldo" class="form-control" value = "" >
+                    <input type="number" id="sueldo" name="sueldo" class="form-control" value = "" >
                 </div>
             </div>
             <div class="form-row">
@@ -199,7 +207,7 @@
                                             <tr>
                                             <th><?php  echo $reg_nomina["empleado"]; ?></th>
                                             <td><?php  echo $reg_nomina["salario_base"]; ?></td>
-                                            <td><?php  echo $reg_nomina["deparmento"]; ?></td>
+                                            <td><?php  echo $reg_nomina["departamento"]; ?></td>
                                             <td><?php  echo $reg_nomina["puesto"]; ?></td>
                                             <td><?php  echo $reg_nomina["turno"]; ?></td>
                                             <td><a href="../../scripts/nomina/nominas.php?id_nomina=<?php echo $reg_nomina['id_nomina']; ?>&no_nomina=<?php echo $reg_nomina['no_nomina']; ?>" class="btn btn-danger"><i class="fa fa-times fa-lg"></i></a></td> 
