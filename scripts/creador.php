@@ -131,6 +131,9 @@
       `cesantia` DOUBLE,
       `sueldo` DOUBLE,
       `no_nomina` int(11),
+      `horas_trabajadas` int(11),
+      `cedula` varchar(18),
+      `estado` varchar(50),
       `fecha_creacion` timestamp DEFAULT current_timestamp() ON UPDATE current_timestamp(),
       PRIMARY KEY (`id_nomina`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8
