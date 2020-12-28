@@ -65,6 +65,10 @@
                     <input type="number" name="hora_extra" class="form-control" value = "" >
                 </div>
                 <div class="form-group col-md-3">
+                    <label for="inputState">Cedula(DNI):</label>
+                    <input type="" name="cedula" class="form-control" value = "" >
+                </div>
+                <div class="form-group col-md-3">
                     <label for="inputState">Departamento:</label>
                     <input type="" name="departamento" class="form-control" value = "" >
                 </div>
@@ -74,7 +78,7 @@
                 </div>
                 <div class="form-group col-md-3">
                     <label for="inputState">Esdo del Empleado:</label>
-                    <select name="dias_laborables" class="form-control" cajeros>
+                    <select name="estado" class="form-control" cajeros>
                         <option value ="activo">ACTIVO</option>
                         <option value ="no activo">NO ACTIVO</option>
                     </select>
@@ -104,21 +108,21 @@
                 </div>
                 <div class="form-group col-md-3">
                     <label for="inputState">Desc de Pension:</label>
-                    <input type="number" id="pension" name="pension" class="form-control" value = "20" >
+                    <input type="number" min="0" id="pension" name="pension" class="form-control" value = "20" >
                 </div>
                 <div class="form-group col-md-3">
                     <label for="inputState">Desc de Salud:</label>
-                    <input type="" id="salud" name="salud" class="form-control" value = "15" >
+                    <input type="" min="0" id="salud" name="salud" class="form-control" value = "15" >
                 </div>
             </div>
             <div class="form-row">
             <div class="form-group col-md-3">
                     <label for="inputState">Salario Vacaciones:</label>
-                    <input type="number" name="vacaciones" class="form-control" value = "" >
+                    <input type="number" name="vacaciones" class="form-control" value = "0" >
                 </div>
                 <div class="form-group col-md-3">
                     <label for="inputState">total Cesantia:</label>
-                    <input type="number" name="cesantia" class="form-control" value = "" >
+                    <input type="number" name="cesantia" class="form-control" value = "0" >
                 </div>
                 <div class="form-group col-md-3">
                     <label for="inputState">ARS:</label>
@@ -134,6 +138,7 @@
                     <input type="number" id="sueldo" name="sueldo" class="form-control" value = "" >
                 </div>
             </div>
+            <!--
             <div class="form-row">
             <div class="form-group col-md-3">
                     <label for="inputState">Percepciones:</label>
@@ -164,7 +169,7 @@
                     <input type="number" name="total_deduciones" class="form-control" value = "" >
                 </div>
             </div>
-
+                -->
             
             
             <!--Aqui se pasan las nominas-->

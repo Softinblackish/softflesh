@@ -71,13 +71,13 @@
                                         {
                                             $desde = $_POST["desde"];
                                             $hasta = $_POST["hasta"];
-                                            $consulta_articulos= $conexion->query("SELECT * from $empresa.tbl_nomina WHERE fecha_creacion >= '$desde' and fecha_creacion <= '$hasta' ");
+                                            $consulta_articulos= $conexion->query("SELECT * from $empresa.tbl_nomina WHERE fecha_creacion >= '$desde' and fecha_creacion <= '$hasta' and estado = 'activo' ");
                                             $consulta=1;
                                         }
                                     if($_POST["filtro"])
                                         {
                                             $filtro = $_POST["filtro"];
-                                            $consulta_articulos= $conexion->query("SELECT * FROM $empresa.tbl_nomina WHERE no_nomina LIKE '%$filtro%' limit 5");
+                                            $consulta_articulos= $conexion->query("SELECT * FROM $empresa.tbl_nomina WHERE no_nomina LIKE '%$filtro%' and estado = 'activo' limit 5");
                                             $consulta=1;
                                         }                  
                                 }else{

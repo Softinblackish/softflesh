@@ -4,12 +4,19 @@ $(document).ready(function() {
     $("#salario_base").keyup(function() {
         var var_salario_base = parseFloat($("#salario_base").val());
         var var_horas_trabajo = parseFloat($("#horas_trabajadas").val());
+        var var_salud = parseFloat($("#salud").val())/100;
+        var var_pension = parseFloat($("#pension").val())/100;
         var var_salario_dia = Math.round(var_salario_base/28);
         var var_salario_hora = Math.round(var_salario_dia/var_horas_trabajo);
-        //alert(var_salario_base);
+        var var_desc_salud =  var_salario_base * var_salud;
+        var var_desc_pension =  var_salario_base * var_pension;
+        var var_total_sueldo = var_salario_base - var_desc_salud - var_desc_pension;
+        //alert(var_salud);
+        //alert(var_pension);
         $("#salario_mes").val(var_salario_base);
         $("#salario_dia").val(var_salario_dia);
         $("#salario_hora").val(var_salario_hora);
+        $("#sueldo").val(var_total_sueldo);
     });
     $("#horas_trabajadas").change(function() {
         var var_salario_base = parseFloat($("#salario_base").val());
@@ -20,6 +27,33 @@ $(document).ready(function() {
         $("#salario_mes").val(var_salario_base);
         $("#salario_dia").val(var_salario_dia);
         $("#salario_hora").val(var_salario_hora);
+    });
+    $("#salud").keyup(function() {
+        var var_salario_base = parseFloat($("#salario_base").val());
+        var var_salud = parseFloat($("#salud").val())/100;
+        var var_pension = parseFloat($("#pension").val())/100;
+        var var_desc_salud =  var_salario_base * var_salud;
+        var var_desc_pension =  var_salario_base * var_pension;
+        var var_total_sueldo1 = var_salario_base - var_desc_pension;
+        $("#sueldo").val(var_total_sueldo1);
+        var var_total_sueldo = var_total_sueldo1 - var_desc_salud;
+        if(var_total_sueldo >= 0){
+            $("#sueldo").val(var_total_sueldo);
+        }else{
+            $("#sueldo").val(var_total_sueldo1);
+        }
+        //alert(var_salario_base);
+        
+    });
+    $("#pension").keyup(function() {
+        var var_salario_base = parseFloat($("#salario_base").val());
+        var var_salud = parseFloat($("#salud").val())/100;
+        var var_pension = parseFloat($("#pension").val())/100;
+        var var_desc_salud =  var_salario_base * var_salud;
+        var var_desc_pension =  var_salario_base * var_pension;
+        var var_total_sueldo = var_salario_base - var_desc_salud - var_desc_pension;
+        //alert(var_salario_base);
+        $("#sueldo").val(var_total_sueldo);
     });
     
 

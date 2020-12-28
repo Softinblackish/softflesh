@@ -129,8 +129,8 @@
                             
                         </div>
                         <div id="nomina" class="menu_lv1"><i class="fa fa-inbox fa-lg"></i> Nomina
-                                <a href="../nomina/frm_nomina.php"><div id="" class="menu_lv3 menu_inventario">Agregar nomina</div></a>
-                                <a href="../nomina/frm_generalnomina.php"><div id="" class="menu_lv3 menu_inventario">Generar nomina</div></a>
+                                <a href="../nomina/frm_empleados.php"><div id="" class="menu_lv3 menu_inventario">Agregar Empleados</div></a>
+                                <a href="../nomina/frm_generalnomina.php"><div id="" class="menu_lv3 menu_inventario">Generar Nomina</div></a>
                         </div>
                         <div id="contabilidad" class="menu_lv1"><i class="fa fa-bar-chart fa-lg" aria-hidden="true"></i> Contabilidad
                         
