@@ -50,9 +50,9 @@
     PRIMARY KEY (`id_nomina`)
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8
   ");*/
-        $Reg_det_compras = $conexion->query("insert into $empresa.tbl_nomina (no_nomina,salario_base,salario_dia,salario_hora,hora_extra, departamento, puesto, dias_laborables, turno, pension, salud,ars,vacaciones,cesantia,sueldo) values ($no_nomina, $salario_base,$salario_dia,$salario_hora,$hora_extra,'$departamento', '$puesto', '$dias_laborables','$turno',$pension, $salud,'$ars',$vacaciones,$cesantia,$sueldo)");
+        $Reg_det_compras = $conexion->query("insert into $empresa.tbl_nomina (no_nomina,empleado,salario_base,salario_dia,salario_hora,hora_extra, departamento, puesto, dias_laborables, turno, pension, salud,ars,vacaciones,cesantia,sueldo) values ($no_nomina,'$empleado',$salario_base,$salario_dia,$salario_hora,$hora_extra,'$departamento', '$puesto', '$dias_laborables','$turno',$pension, $salud,'$ars',$vacaciones,$cesantia,$sueldo)");
         
-     //echo $empresa . "  " .$no_nomina." ".$salario_base."  ".$salario_dia."  ".$empleado." ".$hora_extra." ".$departamento." <br>";
+     echo $no_nomina." ".$empleado." ".$salario_base." ".$salario_dia." ".$salario_hora." ".$hora_extra." ".$departamento." ".$puesto." ".$dias_laborables." ".$turno." ".$pension." ".$salud." ".$ars." ".$vacaciones." ".$cesantia." ".$sueldo." <br>";
 
      //echo $empresa . "  " .$no_nomina."  ".$ars."  ".$salario_hora."  ".$puesto."  ".$dias_laborables."  ".$salud."  ".$vacaciones."  ".$turno." ";
     //$Act_salud = $conexion->query("UPDATE $empresa.tbl_compras set salud = $salud where no_nomina = $no_nomina ");

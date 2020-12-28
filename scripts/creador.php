@@ -127,7 +127,7 @@
       `pension` DOUBLE,
       `salud` DOUBLE,
       `ars` varchar(100),
-      `vacasiones` DOUBLE,
+      `vacaciones` DOUBLE,
       `cesantia` DOUBLE,
       `sueldo` DOUBLE,
       `no_nomina` int(11),
