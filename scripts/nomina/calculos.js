@@ -6,7 +6,7 @@ $(document).ready(function() {
         var var_horas_trabajo = parseFloat($("#horas_trabajadas").val());
         var var_salud = parseFloat($("#salud").val())/100;
         var var_pension = parseFloat($("#pension").val())/100;
-        var var_salario_dia = Math.round(var_salario_base/28);
+        var var_salario_dia = Math.round(var_salario_base/23.83);
         var var_salario_hora = Math.round(var_salario_dia/var_horas_trabajo);
         var var_desc_salud =  var_salario_base * var_salud;
         var var_desc_pension =  var_salario_base * var_pension;
@@ -21,7 +21,7 @@ $(document).ready(function() {
     $("#horas_trabajadas").change(function() {
         var var_salario_base = parseFloat($("#salario_base").val());
         var var_horas_trabajo = parseFloat($("#horas_trabajadas").val());
-        var var_salario_dia = Math.round(var_salario_base/28);
+        var var_salario_dia = Math.round(var_salario_base/23.83);
         var var_salario_hora = Math.round(var_salario_dia/var_horas_trabajo);
         //alert(var_salario_base);
         $("#salario_mes").val(var_salario_base);
