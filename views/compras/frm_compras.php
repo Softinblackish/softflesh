@@ -58,20 +58,20 @@
                 <div class="form-group col-md-3">
                     <label for="inputState">Moneda:</label>
                     <select name="moneda" class="form-control" cajeros>
-                        <option value="cajero1">DO</option>
-                        <option value="cajero2">USD</option>
-                        <option value="cajero3">EURO</option>
-                        <option value="cajero3">LIBRA</option>
-                        <option value="cajero3">JENES</option>
-                        <option value="cajero3">BITCOIN</option>
+                        <option value="DO">DO</option>
+                        <option value="USD">USD</option>
+                        <option value="EURO">EURO</option>
+                        <option value="LIBRA">LIBRA</option>
+                        <option value="JENES">JENES</option>
+                        <option value="BITCOIN">BITCOIN</option>
                     </select>
                 </div>
                 <div class="form-group col-md-3">
                     <label for="inputState">Forma de pago:</label>
                     <select name="forma_pago" class="form-control" placeholder="forma de pago">
-                        <option value="">EFECTIVO</option>
-                        <option value="">TARJETA</option>
-                        <option value="">NOTA DE DEBITO</option>
+                        <option value="EFECTIVO">EFECTIVO</option>
+                        <option value="TARJETA">TARJETA</option>
+                        <option value="NOTA DE DEBITO">NOTA DE DEBITO</option>
                     </select>
                 </div>
                 <div class="form-group col-md-6">

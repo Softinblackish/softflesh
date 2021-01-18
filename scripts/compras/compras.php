@@ -20,7 +20,7 @@
     $cantidad= $_POST['cantidad'];
     $stock= $_POST['stock'];
     $total= $_POST['total'];
-    $valor_total= $_POST['valor_total'];
+    $valor_total= empty($_POST['valor_total']) ? 0 : $_POST['valor_total'];
     $caducidad = empty($_POST['caducidad']) ? '0000-00-00' : $_POST['caducidad']; 
     $nota= $_POST['nota'];
     $itbis= $_POST['impuestodf'];
@@ -31,9 +31,11 @@
         if($consulta_det_compras->num_rows >= 1 ){
             
         }else{
-            $Reg_det_compras = $conexion->query("insert into $empresa.tbl_compras (no_compra, nombre_proveedor, cod_proveedor, forma_pago , moneda,  entregar_a, valor_total)
-            values ($no_compra, '$nombre_proveedor','$cod_proveedor',$forma_pago , '$moneda', '$entregar_a', $valor_total)
-            ");
+            
+            $Reg_det_compras = $conexion->query("insert into $empresa.tbl_compras (no_compra, nombre_proveedor, cod_proveedor, forma_pago , moneda,  entregar_a, valor_total , comprobante,cod_impuesto,condicion_pago,valor_impuestos,sin_impuestos) values ($no_compra, '$nombre_proveedor',$cod_proveedor,'$forma_pago' , '$moneda', '$entregar_a', $valor_total,null,null,null,0,0) ");
+            
+            //echo $empresa . "   " .$no_compra."   ".$nombre_proveedor."   ".$valor_total."   ".$forma_pago."   ".$moneda."   ".$entregar_a." ".null." ".null." ".null." "."0"." "."0";
+            
             $Reg_new_id_compra = $conexion->query("insert into $empresa.tbl_compra_id_temp (no_compra) values ($no_compra);");
         }
 
@@ -42,6 +44,7 @@
         
 
         //Registro de detalle de articulos de la compra
+        
         $procesoNoRepet = $conexion->query("SELECT articulo FROM $empresa.tbl_art_compras where articulo = '$articulo' and no_compra = $no_compra ");
         $comprobacionNoRepet = $procesoNoRepet->fetch_assoc();
         if($procesoNoRepet->num_rows >= 1 ){
@@ -134,18 +137,8 @@
 
 
 
-
-
-        /*$Reg_art_compras = $conexion->query("insert into $empresa.tbl_art_compras (no_compra, articulo, precio_compra, cantidad, total, stock, caducidad, nota)
-            values ($no_compra, '$articulo',  $precio_compra, $cantidad, $total ,$stock, '$caducidad', '$nota')
-            ");*/    
-    
-            //echo $empresa . "  " .$no_compra." ".$forma_pago."  ".$moneda."  ".$entregar_a." ".$nombre_proveedor." ".$cod_proveedor." <br>";
-
-            //echo $empresa . "  " .$no_compra."  ".$caducidad."  ".$articulo."  ".$precio_compra."  ".$cantidad."  ".$valor_total."  ".$nota."  ".$stock." ";
-        //echo $valor_total;
         $Act_Valor_Total = $conexion->query("UPDATE $empresa.tbl_compras set valor_total = $valor_total where no_compra = $no_compra ");
 
-//cxcobrar y cxpagar
+
     header('location:../../views/compras/frm_compras.php?registro="si" ')
 ?>

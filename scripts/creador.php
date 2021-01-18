@@ -54,6 +54,25 @@
         PRIMARY KEY (`id_cod_impuesto`)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8
       ");
+
+      $tabla_cuentas_por_pagar = $conexion->query("
+      CREATE TABLE $nombre_sin_espacio.tbl_cuentas_por_pagar (
+        `id_cxp` int(11) NOT NULL AUTO_INCREMENT ,
+        `servicios` varchar(75) NULL,
+        `inicial` DOUBLE,
+        `saldo` DOUBLE,
+        `cant_pagos` DOUBLE,
+        `tipo_pago` varchar(50) NULL,
+        `pago_mensual` DOUBLE,
+        `pago_anual` DOUBLE,
+        `interes` DOUBLE,
+        `moras` DOUBLE,
+        `estatus` varchar(50) NULL,
+        `descripcion` varchar(200) ,
+        PRIMARY KEY (`id_cxp`)
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+      ");
+
       $tabla_cajas = $conexion->query(" 
       CREATE TABLE $nombre_sin_espacio.tbl_cajas ( 
         `id_caja` INT NOT NULL AUTO_INCREMENT , 

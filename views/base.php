@@ -131,6 +131,9 @@
                         <div id="nomina" class="menu_lv1"><i class="fa fa-inbox fa-lg"></i> Nomina
                                 <a href="../nomina/frm_empleados.php"><div id="" class="menu_lv3 menu_nomina">Agregar Empleados</div></a>
                                 <a href="../nomina/frm_generalnomina.php"><div id="" class="menu_lv3 menu_nomina">Generar Nomina</div></a>
+
+                                <a href="../nomina/frm_buscarnomina.php"><div id="" class="menu_lv3 menu_nomina">Buscar nomina</div></a>
+
                         </div>
                         <div id="contabilidad" class="menu_lv1"><i class="fa fa-bar-chart fa-lg" aria-hidden="true"></i> Contabilidad
                         
