@@ -85,12 +85,12 @@
                     <input type="number" name="valor_total" class="form-control"  placeholder="total" id="total_G" value = <?php echo $TotalGeneral ?> readonly>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="inputState">Total General:</label>
+                    <!--<label for="inputState">Total General:</label>-->
                     <?php $articulos = $conexion->query("SELECT round(sum(total),0)as totalgeneral FROM $empresa.tbl_art_compras"); 
                     $row = $articulos->fetch_assoc();
                     $Total = $row["totalgeneral"];
                     ?>
-                    <input type="number" name="" class="form-control" value = <?php echo $Total ?> readonly>
+                    <input type="hidden" name="" class="form-control" value = <?php echo $Total ?> readonly>
                 </div>
             </div>
 
@@ -113,7 +113,7 @@
                 <?php $suplidores = $conexion->query("SELECT * FROM $empresa.tbl_suplidores");
                     $dato = $suplidores->fetch_assoc();
                 ?>
-                <input  type="number" id="cod_proveedor" name="cod_proveedor" value = "<?php echo $dato["codigo_sup"]; ?>" class="form-control" readonly>
+                <input  type="hidden" id="cod_proveedor" name="cod_proveedor" value = "<?php echo $dato["codigo_sup"]; ?>" class="form-control" readonly>
                 </div>
             </div>
 
