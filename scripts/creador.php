@@ -40,6 +40,7 @@
         `cantidad_disponible` int(6) default 0,
         `fecha_modificacion` timestamp DEFAULT current_timestamp() ON UPDATE current_timestamp(),
         `unidad` varchar(100) default 0,
+        `cod_suplidor` DOUBLE,
         PRIMARY KEY (`id_articulo`)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8
       ");
