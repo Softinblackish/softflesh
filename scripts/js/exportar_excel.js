@@ -1,5 +1,7 @@
 /* Este script es para generar y descargar un archivo excel con el contenido de una tabla */
-/* Para generar este archivo la tabla debe tener el id= "testTable"   y el boton para descargar debe tener el atributo onclick="tableToExcel('testTable', 'Hoja1')" */
+
+/* Para generar este archivo deben agregar la referencia a este archivo '<script src="../../scripts/js/exportar_excel.js"></script>
+' tambien la tabla debe tener el id= "testTable"   y el boton para descargar debe tener el atributo onclick="tableToExcel('testTable', 'Hoja1')" */
 
 var tableToExcel = (function() {
     var uri = 'data:application/vnd.ms-excel;base64,'
