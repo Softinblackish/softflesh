@@ -117,7 +117,7 @@
 
                                 <?php if($permisos['cxc']== 1){ ?><div id="cxc" class="menu_lv1"><i class="fa fa-money fa-lg" aria-hidden="true"></i> Cuentas por cobrar <!--Formulario cuentas por cobrar-->                         
                                         <a href="../Cuentas_por_cobrar/frm_cuentas_por_cobrar.php"><div id="agregar_cxc" class="menu_lv3 menu_cxc">Agregar cuenta por cobrar</div></a>
-                                        <div id="lista_cxc" class="menu_lv3 menu_cxc">Ver cuentas por cobrar</div>
+                                        <a href="../cuentas_por_cobrar/ver_cuentas_c.php"><div id="lista_cxc" class="menu_lv3 menu_cxc">Ver cuentas por cobrar</div></a>
                                 </div> <?php } ?>
 
                         <div id="inventario" class="menu_lv1"><i class="fa fa-inbox fa-lg"></i> Inventario
