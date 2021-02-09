@@ -1,8 +1,5 @@
 <?php include("../base.php");
 ?>
-<script>
-
-</script>
 <link rel="stylesheet" href="../../css/reporte607.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="../../scripts/js/usuarios.js"></script>
@@ -16,14 +13,14 @@
 <div id="box_lista">
 <div>
 <h2>Reporte 607</h2>
-<form action=""  method="post">
-    <div  class="row" style="float: left !important;">
-        <div class="form-group col-md-3">
-            <label>Desde</label>
-            <input class="form-control"  type="date" name="desde">
+<form method="post">
+    <div  class="form-row" style="float: left !important;">
+        <div class="col-md-3">  
+            <label for="desde">desde</label>
+            <input class="form-control"  type="date" name="desde"/>
         </div>
         <div class="form-group col-md-3" >
-            <label>Hasta</label>
+            <label for="desde">Hasta</label>
             <input class="form-control"  type="date" placeholder="Buscar" name="hasta">
         </div>
        
@@ -32,12 +29,12 @@
             <input class="form-control"  type="number" placeholder="Comprobante" name="filtro">
         </div>
         <div class="form-group col-md-2">
-        <label>.</label>
+            <label>.</label>
             <input type="submit" class="btn btn form-control buscar" value="Buscar">
         </div>
         <div class="form-group col-md-2">
             <label for="">.</label>
-            <input type="button" class="btn btn form-control buscar" onclick="tableToExcel('testTable', 'W3C Example Table')" value="Descargar">
+            <input type="button" class="btn btn form-control buscar" onclick="tableToExcel('testTable', 'Hoja1')" value="Descargar">
         </div>
     </div>
 </form>
@@ -49,10 +46,8 @@
                 <th scope="col">#</th>
                 <th scope="col">RNC/Cedula o Pasaporte</th>
                 <th scope="col">Tipo identificación</th>
-
                 <th scope="col">Comprobante</th>
                 <th scope="col">Comprobante Modificado</th>
-
                 <th scope="col">Tipo ingreso</th>
                 <th scope="col">Fecha Comprobante</th>
                 <th scope="col">Fecha Retención</th>
