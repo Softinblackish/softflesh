@@ -15,7 +15,9 @@
         
         <script src="../../scripts/compras/articulosCompras.js"></script>
         <!--Cargar codigo suplidores-->
-        <script src="../../scripts/compras/codprovCompras.js"></script>                            
+        <script src="../../scripts/compras/codprovCompras.js"></script>
+        <!--Cargar articulos por cod de suplidores-->
+        <script src="../../scripts/compras/articulos_x_suplidores.js"></script>                             
         
         <script src="../../scripts/js/time_alert.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -83,18 +85,18 @@
                     <input type="number" name="valor_total" class="form-control"  placeholder="total" id="total_G" value = <?php echo $TotalGeneral ?> readonly>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="inputState">Total General:</label>
+                    <!--<label for="inputState">Total General:</label>-->
                     <?php $articulos = $conexion->query("SELECT round(sum(total),0)as totalgeneral FROM $empresa.tbl_art_compras"); 
                     $row = $articulos->fetch_assoc();
                     $Total = $row["totalgeneral"];
                     ?>
-                    <input type="number" name="" class="form-control" value = <?php echo $Total ?> readonly>
+                    <input type="hidden" name="" class="form-control" value = <?php echo $Total ?> readonly>
                 </div>
             </div>
 
             <label for="inputState">Datos del proveedor: </label><br>
             <div class="form-row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-9">
                     <select id="nombre_proveedor" name="nombre_proveedor" class="form-control" placeholder="nombre y apellido del proveedor">
                         <?php $suplidores = $conexion->query("SELECT * FROM $empresa.tbl_suplidores"); 
                         
@@ -107,11 +109,11 @@
 
                     </select> 
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-3">
                 <?php $suplidores = $conexion->query("SELECT * FROM $empresa.tbl_suplidores");
                     $dato = $suplidores->fetch_assoc();
                 ?>
-                <input type="number" id="cod_proveedor" name="cod_proveedor" value = "<?php echo $dato["codigo_sup"]; ?>" class="form-control" readonly>
+                <input  type="hidden" id="cod_proveedor" name="cod_proveedor" value = "<?php echo $dato["codigo_sup"]; ?>" class="form-control" readonly>
                 </div>
             </div>
 
@@ -138,11 +140,13 @@
             <div class="form-row">
                 <div class="form-group col-md-12">
                     <select id="articulo" name="articulo" class="form-control" placeholder="articulo">
+                        <option value = "0"> sin opciones</option>
+                        <!--
                         <?php $articulos = $conexion->query("SELECT nombre FROM $empresa.tbl_articulos"); 
                         while($row = $articulos->fetch_assoc()) {
                         ?>
                         <option value = <?php echo $row["nombre"];  ?> ><?php echo $row["nombre"];  ?></option>
-                        <?php } ?>
+                        <?php }?>-->
 
                     </select> 
                 </div>
