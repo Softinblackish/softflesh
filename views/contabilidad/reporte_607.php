@@ -7,23 +7,22 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="../../scripts/js/usuarios.js"></script>
 <script src="../../scripts/js/devolucion_articulos.js"></script>
-
+<script src="tableToExcel.js"></script>
 
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
 
 
-<div id="box_lista" class="buscar">
+<div id="box_lista">
 <div>
 <h2>Reporte 607</h2>
 <form action=""  method="post">
-    <div  class="form-row">
-        
-        <div class="form-group col-md-4">
+    <div  class="row" style="float: left !important;">
+        <div class="form-group col-md-3">
             <label>Desde</label>
             <input class="form-control"  type="date" name="desde">
         </div>
-        <div class="form-group col-md-4" >
+        <div class="form-group col-md-3" >
             <label>Hasta</label>
             <input class="form-control"  type="date" placeholder="Buscar" name="hasta">
         </div>
@@ -34,13 +33,17 @@
         </div>
         <div class="form-group col-md-2">
         <label>.</label>
-            <input type="submit" class="btn btn form-control" id="buscar" value="Buscar">
+            <input type="submit" class="btn btn form-control buscar" value="Buscar">
+        </div>
+        <div class="form-group col-md-2">
+            <label for="">.</label>
+            <input type="button" class="btn btn form-control buscar" onclick="tableToExcel('testTable', 'W3C Example Table')" value="Descargar">
         </div>
     </div>
 </form>
 </div>
      <br><br> 
-            <table class="table">
+            <table class="table" id="testTable">
             <thead>      
                 <tr>
                 <th scope="col">#</th>
@@ -173,5 +176,5 @@
 </table>
     </div>
     </div>
-
+    <script src="../../scripts/js/exportar_excel.js"></script>
 <!-- Modal -->
