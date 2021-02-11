@@ -141,6 +141,7 @@
                                 <a href="../contabilidad/reporte_607.php"><div class="menu_lv3 menu_contabilidad">Reporte 607</div></a>
                                    <div class="menu_lv3 menu_contabilidad">Reporte 608</div>
                                    <div class="menu_lv3 menu_contabilidad">Balance Géneral</div>
+                                <a href="../contabilidad/catalogo_cuentas.php"><div class="menu_lv3 menu_contabilidad">Catalogo de cuentas</div></a>
                                 <a><div class="menu_lv3 menu_contabilidad">Entrada de Diario</div></a>
                                 <a><div class="menu_lv3 menu_contabilidad">Cierre fiscal</div></a>
                                 <a><div class="menu_lv3 menu_contabilidad">Estados Financieros</div></a>
