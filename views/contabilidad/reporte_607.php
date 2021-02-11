@@ -39,9 +39,8 @@
     </div>
 </form>
 </div>
-     <br><br> 
             <table class="table" id="testTable">
-            <thead>      
+            <thead class="thead">      
                 <tr>
                 <th scope="col">#</th>
                 <th scope="col">RNC/Cedula o Pasaporte</th>
@@ -64,7 +63,7 @@
                 <th scope="col">Venta a Crédito</th>
                 <th scope="col">Bonos/regalos</th>
                 <th scope="col">Permuta</th>
-                <th scope="col">Otras formas de venta</th>
+                <th scope="col">Otras formas</th>
                 </tr>
   </thead>
   <div id="testeo">
