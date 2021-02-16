@@ -1,0 +1,23 @@
+$(document).ready(function(){
+    $('#mostrar_texto_cuenta').click(function(){
+        $('#nombre_cuenta').show();
+        $('#nombre_sub-cuenta').hide();
+        $('#cuentas').hide();
+        $('#sub-cuentas').hide();
+        $('#nombre_cuenta_detalle').hide();
+    });
+    $('#mostrar_lista_cuentas').click(function(){
+        $('#nombre_cuenta').hide();
+        $('#nombre_sub-cuenta').show();
+        $('#cuentas').show();
+        $('#sub-cuentas').hide();
+        $('#nombre_cuenta_detalle').hide();
+    });
+    $('#mostrar_lista_sub-cuentas').click(function(){
+        $('#sub-cuentas').show();
+        $('#nombre_cuenta_detalle').show();
+        $('#nombre_cuenta').hide();
+        $('#nombre_sub-cuenta').hide();
+        $('#cuentas').hide();
+    });
+});

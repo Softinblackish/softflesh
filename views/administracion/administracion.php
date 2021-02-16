@@ -78,7 +78,7 @@
 
 <?php if($permisos['empresa']== 1){ ?><ul class="list-group" >
   <li class="list-group-item superior"  style="background-color:#17a2b8;color:white;"> Catalogo de cuentas</li>
-  <a href="../usuarios/lista_usuarios.php"><li class="list-group-item"><i class="fa fa-pencil"></i> Agregar</li></a>
+  <a href="crear_cuenta_contable.php"><li class="list-group-item"><i class="fa fa-pencil"></i> Agregar</li></a>
   <a href="catalogo_cuentas.php"> <li class="list-group-item"><i class="fa fa-picture-o"></i> Ver cuentas</li></a>
 </ul>
 <?php } ?>

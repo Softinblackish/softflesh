@@ -60,6 +60,69 @@
         <div class="col-md-6">3.2</div>   
     </div>
 </div>
-
+<br>
+<div>
+    <h5>Ingresos</h5>
+    <div class="row">
+        <div class="col-md-6">Libro</div> 
+        <div class="col-md-6">4.0</div>   
+    </div>
+    <div class="row">
+        <div class="col-md-6">Abanico</div>
+        <div class="col-md-6">4.1</div>   
+    </div>
+    <div class="row">
+        <div class="col-md-6">Cama</div>    
+        <div class="col-md-6">4.2</div>   
+    </div>
+</div>
+<br>
+<div>
+    <h5>Costos</h5>
+    <div class="row">
+        <div class="col-md-6">Libro</div> 
+        <div class="col-md-6">5.0</div>   
+    </div>
+    <div class="row">
+        <div class="col-md-6">Abanico</div>
+        <div class="col-md-6">5.1</div>   
+    </div>
+    <div class="row">
+        <div class="col-md-6">Cama</div>    
+        <div class="col-md-6">5.2</div>   
+    </div>
+</div>
+<br>
+<div>
+    <h5>Gastos</h5>
+    <div class="row">
+        <div class="col-md-6">Libro</div> 
+        <div class="col-md-6">6.0</div>   
+    </div>
+    <div class="row">
+        <div class="col-md-6">Abanico</div>
+        <div class="col-md-6">6.1</div>   
+    </div>
+    <div class="row">
+        <div class="col-md-6">Cama</div>    
+        <div class="col-md-6">6.2</div>   
+    </div>
+</div>
+<br>
+<div>
+    <h5>Otros</h5>
+    <div class="row">
+        <div class="col-md-6">Libro</div> 
+        <div class="col-md-6">7.0</div>   
+    </div>
+    <div class="row">
+        <div class="col-md-6">Abanico</div>
+        <div class="col-md-6">7.1</div>   
+    </div>
+    <div class="row">
+        <div class="col-md-6">Cama</div>    
+        <div class="col-md-6">7.2</div>   
+    </div>
+</div>
 
 <!-- Modal -->
