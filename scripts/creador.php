@@ -40,6 +40,7 @@
         `cantidad_disponible` int(6) default 0,
         `fecha_modificacion` timestamp DEFAULT current_timestamp() ON UPDATE current_timestamp(),
         `unidad` varchar(100) default 0,
+        `cod_suplidor` DOUBLE,
         PRIMARY KEY (`id_articulo`)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8
       ");
@@ -527,6 +528,18 @@ $perm = $conexion->query("
               `irregularidades` INT(10) NULL DEFAULT '0' ,
              PRIMARY KEY (`id_pase_inventario`)) ENGINE = InnoDB;
              ");
+             $tabla_cuentas_c = $conexion->query("
+               CREATE TABLE $nombre_sin_espacio.tbl_cuentas_c
+               ( `id_cuenta_c` INT NOT NULL AUTO_INCREMENT , 
+               `id_venta` INT(50) NULL , 
+               `valor` INT(50) NULL , 
+               `id_condicion` INT(50) NULL , 
+               `fecha_creacion` TIMESTAMP NULL , 
+               `id_cliente` INT(10) NULL , 
+               `origen` VARCHAR(100) NULL , 
+               `fecha_a_cobrar` DATE NULL , 
+               PRIMARY KEY (`id_cuenta_c`)) ENGINE = InnoDB;
+              ");
 
              $tabla_pase_inventario_det = $conexion->query("
              CREATE TABLE $nombre_sin_espacio.tbl_pase_inventario_det ( 

@@ -1,7 +1,6 @@
 .container-articulos{
     width: 400px;
     height:1000px;
-    margin:100px;
 
   /*  position: relative;
     background-color:darkgray;
@@ -16,11 +15,10 @@
     width: 600px;
     margin: auto;
     position: relative;
-    top: 100px;
+    top: 50px;
     padding-top: 10px;
     padding: 10px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    background-color:white;
+        background-color:white;
     /*background-color: white;*/
     box-shadow: 1px 1px 5px black;
     border-radius: 10px;
@@ -41,6 +39,6 @@
     padding: 45px;
 }
 .btn{
-    background-color:#0e444c; 
+    background-color:rgb(87, 220, 200); 
     color:white;
 }
