@@ -57,7 +57,7 @@
                 <th scope="col">Selectivo consumo</th>
                 <th scope="col">Otros impuestos/tasa</th>
                 <th scope="col">Propina legal</th>
-                <th scope="col">Efectivo</th>
+                <th scope="col">lo que sea</th>
                 <th scope="col">Cheque /Tranferencia/Deposito</th>
                 <th scope="col">Tarjeta Débito/Crédito</th>
                 <th scope="col">Venta a Crédito</th>
