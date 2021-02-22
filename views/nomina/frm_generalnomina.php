@@ -40,12 +40,6 @@
             </div>
         </div>
     </form> 
-
-    <!--
-    <div class="form-row">
-        <div class="form-group col-md-12">
--->
-                <!--Aqui va la tabla de articulos de nominas para devoluciones -->
                 
                     <table class="table">
                     <h5 class="cabeza_tabla" >Generacion de la nomina</h5>
@@ -94,24 +88,13 @@
                             </a>
                         </div>
                         <div class="form-group col-md-6">
-                            <?php
-                            if( isset($_POST["desde"]) || isset($_POST["hasta"]) || isset($_POST["filtro"]) ){
-                                $filtro=$_POST["filtro"];
-                                $desde =$_POST["desde"];
-                                $hasta =$_POST["hasta"];
-                            }else{
-                                $filtro=0;
-                                $desde ="";
-                                $hasta ="";
-                            }
-                            ?>
-                            <?php //echo $filtro; ?>
                             <a href="rpt_nominas.php?desde=<?php echo $desde; ?> &hasta=<?php echo $hasta;?>
                             &filtro=<?php echo $filtro; ?> ">
                                 <input type="" class="btn btn form-control" id="buscar" value="Imprimir" readonly>
                             </a> 
                             
                         </div>
+
                     </div> 
                 
 
