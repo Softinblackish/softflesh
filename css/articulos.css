@@ -10,12 +10,14 @@
     margin-left: 557px;
     margin-top: 0px;
 }
-
+.oculto{
+    display: none;
+}
 .container {
     width: 600px;
     margin: auto;
     position: relative;
-    top: 100px;
+    top: 50px;
     padding-top: 10px;
     padding: 10px;
     background-color: white;

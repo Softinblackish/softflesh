@@ -1,30 +1,26 @@
 <?php include("../base.php");
 ?>
-<script>
-
-</script>
 <link rel="stylesheet" href="../../css/reporte607.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="../../scripts/js/usuarios.js"></script>
 <script src="../../scripts/js/devolucion_articulos.js"></script>
-
+<script src="tableToExcel.js"></script>
 
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
 
 
-<div id="box_lista" class="buscar">
+<div id="box_lista">
 <div>
 <h2>Reporte 607</h2>
-<form action=""  method="post">
-    <div  class="form-row">
-        
-        <div class="form-group col-md-4">
-            <label>Desde</label>
-            <input class="form-control"  type="date" name="desde">
+<form method="post">
+    <div  class="form-row" style="float: left !important;">
+        <div class="col-md-3">  
+            <label for="desde">desde</label>
+            <input class="form-control"  type="date" name="desde"/>
         </div>
-        <div class="form-group col-md-4" >
-            <label>Hasta</label>
+        <div class="form-group col-md-3" >
+            <label for="desde">Hasta</label>
             <input class="form-control"  type="date" placeholder="Buscar" name="hasta">
         </div>
        
@@ -33,23 +29,24 @@
             <input class="form-control"  type="number" placeholder="Comprobante" name="filtro">
         </div>
         <div class="form-group col-md-2">
-        <label>.</label>
-            <input type="submit" class="btn btn form-control" id="buscar" value="Buscar">
+            <label>.</label>
+            <input type="submit" class="btn btn form-control buscar" value="Buscar">
+        </div>
+        <div class="form-group col-md-2">
+            <label for="">.</label>
+            <input type="button" class="btn btn form-control buscar" onclick="tableToExcel('testTable', 'Hoja1')" value="Descargar">
         </div>
     </div>
 </form>
 </div>
-     <br><br> 
-            <table class="table">
-            <thead>      
+            <table class="table" id="testTable">
+            <thead class="thead">      
                 <tr>
                 <th scope="col">#</th>
                 <th scope="col">RNC/Cedula o Pasaporte</th>
                 <th scope="col">Tipo identificación</th>
-
                 <th scope="col">Comprobante</th>
                 <th scope="col">Comprobante Modificado</th>
-
                 <th scope="col">Tipo ingreso</th>
                 <th scope="col">Fecha Comprobante</th>
                 <th scope="col">Fecha Retención</th>
@@ -66,7 +63,7 @@
                 <th scope="col">Venta a Crédito</th>
                 <th scope="col">Bonos/regalos</th>
                 <th scope="col">Permuta</th>
-                <th scope="col">Otras formas de venta</th>
+                <th scope="col">Otras formas</th>
                 </tr>
   </thead>
   <div id="testeo">
@@ -173,5 +170,5 @@
 </table>
     </div>
     </div>
-
+    <script src="../../scripts/js/exportar_excel.js"></script>
 <!-- Modal -->

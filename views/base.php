@@ -117,7 +117,7 @@
 
                                 <?php if($permisos['cxc']== 1){ ?><div id="cxc" class="menu_lv1"><i class="fa fa-money fa-lg" aria-hidden="true"></i> Cuentas por cobrar <!--Formulario cuentas por cobrar-->                         
                                         <a href="../Cuentas_por_cobrar/frm_cuentas_por_cobrar.php"><div id="agregar_cxc" class="menu_lv3 menu_cxc">Agregar cuenta por cobrar</div></a>
-                                        <div id="lista_cxc" class="menu_lv3 menu_cxc">Ver cuentas por cobrar</div>
+                                        <a href="../cuentas_por_cobrar/ver_cuentas_c.php"><div id="lista_cxc" class="menu_lv3 menu_cxc">Ver cuentas por cobrar</div></a>
                                 </div> <?php } ?>
 
                         <div id="inventario" class="menu_lv1"><i class="fa fa-inbox fa-lg"></i> Inventario
@@ -142,6 +142,7 @@
                                 <a href="../contabilidad/reporte_607.php"><div class="menu_lv3 menu_contabilidad">Reporte 607</div></a>
                                    <div class="menu_lv3 menu_contabilidad">Reporte 608</div>
                                    <div class="menu_lv3 menu_contabilidad">Balance Géneral</div>
+                                <a href="../contabilidad/catalogo_cuentas.php"><div class="menu_lv3 menu_contabilidad">Catalogo de cuentas</div></a>
                                 <a><div class="menu_lv3 menu_contabilidad">Entrada de Diario</div></a>
                                 <a><div class="menu_lv3 menu_contabilidad">Cierre fiscal</div></a>
                                 <a><div class="menu_lv3 menu_contabilidad">Estados Financieros</div></a>
