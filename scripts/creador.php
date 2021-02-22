@@ -45,6 +45,35 @@
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8
       ");
 
+      $tabla_articulo = $conexion->query("
+        CREATE TABLE $nombre_sin_espacio.tbl_contabilidad (
+        `id_contabilidad` int(11) NOT NULL AUTO_INCREMENT,
+        `tipo_id` int(11),
+        `T_Bienes_servicios` varchar(100),
+        `NCF` varchar(30),
+        `NCF_docMod` varchar(30),
+        `Fec_comprobante` varchar(30),
+        `Fec_pago` varchar(30),
+        `Monto_Facturado_Servicios` DOUBLE,
+        `Monto_Facturado_Bienes` DOUBLE,
+        `Total_Monto_facturado` DOUBLE,
+        `Itebis_Facturado` DOUBLE default 0,
+        `Itebis_Retenido` DOUBLE default 0,
+        `Itebis_sub_a_proporcionalidad` DOUBLE default 0,
+        `Itebis_llevado_al_costo` DOUBLE default 0,
+        `Itebis_por_adelantar` DOUBLE default 0,
+        `Itebis_percibido_compra` DOUBLE default 0,
+        `Tipo_Retencion_ISR` DOUBLE default 0,
+        `Monto_Retencion_Renta` DOUBLE default 0,
+        `ISR_percibido_compra` DOUBLE default 0,
+        `Impuesto_selectivo_consumo` DOUBLE default 0,
+        `Monto_prima_legal` DOUBLE,
+        `Forma_pago` DOUBLE,
+        `Estatus` varchar(30),
+        PRIMARY KEY (`id_contabilidad`)
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+    ");
+
     $tabla_impuestos = $conexion->query("
       CREATE TABLE $nombre_sin_espacio.tbl_cod_impuestos (
         `id_cod_impuesto` int(11) NOT NULL AUTO_INCREMENT ,
