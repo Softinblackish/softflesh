@@ -622,17 +622,16 @@ $perm = $conexion->query("
                $tabla_asientos = $conexion->query("
                CREATE TABLE `softflesh`.`tbl_asientoss` ( 
                  `id_asiento` INT NOT NULL AUTO_INCREMENT , 
-                 `cuenta` VARCHAR(200) NOT NULL , 
+                 `cuenta` VARCHAR(200) NOT NULL ,
+                 `area` VARCHAR(200) NOT NULL ,
+                 `identificativo` VARCHAR(200) NOT NULL , 
                  `debito_porciento` INT(10) NOT NULL DEFAULT '0' , 
                  `credito_porciento` INT(10) NOT NULL DEFAULT '0' , 
-                 `id_temp` INT(100) NOT NULL , 
+                 `id_temp` double NOT NULL , 
                  `creado_por` VARCHAR(100) NOT NULL , 
                  `fecha_creacion` TIMESTAMP NOT NULL , 
                  PRIMARY KEY (`id_asiento`)) ENGINE = InnoDB;
                ");
-
-
-
 
           header("location:../views/creador_u.php?empresa=$nombre_sin_espacio");
       }
