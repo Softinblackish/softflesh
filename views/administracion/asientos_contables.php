@@ -27,14 +27,14 @@
         </div>
         <div class="col-md-9" style="border:solid 1px gray;">
             <div class="row"> 
-                <div class="col-md-6 bg-info" style="color: white; padding-top:15px;padding-bottom:15px; padding-left:40px;">
+                <div class="col-md-6 bg-info" id="agregar" style="color: white; padding-top:15px;padding-bottom:15px; padding-left:40px;">
                     <h5>Agregar asiento de ventas</h5> 
                 </div>
-                <div class="col-md-6 bg-info" style="color: white;padding-top:15px; padding-left:40px;padding-bottom:15px;">
+                <div class="col-md-6 bg-info" id="ver" style="color: white;padding-top:15px; padding-left:40px;padding-bottom:15px;">
                     <h5>Ver asientos de ventas</h5>
                 </div>
             </div><br>
-            <div id="agregar_asiento_de_venta" style="display: none;">
+            <div id="agregar_asiento_de_venta" >
                 <form action="" id="formularioaenviar" method="">
                     <div id="agregar_asiento" >
                         <div class="row">
@@ -80,11 +80,7 @@
                                     <input type="radio" style="margin-left:5px;" class="form-check-input" value="credito" name="origen1" id="">
                                 </div>
                             </div>
-                            <div class="col-md-2">
-                                <div>
-                                    <a class="btn btn-danger"><i class="fa fa-trash-o fa-lg"></i></a>
-                                </div>
-                            </div><br>
+                            <br>
                         </div>
                         <div id="nueva_linea" >
             
@@ -98,28 +94,130 @@
                     </div>
                 </form>
             </div>
-            <div id="ver_asientos_de_venta" >
+                        
+            <div id="ver_asientos_de_venta" style="display: none;">
                 <div>
                     <?php 
-                        $lista_asientos = $conexion->query("SELECT * FROM $empresa.tbl_asientos where area = 'ventas'");
-                        
+                       
+                        $lista_asientos = $conexion->query("SELECT DISTINCT id_temp id_asiento, identificativo FROM $empresa.tbl_asientos where area = 'ventas'");
                         while($asientos = $lista_asientos->fetch_assoc())
                         {
+                            
                             ?>
                                 <div class="alert alert-primary" role="alert">
                                    <div class="row">
-                                        <div class="col-md-6" style="color:Black"> <?php echo $asientos['identificativo']  ?></div>
-                                        <div class="col-md-2"> <i class="fa fa-cogs fa-lg"></i> Config</div>
-                                        <div class="col-md-2"> <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>Editar</div>
-                                        <div class="col-md-2"> <i class="fa fa-eye fa-lg" aria-hidden="true"></i>Ver</div>
+                                        <div class="col-md-4" style="color:Black"> <?php echo $asientos['identificativo']  ?></div>
+                                        <div class="col-md-3"> <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $asientos['id_asiento'] ?>" ><i class="fa fa-cogs fa-lg" ></i> Config</button> </div>
+                                        <div class="col-md-3"> <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $asientos['id_asiento'].'edit' ?>"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"   ></i>Editar</button></div>
                                    </div>
                                 </div>
-                            
+                        
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal<?php echo $asientos['id_asiento']  ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" >
+                                        <div class="modal-content" >
+                                            <div class="modal-header" >
+                                                <h5 class="modal-title" id="exampleModalLabel<?php echo $asientos['id_asiento']?>">Configuracion de asiento en venta</h5>
+                                                <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <H6 >
+                                                    Vinculacion a formulario
+                                                </H6> 
+                                                <div class="row bg-info" style="padding:15px; color:white;">
+                                                    <div class="col-md-5">Cuenta</div>
+                                                    <div class="col-md-2">Origen</div>
+                                                    <div class="col-md-5">Vincular</div>
+                                                </div>
+                                                <div>
+                                                <form id="formulario_campo" method="post" action="../../scripts/administracion/agregar_campo_asiento.php">
+                                                    <?php 
+                                                    $contador= 0;
+                                                        $id_temp = $asientos['id_asiento'];
+                                                        $lista_asiento = $conexion->query("SELECT * FROM $empresa.tbl_asientos where id_temp = $id_temp");
+                                                        while($asiento = $lista_asiento->fetch_assoc())
+                                                        {
+                                                            $id_cuenta = $asiento['cuenta'];
+                                            
+                                                            $lista_cuentas = $conexion->query("SELECT * FROM $empresa.tbl_cuentas_contables where id_cuenta = $id_cuenta");
+                                                            while($cuentas = $lista_cuentas->fetch_assoc())
+                                                            {
+                                                                
+                                                                $contador= $contador + 1;
+                                                                ?>
+                                                                    <div class="row">
+                                                                            <div class="col-md-5"> <br> <?php echo $cuentas['nombre_cuenta'] ?> </div>
+                                                                            <div class="col-md-2"> 
+                                                                                <br>
+                                                                                <?php if($asiento['debito'] ==1)
+                                                                                    {
+                                                                                        echo 'Debito';
+                                                                                    }
+                                                                                    else{
+                                                                                        echo 'Credito';
+                                                                                    }
+                                                                                ?> 
+                                                                            </div>  
+                                                                            <div class="col-md-5"> 
+                                                                                <br>
+                                                                                <input type="hidden" value="<?php echo $asiento['id_asiento'];?>" name="fila_asiento<?php echo $contador?>">
+                                                                                <select class="form-control campo"  name="campos_ventas<?php echo $contador?>" id="campos_ventas">
+                                                                                    <option value="Pago total"><?php echo $asiento['campo_vinculado'];?></option>
+                                                                                    <option value="Pago total">Pago total</option>
+                                                                                    <option value="Pago Itbis">Pago Itbis</option>
+                                                                                    <option value="Pago valor sin Itbis">Pago valor sin Itbis</option>
+                                                                                    <option value="Pago adelantado">Pago adelantado</option>
+                                                                                    <option value="Cantidad a credito">Cantidad a credito</option>
+                                                                                </select>
+                                                                            </div>
+                                                                    </div>
+                                                                <?php 
+                                                            }
+                                                        }
+                                                    ?>
+                                                
+                                                </div>              
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <input type="submit" class="btn btn-info" value="Guardar">
+                                            </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>    
+
+
+
+
+
+
+
+  <!-- Modal -->
+                                <div class="modal fade" id="exampleModal<?php echo $asientos['id_asiento'].'edit'  ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" >
+                                        <div class="modal-content" >
+                                            <div class="modal-header" >
+                                                <h5 class="modal-title" id="exampleModalLabel<?php echo $asientos['id_asiento'].'edit'?>">Edicion de asiento en venta</h5>
+                                                <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div>
+                                                    Desea eliminar el asiento: <strong><?php echo $asientos['identificativo']?></strong>
+                                                </div>              
+                                            </div>
+                                            <?php $name= $asientos['id_asiento'] ?>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <a href="../../scripts/administracion/eliminar_asiento.php?name=<?php echo $name?>" class="btn btn-danger" >Borrar</a>
+                                            </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                             <?php
                         }
-                          
                     ?>
-                    
                 </div>
             </div>                      
         </div>
@@ -127,25 +225,33 @@
 </div>
 
 <script type="text/javascript">
+$("#agregar").click(function(){
+    $("#agregar_asiento_de_venta").show();
+    $("#ver_asientos_de_venta").hide();
+});
+$("#ver").click(function(){
+    $("#agregar_asiento_de_venta").hide();
+    $("#ver_asientos_de_venta").show();
+});
 
     $('#formularioaenviar').submit(function (ev) {
         if($('#identificativo').val()!= '')
-{
-  $.ajax({
-    type: 'post', 
-    url:'../../scripts/administracion/crear_asiento_detalle.php',
-    data: $('#formularioaenviar').serialize(),
-    success: function (data) { 
-        $("#nueva_linea").append(data);
-     } 
-  });
-  ev.preventDefault();
+        {
+            $.ajax({
+                type: 'post', 
+                url:'../../scripts/administracion/crear_asiento_detalle.php',
+                data: $('#formularioaenviar').serialize(),
+                success: function (data) { 
+                    $("#nueva_linea").append(data);
+                } 
+            });
+            ev.preventDefault();
+        }
+        else{
+            alert('El asiento debe tener un identificativo');
+        }
+    });
 
-}
-else{
-    alert('El asiento debe tener un identificativo');
-}
-});
 
 
 </script>
