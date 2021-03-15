@@ -80,5 +80,7 @@
   <li class="list-group-item superior"  style="background-color:#17a2b8;color:white;"> Catalogo de cuentas</li>
   <a href="crear_cuenta_contable.php"><li class="list-group-item"><i class="fa fa-pencil"></i> Agregar</li></a>
   <a href="catalogo_cuentas.php"> <li class="list-group-item"><i class="fa fa-picture-o"></i> Ver cuentas</li></a>
+  <a href="asientos_contables.php"> <li class="list-group-item"><i class="fa fa-picture-o"></i> Asientos contables</li></a>
+
 </ul>
 <?php } ?>

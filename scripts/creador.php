@@ -591,6 +591,58 @@ $perm = $conexion->query("
                `cantidad_en_sistema` INT NOT NULL ) ENGINE = InnoDB;
                ");
 
+               $tabla_cuentas_contables = $conexion->query("
+               CREATE TABLE $nombre_sin_espacio.tbl_cuentas_contables ( 
+                 `id_cuenta` INT NOT NULL AUTO_INCREMENT , 
+                 `numero_cuenta` VARCHAR(20) NOT NULL , 
+                 `nombre_cuenta` VARCHAR(200) NOT NULL , 
+                 `valor_inicial` INT(10) NOT NULL , 
+                 `valor_actual` INT(10) NOT NULL , 
+                 `tipo` VARCHAR(100) NOT NULL , 
+                 `creado_por` VARCHAR(200) NULL ,
+                 `fecha_creacion` TIMESTAMP NOT NULL , 
+                 PRIMARY KEY (`id_cuenta`)) ENGINE = InnoDB;
+               ");
+               $tabla_sub_cuentas = $conexion->query("
+               CREATE TABLE $nombre_sin_espacio.tbl_sub_cuentas ( 
+                 `id_cuenta` INT NOT NULL AUTO_INCREMENT , 
+                 `numero_cuenta` VARCHAR(10) NULL , 
+                 `nombre_cuenta` VARCHAR(200) NULL ,
+                 `valor_inicial` INT(10) NULL , 
+                 `valor_actual` INT(10) NULL ,
+                 `cuenta_madre` VARCHAR(100) NULL , 
+                 `tipo` VARCHAR(100) NULL , 
+                 `creado_por` VARCHAR(200) NULL ,
+                 `fecha_creacion` TIMESTAMP NOT NULL , 
+                 PRIMARY KEY (`id_cuenta`)) ENGINE = InnoDB;
+               ");
+               $tabla_cuentas_detalles = $conexion->query("
+               CREATE TABLE $nombre_sin_espacio.tbl_cuentas_detalles ( 
+                 `id_cuenta` INT NOT NULL AUTO_INCREMENT , 
+                 `numero_cuenta` VARCHAR(10) NULL , 
+                 `nombre_cuenta` VARCHAR(200) NULL ,
+                 `valor_inicial` INT(10) NULL , 
+                 `valor_actual` INT(10) NULL ,
+                 `cuenta_madre` VARCHAR(100) NULL , 
+                 `tipo` VARCHAR(100) NULL , 
+                 `creado_por` VARCHAR(200) NULL ,
+                 `fecha_creacion` TIMESTAMP NOT NULL , 
+                 PRIMARY KEY (`id_cuenta`)) ENGINE = InnoDB;
+               ");
+               $tabla_asientos = $conexion->query("
+               CREATE TABLE `softflesh`.`tbl_asientoss` ( 
+                 `id_asiento` INT NOT NULL AUTO_INCREMENT , 
+                 `cuenta` VARCHAR(200) NOT NULL ,
+                 `area` VARCHAR(200) NOT NULL ,
+                 `identificativo` VARCHAR(200) NOT NULL , 
+                 `debito_porciento` INT(10) NOT NULL DEFAULT '0' , 
+                 `credito_porciento` INT(10) NOT NULL DEFAULT '0' ,
+                 `campo_vinculado` VARCHAR(100) NULL ,
+                 `id_temp` double NOT NULL , 
+                 `creado_por` VARCHAR(100) NOT NULL , 
+                 `fecha_creacion` TIMESTAMP NOT NULL , 
+                 PRIMARY KEY (`id_asiento`)) ENGINE = InnoDB;
+               ");
 
           header("location:../views/creador_u.php?empresa=$nombre_sin_espacio");
       }

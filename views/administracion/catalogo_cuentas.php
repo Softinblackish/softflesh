@@ -8,120 +8,298 @@
 <br>
 <div style="background-color:#0e444c; padding:10px; color:white">
     <div class="row">
-        <div class="col-md-6"> <small><strong>Nombre de la cuenta</strong></small> </div>
-        <div class="col-md-6"> <small><strong> Num. de la cuenta</strong></small></div>
+        <div class="col-md-3"> <small><strong>Nombre de la cuenta</strong></small> </div>
+        <div class="col-md-3"> <small><strong> Num. de la cuenta</strong></small></div>
+        <div class="col-md-3"> <small><strong> Valor Inicial</strong></small></div>
+        <div class="col-md-3"> <small><strong> Valor Actual</strong></small></div>
     </div>
 </div>
 <br>
 <div>
-    <h5>Activos</h5>
+    <h3>Activos</h3>
     <div class="row">
-        <div class="col-md-6">Inmobiliario</div>
-        <div class="col-md-6">1.0</div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">inmueble</div>
-        <div class="col-md-6">1.1</div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">Materiables de oficina</div>
-        <div class="col-md-6">1.2</div>
+        <?php
+            $lista_activos = $conexion->query("SELECT * FROM $empresa.tbl_cuentas_contables where tipo = 1");
+            while($activos = $lista_activos->fetch_assoc())
+            {
+            ?>
+                   
+                <div class="col-md-3"><strong>  <?php echo $activos['nombre_cuenta']; ?> </strong> </div>
+                <div class="col-md-3"> <?php echo $activos['numero_cuenta']; ?> </div>
+                <div class="col-md-3"><?php echo $activos['valor_inicial']; ?></div>
+                <div class="col-md-3"><?php echo $activos['valor_actual']; ?></div>
+            <?php
+                $numero_madre = $activos['numero_cuenta'];
+                $lista_sub_activos = $conexion->query("SELECT * FROM $empresa.tbl_sub_cuentas where cuenta_madre = $numero_madre");
+                while($sub_activos = $lista_sub_activos->fetch_assoc())
+                {
+                ?>
+                    <div class="col-md-3 sub"> <?php echo $sub_activos['nombre_cuenta']; ?></div>
+                    <div class="col-md-3 datos_sub"> <?php echo $sub_activos['numero_cuenta']; ?></div>
+                    <div class="col-md-3 "><?php echo $sub_activos['valor_inicial']; ?></div>
+                    <div class="col-md-3 "><?php echo $sub_activos['valor_actual']; ?></div>
+                <?php
+                    $numero_sub_cuenta = $sub_activos['numero_cuenta'];
+                    $lista_detalle = $conexion->query("SELECT * FROM $empresa.tbl_cuentas_detalles where sub_cuenta = '$numero_sub_cuenta' ");
+                    while($detalles = $lista_detalle->fetch_assoc())
+                    {
+                    ?>
+                        <div class="col-md-3 sub x2"> <?php echo $detalles['nombre_cuenta']; ?></div>
+                        <div class="col-md-3 datos_sub"> <?php echo $detalles['numero_cuenta']; ?></div>
+                        <div class="col-md-3 "><?php echo $detalles['valor_inicial']; ?></div>
+                        <div class="col-md-3 "><?php echo $detalles['valor_actual']; ?></div>
+                    <?php
+                    }
+                }
+            }
+        ?>
     </div>
 </div>
 <br>
 <div>
     <h5>Pasivo</h5>
     <div class="row">
-        <div class="col-md-6">Libro</div> 
-        <div class="col-md-6">2.0</div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">abanico</div> 
-        <div class="col-md-6">2.1</div>   
-    </div>
-    <div class="row">
-        <div class="col-md-6">cama</div>
-        <div class="col-md-6">2.2</div>   
+    <?php
+            $lista_activos = $conexion->query("SELECT * FROM $empresa.tbl_cuentas_contables where tipo = 2");
+            while($activos = $lista_activos->fetch_assoc())
+            {
+            ?>
+                   
+                <div class="col-md-3"><strong>  <?php echo $activos['nombre_cuenta']; ?> </strong> </div>
+                <div class="col-md-3"> <?php echo $activos['numero_cuenta']; ?> </div>
+                <div class="col-md-3"><?php echo $activos['valor_inicial']; ?></div>
+                <div class="col-md-3"><?php echo $activos['valor_actual']; ?></div>
+            <?php
+                $numero_madre = $activos['numero_cuenta'];
+                $lista_sub_activos = $conexion->query("SELECT * FROM $empresa.tbl_sub_cuentas where cuenta_madre = $numero_madre");
+                while($sub_activos = $lista_sub_activos->fetch_assoc())
+                {
+                ?>
+                    <div class="col-md-3 sub"> <?php echo $sub_activos['nombre_cuenta']; ?></div>
+                    <div class="col-md-3 datos_sub"> <?php echo $sub_activos['numero_cuenta']; ?></div>
+                    <div class="col-md-3 "><?php echo $sub_activos['valor_inicial']; ?></div>
+                    <div class="col-md-3 "><?php echo $sub_activos['valor_actual']; ?></div>
+                <?php
+                    $numero_sub_cuenta = $sub_activos['numero_cuenta'];
+                    $lista_detalle = $conexion->query("SELECT * FROM $empresa.tbl_cuentas_detalles where sub_cuenta = '$numero_sub_cuenta' ");
+                    while($detalles = $lista_detalle->fetch_assoc())
+                    {
+                    ?>
+                        <div class="col-md-3 sub x2"> <?php echo $detalles['nombre_cuenta']; ?></div>
+                        <div class="col-md-3 datos_sub"> <?php echo $detalles['numero_cuenta']; ?></div>
+                        <div class="col-md-3 "><?php echo $detalles['valor_inicial']; ?></div>
+                        <div class="col-md-3 "><?php echo $detalles['valor_actual']; ?></div>
+                    <?php
+                    }
+                }
+            }
+        ?>
     </div>
 </div>
 <br>
 <div>
     <h5>Capital</h5>
     <div class="row">
-        <div class="col-md-6">Libro</div> 
-        <div class="col-md-6">3.0</div>   
-    </div>
-    <div class="row">
-        <div class="col-md-6">Abanico</div>
-        <div class="col-md-6">3.1</div>   
-    </div>
-    <div class="row">
-        <div class="col-md-6">Cama</div>    
-        <div class="col-md-6">3.2</div>   
+    <?php
+            $lista_activos = $conexion->query("SELECT * FROM $empresa.tbl_cuentas_contables where tipo = 3");
+            while($activos = $lista_activos->fetch_assoc())
+            {
+            ?>
+                   
+                <div class="col-md-3"><strong>  <?php echo $activos['nombre_cuenta']; ?> </strong> </div>
+                <div class="col-md-3"> <?php echo $activos['numero_cuenta']; ?> </div>
+                <div class="col-md-3"><?php echo $activos['valor_inicial']; ?></div>
+                <div class="col-md-3"><?php echo $activos['valor_actual']; ?></div>
+            <?php
+                $numero_madre = $activos['numero_cuenta'];
+                $lista_sub_activos = $conexion->query("SELECT * FROM $empresa.tbl_sub_cuentas where cuenta_madre = $numero_madre");
+                while($sub_activos = $lista_sub_activos->fetch_assoc())
+                {
+                ?>
+                    <div class="col-md-3 sub"> <?php echo $sub_activos['nombre_cuenta']; ?></div>
+                    <div class="col-md-3 datos_sub"> <?php echo $sub_activos['numero_cuenta']; ?></div>
+                    <div class="col-md-3 "><?php echo $sub_activos['valor_inicial']; ?></div>
+                    <div class="col-md-3 "><?php echo $sub_activos['valor_actual']; ?></div>
+                <?php
+                    $numero_sub_cuenta = $sub_activos['numero_cuenta'];
+                    $lista_detalle = $conexion->query("SELECT * FROM $empresa.tbl_cuentas_detalles where sub_cuenta = '$numero_sub_cuenta' ");
+                    while($detalles = $lista_detalle->fetch_assoc())
+                    {
+                    ?>
+                        <div class="col-md-3 sub x2"> <?php echo $detalles['nombre_cuenta']; ?></div>
+                        <div class="col-md-3 datos_sub"> <?php echo $detalles['numero_cuenta']; ?></div>
+                        <div class="col-md-3 "><?php echo $detalles['valor_inicial']; ?></div>
+                        <div class="col-md-3 "><?php echo $detalles['valor_actual']; ?></div>
+                    <?php
+                    }
+                }
+            }
+        ?>
     </div>
 </div>
 <br>
 <div>
     <h5>Ingresos</h5>
     <div class="row">
-        <div class="col-md-6">Libro</div> 
-        <div class="col-md-6">4.0</div>   
-    </div>
-    <div class="row">
-        <div class="col-md-6">Abanico</div>
-        <div class="col-md-6">4.1</div>   
-    </div>
-    <div class="row">
-        <div class="col-md-6">Cama</div>    
-        <div class="col-md-6">4.2</div>   
+    <?php
+            $lista_activos = $conexion->query("SELECT * FROM $empresa.tbl_cuentas_contables where tipo = 4");
+            while($activos = $lista_activos->fetch_assoc())
+            {
+            ?>
+                   
+                <div class="col-md-3"><strong>  <?php echo $activos['nombre_cuenta']; ?> </strong> </div>
+                <div class="col-md-3"> <?php echo $activos['numero_cuenta']; ?> </div>
+                <div class="col-md-3"><?php echo $activos['valor_inicial']; ?></div>
+                <div class="col-md-3"><?php echo $activos['valor_actual']; ?></div>
+            <?php
+                $numero_madre = $activos['numero_cuenta'];
+                $lista_sub_activos = $conexion->query("SELECT * FROM $empresa.tbl_sub_cuentas where cuenta_madre = $numero_madre");
+                while($sub_activos = $lista_sub_activos->fetch_assoc())
+                {
+                ?>
+                    <div class="col-md-3 sub"> <?php echo $sub_activos['nombre_cuenta']; ?></div>
+                    <div class="col-md-3 datos_sub"> <?php echo $sub_activos['numero_cuenta']; ?></div>
+                    <div class="col-md-3 "><?php echo $sub_activos['valor_inicial']; ?></div>
+                    <div class="col-md-3 "><?php echo $sub_activos['valor_actual']; ?></div>
+                <?php
+                    $numero_sub_cuenta = $sub_activos['numero_cuenta'];
+                    $lista_detalle = $conexion->query("SELECT * FROM $empresa.tbl_cuentas_detalles where sub_cuenta = '$numero_sub_cuenta' ");
+                    while($detalles = $lista_detalle->fetch_assoc())
+                    {
+                    ?>
+                        <div class="col-md-3 sub x2"> <?php echo $detalles['nombre_cuenta']; ?></div>
+                        <div class="col-md-3 datos_sub"> <?php echo $detalles['numero_cuenta']; ?></div>
+                        <div class="col-md-3 "><?php echo $detalles['valor_inicial']; ?></div>
+                        <div class="col-md-3 "><?php echo $detalles['valor_actual']; ?></div>
+                    <?php
+                    }
+                }
+            }
+        ?>
     </div>
 </div>
 <br>
 <div>
     <h5>Costos</h5>
     <div class="row">
-        <div class="col-md-6">Libro</div> 
-        <div class="col-md-6">5.0</div>   
-    </div>
-    <div class="row">
-        <div class="col-md-6">Abanico</div>
-        <div class="col-md-6">5.1</div>   
-    </div>
-    <div class="row">
-        <div class="col-md-6">Cama</div>    
-        <div class="col-md-6">5.2</div>   
+    <?php
+            $lista_activos = $conexion->query("SELECT * FROM $empresa.tbl_cuentas_contables where tipo = 5");
+            while($activos = $lista_activos->fetch_assoc())
+            {
+            ?>
+                   
+                <div class="col-md-3"><strong>  <?php echo $activos['nombre_cuenta']; ?> </strong> </div>
+                <div class="col-md-3"> <?php echo $activos['numero_cuenta']; ?> </div>
+                <div class="col-md-3"><?php echo $activos['valor_inicial']; ?></div>
+                <div class="col-md-3"><?php echo $activos['valor_actual']; ?></div>
+            <?php
+                $numero_madre = $activos['numero_cuenta'];
+                $lista_sub_activos = $conexion->query("SELECT * FROM $empresa.tbl_sub_cuentas where cuenta_madre = $numero_madre");
+                while($sub_activos = $lista_sub_activos->fetch_assoc())
+                {
+                ?>
+                    <div class="col-md-3 sub"> <?php echo $sub_activos['nombre_cuenta']; ?></div>
+                    <div class="col-md-3 datos_sub"> <?php echo $sub_activos['numero_cuenta']; ?></div>
+                    <div class="col-md-3 "><?php echo $sub_activos['valor_inicial']; ?></div>
+                    <div class="col-md-3 "><?php echo $sub_activos['valor_actual']; ?></div>
+                <?php
+                    $numero_sub_cuenta = $sub_activos['numero_cuenta'];
+                    $lista_detalle = $conexion->query("SELECT * FROM $empresa.tbl_cuentas_detalles where sub_cuenta = '$numero_sub_cuenta' ");
+                    while($detalles = $lista_detalle->fetch_assoc())
+                    {
+                    ?>
+                        <div class="col-md-3 sub x2"> <?php echo $detalles['nombre_cuenta']; ?></div>
+                        <div class="col-md-3 datos_sub"> <?php echo $detalles['numero_cuenta']; ?></div>
+                        <div class="col-md-3 "><?php echo $detalles['valor_inicial']; ?></div>
+                        <div class="col-md-3 "><?php echo $detalles['valor_actual']; ?></div>
+                    <?php
+                    }
+                }
+            }
+        ?>
+  
     </div>
 </div>
 <br>
 <div>
     <h5>Gastos</h5>
     <div class="row">
-        <div class="col-md-6">Libro</div> 
-        <div class="col-md-6">6.0</div>   
-    </div>
-    <div class="row">
-        <div class="col-md-6">Abanico</div>
-        <div class="col-md-6">6.1</div>   
-    </div>
-    <div class="row">
-        <div class="col-md-6">Cama</div>    
-        <div class="col-md-6">6.2</div>   
+    <?php
+            $lista_activos = $conexion->query("SELECT * FROM $empresa.tbl_cuentas_contables where tipo = 6");
+            while($activos = $lista_activos->fetch_assoc())
+            {
+            ?>
+                   
+                <div class="col-md-3"><strong>  <?php echo $activos['nombre_cuenta']; ?> </strong> </div>
+                <div class="col-md-3"> <?php echo $activos['numero_cuenta']; ?> </div>
+                <div class="col-md-3"><?php echo $activos['valor_inicial']; ?></div>
+                <div class="col-md-3"><?php echo $activos['valor_actual']; ?></div>
+            <?php
+                $numero_madre = $activos['numero_cuenta'];
+                $lista_sub_activos = $conexion->query("SELECT * FROM $empresa.tbl_sub_cuentas where cuenta_madre = $numero_madre");
+                while($sub_activos = $lista_sub_activos->fetch_assoc())
+                {
+                ?>
+                    <div class="col-md-3 sub"> <?php echo $sub_activos['nombre_cuenta']; ?></div>
+                    <div class="col-md-3 datos_sub"> <?php echo $sub_activos['numero_cuenta']; ?></div>
+                    <div class="col-md-3 "><?php echo $sub_activos['valor_inicial']; ?></div>
+                    <div class="col-md-3 "><?php echo $sub_activos['valor_actual']; ?></div>
+                <?php
+                    $numero_sub_cuenta = $sub_activos['numero_cuenta'];
+                    $lista_detalle = $conexion->query("SELECT * FROM $empresa.tbl_cuentas_detalles where sub_cuenta = '$numero_sub_cuenta' ");
+                    while($detalles = $lista_detalle->fetch_assoc())
+                    {
+                    ?>
+                        <div class="col-md-3 sub x2"> <?php echo $detalles['nombre_cuenta']; ?></div>
+                        <div class="col-md-3 datos_sub"> <?php echo $detalles['numero_cuenta']; ?></div>
+                        <div class="col-md-3 "><?php echo $detalles['valor_inicial']; ?></div>
+                        <div class="col-md-3 "><?php echo $detalles['valor_actual']; ?></div>
+                    <?php
+                    }
+                }
+            }
+        ?>
     </div>
 </div>
 <br>
 <div>
     <h5>Otros</h5>
     <div class="row">
-        <div class="col-md-6">Libro</div> 
-        <div class="col-md-6">7.0</div>   
-    </div>
-    <div class="row">
-        <div class="col-md-6">Abanico</div>
-        <div class="col-md-6">7.1</div>   
-    </div>
-    <div class="row">
-        <div class="col-md-6">Cama</div>    
-        <div class="col-md-6">7.2</div>   
+    <?php
+            $lista_activos = $conexion->query("SELECT * FROM $empresa.tbl_cuentas_contables where tipo = 7");
+            while($activos = $lista_activos->fetch_assoc())
+            {
+            ?>
+                   
+                <div class="col-md-3"><strong>  <?php echo $activos['nombre_cuenta']; ?> </strong> </div>
+                <div class="col-md-3"> <?php echo $activos['numero_cuenta']; ?> </div>
+                <div class="col-md-3"><?php echo $activos['valor_inicial']; ?></div>
+                <div class="col-md-3"><?php echo $activos['valor_actual']; ?></div>
+            <?php
+                $numero_madre = $activos['numero_cuenta'];
+                $lista_sub_activos = $conexion->query("SELECT * FROM $empresa.tbl_sub_cuentas where cuenta_madre = $numero_madre");
+                while($sub_activos = $lista_sub_activos->fetch_assoc())
+                {
+                ?>
+                    <div class="col-md-3 sub"> <?php echo $sub_activos['nombre_cuenta']; ?></div>
+                    <div class="col-md-3 datos_sub"> <?php echo $sub_activos['numero_cuenta']; ?></div>
+                    <div class="col-md-3 "><?php echo $sub_activos['valor_inicial']; ?></div>
+                    <div class="col-md-3 "><?php echo $sub_activos['valor_actual']; ?></div>
+                <?php
+                    $numero_sub_cuenta = $sub_activos['numero_cuenta'];
+                    $lista_detalle = $conexion->query("SELECT * FROM $empresa.tbl_cuentas_detalles where sub_cuenta = '$numero_sub_cuenta' ");
+                    while($detalles = $lista_detalle->fetch_assoc())
+                    {
+                    ?>
+                        <div class="col-md-3 sub x2"> <?php echo $detalles['nombre_cuenta']; ?></div>
+                        <div class="col-md-3 datos_sub"> <?php echo $detalles['numero_cuenta']; ?></div>
+                        <div class="col-md-3 "><?php echo $detalles['valor_inicial']; ?></div>
+                        <div class="col-md-3 "><?php echo $detalles['valor_actual']; ?></div>
+                    <?php
+                    }
+                }
+            }
+        ?>
     </div>
 </div>
 
