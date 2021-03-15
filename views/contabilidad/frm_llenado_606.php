@@ -7,6 +7,7 @@
       <!-- css -->
       <link rel="stylesheet" href="../../css/formulario_606.css">
       <link rel="stylesheet" href="../../css/scroll.css">
+      
       <!-- js -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
       <script src="../../scripts/js/time_alert.js"></script>
@@ -61,8 +62,14 @@
                     <input type="text" name="nombre" placeholder ="" class="form-control">
                 </div>
                 <div class="form-group col-md-4">
-                <label for="inputState">PERIODO:</label>
-                    <input type="text" name="codigo_barra" placeholder ="" class="form-control" >
+                    <label for="inputState">PERIODO:</label>
+                        <select id="" name="periodo_principal" class="form-control" placeholder="Periodo">
+                            <?php $periodo = $conexion->query("SELECT periodo FROM $empresa.tbl_help_606"); 
+                            while($row = $periodo->fetch_assoc()) {
+                            ?>
+                            <option value = <?php echo $row["periodo"];  ?> ><?php echo $row["periodo"];  ?></option>
+                            <?php }?>
+                        </select> 
                 </div>
                 <div class="form-group col-md-4">
                 <label for="inputState">CANTIDAD DE REGISTRO:</label>
@@ -98,11 +105,23 @@
                 <!--secuencia 2-->
                 <div class="form-group col-md-3">
                     <label for="inputState">Fecha comprobante:</label>
-                    <input type="number" name="Fec_comprobante" placeholder ="" class="form-control" >
+                    <select id="" name="Fec_comprobante" class="form-control" placeholder="Periodo">
+                            <?php $periodo = $conexion->query("SELECT periodo FROM $empresa.tbl_help_606"); 
+                            while($row = $periodo->fetch_assoc()) {
+                            ?>
+                            <option value = <?php echo $row["periodo"];  ?> ><?php echo $row["periodo"];  ?></option>
+                            <?php }?>
+                    </select>
                 </div>
                 <div class="form-group col-md-3">
                     <label for="inputState">Fecha de pago:</label>
-                    <input type="number" name="Fec_pago" placeholder ="" class="form-control" >
+                    <select id="" name="Fec_pago" class="form-control" placeholder="Periodo">
+                            <?php $periodo = $conexion->query("SELECT periodo FROM $empresa.tbl_help_606"); 
+                            while($row = $periodo->fetch_assoc()) {
+                            ?>
+                            <option value = <?php echo $row["periodo"];  ?> ><?php echo $row["periodo"];  ?></option>
+                            <?php }?>
+                    </select>
                 </div>
                 <div class="form-group col-md-3">
                     <label for="inputState">Monto Facturado en servicios:</label>

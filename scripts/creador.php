@@ -45,7 +45,7 @@
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8
       ");
 
-      $tabla_articulo = $conexion->query("
+      $tabla_contabilidad = $conexion->query("
         CREATE TABLE $nombre_sin_espacio.tbl_contabilidad (
         `id_contabilidad` int(11) NOT NULL AUTO_INCREMENT,
         `tipo_id` int(11),
@@ -68,11 +68,20 @@
         `ISR_percibido_compra` DOUBLE default 0,
         `Impuesto_selectivo_consumo` DOUBLE default 0,
         `Monto_prima_legal` DOUBLE,
-        `Forma_pago` DOUBLE,
+        `Forma_pago`varchar(30),
         `Estatus` varchar(30),
         PRIMARY KEY (`id_contabilidad`)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8
     ");
+
+    $tabla_help_606 = $conexion->query("
+    CREATE TABLE $nombre_sin_espacio.tbl_help_606 (
+      `id_help_606` int(11) NOT NULL AUTO_INCREMENT ,
+      `t_bienes_and_services` varchar(100),
+      `periodo` varchar(200) ,
+      PRIMARY KEY (`id_help_606`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+    "); 
 
     $tabla_impuestos = $conexion->query("
       CREATE TABLE $nombre_sin_espacio.tbl_cod_impuestos (
@@ -155,6 +164,7 @@
         `sin_impuestos` int(11),
         `valor_total` DOUBLE,
         `no_compra` int(11),
+        `periodo` varchar(30),
         PRIMARY KEY (`id_compra`)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8
       ");
