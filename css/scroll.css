@@ -3,7 +3,8 @@
 }
 .Overflow{
     overflow:scroll;
-    overflow-x:hidden;
+    /*overflow-x:hidden;*/
+    overflow-y: auto;
     color:white
 }
 

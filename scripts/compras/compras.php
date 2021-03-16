@@ -12,6 +12,7 @@
     //Datos de los proveedores 
     $nombre_proveedor= $_POST['nombre_proveedor']; 
     $cod_proveedor = $_POST['cod_proveedor'];
+    $periodo= $_POST['periodo'];
     
 
     //Datos de los articulos 
@@ -32,7 +33,7 @@
             
         }else{
             
-            $Reg_det_compras = $conexion->query("insert into $empresa.tbl_compras (no_compra, nombre_proveedor, cod_proveedor, forma_pago , moneda,  entregar_a, valor_total , comprobante,cod_impuesto,condicion_pago,valor_impuestos,sin_impuestos) values ($no_compra, '$nombre_proveedor',$cod_proveedor,'$forma_pago' , '$moneda', '$entregar_a', $valor_total,null,null,null,0,0) ");
+            $Reg_det_compras = $conexion->query("insert into $empresa.tbl_compras (no_compra, nombre_proveedor, cod_proveedor, forma_pago , moneda,  entregar_a, valor_total , comprobante,cod_impuesto,condicion_pago,valor_impuestos,sin_impuestos,periodo) values ($no_compra, '$nombre_proveedor',$cod_proveedor,'$forma_pago' , '$moneda', '$entregar_a', $valor_total,null,null,null,0,0,'$periodo') ");
             
             //echo $empresa . "   " .$no_compra."   ".$nombre_proveedor."   ".$valor_total."   ".$forma_pago."   ".$moneda."   ".$entregar_a." ".null." ".null." ".null." "."0"." "."0";
             

@@ -77,6 +77,16 @@
                     </select>
                 </div>
                 <div class="form-group col-md-6">
+                    <label for="inputState">Periodo:</label>
+                    <select id="" name="periodo" class="form-control" placeholder="Periodo">
+                        <?php $periodo = $conexion->query("SELECT periodo FROM $empresa.tbl_help_606"); 
+                        while($row = $periodo->fetch_assoc()) {
+                        ?>
+                        <option value = <?php echo $row["periodo"];  ?> ><?php echo $row["periodo"];  ?></option>
+                        <?php }?>
+                    </select> 
+                </div>
+                <div class="form-group col-md-6">
                     <label for="inputState">Total:</label>
                     <?php $articulos = $conexion->query("SELECT round(sum(total),0)as totalgeneral FROM $empresa.tbl_art_compras where no_compra = $no_compra"); 
                     $row = $articulos->fetch_assoc();

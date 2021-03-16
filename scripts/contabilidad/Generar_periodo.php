@@ -3,8 +3,6 @@
     session_start();
     $empresa= $_SESSION["empresa_db"];
 
-
-    //$fecha= $_POST['fecha'];
     $año = date("Y");
     function general($var_fecha){
         $serie = "";
@@ -17,74 +15,58 @@
         }
         return $serie;
     }
-    $cadena = general($año);
-    $trozos = explode("\n", $cadena);
-    for ($i=0; $i < count($trozos); $i++) { 
-        echo $trozos[$i]."<br>";
+
+    function proceso($año){
+    include("../conexion/cone.php");
+    $empresa= $_SESSION["empresa_db"];
+
+        $cadena = general($año);
+        $trozos = explode("\n", $cadena);
+        for ($i=0; $i < count($trozos); $i++) { 
+            echo $trozos[$i]."<br>";
+            $accion = $conexion->query("insert into $empresa.tbl_help_606(periodo) values ($trozos[$i])");
+        }
+    }
+
+    
+
+    function inicio($anio_inicial,$anio_final){
+        
+        do{
+            echo $anio_inicial."<br>";
+            proceso($anio_inicial);
+            $anio_inicial --;
+        }while($anio_final <= $anio_inicial);
+            
     }
     
-    //echo general($año);
-/*
-        $consulta = $conexion->query("SELECT tipo_id FROM $empresa.tbl_contabilidad where tipo_id = $tipo_id ");
+    
+ /*
+    $tabla_help_606 = $conexion->query("
+    CREATE TABLE $nombre_sin_espacio.tbl_help_606 (
+      `id_help_606` int(11) NOT NULL AUTO_INCREMENT ,
+      `t_bienes_and_services`,
+      `periodo` varchar(200) ,
+      PRIMARY KEY (`id_help_606`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+    ");    
+ */
+    
         
-        if($consulta_det_606->num_rows >= 1 ){
-            
+        $consulta = $conexion->query("SELECT periodo FROM $empresa.tbl_help_606");
+        if($consulta->num_rows >= 1 ){
+
+            $var_consulta = $año."01";
+            $consulta2 = $conexion->query("SELECT periodo FROM $empresa.tbl_help_606 where periodo = $var_consulta");
+            if($consulta->num_rows >= 1){
+
+            }else{
+                $consulta2 = $conexion->query("truncate table $empresa.tbl_help_606");
+                inicio($año,2007);
+            }
         }else{
-            
-            $Reg_det_contablidad = $conexion->query("insert into $empresa.tbl_contabilidad (tipo_id,T_Bienes_servicios,NCF,NCF_docMod,Fec_comprobante,Fec_pago,Monto_Facturado_Servicios,Monto_Facturado_Bienes,Total_Monto_facturado,Itebis_Facturado,Itebis_Retenido,Itebis_sub_a_proporcionalidad,Itebis_llevado_al_costo,Itebis_por_adelantar,Itebis_percibido_compra,Tipo_Retencion_ISR,Monto_Retencion_Renta,ISR_percibido_compra,Impuesto_selectivo_consumo,Monto_prima_legal,Forma_pago,Estatus) values ($tipo_id,'$T_Bienes_servicios','$NCF','$NCF_docMod','$Fec_comprobante','$Fec_pago',$Monto_Facturado_Servicios,$Monto_Facturado_Bienes,$Total_Monto_facturado,$Itebis_Facturado,$Itebis_Retenido,$Itebis_sub_a_proporcionalidad,$Itebis_llevado_al_costo,$Itebis_por_adelantar,$Itebis_percibido_compra,$Tipo_Retencion_ISR,$Monto_Retencion_Renta,$ISR_percibido_compra,$Impuesto_selectivo_consumo,$Monto_prima_legal,$Forma_pago,'$Estatus') ");
-            
+            inicio($año,2007);
         }
 
-        echo $empresa . "   " . $tipo_id." ".$T_Bienes_servicios." ".$NCF." ".$NCF_docMod." ".$Fec_comprobante." ".$Fec_pago." ".$Monto_Facturado_Servicios." ".$Monto_Facturado_Bienes." ".$Total_Monto_facturado." ".$Itebis_Facturado." ".$Itebis_Retenido." ".$Itebis_sub_a_proporcionalidad." ".$Itebis_llevado_al_costo." ".$Itebis_por_adelantar." ".$Itebis_percibido_compra." ".$Tipo_Retencion_ISR." ".$Monto_Retencion_Renta." ".$ISR_percibido_compra." ".$Impuesto_selectivo_consumo." ".$Monto_prima_legal." ".$Forma_pago." ".$Estatus." ";
-
- /*
-    tipo_id,
-    T_Bienes_servicios,
-    NCF,
-    NCF_docMod,
-    Fec_comprobante,
-    Fec_pago,
-    Monto_Facturado_Servicios,
-    Monto_Facturado_Bienes,
-    Total_Monto_facturado,
-    Itebis_Facturado,
-    Itebis_Retenido,
-    Itebis_sub_a_proporcionalidad,
-    Itebis_llevado_al_costo,
-    Itebis_por_adelantar,
-    Itebis_percibido_compra,
-    Tipo_Retencion_ISR,
-    Monto_Retencion_Renta,
-    ISR_percibido_compra,
-    Impuesto_selectivo_consumo,
-    Monto_prima_legal,
-    Forma_pago,
-    Estatus
-*/
-/*
-    $tipo_id,
-    $T_Bienes_servicios,
-    $NCF,
-    $NCF_docMod,
-    $Fec_comprobante,
-    $Fec_pago,
-    $Monto_Facturado_Servicios,
-    $Monto_Facturado_Bienes,
-    $Total_Monto_facturado,
-    $Itebis_Facturado,
-    $Itebis_Retenido,
-    $Itebis_sub_a_proporcionalidad,
-    $Itebis_llevado_al_costo,
-    $Itebis_por_adelantar,
-    $Itebis_percibido_compra,
-    $Tipo_Retencion_ISR,
-    $Monto_Retencion_Renta,
-    $ISR_percibido_compra,
-    $Impuesto_selectivo_consumo,
-    $Monto_prima_legal,
-    $Forma_pago,
-    $Estatus
-*/
-
-    //header('location:../../views/contabilidad/frm_llenado_606.php?registro="si" ')
+    header('location:../../views/contabilidad/frm_llenado_606.php?registro="si" ')
 ?>
