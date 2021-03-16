@@ -614,6 +614,7 @@ $perm = $conexion->query("
                  `valor_inicial` INT(10) NULL , 
                  `valor_actual` INT(10) NULL ,
                  `cuenta_madre` VARCHAR(100) NULL , 
+                 `sub_cuenta` VARCHAR(100) NULL , 
                  `tipo` VARCHAR(100) NULL , 
                  `creado_por` VARCHAR(200) NULL ,
                  `fecha_creacion` TIMESTAMP NOT NULL , 
@@ -625,6 +626,7 @@ $perm = $conexion->query("
                  `cuenta` VARCHAR(200) NOT NULL ,
                  `area` VARCHAR(200) NOT NULL ,
                  `identificativo` VARCHAR(200) NOT NULL , 
+                 `predeterminado` INT(2) NOT NULL DEFAULT '0'
                  `debito_porciento` INT(10) NOT NULL DEFAULT '0' , 
                  `credito_porciento` INT(10) NOT NULL DEFAULT '0' ,
                  `campo_vinculado` VARCHAR(100) NULL ,

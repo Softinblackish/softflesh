@@ -12,26 +12,26 @@
     <div class="row">
     
         <div id="menu_asientos" class="col-md-3" style="background-color:rgb(87, 220, 200); padding:25px; color:white;">
-            <h5> <a href="asientos_contables.php" style="margin-left: 45px;">Ventas</a> </h5>
+            <h5> <a href="asientos_contables.php"> Venta </a> </h5>
                 <hr>
-            <h5><a href="asientos_contables_compra.php">Compra </a></h5>
+            <h5> <a href="asientos_contables_compra.php"> Compra </a></h5>
                 <hr>
-            <h5> <a href="asientos_contables_pagar.php"> Cuentas x p</a></h5>
+            <h5  style="margin-left: 45px;"> <a href="asientos_contables_pagar.php"> Cuentas x p </a></h5>
                 <hr>
-            <h5> <a href="asientos_contables_cobrar.php"> Cuantas x c</a></h5>
+            <h5>  <a href="asientos_contables_cobrar.php"> Cuantas x c</a></h5>
                 <hr>
-            <h5> <a href="asientos_contables_inventario.php"> Inventario</a></h5>
+            <h5>  <a href="asientos_contables_inventario.php"> Inventario</a></h5>
                 <hr>
-            <h5> <a href="asientos_contables_nomina.php"> Nomina</a></h5>
+            <h5>  <a href="asientos_contables_nomina.php"> Nomina</a></h5>
                 <hr>
         </div>
         <div class="col-md-9" style="border:solid 1px gray;">
             <div class="row"> 
                 <div class="col-md-6 bg-info" id="agregar" style="color: white; padding-top:15px;padding-bottom:15px; padding-left:40px;">
-                    <h5>Agregar asiento de ventas</h5> 
+                    <h5>Agregar asiento de CxP</h5> 
                 </div>
                 <div class="col-md-6 bg-info" id="ver" style="color: white;padding-top:15px; padding-left:40px;padding-bottom:15px;">
-                    <h5>Ver asientos de ventas</h5>
+                    <h5>Ver asientos de CxP</h5>
                 </div>
             </div><br>
             <div id="agregar_asiento_de_venta" >
@@ -68,7 +68,7 @@
                                 ?>
                                 </select>
                             </div>
-                            <input type="hidden" name="area" value="ventas" id="">
+                            <input type="hidden" name="area" value="cxp" id="">
                             <input type="hidden" name="id_temp" value="<?php echo $id_aleatorio;?>" id="">
                             <div class="col-md-3">
                                 <div>
@@ -99,7 +99,7 @@
                 <div>
                     <?php 
                        
-                        $lista_asientos = $conexion->query("SELECT DISTINCT id_temp id_asiento, identificativo, predeterminado FROM $empresa.tbl_asientos where area = 'ventas'");
+                        $lista_asientos = $conexion->query("SELECT DISTINCT id_temp id_asiento, identificativo, predeterminado FROM $empresa.tbl_asientos where area = 'cxp'");
                         while($asientos = $lista_asientos->fetch_assoc())
                         {
                             
@@ -128,7 +128,7 @@
                                                     <div class="col-md-3">
                                                         Predeterminado<input type="radio"  <?php if($asientos['predeterminado']==1){ ?> checked <?php }  ?>  name="predeterminado" id="">
                                                     </div>
-                                                    <input type="hidden" value="ventas" name="area">
+                                                    <input type="hidden" value="cxp" name="area">
                                                     <div class="row bg-info" style="padding:15px; color:white;">
                                                         <div class="col-md-5">Cuenta</div>
                                                         <div class="col-md-2">Origen</div>
