@@ -61,7 +61,7 @@
                                 while($lista_de_cuentas = $listar_cuentas->fetch_assoc())
                                     {
                                     ?>
-                                        <option value="<?php echo $lista_de_cuentas['id_cuenta']?>"><?php echo $lista_de_cuentas['nombre_cuenta']?></option>
+                                        <option value="<?php echo $lista_de_cuentas['numero_cuenta']?>"><?php echo $lista_de_cuentas['nombre_cuenta']?></option>
                                     <?php
                                     }
 

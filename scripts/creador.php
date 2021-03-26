@@ -631,7 +631,7 @@ $perm = $conexion->query("
                  PRIMARY KEY (`id_cuenta`)) ENGINE = InnoDB;
                ");
                $tabla_asientos = $conexion->query("
-               CREATE TABLE `softflesh`.`tbl_asientoss` ( 
+               CREATE TABLE $nombre_sin_espacio.tbl_asientos ( 
                  `id_asiento` INT NOT NULL AUTO_INCREMENT , 
                  `cuenta` VARCHAR(200) NOT NULL ,
                  `area` VARCHAR(200) NOT NULL ,
@@ -645,7 +645,18 @@ $perm = $conexion->query("
                  `fecha_creacion` TIMESTAMP NOT NULL , 
                  PRIMARY KEY (`id_asiento`)) ENGINE = InnoDB;
                ");
-
+               $transacciones_contables = $conexion->query("
+               CREATE TABLE $nombre_sin_espacio.transacciones_contables 
+               ( `id_transacion` INT NOT NULL AUTO_INCREMENT , 
+               `origen` VARCHAR(200) NOT NULL , 
+               `destino` VARCHAR(200) NOT NULL , 
+               `identificador` INT(10) NOT NULL , 
+               `fecha_creacion` TIMESTAMP NOT NULL ,
+                `creado_por` VARCHAR(12) NOT NULL , 
+                `cantidad_desde_origen` DOUBLE NOT NULL ,
+                 `cantidad_hacia_destino` DOUBLE NOT NULL , 
+                 PRIMARY KEY (`id_transacion`)) ENGINE = InnoDB;
+               ");
           header("location:../views/creador_u.php?empresa=$nombre_sin_espacio");
       }
       else

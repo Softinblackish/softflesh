@@ -44,7 +44,17 @@ else
     function sinVueltaAtras(){ window.history.forward(); }
 </script>
 <div>
-    <div onload="sinVueltaAtras();" onpageshow="if (event.persisted) sinVueltaAtras();" onunload="" style="float:left; width:48.5%; margin-left:25px; margin-top:25px;background-color:white; border-radius:8px; box-shadow:1px 1px 5px; ">
+ <!-- Button trigger modal -->
+ <button type="button" class="btn btn-info" style="margin-left: 2%; margin-top:10px;" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Facturar
+</button>
+
+
+
+
+
+
+    <div onload="sinVueltaAtras();" onpageshow="if (event.persisted) sinVueltaAtras();" onunload="" style="float:left; width:65.5%; margin-left:25px; margin-top:25px;background-color:white; border-radius:8px; box-shadow:1px 1px 5px; ">
         
     <?php
     if(isset($_GET["disponible"]))
@@ -62,8 +72,8 @@ else
 
         <div class="buscar" style="overflow:scroll;overflow-x:hidden; height:370px; width:98%; margin-left:1.5%">      
         <table class="table">
-        <h5 style="padding:15px;Width:48.6%;margin-left:-12px;height:53px;background-color:#882f88;color:white; position:absolute;" >Buscar artículos - Venta</h5><br><br>
-            <thead style="position:absolute; width:48.6%;margin-top:-66.5px; margin-left:-12px; background-color:white;">
+        <h5 style="padding:15px;Width:65.6%;margin-left:-14px;height:53px;background-color:#882f88;color:white; position:absolute;" >Buscar artículos - Venta</h5><br><br>
+            <thead style="position:absolute; width:65.6%;margin-top:-66.5px; margin-left:-14px; background-color:white;">
                 <tr>
                     <form action="punto_de_venta.php" method="GET">
                     <th scope="col" style="width:10%;"><input type="text" class="form-control" name="cod" placeholder="Cód."></th>
@@ -138,23 +148,21 @@ else
     </div>
 
     <div>
-    <div style="float:left; width:48.6%; margin-left:25px; margin-top:25px;background-color:white; border-radius:8px; box-shadow:1px 1px 5px">
-    <div class="buscar"  style="overflow:scroll;overflow-x:hidden; height:355px; width:98%; margin-left:1.5%"> 
-        <table class="table">
-        <h5 style="padding:15px;Width:48.67%;margin-left:-12px;height:80px;background-color:#882f88;color:white; position:absolute;" >Artículos ingresados</h5>
-            <thead  style="position:absolute; width:48.67%;margin-top:-45px; margin-left:-12px; background-color:white;">      
-                
-                <tr>
-                    <th scope="col" width="45%">Artículos</th>
-                    <th scope="col" width="10"> Cant.</th>
-                    <th scope="col" width="10%"> Itbis </th>
-                    <th scope="col" width="15%"> Precio </th>
-                    <th scope="col" width="20.5%" > Total </th>
-                </tr> <br><br><br>
-
-            </thead>
-            <div style="margin-top:10px;">.</div>
-            <tbody>
+                  
+        <div style="float:left; width:65.6%; margin-left:25px; margin-top:25px;background-color:white; border-radius:8px; box-shadow:1px 1px 5px">
+        <h5 style="padding:15px;Width:65.68%;margin-left:-1px;height:60px;background-color:#882f88;color:white; position:absolute;" >Artículos ingresados</h5>
+            <br> </br> <br>
+            <div class="buscar"  style="overflow:scroll;overflow-x:hidden; height:655px; width:98%; margin-left:1.5%"><br><br>
+                <table class="table">
+                    <thead  style="position:absolute; width:65.67%;margin-top:-55px; margin-left:-14px; background-color:white;">      
+                        <th scope="col" width="45%" >Artículos</th>
+                        <th width="10%"> Cant.</th>
+                        <th width="10%"> Itbis </th>
+                        <th width="10%"> Precio </th>
+                        <th width="15%"> Total </th>
+                        <th width="10%"> Borrar</th>
+                    </thead>
+                <tbody>
             <?php
                if(isset($_GET["id_temp"]))
                {
@@ -164,12 +172,12 @@ else
                  {
                      ?>
                 <tr>
-                    <td scope="row" width="42%"><?php  echo $reg_art_temp["articulo"]; ?></td>
-                    <td><?php  echo $reg_art_temp["cantidad"]; ?></td>
-                    <td>$<?php  echo $reg_art_temp["itbis"]; ?></td>
-                    <td>$<?php  echo $reg_art_temp["precio"]; ?></td>
-                    <td>$<?php  echo $reg_art_temp["total"]; ?></td>
-                    <td><a href="../../scripts/ventas/eliminar_arti_temp.php?id_articulo=<?php echo $reg_art_temp['id_venta_temp']; ?> && id_temp=<?php echo $id; ?>" class="btn btn-danger"><i class="fa fa-times fa-lg"></i></a></td> 
+                    <td width="14%"><?php  echo $reg_art_temp["articulo"]; ?></td>
+                    <td width="2%"><?php  echo $reg_art_temp["cantidad"]; ?></td>
+                    <td width="1%">$<?php  echo $reg_art_temp["itbis"]; ?></td>
+                    <td width="1%">$<?php  echo $reg_art_temp["precio"]; ?></td>
+                    <td width="3%">$<?php  echo $reg_art_temp["total"]; ?></td>
+                    <td width="10%"><a href="../../scripts/ventas/eliminar_arti_temp.php?id_articulo=<?php echo $reg_art_temp['id_venta_temp']; ?> && id_temp=<?php echo $id; ?>" class="btn btn-danger"><i class="fa fa-times fa-lg"></i></a></td> 
                 </tr>
                 <?php
                     }}  
@@ -179,14 +187,50 @@ else
 </div>
     </div>
     </div>
-    
-    <div>
-    <div style="float:left; position:absolute; width:20%; height:750px; margin-left:77%; margin-top:25px;background-color:white; border-radius:8px; box-shadow:1px 1px 5px">
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Facturación</h5>
+        <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">X</button>
+      </div>
+      <div class="modal-body">
+      <div>
+      <button type="button" class="btn btn-info" style="margin-left: 2%; margin-top:10px;" id="boton_asientos">
+  Asiento
+</button>
+<div style="display: none;" id="asientos">
+                Predeterminado: <strong id="predeterminado"><?php  
+                    $asiento_defecto = $conexion->query("SELECT * FROM $empresa.tbl_asientos WHERE area = 'ventas' AND predeterminado = 1 limit 1");
+                    while($predeterminado = $asiento_defecto->fetch_assoc())
+                    {
+                        echo $predeterminado['identificativo'];
+                    }
+                ?></strong>
+                <hr>
+                Usar otro 
+                <select name="asiento" class="form-control" id="asiento">
+                <?php 
+                $asiento_defecto = $conexion->query("SELECT distinct identificativo  id_asiento, identificativo FROM $empresa.tbl_asientos WHERE area = 'ventas' AND predeterminado = 0");
+                    while($predeterminado = $asiento_defecto->fetch_assoc())
+                    {
+                        ?>
+                            <option value=""><?php echo $predeterminado['identificativo'];  ?></option>
+                        <?php 
+                    }
+                    ?>
+                </select>
+                <br>
+                <button class="btn btn-info">Usar este</button>
+            </div>
+    <div style="height:750px;margin-top:25px;background-color:white; border-radius:8px;">
         <div>
             <h5 style="padding:15px; background-color:#882f88 ;color:white;">Información</h5>
             <form action="../../scripts/ventas/registrar_venta.php" method="POST"><br>
                 <div class="form-row">
-                    <div class="col-md-10">
+                    <div class="col-md-12">
                         <input style="border-bottom-left-radius: 0px;  border-top-left-radius: 0px;" id="cliente"   class="form-control" value="c" placeholder="Buscar cliente" name="cliente" required/>
                         <select id="cliente_general" class="form-control" name="client">
                             <option value="1"> 1| Genérico</opction>
@@ -194,7 +238,7 @@ else
                         <div id="caja-clientes"></div>
                     </div>
                 
-                    <div class="col-md-10">
+                    <div class="col-md-12">
                         <br>
                         <select style="border-bottom-left-radius: 0px;  border-top-left-radius: 0px;" class="form-control" name="condicion">
                            <?php $consulta_condiciones = $conexion->query("SELECT * FROM $empresa.tbl_condiciones_pago");
@@ -208,7 +252,7 @@ else
                         </select>
                     <Br></div>
 
-                    <div class="col-md-10">
+                    <div class="col-md-12">
                         <select style="border-bottom-left-radius: 0px;  border-top-left-radius: 0px;" class="form-control"name="tipo_comprobante">
                             <option>Consumidor final</option>
                             <option>Valor fiscal</option>
@@ -216,13 +260,28 @@ else
                         </select>                  
                     <br></div>
 
-                    <div class="col-md-10">
-                        <select style="border-bottom-left-radius: 0px;  border-top-left-radius: 0px;" class="form-control" name="forma">
+                    <div class="col-md-12">
+                        <select id="select_forma_de_pago" style="border-bottom-left-radius: 0px;  border-top-left-radius: 0px;" class="form-control" name="forma">
                             <option>Efectívo</option>
                             <option>Tarjeta</option>
                             <option>Nota de débito</option>
-                        </select>
-                    <br><br></div>
+                            <option>Distribuido</option>
+                        </select> 
+                        <div class="row" style="display:none"  id="distribucion">
+                            <div class="col-md-12">
+                                <h5>Distribucion </h5>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="number" class="form-control" name="en_efectivo" id="" placeholder="Efectivo">
+                            </div>
+                            <div class="col-md-4">
+                                <input type="number" class="form-control" name="con_tarjeta" id=""  placeholder="Tarjeta">
+                            </div>
+                            <div class="col-md-4">
+                                <input type="number" class="form-control" name="cobro_futuro" id=""  placeholder="Faltante">
+                            </div>
+                        </div>
+                    <br></div>
 
                 </div>
         
@@ -264,12 +323,42 @@ else
                 <input type="hidden" name="precio" value="<?php echo $precio_total; ?>"/>
                 <input type="hidden" name="total" value="<?php echo $total_total; ?>"/>
                 <input type="hidden" name="id_temp" value="<?php echo $id; ?>"/>
-
-
+                <?php
+                    $identificativo_asiento = $conexion->query("SELECT distinct identificativo  id_asiento, identificativo FROM $empresa.tbl_asientos WHERE area = 'ventas' AND predeterminado = 1");
+                    $nombre_identificativo = $identificativo_asiento->fetch_assoc();
+                    $nombre_del_asiento = $nombre_identificativo['identificativo'];
+                ?>
+                <input type="hidden" name="asiento" id="asiento_elegido" value="<?php echo $nombre_del_asiento?>">
             </strong>
-        </div> <br>
-                <?php echo "&nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp"?> <a href="../../scripts/ventas/venta_espera.php?id_temp=<?php echo $id ?>" class="btn btn" <?php if(!isset($_GET["id_temp"])){?> disabled <?php } ?> style="background-color:#882f88; color:white">En espera</a> <input type="submit"<?php if(!isset($_GET["id_temp"])){?> disabled <?php } ?> class="btn btn" style="background-color:#882f88; color:white;" value="Registrar">
-                </form>
+        </div>
+                
    </div> 
    
 </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <a href="../../scripts/ventas/venta_espera.php?id_temp=<?php echo $id ?>" class="btn btn" <?php if(!isset($_GET["id_temp"])){?> disabled <?php } ?> style="background-color:#882f88; color:white">En espera</a> <input type="submit"<?php if(!isset($_GET["id_temp"])){?> disabled <?php } ?> class="btn btn" style="background-color:#882f88; color:white;" value="Registrar">
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+$('#select_forma_de_pago').change(function(){
+    if($('#select_forma_de_pago').val() == 'Distribuido' )
+    {
+        $('#distribucion').show();
+    }
+    else{
+        $('#distribucion').hide();
+    }
+
+});
+$('#boton_asientos').click(function(){
+    $('#asientos').toggle();
+});
+
+</script>

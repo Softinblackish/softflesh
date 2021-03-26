@@ -61,7 +61,7 @@
                                 while($lista_de_cuentas = $listar_cuentas->fetch_assoc())
                                     {
                                     ?>
-                                        <option value="<?php echo $lista_de_cuentas['id_cuenta']?>"><?php echo $lista_de_cuentas['nombre_cuenta']?></option>
+                                        <option value="<?php echo $lista_de_cuentas['numero_cuenta']?>"><?php echo $lista_de_cuentas['nombre_cuenta']?></option>
                                     <?php
                                     }
 
@@ -143,7 +143,7 @@
                                                         {
                                                             $id_cuenta = $asiento['cuenta'];
                                             
-                                                            $lista_cuentas = $conexion->query("SELECT * FROM $empresa.tbl_cuentas_contables where id_cuenta = $id_cuenta");
+                                                            $lista_cuentas = $conexion->query("SELECT * FROM $empresa.tbl_cuentas_contables where numero_cuenta = $id_cuenta");
                                                             while($cuentas = $lista_cuentas->fetch_assoc())
                                                             {
                                                                 
