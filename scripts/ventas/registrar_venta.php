@@ -116,6 +116,24 @@
                      $valor = $itebis;
                      } 
                     $insertar_transaccion = $conexion->query("INSERT INTO $empresa.transacciones_contables (origen, identificador, cantidad_desde_origen, creado_por) VALUES ($cuenta, '$vinculador', $valor, '$usuario')");
+                    $consulta_cuentas_principales =$conexion->query("SELECT * from $empresa.tbl_cuentas_contables where numero_cuenta = '$cuenta'");
+                    $existencia = $consulta_cuentas_principales->num_rows;
+                    if($existencia > 0){
+                        echo $cuenta ."  esto es una cuenta principal";
+                    }
+                    else{
+                            echo "No hay cuenta principal";
+                    }
+                    $consulta_sub_cuentas =$conexion->query("SELECT * from $empresa.tbl_sub_cuentas where numero_cuenta = '$cuenta'");
+                    $existencia = $consulta_sub_cuentas->num_rows;
+                    if($existencia > 0){
+                        echo $cuenta ."  esto es una cuenta secundaria";
+                    }
+                    else{
+                            echo "No hay cuenta principal";
+                    }
+
+                    
                 }
                 if($filas['credito'] == 1)
                 {
@@ -142,14 +160,14 @@
                       } 
                      $actualizar_cuenta = $conexion->query("UPDATE $empresa.tbl");
                      $insertar_transaccion = $conexion->query("INSERT INTO $empresa.transacciones_contables (destino, identificador, cantidad_hacia_destino, creado_por) VALUES ($cuenta, '$vinculador', $valor, '$usuario')");
-                
+                 echo $cuenta;
                    // $completar_transaccion_actual = $conexion->query("UPDATE $empresa.transacciones_contables SET destino = $cuenta, cantidad_hacia_destino = $valor WHERE identificador = '$vinculador'");
                 }
 
                 
             }
 
-            header("location: ../../views/venta/factura_venta.php?id_venta=$id ");
+            //header("location: ../../views/venta/factura_venta.php?id_venta=$id ");
        
     
     

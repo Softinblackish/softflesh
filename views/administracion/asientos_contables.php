@@ -50,19 +50,34 @@
                                 <select name="cuenta" class="form-control" id="">
                                 <?php
                                 $id_aleatorio = rand(1,99999999999);
-                                $buscar_id = $conexion->query("select * from $empresa.tbl_asientos where id_temp = $id_aleatorio");
+                                $buscar_id = $conexion->query("SELECT * FROM $empresa.tbl_asientos where id_temp = $id_aleatorio");
                                 $existencia = $buscar_id->num_rows;
                                 if($existencia > 0)
                                     {
                                         $id_aleatorio = $id_aleatorio . 00;
                                     }
                                 
-                                $listar_cuentas = $conexion->query("select * from $empresa.tbl_cuentas_contables");
+                                $listar_cuentas = $conexion->query("SELECT * from $empresa.tbl_cuentas_contables");
                                 while($lista_de_cuentas = $listar_cuentas->fetch_assoc())
                                     {
-                                    ?>
-                                        <option value="<?php echo $lista_de_cuentas['numero_cuenta']?>"><?php echo $lista_de_cuentas['nombre_cuenta']?></option>
-                                    <?php
+                                        ?>
+                                            <option value="<?php echo $lista_de_cuentas['numero_cuenta']?>"><?php echo $lista_de_cuentas['nombre_cuenta']?></option>
+                                        <?php 
+                                    }
+                                
+                                $listar_cuentas_sub = $conexion->query("SELECT * from $empresa.tbl_sub_cuentas ");
+                                while($lista_de_cuentassub = $listar_cuentas_sub->fetch_assoc())
+                                    {
+                                        ?>
+                                            <option value="<?php echo $lista_de_cuentassub['numero_cuenta']?>"><?php echo $lista_de_cuentassub['nombre_cuenta']?></option>
+                                        <?php 
+                                    }
+                                $listar_cuentas_detalle = $conexion->query("SELECT * from $empresa.tbl_cuentas_detalles ");
+                                while($lista_de_cuentas_det = $listar_cuentas_detalle->fetch_assoc())
+                                    {
+                                        ?>
+                                            <option value="<?php echo $lista_de_cuentas_det['numero_cuenta']?>"><?php echo $lista_de_cuentas_det['nombre_cuenta']?></option>
+                                        <?php 
                                     }
 
                                 ?>
@@ -146,7 +161,6 @@
                                                             $lista_cuentas = $conexion->query("SELECT * FROM $empresa.tbl_cuentas_contables where numero_cuenta = $id_cuenta");
                                                             while($cuentas = $lista_cuentas->fetch_assoc())
                                                             {
-                                                                
                                                                 $contador= $contador + 1;
                                                                 ?>
                                                                     <div class="row">
@@ -189,11 +203,6 @@
                                         </div>
                                     </div>
                                 </div>    
-
-
-
-
-
 
 
   <!-- Modal -->
