@@ -64,17 +64,25 @@
                         <tbody>
                             <?php
                             $empresa = $_SESSION["empresa_db"];
-                            
+                            $consulta=0;
                             if( isset($_POST["desde"]) || isset($_POST["hasta"]) || isset($_POST["filtro"]) )
                                 {
-                                    if($_POST["desde"] and $_POST["hasta"] )
+                                    if(!empty($_POST["desde"]) and !empty($_POST["hasta"]) )
                                         {
-                                            $desde = $_POST["desde"];
-                                            $hasta = $_POST["hasta"];
+                                            
+                                            $desde = date("Y-m-d", Strtotime($_POST["desde"]));
+                                            $hasta = date("Y-m-d", Strtotime($_POST["hasta"]));
+                                            
+                                            list($dia,$mes,$anio)=explode("/",$_POST["desde"]);
+	                                        $desde="$anio-$mes-$dia";
+                                            list($dia,$mes,$anio)=explode("/",$_POST["hasta"]);
+                                            $hasta="$anio-$mes-$dia";
+                                            //$desde = $_POST["desde"];
+                                            //$hasta = $_POST["hasta"];
                                             $consulta_articulos= $conexion->query("SELECT * from $empresa.tbl_nomina WHERE fecha_creacion >= '$desde' and fecha_creacion <= '$hasta' and estado = 'activo' ");
                                             $consulta=1;
                                         }
-                                    if($_POST["filtro"])
+                                    if(!empty($_POST["filtro"]))
                                         {
                                             $filtro = $_POST["filtro"];
                                             $consulta_articulos= $conexion->query("SELECT * FROM $empresa.tbl_nomina WHERE no_nomina LIKE '%$filtro%' and estado = 'activo' limit 5");
@@ -82,7 +90,7 @@
                                         }                  
                                 }else{
                                     //$consulta_articulos= $conexion->query("SELECT * FROM $empresa.tbl_art_nomina");
-                                    $consulta=0;
+                                    
                                 }    
                                 if($consulta > 0 ) {    
                                     while($row = $consulta_articulos->fetch_assoc())

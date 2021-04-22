@@ -139,8 +139,10 @@
                         </div>
                         <div id="contabilidad" class="menu_lv1"><i class="fa fa-bar-chart fa-lg" aria-hidden="true"></i> Contabilidad
                         
-                                <a href="../contabilidad/frm_llenado_606.php"><div class="menu_lv3 menu_contabilidad">llenar 606</div></a>
-                                <a href="../contabilidad/reporte_606.php"><div class="menu_lv3 menu_contabilidad">Reporte 606</div></a>
+                                <a href="../contabilidad/frm_llenado_606.php"><div class="menu_lv3 menu_contabilidad">Agregar datos al 606</div></a>
+                                <a href="../contabilidad/reporte_606.php"><div class="menu_lv3 menu_contabilidad">Generar el 606</div></a>
+                                <a href="../contabilidad/frm_exel_606.php"><div class="menu_lv3 menu_contabilidad">Reporte en exel del 606</div></a>
+                                <a href="../contabilidad/frm_datos_606.php"><div class="menu_lv3 menu_contabilidad">Ver todos los 606</div></a>
                                 <a href="../contabilidad/reporte_607.php"><div class="menu_lv3 menu_contabilidad">Reporte 607</div></a>
                                    <div class="menu_lv3 menu_contabilidad">Reporte 608</div>
                                    <div class="menu_lv3 menu_contabilidad">Balance Géneral</div>

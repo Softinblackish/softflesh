@@ -67,7 +67,7 @@
                                                 <!-- Head Tabla nominas   --->
                                                 <tr>
                                                     <th scope="row"><?php echo $row["no_nomina"]; ?></th>
-                                                    <td><?php echo $row["fecha_creacion"]; ?></td>
+                                                    <td><?php echo substr($row["fecha_creacion"],0,10); ?></td>
                                                     <td><?php echo $row["empleado"]; ?></td>
                                                     <td><?php echo $row["sueldo"]; ?></td>
                                                     <td><?php echo $row["salud"]; ?></td>

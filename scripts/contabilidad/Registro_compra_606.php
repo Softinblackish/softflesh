@@ -28,8 +28,12 @@ $Monto_prima_legal = 0;
 $Forma_pago = 0;
 $Estatus = "";
 
+/*
+    SELECT art.articulo as T_Bienes_servicios, art.cantidad, art.precio_compra as precio, art.total as Total_Monto_facturado, det.comprobante, det.forma_pago, det.valor_impuestos, det.sin_impuestos,cod_I.porciento as ibis_retenido, sup.rnc_sup as NCF, det.periodo from tbl_compras det INNER JOIN tbl_art_compras art on det.no_compra = art.no_compra INNER JOIN tbl_suplidores sup on sup.codigo_sup = det.cod_proveedor INNER JOIN tbl_cod_impuestos cod_I on cod_I.id_cod_impuesto = det.cod_impuesto where det.periodo = '202103' order by (det.periodo) 
+*/
 
-$consulta_606 = $conexion->query("select art.articulo as T_Bienes_servicios, art.precio_compra as precio, art.cantidad, art.total as Total_Monto_facturado, det.comprobante, det.forma_pago, det.valor_impuestos, det.sin_impuestos, cod_I.porciento as ibis_retenido ,sup.rnc_sup as NCF FROM $empresa.tbl_compras det INNER JOIN $empresa.tbl_art_compras art on det.no_compra = art.no_compra INNER JOIN $empresa.tbl_suplidores sup on sup.codigo_sup = det.cod_proveedor INNER JOIN $empresa.tbl_cod_impuestos cod_I on cod_I.id_cod_impuesto = det.cod_impuesto");
+
+$consulta_606 = $conexion->query("select art.articulo as T_Bienes_servicios, art.precio_compra as precio, art.cantidad, art.total as Total_Monto_facturado, det.comprobante, det.forma_pago, det.valor_impuestos, det.sin_impuestos, cod_I.porciento as ibis_retenido ,sup.rnc_sup as NCF, det.periodo FROM $empresa.tbl_compras det INNER JOIN $empresa.tbl_art_compras art on det.no_compra = art.no_compra INNER JOIN $empresa.tbl_suplidores sup on sup.codigo_sup = det.cod_proveedor INNER JOIN $empresa.tbl_cod_impuestos cod_I on cod_I.id_cod_impuesto = det.cod_impuesto order by (det.periodo)");
 
 $contador = 1;
 $sumaMonto = 0;
@@ -40,12 +44,12 @@ while($row = $consulta_606->fetch_assoc())
     $T_Bienes_servicios = $row["T_Bienes_servicios"];
     $NCF = $row["NCF"];
     $NCF_docMod = "No Aplica";
-    $Fec_comprobante = "00/00";
+    $Fec_comprobante = $row["periodo"];
     $Fec_pago = "No Aplica";
     $Monto_Facturado_Servicios = 0;
     $Monto_Facturado_Bienes = $row["Total_Monto_facturado"];
     $Total_Monto_facturado = $sumaMonto;
-    $Itebis_Facturado = 0;
+    $Itebis_Facturado = $row["ibis_retenido"];
     $Itebis_Retenido = 0;
     $Itebis_sub_a_proporcionalidad = 0;
     $Itebis_llevado_al_costo = 0;
@@ -75,7 +79,7 @@ $consulta = $conexion->query("SELECT periodo FROM $empresa.tbl_help_606");
         
     }
 */
-//echo $empresa . "   " . $tipo_id." ".$T_Bienes_servicios." ".$NCF." ".$NCF_docMod." ".$Fec_comprobante." ".$Fec_pago." ".$Monto_Facturado_Servicios." ".$Monto_Facturado_Bienes." ".$Total_Monto_facturado." ".$Itebis_Facturado." ".$Itebis_Retenido." ".$Itebis_sub_a_proporcionalidad." ".$Itebis_llevado_al_costo." ".$Itebis_por_adelantar." ".$Itebis_percibido_compra." ".$Tipo_Retencion_ISR." ".$Monto_Retencion_Renta." ".$ISR_percibido_compra." ".$Impuesto_selectivo_consumo." ".$Monto_prima_legal." ".$Forma_pago." ".$Estatus." ";
 
-//header('location:../../views/contabilidad/reporte_606.php?registro="si" ')
+
+header('location:../../views/contabilidad/reporte_606.php?registro="si" ')
 ?>

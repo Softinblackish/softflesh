@@ -10,12 +10,12 @@
 <link rel="stylesheet" href="../../css/scroll.css">
 
 <div class="container-606">
-<div class="container ">
+<div class="container Overflow">
 
 
 <form action="" method="post">
     <div class="cabeza">
-        <h2>Reporte de 606</h2>
+        <h2> Ver todos los Datos del 606 </h2>
     </div>
     </br>
 
@@ -28,19 +28,19 @@
                     ?>
                     <option value = <?php echo $row["periodo"];  ?> ><?php echo $row["periodo"];  ?></option>
                     <?php }?>
+                    <option value = "" >Todos</option>
                 </select> 
         </div>
         <div class="form-group col-md-7">
             
             <input type="submit" class="btn btn" id="buscar" value=" Buscar">
-            <a href="../../scripts/contabilidad/Registro_compra_606.php" class="btn btn-info">Generar 606</a>
         </div>
     </div>
     
 </form>
      <br><br>
 <!--Aqui va la tabla temp del 606-->
-<div class="tamano_tablas Overflow" >
+<div class="tamano_tablas" >
                 <table class="table" id= "testTable">
                     <h5 class="cabeza_tabla" >Datos procesados</h5>
                     <thead>      
@@ -55,6 +55,7 @@
                             <th scope="col" style="width:25%;"> Monto Facturado en Servicios</th>
                             <th scope="col" style="width:25%;"> Monto Facturado en Bienes</th>
                             <th scope="col" style="width:15%;"> Total Monto Facturado</th>
+                            <th scope="col" style="width:15%;"> Itebis Facturado</th>
                             <th scope="col" style="width:15%;"> Itebis Retenido</th>
                             <th scope="col" style="width:25%;"> Itebis subjecto a proporcionalidad</th>
                             <th scope="col" style="width:25%;"> Itebis llevado al costo</th>
@@ -73,46 +74,42 @@
                     </thead>
                     <tbody>
                         <?php
-                            if(isset($_POST["filtro"]))
+                            if(!empty($_POST["filtro"]))
                             {
                                     $filtro=$_POST["filtro"];
-                                    //$consulta_606 = $conexion->query("select * from $empresa.tbl_contabilidad ");
-                                    $consulta_606 = $conexion->query("select art.articulo as T_Bienes_servicios, art.precio_compra as precio, art.cantidad, art.total as Total_Monto_facturado, det.comprobante, det.forma_pago, det.valor_impuestos, det.sin_impuestos, cod_I.porciento as ibis_retenido ,sup.rnc_sup as NCF, det.periodo FROM $empresa.tbl_compras det INNER JOIN $empresa.tbl_art_compras art on det.no_compra = art.no_compra INNER JOIN $empresa.tbl_suplidores sup on sup.codigo_sup = det.cod_proveedor INNER JOIN $empresa.tbl_cod_impuestos cod_I on cod_I.id_cod_impuesto = det.cod_impuesto where det.periodo = '$filtro'
-                                    order by (det.periodo)");
+                                    $consulta_606 = $conexion->query("SELECT * FROM $empresa.tbl_contabilidad where Fec_comprobante = '$filtro' order by (Fec_comprobante) ");
                             }else
                             {
-                                $consulta_606 = $conexion->query("select art.articulo as T_Bienes_servicios, art.precio_compra as precio, art.cantidad, art.total as Total_Monto_facturado, det.comprobante, det.forma_pago, det.valor_impuestos, det.sin_impuestos, cod_I.porciento as ibis_retenido ,sup.rnc_sup as NCF, det.periodo FROM $empresa.tbl_compras det INNER JOIN $empresa.tbl_art_compras art on det.no_compra = art.no_compra INNER JOIN $empresa.tbl_suplidores sup on sup.codigo_sup = det.cod_proveedor INNER JOIN $empresa.tbl_cod_impuestos cod_I on cod_I.id_cod_impuesto = det.cod_impuesto order by (det.periodo)");
+                                $consulta_606 = $conexion->query("SELECT * FROM $empresa.tbl_contabilidad");
                             }   
-                            $cont = 0; 
-                            $sumaMonto = 0;
-                            while($reg_datos_606 = $consulta_606->fetch_assoc())
+                            while($datos_606 = $consulta_606->fetch_assoc())
                                     {
                                         
-                                        $cont =$cont + 1;
-                                        $sumaMonto = $sumaMonto + $reg_datos_606["Total_Monto_facturado"];
+                                        
                         ?>
                                             <tr>
-                                            <th><?php echo $cont ?></th>
-                                            <td><?php  echo $reg_datos_606["T_Bienes_servicios"]; ?></td>
-                                            <td><?php  echo $reg_datos_606["NCF"]; ?></td>
-                                            <td>No Aplica</td>
-                                            <td><?php  echo $reg_datos_606["periodo"]; ?></td>
-                                            <td>No Aplica</td>
-                                            <td>0</td>
-                                            <td><?php  echo $reg_datos_606["Total_Monto_facturado"]; ?></td>
-                                            <td><?php echo $sumaMonto ?></td>
-                                            <td><?php  echo $reg_datos_606["ibis_retenido"]; ?></td>
-                                            <td>0</td>
-                                            <td>0</td>
-                                            <td>0</td>
-                                            <td>0</td>
-                                            <td>0</td>
-                                            <td>0</td>
-                                            <td>0</td>
-                                            <td>0</td>
-                                            <td>0</td>
-                                            <td><?php  echo $reg_datos_606["forma_pago"]; ?></td>
-                                            <td>Bien</td>
+                                            <th><?php echo $datos_606["tipo_id"]; ?></th>
+                                            <td><?php  echo $datos_606["T_Bienes_servicios"]; ?></td>
+                                            <td><?php  echo $datos_606["NCF"]; ?></td>
+                                            <td><?php  echo $datos_606["NCF_docMod"]; ?></td>
+                                            <td><?php  echo $datos_606["Fec_comprobante"]; ?></td>
+                                            <td><?php  echo $datos_606["Fec_pago"]; ?></td>
+                                            <td><?php  echo $datos_606["Monto_Facturado_Servicios"]; ?></td>
+                                            <td><?php  echo $datos_606["Monto_Facturado_Bienes"]; ?></td>
+                                            <td><?php  echo $datos_606["Total_Monto_facturado"]; ?></td>
+                                            <td><?php  echo $datos_606["Itebis_Facturado"]; ?></td>
+                                            <td><?php  echo $datos_606["Itebis_Retenido"]; ?></td>
+                                            <td><?php  echo $datos_606["Itebis_sub_a_proporcionalidad"]; ?></td>
+                                            <td><?php  echo $datos_606["Itebis_llevado_al_costo"]; ?></td>
+                                            <td><?php  echo $datos_606["Itebis_por_adelantar"]; ?></td>
+                                            <td><?php  echo $datos_606["Itebis_percibido_compra"]; ?></td>
+                                            <td><?php  echo $datos_606["Tipo_Retencion_ISR"]; ?></td>
+                                            <td><?php  echo $datos_606["Monto_Retencion_Renta"]; ?></td>
+                                            <td><?php  echo $datos_606["ISR_percibido_compra"]; ?></td>
+                                            <td><?php  echo $datos_606["Impuesto_selectivo_consumo"]; ?></td>
+                                            <td><?php  echo $datos_606["Monto_prima_legal"]; ?></td>
+                                            <td><?php  echo $datos_606["Forma_pago"]; ?></td>
+                                            <td><?php  echo $datos_606["Estatus"]; ?></td>
                                             <td><a href="../../scripts/compras/.php?id_compra=<?php echo $reg_art_temp['id_compra']; ?>&no_compra=<?php echo $reg_art_temp['no_compra']; ?>" class="btn btn-danger"><i class="fa fa-times fa-lg"></i></a></td> 
                                             </tr>
                         <?php
@@ -122,7 +119,8 @@
                 </table> 
             </div>
             <br>
-            
+            <!--
+            <button onclick="tableToExcel('testTable', 'Hoja1')">Grabar tabla en exel</button>-->
         </form>
     </div>
 
