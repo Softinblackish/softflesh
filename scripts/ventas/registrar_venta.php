@@ -12,6 +12,7 @@
     $precio = $_POST["precio"];
     $total = $_POST["total"];
     $id_temp = $_POST["id_temp"];
+    $asiento = $_POST["asiento"];
  
         $consulta_comprobante = $conexion->query("SELECT * FROM $empresa.tbl_comprobantes where tipo = '$comprobante'");
         $registro_comprobante = $consulta_comprobante->fetch_assoc();
@@ -21,7 +22,6 @@
         $ultimo = $registro_comprobante["maximo"];
         $alerta = $registro_comprobante["cantidad_alerta"];
         $cantidad_alerta = $alerta + $proximo;
-        echo $cantidad_alerta;
         $prefijo = "B00";
         if($comprobante =="Valor fiscal")
         {
@@ -63,7 +63,6 @@
             $ceros ="0";
         }
         $ncf = $prefijo.$ceros.$numero_ncf;
-        echo $ncf;
         $caja = $_SESSION["caja"];
             
             $insertar_venta = $conexion->query("INSERT INTO $empresa.tbl_ventas (id_venta_temp, id_cliente, condicion_pago, tipo_comprobante, comprobante, forma_pago, itbis, precio, total, caja , creado_por) 
@@ -88,7 +87,87 @@
 
             $eliminar_cotizacion = $conexion->query("DELETE FROM $empresa.tbl_cotizaciones where id_venta_temp = $id_temp");
             $update_venta = $conexion->query("UPDATE $empresa.tbl_venta_temp SET en_espera = 0  WHERE id_venta = $id_temp");
-            header("location: ../../views/venta/factura_venta.php?id_venta=$id ");
+            
+            $identificativo_asiento = $conexion->query("SELECT * FROM $empresa.tbl_asientos WHERE area = 'ventas' AND identificativo = '$asiento'");
+            $vinculador = rand(1,999999999);
+            while ($filas = $identificativo_asiento->fetch_assoc()) {
+                
+                if($filas['debito'] == 1)
+                {
+                   $cuenta = $filas['cuenta'];
+                   if($filas['campo_vinculado'] == 'Pago total')
+                   {
+                    $valor = $total;
+                   }
+                   if($filas['campo_vinculado'] == 'Pago Itbis')
+                   {
+                    $valor = $itebis;
+                   } 
+                   if($filas['campo_vinculado'] == 'Pago valor sin Itbis')
+                   {
+                    $valor = $itebis;
+                   } 
+                   if($filas['campo_vinculado'] == 'Cantidad a credito')
+                   {
+                    $valor = $itebis;
+                    } 
+                    if($filas['campo_vinculado'] == 'Pago adelantado')
+                    {
+                     $valor = $itebis;
+                     } 
+                    $insertar_transaccion = $conexion->query("INSERT INTO $empresa.transacciones_contables (origen, identificador, cantidad_desde_origen, creado_por) VALUES ($cuenta, '$vinculador', $valor, '$usuario')");
+                    $consulta_cuentas_principales =$conexion->query("SELECT * from $empresa.tbl_cuentas_contables where numero_cuenta = '$cuenta'");
+                    $existencia = $consulta_cuentas_principales->num_rows;
+                    if($existencia > 0){
+                        echo $cuenta ."  esto es una cuenta principal";
+                    }
+                    else{
+                            echo "No hay cuenta principal";
+                    }
+                    $consulta_sub_cuentas =$conexion->query("SELECT * from $empresa.tbl_sub_cuentas where numero_cuenta = '$cuenta'");
+                    $existencia = $consulta_sub_cuentas->num_rows;
+                    if($existencia > 0){
+                        echo $cuenta ."  esto es una cuenta secundaria";
+                    }
+                    else{
+                            echo "No hay cuenta principal";
+                    }
+
+                    
+                }
+                if($filas['credito'] == 1)
+                {
+                    $cuenta = $filas['cuenta'];
+                    if($filas['campo_vinculado'] == 'Pago total')
+                    {
+                     $valor = $total;
+                    }
+                    if($filas['campo_vinculado'] == 'Pago Itbis')
+                    {
+                     $valor = $itebis;
+                    } 
+                    if($filas['campo_vinculado'] == 'Pago valor sin Itbis')
+                    {
+                     $valor = $itebis;
+                    } 
+                    if($filas['campo_vinculado'] == 'Cantidad a credito')
+                    {
+                     $valor = $itebis;
+                     } 
+                     if($filas['campo_vinculado'] == 'Pago adelantado')
+                     {
+                      $valor = $itebis;
+                      } 
+                     $actualizar_cuenta = $conexion->query("UPDATE $empresa.tbl");
+                     $insertar_transaccion = $conexion->query("INSERT INTO $empresa.transacciones_contables (destino, identificador, cantidad_hacia_destino, creado_por) VALUES ($cuenta, '$vinculador', $valor, '$usuario')");
+                 echo $cuenta;
+                   // $completar_transaccion_actual = $conexion->query("UPDATE $empresa.transacciones_contables SET destino = $cuenta, cantidad_hacia_destino = $valor WHERE identificador = '$vinculador'");
+                }
+
+                
+            }
+
+            //header("location: ../../views/venta/factura_venta.php?id_venta=$id ");
        
     
     

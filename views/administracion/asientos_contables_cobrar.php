@@ -12,26 +12,26 @@
     <div class="row">
     
         <div id="menu_asientos" class="col-md-3" style="background-color:rgb(87, 220, 200); padding:25px; color:white;">
-            <h5> <a href="asientos_contables.php" style="margin-left: 45px;">Ventas</a> </h5>
+            <h5> <a href="asientos_contables.php"> Venta </a> </h5>
                 <hr>
-            <h5><a href="asientos_contables_compra.php">Compra </a></h5>
+            <h5> <a href="asientos_contables_compra.php"> Compra </a></h5>
                 <hr>
-            <h5> <a href="asientos_contables_pagar.php"> Cuentas x p</a></h5>
+            <h5> <a href="asientos_contables_pagar.php"> Cuentas x p </a></h5>
                 <hr>
-            <h5> <a href="asientos_contables_cobrar.php"> Cuantas x c</a></h5>
+            <h5  style="margin-left: 45px;">  <a href="asientos_contables_cobrar.php"> Cuantas x c</a></h5>
                 <hr>
-            <h5> <a href="asientos_contables_inventario.php"> Inventario</a></h5>
+            <h5>  <a href="asientos_contables_inventario.php"> Inventario</a></h5>
                 <hr>
-            <h5> <a href="asientos_contables_nomina.php"> Nomina</a></h5>
+            <h5>  <a href="asientos_contables_nomina.php"> Nomina</a></h5>
                 <hr>
         </div>
         <div class="col-md-9" style="border:solid 1px gray;">
             <div class="row"> 
                 <div class="col-md-6 bg-info" id="agregar" style="color: white; padding-top:15px;padding-bottom:15px; padding-left:40px;">
-                    <h5>Agregar asiento de ventas</h5> 
+                    <h5>Agregar asiento de CxC</h5> 
                 </div>
                 <div class="col-md-6 bg-info" id="ver" style="color: white;padding-top:15px; padding-left:40px;padding-bottom:15px;">
-                    <h5>Ver asientos de ventas</h5>
+                    <h5>Ver asientos de CxC</h5>
                 </div>
             </div><br>
             <div id="agregar_asiento_de_venta" >
@@ -50,40 +50,25 @@
                                 <select name="cuenta" class="form-control" id="">
                                 <?php
                                 $id_aleatorio = rand(1,99999999999);
-                                $buscar_id = $conexion->query("SELECT * FROM $empresa.tbl_asientos where id_temp = $id_aleatorio");
+                                $buscar_id = $conexion->query("select * from $empresa.tbl_asientos where id_temp = $id_aleatorio");
                                 $existencia = $buscar_id->num_rows;
                                 if($existencia > 0)
                                     {
                                         $id_aleatorio = $id_aleatorio . 00;
                                     }
                                 
-                                $listar_cuentas = $conexion->query("SELECT * from $empresa.tbl_cuentas_contables");
+                                $listar_cuentas = $conexion->query("select * from $empresa.tbl_cuentas_contables");
                                 while($lista_de_cuentas = $listar_cuentas->fetch_assoc())
                                     {
-                                        ?>
-                                            <option value="<?php echo $lista_de_cuentas['numero_cuenta']?>"><?php echo $lista_de_cuentas['nombre_cuenta']?></option>
-                                        <?php 
-                                    }
-                                
-                                $listar_cuentas_sub = $conexion->query("SELECT * from $empresa.tbl_sub_cuentas ");
-                                while($lista_de_cuentassub = $listar_cuentas_sub->fetch_assoc())
-                                    {
-                                        ?>
-                                            <option value="<?php echo $lista_de_cuentassub['numero_cuenta']?>"><?php echo $lista_de_cuentassub['nombre_cuenta']?></option>
-                                        <?php 
-                                    }
-                                $listar_cuentas_detalle = $conexion->query("SELECT * from $empresa.tbl_cuentas_detalles ");
-                                while($lista_de_cuentas_det = $listar_cuentas_detalle->fetch_assoc())
-                                    {
-                                        ?>
-                                            <option value="<?php echo $lista_de_cuentas_det['numero_cuenta']?>"><?php echo $lista_de_cuentas_det['nombre_cuenta']?></option>
-                                        <?php 
+                                    ?>
+                                        <option value="<?php echo $lista_de_cuentas['numero_cuenta']?>"><?php echo $lista_de_cuentas['nombre_cuenta']?></option>
+                                    <?php
                                     }
 
                                 ?>
                                 </select>
                             </div>
-                            <input type="hidden" name="area" value="ventas" id="">
+                            <input type="hidden" name="area" value="cxc" id="">
                             <input type="hidden" name="id_temp" value="<?php echo $id_aleatorio;?>" id="">
                             <div class="col-md-3">
                                 <div>
@@ -114,7 +99,7 @@
                 <div>
                     <?php 
                        
-                        $lista_asientos = $conexion->query("SELECT DISTINCT id_temp id_asiento, identificativo, predeterminado FROM $empresa.tbl_asientos where area = 'ventas'");
+                        $lista_asientos = $conexion->query("SELECT DISTINCT id_temp id_asiento, identificativo, predeterminado FROM $empresa.tbl_asientos where area = 'cxc'");
                         while($asientos = $lista_asientos->fetch_assoc())
                         {
                             
@@ -143,7 +128,7 @@
                                                     <div class="col-md-3">
                                                         Predeterminado<input type="radio"  <?php if($asientos['predeterminado']==1){ ?> checked <?php }  ?>  name="predeterminado" id="">
                                                     </div>
-                                                    <input type="hidden" value="ventas" name="area">
+                                                    <input type="hidden" value="cxc" name="area">
                                                     <div class="row bg-info" style="padding:15px; color:white;">
                                                         <div class="col-md-5">Cuenta</div>
                                                         <div class="col-md-2">Origen</div>
@@ -158,9 +143,10 @@
                                                         {
                                                             $id_cuenta = $asiento['cuenta'];
                                             
-                                                            $lista_cuentas = $conexion->query("SELECT * FROM $empresa.tbl_cuentas_contables where numero_cuenta = $id_cuenta");
+                                                            $lista_cuentas = $conexion->query("SELECT * FROM $empresa.tbl_cuentas_contables where id_cuenta = $id_cuenta");
                                                             while($cuentas = $lista_cuentas->fetch_assoc())
                                                             {
+                                                                
                                                                 $contador= $contador + 1;
                                                                 ?>
                                                                     <div class="row">
@@ -203,6 +189,11 @@
                                         </div>
                                     </div>
                                 </div>    
+
+
+
+
+
 
 
   <!-- Modal -->
