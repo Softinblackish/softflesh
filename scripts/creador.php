@@ -140,11 +140,11 @@
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8
       ");
 //tabla tbl nomina_id_temp      
-      $tabla_compras_id_temp = $conexion->query("
+      $tabla_nomina_id_temp = $conexion->query("
       CREATE TABLE $nombre_sin_espacio.tbl_nomina_id_temp (
         `id_nomina` int(11) NOT NULL AUTO_INCREMENT,
         `no_nomina` DOUBLE,
-        PRIMARY KEY (`id_compra`)
+        PRIMARY KEY (`id_nomina`)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8
       ");
 //tabla tbl compras
